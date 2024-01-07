@@ -1,0 +1,7 @@
+If other team members are working on the project, before making new changes, consider pulling any changes from the remote repository to avoid conflicts:   git pull origin master
+ 
+Push your local changes to the GitHub repository:   git push origin master
+
+
+Before making new changes, it's a good practice to pull any changes from the remote repository to avoid conflicts:  git pull origin master
+
