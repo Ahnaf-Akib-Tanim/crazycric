@@ -20,6 +20,10 @@ If other team members are working on the project, before making new changes, con
  
 Push your local changes to the GitHub repository:   git push origin master
 
+to save the changes and upload:
+git add .
+git commit -m "Your commit message"
+git push origin master
 
 
 
