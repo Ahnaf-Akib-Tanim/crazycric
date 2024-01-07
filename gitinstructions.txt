@@ -1,7 +1,25 @@
+Install git for windows
+
+run command and check whether git is initialized :  git init
+
+then add the github email and username   :  
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+
+navicate to the project directory and clone the repository: 
+
+git clone https://github.com/Ahnaf-Akib-Tanim/crazycric
+
+
+
+
+
+During team work: 
+
 If other team members are working on the project, before making new changes, consider pulling any changes from the remote repository to avoid conflicts:   git pull origin master
  
 Push your local changes to the GitHub repository:   git push origin master
 
 
-Before making new changes, it's a good practice to pull any changes from the remote repository to avoid conflicts:  git pull origin master
+
 
