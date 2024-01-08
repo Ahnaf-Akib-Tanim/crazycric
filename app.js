@@ -34,9 +34,10 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.get('/', async (req, res) => {
-    res.send('hei');
-});
+/* app.get('/', async (req, res) => {
+    const cricket_board = await db.any('SELECT * FROM cricket_board');
+    res.json(cricket_board);
+}); */
 
 app.post('/user', async (req, res) => {
     // Handle '/user' logic

@@ -19,5 +19,3 @@ insert into cricket_board values('New Zealand Cricket','Debbie Hockley','New Zea
 insert into cricket_board values(' Pakistan Cricket Board','Zaka Ashraf','Pakistan',' Ferozepur','PCB',pg_read_binary_file('D:\Buet\Crazycric-project\cricketboard_images\pak.png'));
 insert into cricket_board values('Afghanistan Cricket Board','	Mirwais Ashraf','Afghanistan','Kabul','ACB',pg_read_binary_file('D:\Buet\Crazycric-project\cricketboard_images\afg.png'));
 insert into cricket_board values('Srilanka Cricket Board','Shammi Silva','Srilanka','Colombo','SLC',pg_read_binary_file('D:\Buet\Crazycric-project\cricketboard_images\sl.png'));
-select*
-from cricket_board
