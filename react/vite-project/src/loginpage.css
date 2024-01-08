@@ -1,0 +1,33 @@
+.login-page-container {
+  background-image: url("D:/Buet/Crazycric-project/react/vite-project/src/loginbg.jpg");
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-option {
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.login-option:hover {
+  opacity: 1;
+}
+
+.login-option button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.login-option button:hover {
+  background-color: #2980b9;
+}
