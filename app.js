@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const staticFilePath = path.resolve(__dirname, './react/vite-project/src/loginbg.jpg');
+const staticFilePath = path.resolve(__dirname, './react/vite-project/public');
 app.use(express.static(staticFilePath));
 /*
 app.get('/', async (req, res) =>
