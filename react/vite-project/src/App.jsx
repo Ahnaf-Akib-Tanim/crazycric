@@ -2,8 +2,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Route, BrowserRouter as Router } from "react-router-dom";
-import Loginpage from "./loginpage.js";
-console.log("error no");
+import Loginpage from "./Loginpage.jsx";
+
 const App = () => {
   return (
     <Router>

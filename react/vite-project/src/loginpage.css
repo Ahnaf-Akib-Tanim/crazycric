@@ -1,5 +1,5 @@
 .login-page-container {
-  background-image: url("D:/Buet/Crazycric-project/react/vite-project/src/loginbg.jpg");
+  /* background-image: url("D:\Buet\Crazycric-project\react\vite-project\src\loginbg.jpg");*/
   background-size: cover;
   height: 100vh;
   display: flex;
@@ -19,7 +19,7 @@
 
 .login-option button {
   background-color: #3498db;
-  color: #fff;
+  color: #ffffff;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;

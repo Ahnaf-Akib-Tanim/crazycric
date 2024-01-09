@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const fs = require('fs');
 const pgp = require('pg-promise')();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
@@ -18,27 +17,27 @@ const db = pgp({
 db.connect()
     .then((obj) => {
         console.log('Connected to the database');
-        obj.done(); // success, release the connection
+        obj.done();
     })
     .catch((error) => {
         console.error('Error connecting to the database:', error.message || error);
     });
 
-const app = express(); // Corrected from 'App' to 'app'
+const app = express();
 const port = 3000;
 
 app.use(express.json());
 app.use(cors());
-app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-/* app.get('/', async (req, res) => {
-    const cricket_board = await db.any('SELECT * FROM cricket_board');
-    res.json(cricket_board);
-}); */
-
+const staticFilePath = path.resolve(__dirname, './react/vite-project/src/loginbg.jpg');
+app.use(express.static(staticFilePath));
+/*
+app.get('/', async (req, res) =>
+{ const boards = await db.any('SELECT * FROM cricket_board'); res.json(boards); });
+*/
 app.post('/user', async (req, res) => {
     // Handle '/user' logic
 });
