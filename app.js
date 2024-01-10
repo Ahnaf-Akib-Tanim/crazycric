@@ -36,19 +36,18 @@ app.use(bodyParser.json());
 
 const staticFilePath = path.resolve(__dirname, './react/vite-project/public');
 app.use(express.static(staticFilePath));
-/*
-app.get('/', async (req, res) =>
-{ const boards = await db.any('SELECT * FROM cricket_board'); res.json(boards); });
-*/
 app.post('/user', async (req, res) => {
+    console.log(req.body);
     const { userId, password } = req.body;
     currentuserid = userId;
     currentpassword = password;
+    console.log(currentuserid);
+    console.log(currentpassword);
 
     try {
         const user = await db.oneOrNone(
             'SELECT * FROM Users WHERE userid = $1 AND userpassword = $2',
-            [userId, password]
+            [userId, password],
         );
 
         if (user) {

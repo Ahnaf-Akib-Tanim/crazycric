@@ -16,9 +16,6 @@ const App = () => {
     </BrowserRouter>
   );
 };
-// <Route path="/user/signup" element={< />} />
-// <Route path="/user/loggedin" element={<Userloginpage />} />
-
 const rootElement = document.getElementById("root");
 const root = ReactDOM.createRoot(rootElement);
 root.render(<App />);
