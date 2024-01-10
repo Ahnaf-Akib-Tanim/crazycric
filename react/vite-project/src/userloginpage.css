@@ -1,0 +1,20 @@
+.user-page-container {
+  background-image: url("D:\Buet\Crazycric-project\react\vite-project\src\bg9.jpg");
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+}
+
+.signup-link {
+  opacity: 0.8;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+  opacity: 0.8;
+}

@@ -5,6 +5,8 @@ const pgp = require('pg-promise')();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
+let currentuserid;
+let currentpassword;
 const passwordi = 'A#kibtanim123';
 const db = pgp({
     user: 'postgres',
@@ -24,7 +26,7 @@ db.connect()
     });
 
 const app = express();
-const port = 3000;
+const port = 5173;
 
 app.use(express.json());
 app.use(cors());
@@ -39,6 +41,27 @@ app.get('/', async (req, res) =>
 { const boards = await db.any('SELECT * FROM cricket_board'); res.json(boards); });
 */
 app.post('/user', async (req, res) => {
+    const { userId, password } = req.body;
+    currentuserid = userId;
+    currentpassword = password;
+
+    try {
+        const user = await db.oneOrNone(
+            'SELECT * FROM Users WHERE userid = $1 AND userpassword = $2',
+            [userId, password]
+        );
+
+        if (user) {
+            res.json({ status: 'success' });
+        } else {
+            res.json({ status: 'failure' });
+        }
+    } catch (error) {
+        console.error('Error querying the database:', error.message || error);
+        res.status(500).json({ status: 'error' });
+    }
+});
+app.post('/user/signup', async (req, res) => {
     // Handle '/user' logic
 });
 
@@ -46,7 +69,7 @@ app.post('/admin', async (req, res) => {
     // Handle '/admin' logic
 });
 
-app.post('/admin/loggedin', async (req, res) => {
+app.post('/admin/login', async (req, res) => {
     // Handle '/admin/loggedin' logic
 });
 
