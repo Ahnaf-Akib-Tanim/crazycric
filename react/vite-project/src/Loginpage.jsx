@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
@@ -7,9 +7,46 @@ import "./loginp.css";
 
 const Loginpage = () => {
   const navigate = useNavigate();
+  const [buttonStylesUser, setButtonStylesUser] = useState({
+    position: "fixed",
+    top: "280px", // Adjusted top position for User button
+    left: "550px",
+    opacity: 0.6, // Initial opacity
+  });
+
+  const [buttonStylesAdmin, setButtonStylesAdmin] = useState({
+    position: "fixed",
+    top: "340px",
+    left: "550px",
+    opacity: 0.6, // Initial opacity
+  });
 
   const handleOptionClick = (route) => {
     navigate(route);
+  };
+
+  const handleMouseOver = () => {
+    // Increase brightness on mouseover
+    setButtonStylesUser((prevStyles) => ({
+      ...prevStyles,
+      opacity: 1,
+    }));
+    setButtonStylesAdmin((prevStyles) => ({
+      ...prevStyles,
+      opacity: 1,
+    }));
+  };
+
+  const handleMouseOut = () => {
+    // Reset opacity on mouseout
+    setButtonStylesUser((prevStyles) => ({
+      ...prevStyles,
+      opacity: 0.6,
+    }));
+    setButtonStylesAdmin((prevStyles) => ({
+      ...prevStyles,
+      opacity: 0.6,
+    }));
   };
 
   return (
@@ -18,7 +55,10 @@ const Loginpage = () => {
         <Col
           md={6}
           className="login-option"
+          style={buttonStylesUser}
           onClick={() => handleOptionClick("/user")}
+          onMouseOver={handleMouseOver}
+          onMouseOut={handleMouseOut}
         >
           <Button variant="outline-primary" size="lg" block>
             User
@@ -27,7 +67,10 @@ const Loginpage = () => {
         <Col
           md={6}
           className="login-option"
+          style={buttonStylesAdmin}
           onClick={() => handleOptionClick("/admin")}
+          onMouseOver={handleMouseOver}
+          onMouseOut={handleMouseOut}
         >
           <Button variant="outline-danger" size="lg" block>
             Admin
@@ -37,4 +80,5 @@ const Loginpage = () => {
     </Container>
   );
 };
+
 export default Loginpage;
