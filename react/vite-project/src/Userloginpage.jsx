@@ -13,20 +13,24 @@ const Userloginpage = () => {
   const [linkOpacity, setLinkOpacity] = useState("0.8");
   const handleSubmit = async () => {
     try {
-      const response = await fetch("http://localhost:5173/user", {
+      const response = await fetch("http://localhost:3000/user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ userId, password }),
       });
-
+      console.log(response);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
+      console.log(data);
 
       if (data.status === "success") {
         navigate("/user/loggedin");
       } else if (data.status === "failure") {
-        setServerResponse("Wrong User ID or Password");
+        setServerResponse("failure");
       } else {
         setServerResponse("Error communicating with the server");
       }
@@ -34,6 +38,8 @@ const Userloginpage = () => {
       console.error("Error:", error.message || error);
       setServerResponse("Error communicating with the server");
     }
+    setUserId("");
+    setPassword("");
   };
 
   const inputStyle = {
@@ -64,7 +70,7 @@ const Userloginpage = () => {
     borderRadius: "10px",
     border: "none",
     position: "relative",
-    top: "16px",
+    top: "40px",
     left: "225px",
     cursor: "pointer",
   };
@@ -74,7 +80,7 @@ const Userloginpage = () => {
     color: "rgb(255,51,51)",
     fontSize: "23px",
     position: "relative",
-    top: "-20px",
+    top: "-5px",
     left: "70px",
   };
 
@@ -102,7 +108,10 @@ const Userloginpage = () => {
             type="text"
             placeholder="Enter your User ID"
             value={userId}
-            onChange={(e) => setUserId(e.target.value)}
+            onChange={(e) => {
+              setUserId(e.target.value);
+              setServerResponse("");
+            }}
             style={inputStyle}
           />
         </Form.Group>
@@ -122,7 +131,10 @@ const Userloginpage = () => {
             type="password"
             placeholder="Enter your Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setServerResponse("");
+            }}
             style={inputStyle1}
           />
         </Form.Group>

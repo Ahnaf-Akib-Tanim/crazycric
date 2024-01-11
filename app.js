@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const pgp = require('pg-promise')();
 const cors = require('cors');
+
 const cookieParser = require('cookie-parser');
 
 let currentuserid;
@@ -26,10 +27,15 @@ db.connect()
     });
 
 const app = express();
-const port = 5173;
+const port = 3000;
 
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+    origin: 'http://localhost:5173',
+    credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -53,6 +59,7 @@ app.post('/user', async (req, res) => {
         if (user) {
             res.json({ status: 'success' });
         } else {
+            console.log('User not found');
             res.json({ status: 'failure' });
         }
     } catch (error) {

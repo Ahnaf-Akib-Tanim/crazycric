@@ -5,12 +5,14 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Loginpage from "./Loginpage";
 import Userloginpage from "./Userloginpage";
+import Usersignup from "./Usersignup";
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Loginpage />} />
-        <Route path="/user/*" element={<Userloginpage />} />
+        <Route path="/user" element={<Userloginpage />} />
+        <Route path="/user/signup" element={<Usersignup />} />
         <Route path="/admin" element={<adminloginpage />} />
       </Routes>
     </BrowserRouter>
