@@ -9,9 +9,9 @@ const Loginpage = () => {
   const navigate = useNavigate();
   const [buttonStylesUser, setButtonStylesUser] = useState({
     position: "fixed",
-    top: "280px", // Adjusted top position for User button
+    top: "280px",
     left: "550px",
-    opacity: 0.6, // Initial opacity
+    opacity: 0.6,
   });
 
   const [buttonStylesAdmin, setButtonStylesAdmin] = useState({

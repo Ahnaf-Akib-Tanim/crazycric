@@ -53,7 +53,7 @@ app.post('/user', async (req, res) => {
     try {
         const user = await db.oneOrNone(
             'SELECT * FROM Users WHERE userid = $1 AND userpassword = $2',
-            [userId, password],
+            [userId, password]
         );
 
         if (user) {
@@ -68,6 +68,9 @@ app.post('/user', async (req, res) => {
     }
 });
 app.post('/user/signup', async (req, res) => {
+    // Handle '/user' logic
+});
+app.post('/user/loggedin', async (req, res) => {
     // Handle '/user' logic
 });
 

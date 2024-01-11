@@ -1,0 +1,36 @@
+/* usersignup.css */
+.signup-container {
+  background-image: url("D:/Buet/Crazycric-project/react/vite-project/src/bg9.jpg");
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+}
+
+.signup-container .form-group {
+  margin-bottom: 25px;
+}
+
+.signup-container .form-group .form-label {
+  color: darkorange;
+  margin-bottom: 10px;
+}
+
+.signup-container .form-group input.form-control {
+  border-color: orange;
+  height: 50px;
+}
+
+.signup-container .submit-button {
+  background-color: skyblue;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  font-weight: bold;
+}
+
+.signup-container .submit-button:hover {
+  opacity: 1;
+}
