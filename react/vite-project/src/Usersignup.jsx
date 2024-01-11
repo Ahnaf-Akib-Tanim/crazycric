@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
-import { Alert, Button, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "./usersignup.css";
 
@@ -32,12 +32,19 @@ const Usersignup = () => {
       body: formData,
     });
     const data = await response.json();
-    if (response.ok) {
-      navigate("/user");
-    } else if (data.message === "User ID already exists") {
+    console.log(response);
+    console.log(data);
+    if (data.message === "User ID already exists!") {
       console.log("User ID already exists!");
       setError("User ID already exists!");
+    } else {
+      navigate("/user");
     }
+  };
+  const errorStyle = {
+    color: "red",
+    fontSize: "20px",
+    fontWeight: "bold",
   };
   const inputStyle = {
     backgroundColor: "lightorange",
@@ -137,7 +144,7 @@ const Usersignup = () => {
 
   return (
     <div className="signup-container">
-      {error && <Alert variant="danger">{error}</Alert>}
+      {error && <div style={errorStyle}>{error}</div>}
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formUserId">
           <Form.Label
@@ -235,7 +242,7 @@ const Usersignup = () => {
               top: "20px",
             }}
           >
-            Team
+            Favourite Team
           </Form.Label>
           <Form.Control
             type="text"
@@ -256,7 +263,7 @@ const Usersignup = () => {
               top: "-10px",
             }}
           >
-            Player
+            Favourite Player
           </Form.Label>
           <Form.Control
             type="text"
