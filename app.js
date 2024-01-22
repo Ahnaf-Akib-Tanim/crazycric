@@ -110,7 +110,6 @@ app.post('/user/signup', upload.single('image'), async (req, res) => {
         res.status(500).json({ status: 'error' });
     }
 });
-
 app.post('/user/loggedin', async (req, res) => {
     // Handle '/user/loggedin' logic
 });

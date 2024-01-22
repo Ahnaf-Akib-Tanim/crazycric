@@ -31,9 +31,6 @@ favplayer varchar not NULL,
 image text,
 CONSTRAINT user_pk PRIMARY key(userid)
 );
-select*
-from Users;
-
 drop table match_scorecard;
 create TABLE match_scorecard
 (
@@ -134,8 +131,6 @@ player_image_path VARCHAR not null,
     bowling_sr INT NOT NULL,
     bowling_10w INT NOT NULL,
     bowling_5w INT NOT NULL,
-
-
 CONSTRAINT player_info_pk PRIMARY key(player_id)
 );
 drop table match_info;

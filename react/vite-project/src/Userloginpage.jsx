@@ -1,4 +1,6 @@
 // eslint-disable-next-line no-unused-vars
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
@@ -92,6 +94,9 @@ const Userloginpage = () => {
 
   return (
     <div className="user-page-container">
+      <button className="go-back-button" onClick={() => navigate(-1)}>
+        <FontAwesomeIcon icon={faArrowLeft} size="lg" />
+      </button>
       <Form>
         <Form.Group controlId="formUserId">
           <Form.Label

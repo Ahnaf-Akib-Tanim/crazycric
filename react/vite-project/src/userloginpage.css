@@ -12,6 +12,27 @@
 .signup-link {
   opacity: 0.8;
 }
+.go-back-button {
+  border: none;
+  background-color: orange;
+  cursor: pointer;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 2em; /* Adjust this to change the size of the arrow */
+}
+
+.go-back-button svg {
+  width: 60px; /* Adjust this to change the size of the arrow */
+  stroke-width: 10px; /* Adjust this to change the stroke width of the arrow */
+}
 
 .error-message {
   color: rgb(255, 0, 0);
