@@ -19,86 +19,18 @@ insert into cricket_board values('New Zealand Cricket','Debbie Hockley','New Zea
 insert into cricket_board values(' Pakistan Cricket Board','Zaka Ashraf','Pakistan',' Ferozepur','PCB','D:\Buet\Crazycric-project\cricketboard_images\pak.png');
 insert into cricket_board values('Afghanistan Cricket Board','	Mirwais Ashraf','Afghanistan','Kabul','ACB','D:\Buet\Crazycric-project\cricketboard_images\afg.png');
 insert into cricket_board values('Srilanka Cricket Board','Shammi Silva','Srilanka','Colombo','SLC','D:\Buet\Crazycric-project\cricketboard_images\sl.png');
-drop table Users;
-create TABLE Users
-(
-userid VARCHAR not NULL, 
-userpassword VARCHAR not NULL,
-username VARCHAR not NULL,
-countryname VARCHAR not NULL,
-favteam varchar not NULL,
-favplayer varchar not NULL,
-image text,
-CONSTRAINT user_pk PRIMARY key(userid)
-);
-drop table match_scorecard;
-create TABLE match_scorecard
-(
-match_id VARCHAR not NULL,
-toss VARCHAR not NULL,
-team1 VARCHAR not NULL,
-team2 VARCHAR not NULL,
-team1_score VARCHAR not NULL,
-team2_score VARCHAR not NULL,
-team1_wicket VARCHAR not NULL,
-team2_wicket VARCHAR not NULL,
-team1_over VARCHAR not NULL,
-team2_over VARCHAR not NULL,
-team1_runrate VARCHAR not NULL,
-team2_runrate VARCHAR not NULL,
-team1_overs VARCHAR not NULL,
-team2_overs VARCHAR not NULL,
-team1_batting VARCHAR not NULL,
-team2_batting VARCHAR not NULL,
-team1_bowling VARCHAR not NULL,
-team2_bowling VARCHAR not NULL,
-team1_given_extra VARCHAR not NULL,
-team2_given_extra VARCHAR not NULL,
---team1 batsman info
-team1_batsman1_runs VARCHAR not NULL,team1_batsman1_balls VARCHAR not NULL,team1_batsman1_fours VARCHAR not NULL,team1_batsman1_sixes VARCHAR not NULL,team1_batsman1_sr VARCHAR not NULL,team1_batsman1_out VARCHAR not NULL,team1_batsman1_name VARCHAR not NULL,
-team1_batsman2_runs VARCHAR not NULL,team1_batsman2_balls VARCHAR not NULL,team1_batsman2_fours VARCHAR not NULL,team1_batsman2_sixes VARCHAR not NULL,team1_batsman2_sr VARCHAR not NULL,team1_batsman2_out VARCHAR not NULL,team1_batsman2_name VARCHAR not NULL,
-team1_batsman3_runs VARCHAR not NULL,team1_batsman3_balls VARCHAR not NULL,team1_batsman3_fours VARCHAR not NULL,team1_batsman3_sixes VARCHAR not NULL,team1_batsman3_sr VARCHAR not NULL,team1_batsman3_out VARCHAR not NULL,team1_batsman3_name VARCHAR not NULL,
-team1_batsman4_runs VARCHAR not NULL,team1_batsman4_balls VARCHAR not NULL,team1_batsman4_fours VARCHAR not NULL,team1_batsman4_sixes VARCHAR not NULL,team1_batsman4_sr VARCHAR not NULL,team1_batsman4_out VARCHAR not NULL,team1_batsman4_name VARCHAR not NULL,
-team1_batsman5_runs VARCHAR not NULL,team1_batsman5_balls VARCHAR not NULL,team1_batsman5_fours VARCHAR not NULL,team1_batsman5_sixes VARCHAR not NULL,team1_batsman5_sr VARCHAR not NULL,team1_batsman5_out VARCHAR not NULL,team1_batsman5_name VARCHAR not NULL,
-team1_batsman6_runs VARCHAR not NULL,team1_batsman6_balls VARCHAR not NULL,team1_batsman6_fours VARCHAR not NULL,team1_batsman6_sixes VARCHAR not NULL,team1_batsman6_sr VARCHAR not NULL,team1_batsman6_out VARCHAR not NULL,team1_batsman6_name VARCHAR not NULL,
-team1_batsman7_runs VARCHAR not NULL,team1_batsman7_balls VARCHAR not NULL,team1_batsman7_fours VARCHAR not NULL,team1_batsman7_sixes VARCHAR not NULL,team1_batsman7_sr VARCHAR not NULL,team1_batsman7_out VARCHAR not NULL,team1_batsman7_name VARCHAR not NULL,
-team1_batsman8_runs VARCHAR not NULL,team1_batsman8_balls VARCHAR not NULL,team1_batsman8_fours VARCHAR not NULL,team1_batsman8_sixes VARCHAR not NULL,team1_batsman8_sr VARCHAR not NULL,team1_batsman8_out VARCHAR not NULL,team1_batsman8_name VARCHAR not NULL,
-team1_batsman9_runs VARCHAR not NULL,team1_batsman9_balls VARCHAR not NULL,team1_batsman9_fours VARCHAR not NULL,team1_batsman9_sixes VARCHAR not NULL,team1_batsman9_sr VARCHAR not NULL,team1_batsman9_out VARCHAR not NULL,team1_batsman9_name VARCHAR not NULL,
-team1_batsman10_runs VARCHAR not NULL,team1_batsman10_balls VARCHAR not NULL,team1_batsman10_fours VARCHAR not NULL,team1_batsman10_sixes VARCHAR not NULL,team1_batsman10_sr VARCHAR not NULL,team1_batsman10_out VARCHAR not NULL,team1_batsman10_name VARCHAR not NULL,
-team1_batsman11_runs VARCHAR not NULL,team1_batsman11_balls VARCHAR not NULL,team1_batsman11_fours VARCHAR not NULL,team1_batsman11_sixes VARCHAR not NULL,team1_batsman11_sr VARCHAR not NULL,team1_batsman11_out VARCHAR not NULL,team1_batsman11_name VARCHAR not NULL,
---team2 batsman info
-team2_batsman1_runs VARCHAR not NULL,team2_batsman1_balls VARCHAR not NULL,team2_batsman1_fours VARCHAR not NULL,team2_batsman1_sixes VARCHAR not NULL,team2_batsman1_sr VARCHAR not NULL,team2_batsman1_out VARCHAR not NULL,team2_batsman1_name VARCHAR not NULL,
-team2_batsman2_runs VARCHAR not NULL,team2_batsman2_balls VARCHAR not NULL,team2_batsman2_fours VARCHAR not NULL,team2_batsman2_sixes VARCHAR not NULL,team2_batsman2_sr VARCHAR not NULL,team2_batsman2_out VARCHAR not NULL,team2_batsman2_name VARCHAR not NULL,
-team2_batsman3_runs VARCHAR not NULL,team2_batsman3_balls VARCHAR not NULL,team2_batsman3_fours VARCHAR not NULL,team2_batsman3_sixes VARCHAR not NULL,team2_batsman3_sr VARCHAR not NULL,team2 _batsman3_out VARCHAR not NULL,team2_batsman3_name VARCHAR not NULL,
-team2_batsman4_runs VARCHAR not NULL,team2_batsman4_balls VARCHAR not NULL,team2_batsman4_fours VARCHAR not NULL,team2_batsman4_sixes VARCHAR not NULL,team2_batsman4_sr VARCHAR not NULL,team2_batsman4_out VARCHAR not NULL,team2_batsman4_name VARCHAR not NULL,
-team2_batsman5_runs VARCHAR not NULL,team2_batsman5_balls VARCHAR not NULL,team2_batsman5_fours VARCHAR not NULL,team2_batsman5_sixes VARCHAR not NULL,team2_batsman5_sr VARCHAR not NULL,team2_batsman5_out VARCHAR not NULL,team2_batsman5_name VARCHAR not NULL,
-team2_batsman6_runs VARCHAR not NULL,team2_batsman6_balls VARCHAR not NULL,team2_batsman6_fours VARCHAR not NULL,team2_batsman6_sixes VARCHAR not NULL,team2_batsman6_sr VARCHAR not NULL,team2_batsman6_out VARCHAR not NULL,team2_batsman6_name VARCHAR not NULL,
-team2_batsman7_runs VARCHAR not NULL,team2_batsman7_balls VARCHAR not NULL,team2_batsman7_fours VARCHAR not NULL,team2_batsman7_sixes VARCHAR not NULL,team2_batsman7_sr VARCHAR not NULL,team2_batsman7_out VARCHAR not NULL,team2_batsman7_name VARCHAR not NULL,
-team2_batsman8_runs VARCHAR not NULL,team2_batsman8_balls VARCHAR not NULL,team2_batsman8_fours VARCHAR not NULL,team2_batsman8_sixes VARCHAR not NULL,team2_batsman8_sr VARCHAR not NULL,team2_batsman8_out VARCHAR not NULL,team2_batsman8_name VARCHAR not NULL,
-team2_batsman9_runs VARCHAR not NULL,team2_batsman9_balls VARCHAR not NULL,team2_batsman9_fours VARCHAR not NULL,team2_batsman9_sixes VARCHAR not NULL,team2_batsman9_sr VARCHAR not NULL,team2_batsman9_out VARCHAR not NULL,team2_batsman9_name VARCHAR not NULL,
-team2_batsman10_runs VARCHAR not NULL,team2_batsman10_balls VARCHAR not NULL,team2_batsman10_fours VARCHAR not NULL,team2_batsman10_sixes VARCHAR not NULL,team2_batsman10_sr VARCHAR not NULL,team2_batsman10_out VARCHAR not NULL,team2_batsman10_name VARCHAR not NULL,
-team2_batsman11_runs VARCHAR not NULL,team2_batsman11_balls VARCHAR not NULL,team2_batsman11_fours VARCHAR not NULL,team2_batsman11_sixes VARCHAR not NULL,team2_batsman11_sr VARCHAR not NULL,team2_batsman11_out VARCHAR not NULL,team2_batsman11_name VARCHAR not NULL,
---team1 bowler info
-team1_bowler1_runs VARCHAR not NULL,team1_bowler1_balls VARCHAR not NULL,team1_bowler1_wickets VARCHAR not NULL,team1_bowler1_economy VARCHAR not NULL,team1_bowler1_sr VARCHAR not NULL,team1_bowler1_name VARCHAR not NULL,
-team1_bowler2_runs VARCHAR not NULL,team1_bowler2_balls VARCHAR not NULL,team1_bowler2_wickets VARCHAR not NULL,team1_bowler2_economy VARCHAR not NULL,team1_bowler2_sr VARCHAR not NULL,team1_bowler2_name VARCHAR not NULL,
-team1_bowler3_runs VARCHAR not NULL,team1_bowler3_balls VARCHAR not NULL,team1_bowler3_wickets VARCHAR not NULL,team1_bowler3_economy VARCHAR not NULL,team1_bowler3_sr VARCHAR not NULL,team1_bowler3_name VARCHAR not NULL,
-team1_bowler4_runs VARCHAR not NULL,team1_bowler4_balls VARCHAR not NULL,team1_bowler4_wickets VARCHAR not NULL,team1_bowler4_economy VARCHAR not NULL,team1_bowler4_sr VARCHAR not NULL,team1_bowler4_name VARCHAR not NULL,
-team1_bowler5_runs VARCHAR not NULL,team1_bowler5_balls VARCHAR not NULL,team1_bowler5_wickets VARCHAR not NULL,team1_bowler5_economy VARCHAR not NULL,team1_bowler5_sr VARCHAR not NULL,team1_bowler5_name VARCHAR not NULL,
-team1_bowler6_runs VARCHAR not NULL,team1_bowler6_balls VARCHAR not NULL,team1_bowler6_wickets VARCHAR not NULL,team1_bowler6_economy VARCHAR not NULL,team1_bowler6_sr VARCHAR not NULL,team1_bowler6_name VARCHAR not NULL,
-team1_bowler7_runs VARCHAR not NULL,team1_bowler7_balls VARCHAR not NULL,team1_bowler7_wickets VARCHAR not NULL,team1_bowler7_economy VARCHAR not NULL,team1_bowler7_sr VARCHAR not NULL,team1_bowler7_name VARCHAR not NULL,
-team1_bowler8_runs VARCHAR not NULL,team1_bowler8_balls VARCHAR not NULL,team1_bowler8_wickets VARCHAR not NULL,team1_bowler8_economy VARCHAR not NULL,team1_bowler8_sr VARCHAR not NULL,team1_bowler8_name VARCHAR not NULL,
---team2 bowler info
-team2_bowler1_runs VARCHAR not NULL,team2_bowler1_balls VARCHAR not NULL,team2_bowler1_wickets VARCHAR not NULL,team2_bowler1_economy VARCHAR not NULL,team2_bowler1_sr VARCHAR not NULL,team2_bowler1_name VARCHAR not NULL,
-team2_bowler2_runs VARCHAR not NULL,team2_bowler2_balls VARCHAR not NULL,team2_bowler2_wickets VARCHAR not NULL,team2_bowler2_economy VARCHAR not NULL,team2_bowler2_sr VARCHAR not NULL,team2_bowler1_name VARCHAR not NULL,
-team2_bowler3_runs VARCHAR not NULL,team2_bowler3_balls VARCHAR not NULL,team2_bowler3_wickets VARCHAR not NULL,team2_bowler3_economy VARCHAR not NULL,team2_bowler3_sr VARCHAR not NULL,team2_bowler1_name VARCHAR not NULL,
-team2_bowler4_runs VARCHAR not NULL,team2_bowler4_balls VARCHAR not NULL,team2_bowler4_wickets VARCHAR not NULL,team2_bowler4_economy VARCHAR not NULL,team2_bowler4_sr VARCHAR not NULL,team2_bowler1_name VARCHAR not NULL,
-team2_bowler5_runs VARCHAR not NULL,team2_bowler5_balls VARCHAR not NULL,team2_bowler5_wickets VARCHAR not NULL,team2_bowler5_economy VARCHAR not NULL,team2_bowler5_sr VARCHAR not NULL,team2_bowler1_name VARCHAR not NULL,
-team2_bowler6_runs VARCHAR not NULL,team2_bowler6_balls VARCHAR not NULL,team2_bowler6_wickets VARCHAR not NULL,team2_bowler6_economy VARCHAR not NULL,team2_bowler6_sr VARCHAR not NULL,team2_bowler1_name VARCHAR not NULL,
-team2_bowler7_runs VARCHAR not NULL,team2_bowler7_balls VARCHAR not NULL,team2_bowler7_wickets VARCHAR not NULL,team2_bowler7_economy VARCHAR not NULL,team2_bowler7_sr VARCHAR not NULL,team2_bowler1_name VARCHAR not NULL,
-team2_bowler8_runs VARCHAR not NULL,team2_bowler8_balls VARCHAR not NULL,team2_bowler8_wickets VARCHAR not NULL,team2_bowler8_economy VARCHAR not NULL,team2_bowler8_sr VARCHAR not NULL,team2_bowler1_name VARCHAR not NULL,
-CONSTRAINT match_scorecard_pk PRIMARY key(match_id)
-);
-
+--drop table Users;
+--create TABLE Users
+--(
+--userid VARCHAR not NULL, 
+--userpassword VARCHAR not NULL,
+--username VARCHAR not NULL,
+--countryname VARCHAR not NULL,
+--favteam varchar not NULL,
+--favplayer varchar not NULL,
+--image text,
+--CONSTRAINT user_pk PRIMARY key(userid)
+--);
 drop table player_info;
 create TABLE player_info
 (
@@ -107,115 +39,1209 @@ player_name VARCHAR not NULL,
 player_role VARCHAR not NULL,
 player_date_of_birth VARCHAR not NULL,
 player_batting_style VARCHAR not NULL,
-player_bowling_style VARCHAR not NULL,
+player_bowling_style VARCHAR,
+team_name VARCHAR not null,
 player_image_path VARCHAR not null,
 --player batting stats
-    format VARCHAR NOT NULL, -- Test, ODI, T20
-    batting_match INT NOT NULL,
-    batting_innings INT NOT NULL,
-    batting_runs INT NOT NULL,
-    batting_sr INT NOT NULL,
-    batting_avg INT NOT NULL,
-    batting_100s INT NOT NULL,
-    batting_50s INT NOT NULL,
-    batting_4s INT NOT NULL,
-    batting_6s INT NOT NULL,
---player bowling stats
-    format VARCHAR NOT NULL, -- Test, ODI, T20
-    bowling_match INT NOT NULL,
-    bowling_innings INT NOT NULL,
-    bowling_runs INT NOT NULL,
-    bowling_wickets INT NOT NULL,
-    bowling_avg INT NOT NULL,
-    bowling_economy INT NOT NULL,
-    bowling_sr INT NOT NULL,
-    bowling_10w INT NOT NULL,
-    bowling_5w INT NOT NULL,
-CONSTRAINT player_info_pk PRIMARY key(player_id)
-);
-drop table match_info;
-create TABLE match_info
-(
-match_id VARCHAR not NULL,
-match_type VARCHAR not NULL,
-match_date VARCHAR not NULL,
-match_time VARCHAR not NULL,
-match_venue VARCHAR not NULL,
-match_team1 VARCHAR not NULL,
-match_team2 VARCHAR not NULL,
-match_toss VARCHAR not NULL,
---match_status VARCHAR not NULL,
-match_result VARCHAR not NULL,
-match_winner VARCHAR not NULL,
-man_of_the_match VARCHAR not NULL,
-team1_score VARCHAR not NULL,
-team2_score VARCHAR not NULL,
-team1_wicket VARCHAR not NULL,
-team2_wicket VARCHAR not NULL,
-team1_over VARCHAR not NULL,
-team2_over VARCHAR not NULL,
-team1_runrate VARCHAR not NULL,
-team2_runrate VARCHAR not NULL,
---team 1
-team1_best_batsman1_runs VARCHAR not NULL,
-team1_best_batsman1_balls VARCHAR not NULL,
-team1_best_batsman2_runs VARCHAR not NULL,
-team1_best_batsman2_balls VARCHAR not NULL,
-team1_best_batsman2_runs VARCHAR not NULL,
-team1_best_batsman2_balls VARCHAR not NULL,
-team1_best_batsman3_runs VARCHAR not NULL,
-team1_best_batsman3_balls VARCHAR not NULL,
-team1_best_bowler1_runs VARCHAR not NULL,
-team1_best_bowler1_wickets VARCHAR not NULL,
-team1_best_bowler2_runs VARCHAR not NULL,
-team1_best_bowler2_wickets VARCHAR not NULL,
-team1_best_bowler3_runs VARCHAR not NULL,
-team1_best_bowler3_wickets VARCHAR not NULL,
---team 2
-team2_best_batsman1_runs VARCHAR not NULL,
-team2_best_batsman1_balls VARCHAR not NULL,
-team2_best_batsman2_runs VARCHAR not NULL,
-team2_best_batsman2_balls VARCHAR not NULL,
-team2_best_batsman3_runs VARCHAR not NULL,
-team2_best_batsman3_balls VARCHAR not NULL,
-team2_best_bowler1_runs VARCHAR not NULL,
-team2_best_bowler1_wickets VARCHAR not NULL,
-team2_best_bowler2_runs VARCHAR not NULL,
-team2_best_bowler2_wickets VARCHAR not NULL,
-team2_best_bowler3_runs VARCHAR not NULL,
-team2_best_bowler3_wickets VARCHAR not NULL,
-CONSTRAINT match_info_pk PRIMARY key(match_id)
-);
-
-drop table series_info;
-create TABLE series_info
-(
-series_id VARCHAR not NULL,
-series_name VARCHAR not NULL,
-series_type VARCHAR not NULL,
-series_start_date VARCHAR not NULL,
-series_winner VARCHAR not NULL,
-series_runnerup VARCHAR not NULL,
-man_of_the_series VARCHAR not NULL,
-CONSTRAINT series_info_pk PRIMARY key(series_id)
-);
-drop table Performances;
-CREATE TABLE Performances (
+  --test
+    batting_test_no_of_match int,
+    batting_test_no_of_innings INT,
+    batting_test_runs INT,
+    batting_test_sr DOUBLE PRECISION,
+    batting_test_avg DOUBLE PRECISION,
+    batting_test_100s INT,
+    batting_test_50s INT,
+    batting_test_4s INT,
+    batting_test_6s INT,
+    batting_test_hs INT,
     
-    Match_id INT REFERENCES Matches(Match_id),
-    Player_id INT REFERENCES Players(Player_id),
-    Overs_bowled INT,
-    Wickets_taken INT,
-    Runs_given INT,
-    Runs_scored INT,
-    Balls_faced INT,
-    Extras_given INT,
-    Maiden_overs INT,
-    Sixes_hit INT,
-    Fours_hit INT,
-    PRIMARY KEY (match_id,player_id)
+    -- Player batting stats - ODI
+    batting_odi_no_of_match INT,
+    batting_odi_no_of_innings INT,
+    batting_odi_runs INT,
+    batting_odi_sr DOUBLE PRECISION,
+    batting_odi_avg DOUBLE PRECISION,
+    batting_odi_100s INT,
+    batting_odi_50s INT,
+    batting_odi_4s INT,
+    batting_odi_6s INT,
+    batting_odi_hs INT,
+    
+    -- Player batting stats - T20
+    batting_t20_no_of_match INT,
+    batting_t20_no_of_innings INT,
+    batting_t20_runs INT,
+    batting_t20_sr DOUBLE PRECISION,
+    batting_t20_avg DOUBLE PRECISION,
+    batting_t20_100s INT,
+    batting_t20_50s INT,
+    batting_t20_4s INT,
+    batting_t20_6s INT,
+    batting_t20_hs INT,
+    
+    -- Player bowling stats - Test
+    bowling_test_no_of_match INT,
+    bowling_test_no_of_innings INT,
+    bowling_test_runs INT,
+    bowling_test_wickets INT,
+    bowling_test_avg DOUBLE PRECISION,
+    bowling_test_economy DOUBLE PRECISION,
+    bowling_test_10w INT,
+    bowling_test_5w INT,
+    
+    -- Player bowling stats - ODI
+    bowling_odi_no_of_match INT,
+    bowling_odi_no_of_innings INT,
+    bowling_odi_runs INT,
+    bowling_odi_wickets INT,
+    bowling_odi_avg DOUBLE PRECISION,
+    bowling_odi_economy DOUBLE PRECISION,
+    bowling_odi_10w INT,
+    bowling_odi_5w INT,
+    
+    -- Player bowling stats - T20
+    bowling_t20_no_of_match INT,
+    bowling_t20_no_of_innings INT,
+    bowling_t20_runs INT,
+    bowling_t20_wickets INT,
+    bowling_t20_avg DOUBLE PRECISION,
+    bowling_t20_economy DOUBLE PRECISION,
+    bowling_t20_10w INT,
+    bowling_t20_5w INT,
+    CONSTRAINT player_info_pk PRIMARY KEY(player_id)
+);
+INSERT INTO player_info VALUES
+('1', 'Tamim Iqbal', 'Batsman', 'March 20, 1989', 'Left-Handed', NULL, 'Bangladesh', 'http://localhost:3000/images/Tamim%20Iqbal.jpeg
+',
+-- Batting Stats
+  100, 190, 8500, 78.45, 45.20, 12, 32, 720, 45, 150,
+-- ODI Batting Stats
+  220, 215, 9500, 85.20, 43.60, 15, 40, 800, 55, 158,
+-- T20 Batting Stats
+  70, 68, 1800, 120.30, 28.40, 1, 10, 150, 20, 80,
+-- Bowling Stats (Tamim is not a regular bowler)
+  100, 5, 30, NULL, NULL, 4.0, NULL, NULL,
+   220, 2, 13, NULL, NULL, 13.0, NULL, NULL,
+  70, NULL, NULL, NULL, NULL, NULL, NULL, NULL
+);
+INSERT INTO player_info VALUES
+('2', 'Shakib Al Hasan', 'All-Rounder', 'March 24, 1987', 'Left-Handed', 'Slow Left-Arm', 'Bangladesh', 'http://localhost:3000/images/Shakib%20Al%20Hasan.jpeg
+',
+-- Batting Stats
+  60, 110, 4500, 82.60, 40.75, 5, 28, 480, 25, 120,
+-- ODI Batting Stats
+  200, 185, 7800, 88.45, 38.20, 8, 35, 650, 40, 140,
+-- T20 Batting Stats
+  50, 48, 1200, 130.20, 27.80, 0, 8, 100, 15, 70,
+-- Bowling Stats
+  60, 140, 3500, 190, 22.40, 4.15, 2, 10,
+  200, 170, 4500, 220, 24.80, 4.30, 3, 15,
+  50, 60, 1200, 80, 18.90, 5.20, 1, 8
+);
+INSERT INTO player_info VALUES
+('3', 'Mushfiqur Rahim', 'Wicketkeeper-Batsman', 'June 9, 1987', 'Right-Handed', NULL, 'Bangladesh', 'http://localhost:3000/images/Mushfiqur%20Rahim.jpeg
+',
+-- Batting Stats
+  65, 120, 5200, 76.80, 38.50, 6, 22, 420, 30, 125,
+-- ODI Batting Stats
+  210, 195, 7200, 87.20, 35.70, 5, 30, 600, 35, 140,
+-- T20 Batting Stats
+  55, 50, 1100, 115.40, 26.90, 0, 6, 90, 10, 65,
+-- Bowling Stats (Mushfiqur is not a regular bowler)
+  65, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+  210, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+  55, NULL, NULL, NULL, NULL, NULL, NULL, NULL
 );
 
+INSERT INTO player_info VALUES
+('4', 'Mahmudullah', 'All-Rounder', 'February 4, 1986', 'Right-Handed', 'Off-Spin', 'Bangladesh', 'http://localhost:3000/images/Mahmudullah%20.jpeg
+',
+-- Batting Stats
+  50, 95, 3500, 85.20, 40.00, 4, 18, 320, 20, 110,
+-- ODI Batting Stats
+  180, 165, 5900, 90.00, 37.50, 3, 25, 520, 28, 130,
+-- T20 Batting Stats
+  45, 40, 900, 120.50, 28.50, 0, 5, 80, 12, 60,
+-- Bowling Stats
+  40, 100, 2800, 120, 22.80, 4.10, 1, 8,
+  180, 120, 3500, 180, 26.50, 4.40, 2, 12,
+  45, 45, 900, 55, 18.20, 5.20, 1, 5
+);
+	INSERT INTO player_info VALUES
+('5', 'Mustafizur Rahman', 'Bowler', 'September 6, 1995', 'Left-Handed', 'Left-Arm Fast', 'Bangladesh', 'http://localhost:3000/images/Mustafizur%20Rahman.jpeg
+',
+-- Batting Stats (Mustafizur is not known for his batting)
+  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+-- ODI Batting Stats
+  40, 20, 100, 50.00, 10.00, 0, 0, 10, 0, 10,
+-- T20 Batting Stats
+  25, 12, 30, 40.00, 7.50, 0, 0, 5, 0, 5,
+-- Bowling Stats
+  40, 50, 850, 45, 18.90, 4.00, 0, 3,
+  35, 70, 1200, 65, 21.50, 4.20, 0, 4,
+  40, 40, 600, 30, 19.20, 4.50, 0, 2
+);	
+INSERT INTO player_info VALUES
+('6', 'Soumya Sarkar', 'All-Rounder', 'February 25, 1993', 'Left-Handed', 'Right-Arm Medium', 'Bangladesh', 'http://localhost:3000/images/Soumya%20Sarkar.jpeg',
+-- Batting Stats
+  35, 60, 1800, 98.50, 30.00, 2, 12, 160, 10, 95,
+-- ODI Batting Stats
+  110, 105, 3200, 92.00, 32.00, 1, 15, 280, 18, 120,
+-- T20 Batting Stats
+  40, 38, 800, 130.20, 23.50, 0, 5, 70, 8, 50,
+-- Bowling Stats
+  35, 25, 300, 8, 37.50, 6.00, 0, 0,
+  110, 60, 800, 15, 53.30, 8.50, 0, 0,
+  40, 30, 500, 10, 50.00, 7.00, 0, 0
+);
+INSERT INTO player_info VALUES
+('7', 'Mohammad Saifuddin', 'All-Rounder', 'November 1, 1996', 'Right-Handed', 'Right-Arm Fast-Medium', 'Bangladesh', 'http://localhost:3000/images/Mohammad%20Saifuddin.jpeg',
+-- Batting Stats
+  15, 25, 300, 120.50, 20.00, 0, 1, 25, 5, 40,
+-- ODI Batting Stats
+  40, 35, 600, 110.20, 18.75, 0, 3, 50, 8, 30,
+-- T20 Batting Stats
+  20, 18, 250, 125.60, 16.60, 0, 1, 30, 4, 25,
+-- Bowling Stats
+  15, 20, 300, 12, 25.00, 6.00, 0, 0,
+  40, 40, 550, 22, 24.90, 5.00, 0, 0,
+  20, 25, 350, 18, 22.20, 7.00, 0, 0
+);
+
+-- Player 8
+INSERT INTO player_info VALUES
+('8', 'Afif Hossain', 'All-Rounder', 'September 22, 1999', 'Left-Handed', 'Slow Left-Arm Orthodox', 'Bangladesh', 'http://localhost:3000/images/Afif%20Hossain.jpeg',
+-- Batting Stats
+  10, 18, 250, 130.20, 20.80, 0, 1, 20, 3, 30,
+-- ODI Batting Stats
+  25, 22, 400, 120.40, 22.20, 0, 2, 30, 5, 25,
+-- T20 Batting Stats
+  15, 12, 180, 125.00, 20.00, 0, 1, 15, 2, 20,
+-- Bowling Stats
+  10, 10, 120, 5, 24.00, 6.00, 0, 0,
+  25, 25, 300, 12, 25.00, 5.50, 0, 0,
+  15, 15, 200, 8, 25.00, 7.00, 0, 0
+);
+INSERT INTO player_info VALUES
+('9', 'Mehidy Hasan Miraz', 'All-Rounder', 'October 25, 1997', 'Right-Handed', 'Right-Arm Off-Spin', 'Bangladesh', 'http://localhost:3000/images/Mehidy%20Hasan%20Miraz.jpeg',
+-- Batting Stats
+  20, 35, 450, 95.20, 18.75, 0, 2, 40, 5, 30,
+-- ODI Batting Stats
+  40, 38, 600, 88.50, 17.65, 0, 3, 50, 6, 28,
+-- T20 Batting Stats
+  25, 22, 350, 120.00, 19.44, 0, 2, 30, 4, 22,
+-- Bowling Stats
+  20, 30, 400, 18, 22.20, 4.50, 0, 0,
+  40, 40, 550, 22, 24.90, 5.00, 0, 0,
+  25, 35, 480, 20, 24.00, 5.50, 0, 0
+);
+INSERT INTO player_info VALUES
+('10', 'Taskin Ahmed', 'Fast Bowler', 'April 3, 1995', 'Right-Handed', 'Right-Arm Fast', 'Bangladesh', 'http://localhost:3000/images/Taskin%20Ahmed.jpeg',
+-- Batting Stats (Taskin is not known for his batting)
+  5, 8, 20, 80.00, 5.00, 0, 0, 4, 0, 6,
+-- ODI Batting Stats
+  40, 15, 50, 60.00, 10.00, 0, 0, 5, 0, 5,
+-- T20 Batting Stats
+  20, 10, 20, 40.00, 5.00, 0, 0, 2, 0, 2,
+-- Bowling Stats
+  5, 50, 750, 35, 21.40, 4.80, 0, 0,
+  40, 70, 950, 40, 23.75, 5.20, 0, 0,
+  20, 25, 400, 18, 22.20, 5.00, 0, 0
+);
+INSERT INTO player_info VALUES
+('11', 'Rubel Hossain', 'Fast Bowler', 'January 1, 1990', 'Right-Handed', 'Right-Arm Fast', 'Bangladesh', 'http://localhost:3000/images/Rubel%20Hossain.jpeg',
+-- Batting Stats (Rubel is not known for his batting)
+  10, 18, 30, 33.30, 3.75, 0, 0, 2, 0, 2,
+-- ODI Batting Stats
+  120, 45, 150, 45.00, 7.50, 0, 0, 8, 0, 8,
+-- T20 Batting Stats
+  55, 18, 30, 33.30, 3.75, 0, 0, 2, 0, 2,
+-- Bowling Stats
+  10, 120, 1800, 75, 24.00, 5.00, 0, 0,
+  125, 150, 2200, 100, 22.00, 5.20, 1, 4,
+  55, 50, 750, 25, 30.00, 5.00, 0, 0
+);
+INSERT INTO player_info VALUES
+('12', 'Al-Amin Hossain', 'Fast Bowler', 'January 1, 1990', 'Right-Handed', 'Right-Arm Fast-Medium', 'Bangladesh','http://localhost:3000/images/Al-Amin%20Hossain.jpeg',
+-- Batting Stats (Al-Amin is not known for his batting)
+  8, 15, 25, 50.00, 3.75, 0, 0, 2, 0, 5,
+-- ODI Batting Stats
+  50, 22, 30, 30.00, 3.00, 0, 0, 2, 0, 3,
+-- T20 Batting Stats
+  25, 10, 15, 40.00, 2.50, 0, 0, 1, 0, 4,
+-- Bowling Stats
+  8, 30, 400, 18, 22.20, 4.80, 0, 0,
+  50, 70, 900, 45, 20.00, 4.50, 0, 0,
+  28, 28, 350, 15, 23.30, 5.00, 0, 0
+);
+INSERT INTO player_info VALUES
+('13', 'Liton Das', 'Wicketkeeper-Batsman', 'October 13, 1994', 'Right-Handed', NULL, 'Bangladesh', 'http://localhost:3000/images/Liton%20Das.jpeg',
+-- Batting Stats
+  30, 55, 1200, 105.60, 25.00, 1, 10, 110, 15, 80,
+-- ODI Batting Stats
+  70, 65, 1800, 95.40, 30.00, 3, 18, 150, 20, 100,
+-- T20 Batting Stats
+  40, 38, 900, 130.00, 28.50, 0, 8, 80, 12, 65,
+-- Bowling Stats (Liton is not known for his bowling)
+  30, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+  70, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+  40, NULL, NULL, NULL, NULL, NULL, NULL, NULL
+);
+INSERT INTO player_info VALUES
+('14', 'Anamul Haque', 'Wicketkeeper-Batsman', 'December 16, 1992', 'Right-Handed', NULL, 'Bangladesh', 'http://localhost:3000/images/Anamul%20Haque.jpeg',
+-- Batting Stats
+  20, 40, 850, 100.80, 21.00, 0, 5, 90, 10, 70,
+-- ODI Batting Stats
+  45, 42, 1100, 85.20, 26.00, 1, 8, 100, 15, 80,
+-- T20 Batting Stats
+  25, 22, 600, 120.40, 28.50, 0, 4, 60, 8, 50,
+-- Bowling Stats (Anamul is not known for his bowling)
+  20, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+  45, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+  25, NULL, NULL, NULL, NULL, NULL, NULL, NULL
+);
+INSERT INTO player_info VALUES
+('15', 'Mohammad Mithun', 'Batsman', 'March 13, 1990', 'Right-Handed', NULL, 'Bangladesh', 'http://localhost:3000/images/Mohammad%20Mithun.jpeg',
+-- Batting Stats
+  25, 45, 1100, 90.50, 26.00, 0, 10, 100, 18, 75,
+-- ODI Batting Stats
+  35, 30, 800, 105.30, 30.50, 0, 5, 70, 12, 60,
+-- T20 Batting Stats
+  20, 18, 400, 120.00, 30.00, 0, 3, 40, 8, 30,
+-- Bowling Stats (Mithun is not known for his bowling)
+  25, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+  35, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+  20, NULL, NULL, NULL, NULL, NULL, NULL, NULL
+);
+
+INSERT INTO player_info VALUES
+('16', 'Mosaddek Hossain', 'Batsman', 'December 10, 1995', 'Right-Handed', 'Right-Arm Off-Spin', 'Bangladesh', 'http://localhost:3000/images/Mosaddek%20Hossain.jpeg',
+-- Batting Stats
+  15, 28, 650, 120.00, 32.50, 0, 5, 60, 10, 45,
+-- ODI Batting Stats
+  40, 35, 900, 110.40, 30.00, 0, 7, 80, 15, 55,
+-- T20 Batting Stats
+  25, 22, 550, 130.00, 32.00, 0, 4, 50, 8, 40,
+-- Bowling Stats
+  15, 40, 500, 18, 27.80, 5.00, 0, 0,
+  40, 50, 700, 28, 25.00, 4.60, 0, 0,
+  25, 25, 300, 15, 20.00, 5.00, 0, 0
+);
+
+-- Player 19
+INSERT INTO player_info VALUES
+('17', 'Najmul Hossain Shanto', 'Batsman', 'February 25, 1999', 'Left-Handed', NULL, 'Bangladesh', 'http://localhost:3000/images/Najmul%20Hossain%20Shanto.jpeg',
+-- Batting Stats
+  18, 35, 900, 85.60, 28.00, 0, 7, 80, 12, 60,
+-- ODI Batting Stats
+  25, 22, 600, 95.20, 27.00, 0, 4, 55, 10, 45,
+-- T20 Batting Stats
+  15, 12, 350, 120.00, 35.00, 0, 3, 40, 8, 30,
+-- Bowling Stats
+  18, 15, 180, 8, 22.50, 4.50, 0, 0,
+  25, 35, 450, 20, 22.50, 5.14, 0, 0,
+  15, 20, 220, 10, 22.00, 4.80, 0, 0
+);
+INSERT INTO player_info 
+VALUES 
+  ('18', 'Virat Kohli', 'Batsman', '05-Nov-1988', 'Right-Handed', 'Right-Arm Medium', 'India', 'http://localhost:3000/images/Virat%20Kohli.jpeg', 
+   -- Batting Test Stats
+   95, 164, 7547, 53.91, 52.04, 27, 25, 860, 23, 254,
+   -- Batting ODI Stats
+   254, 245, 12169, 93.17, 59.07, 43, 62, 1177, 127, 183,
+   -- Batting T20 Stats
+   90, 84, 3159, 138.41, 52.65, 0, 28, 265, 90, 94,
+   -- Bowling Test Stats
+   95, 184, 2350, 0, 0.0, 0.0, 0, 0,
+   -- Bowling ODI Stats
+   254, 191, 1111, 4, 277.75, 4.98, 0, 0,
+   -- Bowling T20 Stats
+   90, 41, 368, 4, 92.0, 8.00, 0, 0),
+
+  ('19', 'Rohit Sharma', 'Batsman', '30-Apr-1987', 'Right-Handed', 'Right-Arm Offbreak', 'India', '',
+   -- Batting Test Stats
+   38, 66, 2615, 61.32, 46.54, 7, 11, 356, 66, 212,
+   -- Batting ODI Stats
+   227, 220, 9205, 88.90, 49.27, 29, 43, 817, 244, 264,
+   -- Batting T20 Stats
+   111, 103, 2864, 138.78, 32.62, 4, 21, 245, 127, 118,
+   -- Bowling Test Stats
+   38, 32, 541, 2, 135.25, 3.18, 0, 0,
+   -- Bowling ODI Stats
+   227, 155, 1302, 8, 162.75, 5.91, 0, 0,
+   -- Bowling T20 Stats
+   111, 15, 112, 2, 56.0, 8.00, 0, 0),
+
+  -- Continue adding data for the remaining players...
+  
+  ('20', 'Jasprit Bumrah', 'Bowler', '06-Dec-1993', 'Right-Handed', 'Right-Arm Fast', 'India', 'http://localhost:3000/images/Jasprit%20Bumrah.jpeg',
+   -- Batting Test Stats
+   24, 28, 199, 18.09, 12.44, 0, 0, 25, 8, 10,
+   -- Batting ODI Stats
+   69, 14, 19, 95.0, 4.75, 0, 0, 3, 1, 10,
+   -- Batting T20 Stats
+   50, 15, 5, 83.33, 2.5, 0, 0, 2, 0, 4,
+   -- Bowling Test Stats
+   24, 45, 2778, 87, 32.0, 2.68, 0, 5,
+   -- Bowling ODI Stats
+   69, 68, 3571, 112, 25.39, 4.63, 0, 5,
+   -- Bowling T20 Stats
+   50, 49, 947, 59, 16.05, 6.68, 0, 0);
+INSERT INTO player_info 
+VALUES 
+  ('21', 'Shikhar Dhawan', 'Batsman', '05-Dec-1985', 'Left-Handed', 'Right-Arm Offbreak', 'India', 'http://localhost:3000/images/Shikhar%20Dhawan.jpeg',
+   -- Batting Test Stats
+   34, 62, 2315, 52.61, 40.25, 7, 9, 273, 29, 190,
+   -- Batting ODI Stats
+   145, 143, 5977, 93.80, 44.41, 17, 30, 711, 110, 143,
+   -- Batting T20 Stats
+   65, 63, 1673, 127.69, 28.60, 0, 11, 202, 64, 92,
+   -- Bowling Test Stats
+   34, 13, 119, 0, 0.0, 0.0, 0, 0,
+   -- Bowling ODI Stats
+   145, 41, 320, 2, 160.0, 5.90, 0, 0,
+   -- Bowling T20 Stats
+   65, 6, 49, 1, 49.0, 8.17, 0, 0),
+
+  ('22', 'Ajinkya Rahane', 'Batsman', '06-Jun-1988', 'Right-Handed', 'Right-Arm Medium', 'India', 'http://localhost:3000/images/Ajinkya%20Rahane.jpeg',
+   -- Batting Test Stats
+   82, 145, 4600, 45.97, 42.50, 12, 23, 519, 63, 188,
+   -- Batting ODI Stats
+   90, 83, 2962, 78.63, 42.88, 3, 24, 283, 45, 111,
+   -- Batting T20 Stats
+   32, 30, 794, 122.45, 29.41, 0, 5, 85, 22, 72,
+   -- Bowling Test Stats
+   82, 14, 278, 0, 0.0, 0.0, 0, 0,
+   -- Bowling ODI Stats
+   90, 10, 94, 1, 94.0, 6.93, 0, 0,
+   -- Bowling T20 Stats
+   32, 2, 20, 0, 0.0, 10.0, 0, 0),
+
+  ('23', 'KL Rahul', 'Batsman', '18-Apr-1992', 'Right-Handed', 'Right-Arm Medium', 'India', 'http://localhost:3000/images/KL%20Rahul.jpeg',
+   -- Batting Test Stats
+   36, 62, 2006, 34.97, 34.55, 5, 11, 290, 46, 149,
+   -- Batting ODI Stats
+   43, 41, 1557, 88.09, 47.18, 5, 11, 177, 36, 112,
+   -- Batting T20 Stats
+   61, 57, 1557, 142.60, 40.97, 2, 14, 126, 49, 110,
+   -- Bowling Test Stats
+   36, 9, 107, 1, 107.0, 4.12, 0, 0,
+   -- Bowling ODI Stats
+   43, 4, 32, 0, 0.0, 8.0, 0, 0,
+   -- Bowling T20 Stats
+   61, 2, 21, 0, 0.0, 10.5, 0, 0),
+
+  ('24', 'Rishabh Pant', 'Batsman', '04-Oct-1997', 'Left-Handed', 'Right-Arm Medium', 'India', 'http://localhost:3000/images/Rishabh%20Pant.jpeg',
+   -- Batting Test Stats
+   28, 49, 1736, 60.34, 43.40, 3, 7, 204, 24, 159,
+   -- Batting ODI Stats
+   22, 20, 562, 105.11, 31.22, 1, 2, 53, 15, 78,
+   -- Batting T20 Stats
+   39, 34, 789, 128.52, 29.22, 1, 3, 69, 39, 101,
+   -- Bowling Test Stats
+   28, 2, 12, 0, 0.0, 6.0, 0, 0,
+   -- Bowling ODI Stats
+   22, 1, 15, 0, 0.0, 7.5, 0, 0,
+   -- Bowling T20 Stats
+   39, 1, 2, 0, 0.0, 2.0, 0, 0);
+INSERT INTO player_info 
+VALUES 
+  ('25', 'Hardik Pandya', 'Batsman', '11-Oct-1993', 'Right-Handed', 'Right-Arm Fast Medium', 'India', 'http://localhost:3000/images/Hardik%20Pandya.jpeg',
+   -- Batting Test Stats
+   11, 18, 532, 40.92, 31.29, 1, 4, 74, 39, 108,
+   -- Batting ODI Stats
+   60, 52, 1739, 117.22, 35.43, 0, 11, 160, 77, 92,
+   -- Batting T20 Stats
+   45, 32, 410, 147.11, 21.57, 0, 2, 41, 20, 33,
+   -- Bowling Test Stats
+   11, 19, 878, 17, 51.64, 3.86, 0, 0,
+   -- Bowling ODI Stats
+   60, 52, 2285, 54, 42.31, 5.54, 0, 1,
+   -- Bowling T20 Stats
+   45, 33, 485, 40, 12.12, 8.33, 0, 0),
+
+  ('26', 'Rahul Dravid', 'Batsman', '11-Jan-1973', 'Right-Handed', 'Right-Arm Offbreak', 'India', 'http://localhost:3000/images/Rahul%20Dravid.jpeg',
+   -- Batting Test Stats
+   164, 286, 13288, 52.31, 52.63, 36, 63, 1659, 63, 270,
+   -- Batting ODI Stats
+   344, 318, 10889, 71.24, 39.16, 12, 83, 950, 42, 153,
+   -- Batting T20 Stats
+   1, 1, 31, 103.33, 31.0, 0, 0, 5, 0, 31,
+   -- Bowling Test Stats
+   164, 120, 1961, 5, 392.2, 1.89, 0, 0,
+   -- Bowling ODI Stats
+   344, 196, 1060, 4, 265.0, 4.89, 0, 0,
+   -- Bowling T20 Stats
+   1, 1, 6, 0, 0.0, 6.0, 0, 0);
+
+-- Inserting data for 3 more renowned Indian all-rounders
+INSERT INTO player_info 
+VALUES 
+  ('27', 'Ravindra Jadeja', 'All-Rounder', '06-Dec-1988', 'Left-Handed', 'Left-Arm Orthodox', 'India', 'http://localhost:3000/images/Ravindra%20Jadeja.jpeg',
+   -- Batting Test Stats
+   56, 94, 1954, 41.91, 35.81, 1, 15, 234, 50, 90,
+   -- Batting ODI Stats
+   168, 113, 2412, 85.14, 32.45, 0, 13, 211, 50, 87,
+   -- Batting T20 Stats
+   50, 40, 173, 121.12, 17.3, 0, 0, 14, 3, 25,
+   -- Bowling Test Stats
+   56, 110, 2142, 228, 23.65, 2.04, 9, 5,
+   -- Bowling ODI Stats
+   168, 156, 4677, 188, 29.62, 4.89, 1, 15,
+   -- Bowling T20 Stats
+   50, 46, 803, 39, 20.59, 7.12, 0, 0),
+
+  ('28', 'Yuvraj Singh', 'All-Rounder', '12-Dec-1981', 'Left-Handed', 'Left-Arm Orthodox', 'India', 'http://localhost:3000/images/Yuvraj%20Singh.jpeg',
+   -- Batting Test Stats
+   40, 62, 1900, 33.92, 34.80, 3, 11, 169, 42, 169,
+   -- Batting ODI Stats
+   304, 278, 8701, 87.68, 36.55, 14, 52, 908, 155, 150,
+   -- Batting T20 Stats
+   58, 51, 1177, 136.38, 28.26, 1, 8, 74, 74, 77,
+   -- Bowling Test Stats
+   40, 64, 689, 9, 76.56, 3.24, 0, 0,
+   -- Bowling ODI Stats
+   304, 197, 8051, 111, 38.68, 5.11, 2, 14,
+   -- Bowling T20 Stats
+   58, 48, 568, 28, 20.28, 7.35, 0, 0),
+
+  ('29', 'Irfan Pathan', 'All-Rounder', '27-Oct-1984', 'Left-Handed', 'Left-Arm Medium Fast', 'India', 'http://localhost:3000/images/Irfan%20Pathan.jpeg',
+   -- Batting Test Stats
+   29, 40, 1105, 31.57, 23.39, 1, 5, 102, 28, 102,
+   -- Batting ODI Stats
+   120, 107, 1544, 86.07, 23.39, 0, 5, 138, 39, 83,
+   -- Batting T20 Stats
+   24, 16, 172, 126.61, 14.33, 0, 0, 19, 4, 33,
+   -- Bowling Test Stats
+   29, 50, 1105, 100, 32.26, 3.28, 2, 1,
+   -- Bowling ODI Stats
+   120, 115, 4712, 173, 29.72, 5.27, 1, 3,
+   -- Bowling T20 Stats
+   24, 23, 373, 28, 13.32, 7.57, 0, 0);
+INSERT INTO player_info 
+VALUES 
+  ('30', 'Mohammed Shami', 'Bowler', '03-Sep-1990', 'Right-Handed', 'Right-Arm Fast', 'India', 'http://localhost:3000/images/Mohammed%20Shami.jpeg',
+   -- Batting Test Stats
+   52, 78, 771, 16.31, 11.84, 0, 2, 78, 29, 30,
+   -- Batting ODI Stats
+   79, 42, 159, 64.55, 9.35, 0, 0, 15, 6, 33,
+   -- Batting T20 Stats
+   12, 5, 18, 128.57, 9.0, 0, 0, 4, 1, 9,
+   -- Bowling Test Stats
+   52, 96, 6036, 180, 33.53, 3.52, 0, 5,
+   -- Bowling ODI Stats
+   79, 78, 4172, 150, 28.31, 5.59, 0, 2,
+   -- Bowling T20 Stats
+   12, 12, 282, 12, 23.5, 7.05, 0, 0),
+
+  ('31', 'Bhuvneshwar Kumar', 'Bowler', '05-Dec-1990', 'Right-Handed', 'Right-Arm Medium Fast', 'India', 'http://localhost:3000/images/Bhuvneshwar%20Kumar.jpeg',
+   -- Batting Test Stats
+   21, 28, 552, 20.44, 19.39, 0, 3, 63, 32, 63,
+   -- Batting ODI Stats
+   117, 57, 558, 68.89, 16.41, 0, 2, 48, 15, 53,
+   -- Batting T20 Stats
+   50, 25, 108, 129.76, 9.82, 0, 0, 15, 2, 26,
+   -- Bowling Test Stats
+   21, 40, 1681, 63, 26.68, 3.16, 1, 1,
+   -- Bowling ODI Stats
+   117, 114, 5762, 147, 39.16, 5.02, 0, 3,
+   -- Bowling T20 Stats
+   50, 49, 1184, 41, 28.88, 7.2, 0, 0),
+
+  ('32', 'Ravichandran Ashwin', 'Bowler', '17-Sep-1986', 'Right-Handed', 'Right-Arm Offbreak', 'India', 'http://localhost:3000/images/Ravichandran%20Ashwin.jpeg',
+   -- Batting Test Stats
+   83, 152, 2685, 24.56, 29.18, 5, 11, 306, 106, 118,
+   -- Batting ODI Stats
+   111, 49, 658, 80.10, 12.74, 0, 0, 62, 35, 38,
+   -- Batting T20 Stats
+   46, 23, 190, 138.40, 17.77, 0, 0, 28, 13, 31,
+   -- Bowling Test Stats
+   83, 157, 3639, 413, 25.07, 2.83, 7, 30,
+   -- Bowling ODI Stats
+   111, 109, 4800, 150, 31.99, 4.93, 0, 3,
+   -- Bowling T20 Stats
+   46, 45, 1026, 54, 19.0, 6.68, 0, 0);
+
+   --new zealand players
+
+   insert into player_info
+    values
+    ('33', 'Kane Williamson', 'Batsman', 'August 8, 1990', 'Right-Handed', NULL, 'New Zealand', 'http://localhost:3000/images/Kane%20Williamson.jpeg',
+-- Batting Stats
+  80, 150, 7000, 85.60, 47.80, 20, 45, 600, 60, 150,
+-- ODI Batting Stats
+  180, 175, 9000, 90.75, 52.40, 25, 55, 800, 70, 170,
+-- T20 Batting Stats
+  60, 58, 1500, 130.45, 32.10, 2, 15, 130, 18, 85,
+-- Bowling Stats (Williamson occasionally bowls)
+  80, 10, 50, 4, 12.50, 3.0, NULL, NULL,
+  180, 20, 80, 6, 14.20, 3.5, NULL, NULL,
+  60, 5, 20, 2, 11.50, 3.2, NULL, NULL
+);
+INSERT INTO player_info VALUES
+('34', 'Ross Taylor', 'Batsman', 'March 8, 1984', 'Right-Handed', NULL, 'New Zealand', 'http://localhost:3000/images/Ross%20Taylor.jpeg',
+-- Batting Stats
+  100, 180, 8500, 79.20, 43.60, 15, 40, 720, 50, 145,
+-- ODI Batting Stats
+  220, 210, 9800, 87.80, 45.90, 18, 48, 850, 60, 160,
+-- T20 Batting Stats
+  75, 72, 1900, 118.60, 31.40, 1, 12, 160, 25, 90,
+-- Bowling Stats (Taylor bowls occasionally)
+  100, 5, 40, 3, 13.30, 3.5, NULL, NULL,
+  220, 8, 60, 5, 15.20, 4.0, NULL, NULL,
+  75, 2, 10, 1, 11.50, 3.0, NULL, NULL
+);
+INSERT INTO player_info VALUES
+('35', 'Tom Latham', 'Wicketkeeper-Batsman', 'April 2, 1992', 'Left-Handed', NULL, 'New Zealand', 'http://localhost:3000/images/Tom%20Latham.jpeg',
+-- Batting Stats
+  50, 90, 3500, 75.40, 42.10, 8, 20, 420, 35, 120,
+-- ODI Batting Stats
+  150, 140, 5500, 85.20, 38.80, 12, 30, 600, 45, 140,
+-- T20 Batting Stats
+  40, 38, 900, 110.30, 26.60, 0, 5, 80, 12, 50,
+-- Bowling Stats (Latham is not a regular bowler)
+  50, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+  150, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+  40, NULL, NULL, NULL, NULL, NULL, NULL, NULL
+);
+INSERT INTO player_info VALUES
+('36', 'Martin Guptill', 'Batsman', 'September 30, 1986', 'Right-Handed', NULL, 'New Zealand', 'http://localhost:3000/images/Martin%20Guptill.jpeg',
+-- Batting Stats (Test)
+  45, 80, 3500, 75.40, 45.20, 5, 18, 320, 30, 110,
+-- Batting Stats (ODI)
+  180, 175, 8200, 87.20, 42.60, 16, 38, 750, 65, 189,
+-- Batting Stats (T20)
+  65, 60, 1600, 120.80, 30.40, 2, 14, 130, 20, 85,
+-- Bowling Stats (Test)
+  45, 5, 25, NULL, NULL, 3.0, NULL, NULL,
+-- Bowling Stats (ODI)
+  180, 20, 90, NULL, NULL, 4.2, NULL, NULL,
+-- Bowling Stats (T20)
+  65, 8, 45, NULL, NULL, 5.0, NULL, NULL
+);
+INSERT INTO player_info VALUES
+('37', 'Colin Munro', 'All-rounder', '11 March 1987', 'Left Handed', 'Right-arm medium', 'http://localhost:3000/images/colin_munro.jpeg',
+-- Test Batting Stats
+  7, 13, 339, 26.07, 54.31, 0, 2, 0, NULL, NULL,
+-- ODI Batting Stats
+  54, 54, 1684, 16.79, 50.00, 0, 2, 2, NULL, NULL,
+-- T20I Batting Stats
+  22, 22, 1567, 22.38, 121.08, 0, 7, 13, NULL, NULL,
+-- Test Bowling Stats
+  7, 0, 0, NULL, NULL, NULL, NULL, NULL,
+-- ODI Bowling Stats
+  54, 2, 13, NULL, NULL, 6.5, NULL, NULL,
+-- T20I Bowling Stats
+  22, 0, 0, NULL, NULL, NULL, NULL, NULL
+);
+INSERT INTO player_info VALUES
+('38', 'Colin de Grandhomme', 'All-rounder', '22 July 1986', 'Right Handed', 'Right-arm medium', 'http://localhost:3000/images/colin%20de%20grandhomme.jpeg',
+-- Test Batting Stats
+  7, 13, 339, 26.07, 54.31, 0, 2, 0, NULL, NULL,
+-- ODI Batting Stats
+  54, 54, 1684, 16.79, 50.00, 0, 2, 2, NULL, NULL,
+-- T20I Batting Stats
+  22, 22, 1567, 22.38, 121.08, 0, 7, 13, NULL, NULL,
+-- Test Bowling Stats
+  7, 1, 4, NULL, NULL, 4.0, NULL, NULL, 
+-- ODI Bowling Stats
+  54, 3, 21, NULL, NULL, 7.0, NULL, NULL, 
+-- T20I Bowling Stats
+  22, 1, 12, NULL, NULL, 12.0, NULL, NULL
+);
+
+--australia
+
+INSERT INTO player_info VALUES
+('39', 'Steve Smith', 'Batsman', 'June 2, 1989', 'Right-Handed', 'Leg Spin', 'Australia', 'http://localhost:3000/images/Steve%20Smith.jpeg',
+  -- Batting Stats - Test
+  80, 150, 7500, 65.80, 61.20, 28, 40, 900, 80, 170,
+  -- Batting Stats - ODI
+  120, 115, 5800, 89.45, 47.60, 12, 30, 620, 45, 130,
+  -- Batting Stats - T20
+  50, 45, 1100, 125.30, 28.40, 0, 12, 120, 15, 70,
+  -- Bowling Stats - Test
+  80, 160, 2300, 35, 15.20, 2.80, 0, 2,
+  -- Bowling Stats - ODI
+  120, 110, 1800, 40, 22.60, 4.10, 0, 1,
+  -- Bowling Stats - T20
+  50, 40, 800, 18, 20.50, 5.00, 0, 0
+);
+
+-- Player 2
+INSERT INTO player_info VALUES
+('40', 'David Warner', 'Batsman', 'October 27, 1986', 'Left-Handed', 'Right-Arm Medium', 'Australia', 'http://localhost:3000/images/David%20Warner.jpeg',
+  -- Batting Stats - Test
+  85, 160, 8000, 75.20, 55.80, 23, 35, 880, 70, 155,
+  -- Batting Stats - ODI
+  130, 125, 6900, 92.30, 56.40, 18, 38, 720, 50, 140,
+  -- Batting Stats - T20
+  60, 55, 1300, 140.10, 32.80, 1, 15, 130, 18, 85,
+  -- Bowling Stats - Test
+  85, 170, 1800, 25, 18.20, 3.20, 0, 1,
+  -- Bowling Stats - ODI
+  130, 120, 1200, 28, 24.60, 4.30, 0, 0,
+  -- Bowling Stats - T20
+  60, 50, 600, 15, 21.40, 5.50, 0, 0
+);
+
+-- Player 3
+INSERT INTO player_info VALUES
+('41', 'Pat Cummins', 'Bowler', 'May 8, 1993', 'Right-Handed', 'Right-Arm Fast', 'Australia', 'http://localhost:3000/images/Pat%20Cummins.jpeg',
+  -- Batting Stats - Test
+  60, 80, 1500, 50.60, 18.20, 1, 10, 150, 20, 55,
+  -- Batting Stats - ODI
+  90, 70, 900, 60.80, 15.40, 0, 2, 80, 10, 35,
+  -- Batting Stats - T20
+  45, 30, 400, 70.20, 12.80, 0, 1, 40, 5, 25,
+  -- Bowling Stats - Test
+  60, 110, 4200, 160, 20.50, 3.80, 5, 15,
+  -- Bowling Stats - ODI
+  90, 80, 3400, 110, 23.40, 4.20, 3, 10,
+  -- Bowling Stats - T20
+  45, 40, 1200, 60, 18.90, 5.00, 1, 5
+);
+
+-- Player 4
+INSERT INTO player_info VALUES
+('42', 'Mitchell Starc', 'Bowler', 'January 30, 1990', 'Left-Handed', 'Left-Arm Fast', 'Australia', 'http://localhost:3000/images/Mitchell%20Starc.jpeg',
+  -- Batting Stats - Test
+  55, 70, 900, 30.40, 14.80, 0, 5, 90, 12, 35,
+  -- Batting Stats - ODI
+  80, 60, 600, 40.80, 12.00, 0, 1, 60, 8, 25,
+  -- Batting Stats - T20
+  40, 25, 300, 50.20, 10.40, 0, 2, 30, 5, 18,
+  -- Bowling Stats - Test
+  55, 100, 3600, 150, 21.20, 3.70, 4, 12,
+  -- Bowling Stats - ODI
+  80, 70, 2800, 120, 24.30, 4.20, 3, 10,
+  -- Bowling Stats - T20
+  40, 35, 1000, 45, 18.80, 5.20, 1, 5
+);
+-- West Indies Player 1
+INSERT INTO player_info VALUES
+('43', 'Jason Holder', 'All-Rounder', 'November 5, 1991', 'Barbados', NULL, 'West Indies','http://localhost:3000/images/Jason%20Holder.jpeg',
+  -- Batting Stats - Test
+  69, 115, 3665, 31.89, 202, 0, 16, 91.96, 4, 18,
+  -- Batting Stats - ODI
+  123, 98, 2294, 27.14, 99, 0, 13, 96.45, 0, 8,
+  -- Batting Stats - T20
+  58, 38, 383, 15.95, 31, 0, 1, 124.84, 0, 1,
+  -- Bowling Stats - Test
+  69, 123, 7038, 122, 5/41, 5/30, 57.62, 3.02,
+  -- Bowling Stats - ODI
+  123, 116, 5332, 119, 5/27, 5/27, 44.74, 5.66,
+  -- Bowling Stats - T20
+  58, 52, 942, 53, 4/19, 4/19, 17.77, 8.02
+);
+
+-- West Indies Player 2
+INSERT INTO player_info VALUES
+('44', 'Shai Hope', 'Batsman', 'November 10, 1993', 'Barbados', NULL, 'West Indies','http://localhost:3000/images/Shai%20Hope.jpeg',
+  -- Batting Stats - Test
+  45, 80, 3499, 47.94, 211, 8, 17, 56.02, 9, 16,
+  -- Batting Stats - ODI
+  78, 78, 3547, 53.03, 170, 10, 17, 74.31, 9, 17,
+  -- Batting Stats - T20
+  31, 31, 584, 22.46, 58, 0, 3, 123.08, 0, 3,
+  -- Bowling Stats - Test
+  45, 11, 138, 1, 1/5, 1/5, 138.00, 7.09,
+  -- Bowling Stats - ODI
+  78, 13, 88, 0, 0/3, 0/3, NULL, 6.38,
+  -- Bowling Stats - T20
+  31, 1, 2, 0, 0/2, 0/2,NULL, 12.00
+);
+
+-- West Indies Player 3
+INSERT INTO player_info VALUES
+('45', 'Kemar Roach', 'Bowler', 'June 30, 1988', 'Barbados', NULL, 'West Indies','http://localhost:3000/images/Kemar%20Roach.jpeg',
+  -- Batting Stats - Test
+  67, 87, 655, 8.90, 41, 0, 0, 47.25, 0, 0,
+  -- Batting Stats - ODI
+  92, 45, 173, 7.95, 19, 0, 0, 48.59, 0, 0,
+  -- Batting Stats - T20
+  30, 11, 8, 4.00, 4, 0, 0, 57.14, 0, 0,
+  -- Bowling Stats - Test
+  67, 126, 14758, 386, 8/29, 13/121, 38.23, 2.27,
+  -- Bowling Stats - ODI
+  92, 91, 4848, 152, 6/27, 6/27, 31.89, 5.68,
+  -- Bowling Stats - T20
+  30, 30, 648, 30, 4/25, 4/25, 21.60, 8.50
+);
+
+-- West Indies Player 4
+INSERT INTO player_info VALUES
+('46', 'Nicholas Pooran', 'Wicketkeeper-Batsman', 'October 2, 1995', 'Trinidad and Tobago', NULL, 'West Indies','http://localhost:3000/images/Nicholas%20Pooran.jpeg',
+  -- Batting Stats - Test
+  0, 0, 0, 0.00, 0, 0, 0, 0.00, 0, 0,
+  -- Batting Stats - ODI
+  35, 35, 1012, 34.89, 118, 0, 3, 110.22, 0, 8,
+  -- Batting Stats - T20
+  28, 28, 737, 30.71, 58, 0, 4, 144.72, 0, 6,
+  -- Bowling Stats - Test
+  0, 0, 0, 0, 00, 00, NULL, NULL,
+  -- Bowling Stats - ODI
+  35, 0, 0, 0, 00, 00, NULL, NULL,
+  -- Bowling Stats - T20
+  28, 0, 0, 0, 00, 00, NULL, NULL
+);
+
+-- West Indies Player 5
+INSERT INTO player_info VALUES
+('47', 'Shimron Hetmyer', 'Batsman', 'December 26, 1996', 'Guyana', NULL, 'West Indies','http://localhost:3000/images/Shimron%20Hetmyer.jpeg',
+  -- Batting Stats - Test
+  21, 38, 838, 23.27, 93, 0, 5, 48.61, 0, 4,
+  -- Batting Stats - ODI
+  45, 45, 1430, 35.75, 139, 0, 8, 111.64, 0, 12,
+  -- Batting Stats - T20
+  31, 31, 516, 20.64, 81, 0, 3, 125.36, 0, 2,
+  -- Bowling Stats - Test
+  21, 1, 6, 0, 0, 0, NULL, 6.00,
+  -- Bowling Stats - ODI
+  45, 3, 8, 0, 0, 0, NULL, 2.66,
+  -- Bowling Stats - T20
+  31, 2, 8, 0, 0, 0, NULL, 4
+);
+-- Sri Lanka Players
+
+-- Player 1
+INSERT INTO player_info VALUES
+('48', 'Dimuth Karunaratne', 'Batsman', 'April 21, 1988', 'Left-Handed', NULL, 'Sri Lanka', 'http://localhost:3000/images/Dimuth%20Karunaratne.jpeg',
+-- Batting Stats - Test
+  70, 140, 5800, 45.60, 42.80, 9, 28, 520, 30, 135,
+-- Batting Stats - ODI
+  120, 115, 4200, 78.20, 38.50, 7, 20, 380, 25, 105,
+-- Batting Stats - T20
+  45, 42, 900, 110.50, 22.80, 0, 5, 70, 10, 55,
+-- Bowling Stats - Test
+  70, 2, 15, NULL, NULL, 7.5, NULL, NULL,
+-- Bowling Stats - ODI
+  120, 4, 25, NULL, NULL, 6.2, NULL, NULL,
+-- Bowling Stats - T20
+  45, 1, 8, NULL, NULL, 8.0, NULL, NULL
+);
+
+-- Player 2
+INSERT INTO player_info VALUES
+('49', 'Angelo Mathews', 'All-Rounder', 'June 2, 1987', 'Right-Handed', 'Right-Arm Fast', 'Sri Lanka', 'http://localhost:3000/images/Angelo%20Mathews.jpeg',
+-- Batting Stats - Test
+  80, 150, 6500, 40.20, 35.60, 6, 23, 600, 35, 128,
+-- Batting Stats - ODI
+  140, 130, 5500, 85.50, 39.80, 4, 30, 450, 40, 112,
+-- Batting Stats - T20
+  55, 50, 1200, 115.20, 28.10, 1, 8, 90, 15, 65,
+-- Bowling Stats - Test
+  80, 4, 40, 5, 18.2, 3.2, 1, 0,
+-- Bowling Stats - ODI
+  140, 8, 55, 12, 25.5, 4.1, 0, 0,
+-- Bowling Stats - T20
+  55, 2, 15, 4, 11.5, 6.0, 0, 0
+);
+
+-- Player 3
+INSERT INTO player_info VALUES
+('50', 'Kusal Perera', 'Wicketkeeper-Batsman', 'August 17, 1990', 'Left-Handed', NULL, 'Sri Lanka', 'http://localhost:3000/images/Kusal%20Perera.jpeg',
+-- Batting Stats - Test
+  30, 60, 2800, 65.30, 47.60, 5, 18, 320, 20, 112,
+-- Batting Stats - ODI
+  90, 85, 3600, 95.20, 41.80, 9, 15, 280, 30, 92,
+-- Batting Stats - T20
+  40, 38, 1100, 130.20, 31.40, 0, 7, 80, 10, 60,
+-- Bowling Stats - Test
+  30, 1, 5, NULL, NULL, 5.0, NULL, NULL,
+-- Bowling Stats - ODI
+  90, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+-- Bowling Stats - T20
+  40, NULL, NULL, NULL, NULL, NULL, NULL, NULL
+);
+
+-- Player 4
+INSERT INTO player_info VALUES
+('51', 'Dhananjaya de Silva', 'All-Rounder', 'September 6, 1991', 'Right-Handed', 'Right-Arm Offbreak', 'Sri Lanka', 'http://localhost:3000/images/Dhananjaya%20de%20Silva.jpeg',
+-- Batting Stats - Test
+  40, 70, 3100, 42.80, 38.20, 3, 20, 280, 18, 105,
+-- Batting Stats - ODI
+  80, 75, 2800, 75.60, 35.40, 5, 25, 240, 25, 85,
+-- Batting Stats - T20
+  35, 32, 900, 110.50, 28.80, 0, 7, 60, 8, 50,
+-- Bowling Stats - Test
+  40, 3, 18, 2, 8.5, 3.0, 0, 0,
+-- Bowling Stats - ODI
+  80, 6, 30, 8, 21.5, 4.5, 0, 0,
+-- Bowling Stats - T20
+  35, 2, 10, 3, 11.0, 6.0, 0, 0
+);
+
+-- Player 5
+INSERT INTO player_info VALUES
+('52', 'Lasith Malinga', 'Bowler', 'August 28, 1983', 'Right-Handed', 'Right-Arm Fast', 'Sri Lanka', 'http://localhost:3000/images/Lasith%20Malinga.jpeg',
+
+--batting stats -test
+  30, 60, 2800, 65.30, 47.60, 5, 18, 320, 20, 112,
+
+-- Batting Stats - ODI
+  200, 54, 550, 105.60, 19.60, 0, 1, 40, 5, 20,
+--batting stats -t20
+  100, 20, 200, 120.20, 12.00, 0, 0, 20, 2, 10,
+-- Bowling Stats - Test
+  30, 60, 800, 134, 23.4, 4.2, 0, 0,
+-- Bowling Stats - ODI
+  250, 200, 3400, 522, 22.8, 5.1, 10, 8,
+-- Bowling Stats - T20
+  80, 80, 1100, 145, 18.6, 6.5, 2, 1
+);
+
+-- South African Players
+
+-- Player 1
+INSERT INTO player_info VALUES
+('53', 'Quinton de Kock', 'Wicketkeeper-Batsman', 'December 17, 1992', 'Left-Handed', NULL, 'South Africa', 'http://localhost:3000/images/Quinton%20de%20Kock.jpeg',
+-- Batting Stats - Test
+  50, 90, 4200, 75.60, 47.20, 7, 22, 380, 45, 128,
+-- Batting Stats - ODI
+  120, 115, 5500, 98.20, 43.40, 10, 30, 480, 65, 173,
+-- Batting Stats - T20
+  70, 65, 1800, 130.50, 30.80, 2, 15, 120, 25, 95,
+-- Bowling Stats - Test
+  50, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+-- Bowling Stats - ODI
+  120, 3, 20, NULL, NULL, 6.7, NULL, NULL,
+-- Bowling Stats - T20
+  70, NULL, NULL, NULL, NULL, NULL, NULL, NULL
+);
+
+-- Player 2
+INSERT INTO player_info VALUES
+('54', 'Kagiso Rabada', 'Bowler', 'May 25, 1995', 'Right-Handed', 'Right-Arm Fast', 'South Africa', 'http://localhost:3000/images/Kagiso%20Rabada.jpeg',
+-- Batting Stats - Test
+  35, 60, 800, 34.20, 15.80, 0, 2, 45, 10, 22,
+-- Batting Stats - ODI
+  70, 45, 400, 55.20, 13.30, 0, 1, 30, 5, 18,
+-- Batting Stats - T20
+  25, 18, 120, 85.50, 12.00, 0, 0, 10, 3, 8,
+-- Bowling Stats - Test
+  35, 70, 1200, 180, 22.4, 3.5, 2, 1,
+-- Bowling Stats - ODI
+  70, 120, 2500, 350, 18.6, 5.2, 8, 4,
+-- Bowling Stats - T20
+  25, 40, 600, 80, 17.2, 6.0, 0, 0
+);
+
+-- Player 3
+INSERT INTO player_info VALUES
+('55', 'Faf du Plessis', 'Batsman', 'July 13, 1984', 'Right-Handed', 'Right-Arm Legbreak', 'South Africa', 'http://localhost:3000/images/Faf%20du%20Plessis.jpeg',
+-- Batting Stats - Test
+  70, 130, 5500, 45.80, 41.60, 9, 25, 480, 40, 135,
+-- Batting Stats - ODI
+  120, 115, 4800, 88.20, 39.20, 8, 27, 420, 50, 125,
+-- Batting Stats - T20
+  55, 50, 1100, 120.30, 30.10, 1, 9, 90, 15, 70,
+-- Bowling Stats - Test
+  70, 5, 25, 2, 12.5, 2.0, 0, 0,
+-- Bowling Stats - ODI
+  120, 8, 40, 5, 18.2, 3.5, 0, 0,
+-- Bowling Stats - T20
+  55, 3, 18, 1, 15.0, 4.0, 0, 0
+);
+
+-- Player 4
+INSERT INTO player_info VALUES
+('56', 'Aiden Markram', 'Batsman', 'October 4, 1994', 'Right-Handed', 'Right-Arm Offbreak', 'South Africa', 'http://localhost:3000/images/Aiden%20Markram.jpeg',
+-- Batting Stats - Test
+  30, 60, 2800, 52.30, 46.80, 6, 18, 320, 25, 112,
+-- Batting Stats - ODI
+  50, 45, 2000, 92.50, 45.00, 3, 12, 180, 20, 90,
+-- Batting Stats - T20
+  20, 18, 600, 118.20, 33.30, 0, 4, 50, 8, 35,
+-- Bowling Stats - Test
+  30, 2, 15, 1, 14.5, 3.0, 0, 0,
+-- Bowling Stats - ODI
+  50, 3, 20, 2, 18.0, 4.5, 0, 0,
+-- Bowling Stats - T20
+  20, NULL, NULL, NULL, NULL, NULL, NULL, NULL
+);
+
+-- Player 5
+INSERT INTO player_info VALUES
+('57', 'Lungi Ngidi', 'Bowler', 'March 29, 1996', 'Right-Handed', 'Right-Arm Fast', 'South Africa', 'http://localhost:3000/images/Lungi%20Ngidi.jpeg',
+-- Batting Stats - Test
+  20, 35, 200, 16.80, 8.50, 0, 0, 15, 2, 10,
+-- Batting Stats - ODI
+  40, 25, 100, 35.20, 7.60, 0, 0, 5, 1, 5,
+-- Batting Stats - T20
+  15, 10, 50, 80.50, 10.00, 0, 0, 3, 0, 3,
+-- Bowling Stats - Test
+  20, 40, 700, 95, 23.5, 4.0, 0, 0,
+-- Bowling Stats - ODI
+  40, 70, 1200, 180, 20.5, 5.0, 1, 0,
+-- Bowling Stats - T20
+  15, 25, 450, 60, 18.0, 6.0, 0, 0
+);
+
+INSERT INTO player_info VALUES
+('58', 'Babar Azam', 'Batsman', 'October 15, 1994', 'Right-Handed', NULL, 'Pakistan', 'http://localhost:3000/images/Babar%20Azam.jpeg',
+-- Batting Stats - Test
+  30, 60, 2800, 68.20, 52.40, 7, 20, 320, 30, 143,
+-- Batting Stats - ODI
+  80, 75, 3600, 88.50, 44.60, 10, 35, 450, 55, 158,
+-- Batting Stats - T20
+  50, 48, 1400, 125.60, 35.80, 1, 12, 110, 18, 90,
+-- Bowling Stats - Test
+  30, 1, 5, NULL, NULL, 5.0, NULL, NULL,
+-- Bowling Stats - ODI
+  80, 5, 25, NULL, NULL, 5.5, NULL, NULL,
+-- Bowling Stats - T20
+  50, NULL, NULL, NULL, NULL, NULL, NULL, NULL
+);
+
+-- Player 2
+INSERT INTO player_info VALUES
+('59', 'Shaheen Afridi', 'Bowler', 'April 6, 2000', 'Left-Handed', 'Left-Arm Fast', 'Pakistan', 'http://localhost:3000/images/Shaheen%20Afridi.jpeg',
+-- Batting Stats - Test
+  20, 35, 300, 18.60, 8.70, 0, 0, 25, 3, 15,
+-- Batting Stats - ODI
+  40, 25, 150, 35.20, 7.80, 0, 0, 10, 2, 5,
+-- Batting Stats - T20
+  25, 20, 80, 90.50, 8.00, 0, 0, 5, 1, 4,
+-- Bowling Stats - Test
+  20, 40, 750, 95, 21.2, 4.1, 0, 0,
+-- Bowling Stats - ODI
+  40, 70, 1300, 200, 19.5, 5.0, 3, 1,
+-- Bowling Stats - T20
+  25, 35, 600, 80, 17.6, 6.0, 0, 0
+);
+
+-- Player 3
+INSERT INTO player_info VALUES
+('60', 'Mohammad Rizwan', 'Wicketkeeper-Batsman', 'June 1, 1992', 'Right-Handed', NULL, 'Pakistan', 'http://localhost:3000/images/Mohammad%20Rizwan.jpeg',
+-- Batting Stats - Test
+  25, 50, 1800, 65.80, 40.90, 3, 12, 220, 25, 115,
+-- Batting Stats - ODI
+  60, 55, 2500, 90.20, 49.40, 5, 20, 320, 35, 158,
+-- Batting Stats - T20
+  40, 38, 1100, 120.30, 30.40, 1, 8, 90, 15, 70,
+-- Bowling Stats - Test
+  25, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+-- Bowling Stats - ODI
+  60, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+-- Bowling Stats - T20
+  40, NULL, NULL, NULL, NULL, NULL, NULL, NULL
+);
+
+-- Player 4
+INSERT INTO player_info VALUES
+('61', 'Fakhar Zaman', 'Batsman', 'April 10, 1990', 'Left-Handed', 'Left-Arm Fast', 'Pakistan', 'http://localhost:3000/images/Fakhar%20Zaman.jpeg',
+-- Batting Stats - Test
+  15, 30, 1200, 45.60, 40.20, 2, 8, 130, 15, 92,
+-- Batting Stats - ODI
+  50, 45, 2200, 98.50, 50.40, 6, 22, 280, 40, 193,
+-- Batting Stats - T20
+  30, 28, 900, 120.50, 32.10, 1, 10, 80, 12, 67,
+-- Bowling Stats - Test
+  15, 2, 8, NULL, NULL, 4.0, NULL, NULL,
+-- Bowling Stats - ODI
+  50, 3, 15, NULL, NULL, 5.0, NULL, NULL,
+-- Bowling Stats - T20
+  30, 1, 5, NULL, NULL, 5.0, NULL, NULL
+);
+
+-- Player 5
+INSERT INTO player_info VALUES
+('62', 'Shadab Khan', 'All-Rounder', 'October 4, 1998', 'Right-Handed', 'Right-Arm Legbreak', 'Pakistan', 'http://localhost:3000/images/Shadab%20Khan.jpeg',
+-- Batting Stats - Test
+  15, 28, 800, 35.60, 28.70, 0, 2, 70, 8, 55,
+-- Batting Stats - ODI
+  40, 35, 900, 85.40, 30.40, 0, 5, 80, 10, 55,
+-- Batting Stats - T20
+  25, 22, 400, 120.00, 22.70, 0, 3, 30, 5, 25,
+-- Bowling Stats - Test
+  15, 3, 18, 2, 9.0, 4.0, 0, 0,
+-- Bowling Stats - ODI
+  40, 5, 25, 8, 18.5, 5.5, 1, 0,
+-- Bowling Stats - T20
+  25, 4, 15, 6, 14.0, 6.0, 0, 0
+);
+-- Zimbabwean Players
+
+-- Player 1
+INSERT INTO player_info VALUES
+('63', 'Sean Williams', 'All-Rounder', 'September 26, 1986', 'Left-Handed', 'Slow Left-Arm Orthodox', 'Zimbabwe', 'http://localhost:3000/images/Sean%20Williams.jpeg',
+-- Batting Stats - Test
+  30, 55, 2100, 45.80, 38.70, 3, 18, 220, 28, 119,
+-- Batting Stats - ODI
+  80, 75, 3400, 85.20, 46.80, 5, 30, 400, 45, 158,
+-- Batting Stats - T20
+  40, 35, 1000, 120.30, 30.40, 0, 8, 90, 15, 70,
+-- Bowling Stats - Test
+  30, 5, 30, 2, 15.0, 3.0, 0, 0,
+-- Bowling Stats - ODI
+  80, 12, 55, 8, 20.5, 4.2, 1, 0,
+-- Bowling Stats - T20
+  40, 8, 20, 4, 12.0, 5.0, 0, 0
+);
+
+-- Player 2
+INSERT INTO player_info VALUES
+('64', 'Brendan Taylor', 'Wicketkeeper-Batsman', 'February 6, 1986', 'Right-Handed', NULL, 'Zimbabwe', 'http://localhost:3000/images/Brendan%20Taylor.jpeg',
+-- Batting Stats - Test
+  60, 110, 4500, 40.60, 38.20, 6, 25, 480, 35, 171,
+-- Batting Stats - ODI
+  180, 170, 7200, 88.20, 43.40, 12, 50, 900, 70, 145,
+-- Batting Stats - T20
+  75, 68, 1500, 120.30, 28.90, 1, 12, 120, 18, 80,
+-- Bowling Stats - Test
+  60, 1, 5, NULL, NULL, 5.0, NULL, NULL,
+-- Bowling Stats - ODI
+  180, 4, 15, NULL, NULL, 7.5, NULL, NULL,
+-- Bowling Stats - T20
+  75, NULL, NULL, NULL, NULL, NULL, NULL, NULL
+);
+
+-- Player 3
+INSERT INTO player_info VALUES
+('65', 'Sikandar Raza', 'All-Rounder', 'April 24, 1986', 'Right-Handed', 'Right-Arm Offbreak', 'Zimbabwe', 'http://localhost:3000/images/Sikandar%20Raza.jpeg',
+-- Batting Stats - Test
+  25, 45, 1800, 42.30, 35.40, 2, 12, 200, 30, 112,
+-- Batting Stats - ODI
+  60, 55, 2500, 78.20, 43.60, 4, 20, 300, 40, 128,
+-- Batting Stats - T20
+  40, 35, 900, 110.50, 28.40, 1, 10, 100, 15, 70,
+-- Bowling Stats - Test
+  25, 3, 18, 1, 16.0, 4.0, 0, 0,
+-- Bowling Stats - ODI
+  60, 8, 40, 5, 21.5, 4.2, 0, 0,
+-- Bowling Stats - T20
+  40, 6, 25, 3, 14.0, 5.0, 0, 0
+);
+
+-- Player 4
+INSERT INTO player_info VALUES
+('66', 'Elton Chigumbura', 'All-Rounder', 'March 14, 1986', 'Right-Handed', 'Right-Arm Medium-Fast', 'Zimbabwe', 'http://localhost:3000/images/Elton%20Chigumbura.jpeg',
+-- Batting Stats - Test
+  15, 28, 800, 35.60, 28.70, 0, 2, 70, 8, 55,
+-- Batting Stats - ODI
+  120, 110, 2800, 72.50, 38.90, 3, 22, 320, 45, 128,
+-- Batting Stats - T20
+  50, 45, 900, 120.50, 30.10, 1, 10, 90, 15, 70,
+-- Bowling Stats - Test
+  15, 2, 8, 1, 8.0, 4.0, 0, 0,
+-- Bowling Stats - ODI
+  120, 10, 55, 12, 22.5, 5.0, 0, 0,
+-- Bowling Stats - T20
+  50, 8, 20, 5, 15.0, 6.0, 0, 0
+);
+
+-- Player 5
+INSERT INTO player_info VALUES
+('67', 'Craig Ervine', 'Batsman', 'August 19, 1985', 'Left-Handed', NULL, 'Zimbabwe', 'http://localhost:3000/images/Craig%20Ervine.jpeg',
+-- Batting Stats - Test
+  35, 65, 2500, 40.20, 36.80, 4, 20, 280, 25, 108,
+-- Batting Stats - ODI
+  70, 65, 3100, 82.60, 47.50, 7, 28, 380, 35, 145,
+-- Batting Stats - T20
+  30, 28, 800, 110.20, 28.60, 0, 5, 60, 10, 45,
+-- Bowling Stats - Test
+  35, 2, 15, NULL, NULL, 7.5, NULL, NULL,
+-- Bowling Stats - ODI
+  70, 5, 25, NULL, NULL, 6.0, NULL, NULL,
+-- Bowling Stats - T20
+  30, NULL, NULL, NULL, NULL, NULL, NULL, NULL
+);
+
+-- Afghan Players
+
+-- Player 1
+INSERT INTO player_info VALUES
+('68', 'Rashid Khan', 'Bowler', 'September 20, 1998', 'Right-Handed', 'Right-Arm Legbreak', 'Afghanistan', 'http://localhost:3000/images/Rashid%20Khan.jpeg',
+-- Batting Stats - Test
+  15, 25, 589, 37.72, 23.45, 0, 2, 57, 14, 49,
+-- Batting Stats - ODI
+  47, 39, 997, 88.99, 27.85, 0, 2, 79, 17, 64,
+-- Batting Stats - T20
+  29, 19, 345, 121.67, 22.31, 0, 1, 28, 9, 22,
+-- Bowling Stats - Test
+  14, 29, 697, 79, 7.9, 2.8, 0, 0,
+-- Bowling Stats - ODI
+  47, 86, 1789, 219, 18.4, 4.3, 2, 1,
+-- Bowling Stats - T20
+  29, 48, 893, 116, 16.2, 5.8, 0, 0
+);
+
+-- Player 2
+INSERT INTO player_info VALUES
+('69', 'Mohammad Nabi', 'All-Rounder', 'January 1, 1985', 'Right-Handed', 'Right-Arm Offbreak', 'Afghanistan', 'http://localhost:3000/images/Mohammad%20Nabi.jpeg',
+-- Batting Stats - Test
+  25, 40, 1189, 35.69, 28.87, 2, 9, 118, 19, 87,
+-- Batting Stats - ODI
+  78, 74, 2798, 75.47, 38.45, 4, 29, 334, 39, 115,
+-- Batting Stats - T20
+  39, 37, 899, 109.99, 26.43, 0, 8, 79, 14, 63,
+-- Bowling Stats - Test
+  24, 2, 17, 2, 11.5, 3.9, 0, 0,
+-- Bowling Stats - ODI
+  78, 11, 42, 7, 19.3, 3.9, 1, 0,
+-- Bowling Stats - T20
+  39, 14, 67, 11, 17.9, 5.7, 0, 0
+);
+
+-- Player 3
+INSERT INTO player_info VALUES
+('70', 'Hazratullah Zazai', 'Batsman', 'March 23, 1998', 'Left-Handed', NULL, 'Afghanistan', 'http://localhost:3000/images/Hazratullah%20Zazai.jpeg',
+-- Batting Stats - Test
+  20, 39, 1278, 48.79, 45.23, 4, 15, 138, 23, 96,
+-- Batting Stats - ODI
+  54, 51, 1492, 93.71, 41.26, 3, 25, 178, 32, 124,
+-- Batting Stats - T20
+  35, 33, 998, 134.68, 32.45, 1, 11, 102, 16, 77,
+-- Bowling Stats - Test
+  20, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+-- Bowling Stats - ODI
+  54, 3, 19, 1, 18.0, 6.3, 0, 0,
+-- Bowling Stats - T20
+  35, NULL, NULL, NULL, NULL, NULL, NULL, NULL
+);
+
+-- Player 4
+INSERT INTO player_info VALUES
+('71', 'Asghar Afghan', 'Batsman', 'February 27, 1987', 'Right-Handed', NULL, 'Afghanistan', 'http://localhost:3000/images/Asghar%20Afghan.jpeg',
+-- Batting Stats - Test
+  15, 30, 879, 45.67, 41.26, 2, 12, 92, 18, 67,
+-- Batting Stats - ODI
+  62, 57, 1687, 79.38, 35.74, 1, 20, 132, 26, 97,
+-- Batting Stats - T20
+  40, 37, 1098, 120.78, 33.97, 0, 6, 78, 14, 58,
+-- Bowling Stats - Test
+  15, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+-- Bowling Stats - ODI
+  62, 2, 15, 1, 15.0, 5.0, 0, 0,
+-- Bowling Stats - T20
+  40, 1, 6, 0, 6.0, 6.0, 0, 0
+);
+
+-- Player 5
+INSERT INTO player_info VALUES
+('72', 'Najibullah Zadran', 'Batsman', 'February 1, 1993', 'Left-Handed', NULL, 'Afghanistan', 'http://localhost:3000/images/Najibullah%20Zadran.jpeg',
+-- Batting Stats - Test
+  10, 20, 789, 41.52, 39.68, 1, 8, 68, 14, 54,
+-- Batting Stats - ODI
+  47, 42, 1245, 95.26, 31.52, 0, 10, 108, 20, 78,
+-- Batting Stats - T20
+  32, 30, 890, 136.78, 36.21, 0, 5, 82, 13, 63,
+-- Bowling Stats - Test
+  10, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+-- Bowling Stats - ODI
+  47, 1, 5, 0, 5.0, 5.0, 0, 0,
+-- Bowling Stats - T20
+  32, NULL, NULL, NULL, NULL, NULL, NULL, NULL
+);
+----------------from here i have filter and modify.......................................................................
+-------------------------------------------------------------------
+------------------------------
+------------
+------
+----
+--
+-
 drop table umpire_info;
 create TABLE umpire_info
 (
@@ -272,163 +1298,6 @@ insert into national_team values
 ('Associate Member', 'Zimbabwe', 'Lalchand Rajput', 'Brendan Taylor', 'Heath Streak', 'Hamilton Masakadza', 'Heath Streak', 'Brendan Taylor', 'Sikandar Raza', 'Heath Streak', 'Pakistan', '430', '230', '390', '200', '60', '280', '30', '300', '160', '9', 'Harare Sports Club', 'Brendan Taylor', 'Heath Streak'),
 ('Full Member', 'Sri Lanka', 'Mickey Arthur', 'Kumar Sangakkara', 'Muttiah Muralitharan', 'Sanath Jayasuriya', 'Muttiah Muralitharan', 'Tillakaratne Dilshan', 'Tillakaratne Dilshan', 'Lasith Malinga', 'India', '890', '480', '860', '440', '140', '640', '170', '660', '380', '9', 'R. Premadasa Stadium', 'Kumar Sangakkara', 'Muttiah Muralitharan');
 
-
-insert into player_info values
---bangladesh
-('BA001','Tamim Iqbal','Batsman','20 March 1989','Left Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\tamim.jpg','Test','62','122','4164','39.62','40.94','9','23','4','ODI','207','205','7371','36.92','78.31','13','47','44','T20I','78','78','2175','29.00','122.03','0','14','18'),
-('BA002','Shakib Al Hasan','All-rounder','24 March 1987','Left Handed','Slow left-arm orthodox','D:\Buet\Crazycric-project\player_images\shakib.jpg','Test','56','101','3862','39.40','59.57','5','24','1','ODI','206','200','6323','38.84','81.13','9','47','47','T20I','76','74','1567','22.38','121.08','0','7','13'),
-('BA003','Mushfiqur Rahim','Wicket-keeper batsman','9 June 1987','Right Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\mushfiq.jpg','Test','73','133','4413','35.81','52.94','7','23','1','ODI','218','206','6323','38.84','81.13','9','47','47','T20I','87','84','1567','22.38','121.08','0','7','13'),
-('BA004','Mahmudullah','All-rounder','4 February 1986','Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\mahmudullah.jpg','Test','49','87','2763','33.00','51.00','4','16','1','ODI','188','171','4070','33.00','50.00','6','22','22','T20I','93','84','1567','22.38','121.08','0','7','13'),
-('BA005','Mominul Haque','Batsman','29 September 1991','Left Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\mominul.jpg','Test','39','72','3017','40.22','50.00','8','19','1','ODI','39','39','1178','30.20','50.00','1','8','8','T20I','22','22','1567','22.38','121.08','0','7','13'),
-('BA006','Mehidy Hasan Miraz','All-rounder','25 October 1997','Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\mehidy.jpg','Test','25','46','1059','24.07','50.00','0','4','0','ODI','38','38','1178','30.20','50.00','1','8','8','T20I','22','22','1567','22.38','121.08','0','7','13'),
-('BA007','Mustafizur Rahman','Bowler','6 September 1995','Left Handed','Left-arm fast-medium','D:\Buet\Crazycric-project\player_images\mustafiz.jpg','Test','13','24','24.07','50.00','0','4','0','ODI','58','58','1178','30.20','50.00','1','8','8','T20I','43','43','1567','22.38','121.08','0','7','13'),
-('BA008','Mashrafe Mortaza','Bowler','5 October 1983','Right Handed','Right-arm fast-medium','D:\Buet\Crazycric-project\player_images\mashrafe.jpg','Test','36','63','24.07','50.00','0','4','0','ODI','220','220','1178','30.20','50.00','1','8','8','T20I','54','54','1567','22.38','121.08','0','7','13'),
-('BA009','Liton Das','Wicket-keeper batsman','13 October 1994','Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\liton.jpg','Test','13','24','24.07','50.00','0','4','0','ODI','38','38','1178','30.20','50.00','1','8','8','T20I','22','22','1567','22.38','121.08','0','7','13'),
-('BA010','Soumya Sarkar','All-rounder','25 February 1993','Left Handed','Right-arm medium-fast','D:\Buet\Crazycric-project\player_images\soumya.jpg','Test','15','28','24.07','50.00','0','4','0','ODI','55','55','1178','30.20','50.00','1','8','8','T20I','49','49','1567','22.38','121.08','0','7','13'),
-('BA011','Taskin Ahmed','Bowler','3 April 1995','Right Handed','Right-arm fast','D:\Buet\Crazycric-project\player_images\taskin.jpg','Test','9','17','24.07','50.00','0','4','0','ODI','36','36','1178','30.20','50.00','1','8','8','T20I','28','28','1567','22.38','121.08','0','7','13'),
-('BA012','Rubel Hossain','Bowler','1 January 1990','Right Handed','Right-arm fast','D:\Buet\Crazycric-project\player_images\rubel.jpg','Test','26','48','24.07','50.00','0','4','0','ODI','95','95','1178','30.20','50.00','1','8','8','T20I','26','26','1567','22.38','121.08','0','7','13'),
-
-
---india
-('IN001','Virat Kohli','Batsman','5 November 1988','Right Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\kohli.jpg','Test','92','159','7240','53.62','59.31','27','22','0','ODI','254','245','12169','59.07','93.17','43','62','111','T20I','89','84','3159','52.65','138.43','0','26','24'),
-('IN002','Rohit Sharma','Batsman','30 April 1987','Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\rohit.jpg','Test','32','57','2141','46.54','58.18','6','10','0','ODI','224','217','9115','49.27','88.92','29','43','244','T20I','108','100','2773','32.62','138.78','4','21','127'),
-('IN003','Jasprit Bumrah','Bowler','6 December 1993','Right Handed','Right-arm fast-medium','D:\Buet\Crazycric-project\player_images\bumrah.jpg','Test','14','27','24.07','50.00','0','4','0','ODI','67','67','1178','30.20','50.00','1','8','8','T20I','50','50','1567','22.38','121.08','0','7','13'),
-('IN004','Ravindra Jadeja','All-rounder','6 December 1988','Left Handed','Slow left-arm orthodox','D:\Buet\Crazycric-project\player_images\jadeja.jpg','Test','49','85','1954','35.53','54.31','1','11','0','ODI','168','156','2296','31.89','85.96','0','12','67','T20I','50','50','1567','22.38','121.08','0','7','13'),
-('IN005','Rishabh Pant','Wicket-keeper batsman','4 October 1997','Left Handed','Right-arm medium','D:\Buet\crazycric-project\player_images\pant.jpg','Test','13','24','24.07','50.00','0','4','0','ODI','13','13','1178','30.20','50.00','1','8','8','T20I','22','22','1567','22.38','121.08','0','7','13'),
-('IN006','Ravichandran Ashwin','All-rounder','17 September 1986','Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\ashwin.jpg','Test','71','134','2389','28.10','62.00','5','11','0','ODI','111','101','1464','25.26','87.05','0','10','150','T20I','46','46','1567','22.38','121.08','0','7','13'),
-('IN007','Shikhar Dhawan','Batsman','5 December 1985','Left Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\dhawan.jpg','Test','34','58','2315','40.61','59.31','7','5','0','ODI','142','139','5977','44.62','93.17','17','32','32','T20I','61','60','1588','27.52','138.43','0','11','11'),
-('IN008','Hardik Pandya','All-rounder','11 October 1993','Right Handed','Right-arm fast-medium','D:\Buet\Crazycric-project\player_images\pandya.jpg','Test','11','18','532','31.29','58.18','1','4','0','ODI','54','45','957','29.91','88.92','0','4','45','T20I','48','38','296','12.33','138.78','0','1','38'),
-('IN009','KL Rahul','Batsman','18 April 1992','Right Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\rahul.jpg','Test','36','61','2006','34.58','59.31','5','11','0','ODI','38','38','1178','30.20','50.00','1','8','8','T20I','22','22','1567','22.38','121.08','0','7','13'),
-
-
---england
-('EN001','Joe Root','Batsman','30 December 1990','Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\root.jpg','Test','99','180','8249','48.94','54.31','17','49','0','ODI','149','143','5962','51.36','85.96','16','33','33','T20I','32','30','893','35.72','121.08','0','5','30'),
-('EN002','Eoin Morgan','Batsman','10 September 1986','Left Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\morgan.jpg','Test','16','29','700','27.08','62.00','0','5','0','ODI','246','228','7691','39.64','87.05','14','46','46','T20I','89','84','3159','52.65','138.43','0','26','24'),
-('EN003','Ben Stokes','All-rounder','4 June 1991','Left Handed','Right-arm fast-medium','D:\Buet\Crazycric-project\player_images\stokes.jpg','Test','67','119','4426','37.84','58.18','10','21','0','ODI','95','91','2687','40.06','88.92','3','14','91','T20I','34','29','305','16.94','138.78','0','0','29'),
-('EN004','Jos Buttler','Wicket-keeper batsman','8 September 1990','Right Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\buttler.jpg','Test','41','71','2218','34.34','59.31','5','12','0','ODI','152','139','3843','40.88','93.17','9','23','23','T20I','73','66','1226','30.65','138.43','0','7','66'),
-('EN005','Jonny Bairstow','Wicket-keeper batsman','26 September 1989','Right Handed','Right-arm medium','D:\Buet\Crazycric-project \player_images\bairstow.jpg','Test','70','125','4030','34.74','54.31','6','21','0','ODI','83','76','2690','47.19','85.96','4','14','76','T20I','32','28','345','17.25','121.08','0','0','28'),
-('EN006','Jason Roy','Batsman','21 July 1990','Right Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\roy.jpg','Test','5','10','278','27.80','54.31','0','2','0','ODI','126','126','5067','41.02','85.96','16','25','25','T20I','61','61','1989','38.82','121.08','0','13','61'),
-('EN007','Jofra Archer','Bowler','1 April 1995','Right Handed','Right-arm fast','D:\Buet\Crazycric-project\player_images\archer.jpg','Test','7','13','339','26.07','54.31','0','2','0','ODI','58','58','3059','32.58','85.96','3','20','102','T20I','61','61','1989','38.82','121.08','0','13','61'),
-('EN008','Chris Woakes','All-rounder','2 March 1989','Right Handed','Right-arm fast-medium','D:\Buet\Crazycric-project\player_images\woakes.jpg','Test','37','67','1684','26.07','54.31','0','2','0','ODI','75','75','3059','32.58','85.96','3','20','102','T20I','61','61','1989','38.82','121.08','0','13','61'),
-('EN009','Adil Rashid','Bowler','17 February 1988','Right Handed','Right-arm legbreak googly','D:\Buet\Crazycric-project\player_images\rashid.jpg','Test','19','34','339','26.07','54.31','0','2','0','ODI','58','58','3059',' 32.58','85.96','3','20','102','T20I','61','61','1989','38.82','121.08','0','13','61'),
-('EN010','Mark Wood','Bowler','11 January 1990','Right Handed','Right-arm fast','D:\Buet\Crazycric-project\player_images\wood.jpg','Test','16','29','339','26.07','54.31','0','2','0','ODI','58','58','3059','32.58','85.96','3','20','102','T20I','61','61','1989','38.82','121.08','0','13','61'),
-('EN011','Liam Plunkett','Bowler','6 April 1985','Right Handed','Right-arm fast','D:\Buet\Crazycric-project\player_images\plunkett.jpg','Test','13','24','339','26.07','54.31','0','2','0','ODI','58','58','3059','32.58','85.96','3','20','102','T20I','61','61','1989','38.82','121.08','0','13','61'),       
-
---australia 13 players info
-('AU001','Aaron Finch','Batsman','17 November 1986','Right Handed','Slow left-arm orthodox','D:\Buet\Crazycric-project\player_images\finch.jpg','Test','5','10','278','27.80','54.31','0','2','0','ODI','126','126','5067','41.02','85.96','16','25','25','T20I','61','61','1989','38.82','121.08','0','13','61'),
-('AU002','David Warner','Batsman','27 October 1986','Left Handed','Right-arm legbreak','D:\Buet\Crazycric-project\player_images\warner.jpg','Test','84','159','7240','48.94','54.31','17','49','0','ODI','126','126','5067','41.02','85.96','16','25','25','T20I','61','61','1989','38.82','121.08','0','13','61'),
-('AU003','Steve Smith','Batsman','2 June 1989','Right Handed','Right-arm legbreak','D:\Buet\Crazycric-project\player_images\smith.jpg','Test','73','139','7227','62.84','54.31','26','29','0','ODI','125','125','4162','42.46','85.96','8','25','25','T20I','61','61','1989','38.82','121.08','0','13','61'),
-('AU004','Glenn Maxwell','All-rounder','14 October 1988','Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\maxwell.jpg','Test','7','13','339','26.07','54.31','0','2','0','ODI','110','102','3059','32.58','85.96','3','20','102','T20I','61','61','1989','38.82','121.08','0','13','61'),
-('AU005','Mitchell Starc','Bowler','30 January 1990','Left Handed','Left-arm fast','D:\Buet\Crazycric-project\player_images\starc.jpg','Test','57','109','1684','16.79','54.31','0','2','0','ODI','75','75','3059','32.58','85.96','3','20','102','T20I','61','61','1989','38.82','121.08','0','13','61'),
-('AU006','Pat Cummins','Bowler','8 May 1993','Right Handed','Right-arm fast','D:\Buet\Crazycric-project\player_images\cummins.jpg','Test','30','57','1684','16.79','54.31','0','2','0','ODI','58','58','3059','32.58','85.96','3','20','102','T20I','61','61','1989','38.82','121.08','0','13','61'),
-('AU007','Adam Zampa','Bowler','31 March 1992','Right Handed','Right-arm legbreak googly','D:\Buet\Crazycric-project\player_images\zampa.jpg','Test','7','13','339','26.07','54.31','0','2','0','ODI','58','58','3059','32.58','85.96','3','20','102','T20I','61','61','1989','38.82','121.08','0','13','61'),
-('AU008','Alex Carey','Wicket-keeper batsman','27 August 1991','Left Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\carey.jpg','Test','7','13','339','26.07','54.31','0','2','0','ODI','58','58','3059','32.58','85.96','3','20','102','T20I','61','61','1989','38.82','121.08','0','13','61'),
-('AU009','Josh Hazlewood','Bowler','8 January 1991','Left Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\hazlewood.jpg','Test','7','13','339','26.07','54.31','0','2','0','ODI','58','58','3059','32.58',' 85.96','3','20','102','T20I','61','61','1989','38.82','121.08','0','13','61'),
-('AU010','Nathan Lyon','Bowler','20 November 1987','Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\lyon.jpg','Test','7','13','339','26.07','54.31','0','2','0','ODI','58','58','3059','32.58','85.96','3','20','102','T20I','61','61','1989','38.82','121.08','0','13','61'),
-('AU011','Usman Khawaja','Batsman','18 December 1986','Left Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\khawaja.jpg','Test','7','13','339','26.07','54.31','0','2','0','ODI','58','58','3059','32.58','85.96','3','20','102','T20I','61','61','1989','38.82','121.08','0','13','61'),       
-('AU012','Shaun Marsh','Batsman','9 July 1983','Left Handed','Slow left-arm orthodox','D:\Buet\Crazycric-project\player_images\marsh.jpg','Test','7','13','339','26.07','54.31','0','2','0','ODI','58','58','3059','32.58','85.96','3','20','102','T20I','61','61','1989','38.82','121.08','0','13','61'),       
-('AU013','Marcus Stoinis','All-rounder','16 August 1989','Right Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\stoinis.jpg','Test','7','13','339','26.07','54.31','0','2','0','ODI','58','58','3059','32.58','85.96','3','20','102','T20I','61','61','1989','38.82','121.08','0','13','61'),
-
---pakistan
-('PA001','Babar Azam','Batsman','15 October 1994','Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\babar.jpg','Test','26','47','1850','45.12','54.31','5','15','0','ODI','74','74','3359','54.17','85.96','11','16','16','T20I','38','38','1471','50.72','121.08','0','13','38'),
-('PA002','Imam-ul-Haq','Batsman','12 December 1995','Left Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\imam.jpg','Test','11','21','485','23.09','54.31','0','2','0','ODI','37','37','1850','54.17','85.96','11','16','16','T20I','38','38','1471','50.72','121.08','0','13','38'),
-('PA003','Fakhar Zaman','Batsman','10 April 1990','Left Handed','Slow left-arm orthodox','D:\Buet\Crazycric-project\player_images\fakhar.jpg','Test','5','10','278','27.80','54.31','0','2','0','ODI','38','38','1850','54.17','85.96','11','16','16','T20I','38','38','1471','50.72','121.08','0','13','38'),
-('PA004','Shoaib Malik','All-rounder','1 February 1982','Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\malik.jpg','Test','35','65','1898','35.14','54.31','3','8','0','ODI','287','273','7534','34.55','85.96','9','44','44','T20I','111','104','2321','31.98','121.08','0','7','104'),
-('PA005','Mohammad Hafeez','All-rounder','17 October 1980','Right Handed','Right-arm offbreak','D:\Buet\CrazyCric\player_images\hafeez.jpg','Test','55','98','3652','37.63','54.31','10','12','0','ODI','218','212','6614','32.90','85.96','11','36','36','T20I','89','84','1989','25.11','121.08','0','7','84'),
-('PA006','Sarfaraz Ahmed','Wicket-keeper batsman','22 May 1987','Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\sarfaraz.jpg','Test','49','89','2652','36.00','54.31','5','14','0','ODI','116','111','2652','36.00','85.96','5','14','14','T20I','58','57','1989','25.11','121.08','0','7','57'),
-('PA007','Shadab Khan','All-rounder','4 October 1998','Right Handed','Right-arm legbreak googly','D:\Buet\Crazycric-project\player_images\shadab.jpg','Test','7','13','339','26.07','54.31','0','2','0','ODI','38','38','3059','32.58','85.96','3','20','102','T20I','61','61','1989','38.82','121.08','0','13','61'),
-('PA008','Hasan Ali','Bowler','2 July 1994','Right Handed','Right-arm fast-medium','D:\Buet\Crazycric-project\player_images\hasan.jpg','Test','9','17','339','26.07','54.31','0','2','0','ODI','38','38','3059','32.58','85.96','3','20','102','T20I','61','61','1989','38.82','121.08','0','13','61'),
-('PA009','Mohammad Amir','Bowler','13 April 1992','Left Handed','Left-arm fast','D:\Buet\Crazycric-project\player_images\amir.jpg','Test','36','67','1684','16.79','54.31','0','   2','0','ODI','58','58','3059','32.58','85.96','3','20','102','T20I','61','61','1989','38.82','121.08','0','13','61'),
-('PA010','Mohammad Nawaz','All-rounder','21 March 1994','Left Handed','Slow left-arm orthodox','D:\Buet\Crazycric-project\player_images\nawaz.jpg','Test','3','6','339','26.07','54.31','0','2','0','ODI','38','38','3059','32.58','85.96','3','20','102','T20I','61','61','1989','38.82','121.08','0','13','61'),
-('PA011','Mohammad Rizwan','Wicket-keeper batsman','1 June 1992','Right Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\rizwan.jpg','Test','3','6','339','26.07','54.31','0','2','0','ODI','38','38','3059','32.58','85.96','3','20','102','T20I','61','61','1989','38.82','121.08','0','13','61'),       
-('PA012','Yasir Shah','Bowler','2 May 1986','Right Handed','Right-arm legbreak googly','D:\Buet\Crazycric-project\player_images\yasir.jpg','Test','39','73','1684','16.79','54.31','0','2','0','ODI','58','58','3059','32.58','85.96','3','20','102','T20I','61','61','1989','38.82','121.08','0','13','61'),       
-('PA013','Shaheen Afridi','Bowler','6 April 2000','Left Handed','Left-arm fast-medium','D:\Buet\Crazycric-project\player_images\afridi.jpg','Test','7','13','339','26.07','54.31','0','2','0','ODI','38','38','3059','32.58','85.96','3','20',' 102','T20I','61','61','1989','38.82','121.08','0','13','61'),
-
---Sri lanka
-('SL001','Dimuth Karunaratne','Batsman','21 April 1988','Left Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\karunaratne.jpg','Test','58','108','3899','36.97','54.31','8','23','0','ODI','35','35','1178','30.20','50.00','1','8','8','T20I','22','22','1567','22.38','121.08','0','7','13'),
-('SL002','Angelo Mathews','All-rounder','2 June 1987','Right Handed','Right-arm fast-medium','D:\Buet\Crazycric-project\player_images\mathews.jpg','Test','86','150','5876','45.16','54.31','10','34','0','ODI','218','209','5381','42.50','85.96','2','34','34','T20I','74','70','1093','27.32','121.08','0','7','70'),
-('SL003','Dinesh Chandimal','Wicket-keeper batsman','18 November 1989','Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\chandimal.jpg','Test','59','105','3652','36.00','54.31','5','14','0','ODI','149','139','3652','36.00','85.96','5','14','14','T20I','49','48','1178','30.20','121.08','0','7','48'),
-('SL004','Kusal Perera','Wicket-keeper batsman','17 August 1990','Left Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\perera.jpg','Test','22','41','1178','30.20','54.31','0','7','0','ODI','84','84','1178','30.20','50.00','1','8','8','T20I','22','22','1567','22.38','121.08','0','7','13'),
-('SL005','Kusal Mendis','Batsman','2 February 1995',' Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\mendis.jpg','Test','44','82','2543','34.78','54.31','4','15','0','ODI','74','74','2543','34.78','50.00','4','15','15','T20I','22','22','1567','22.38','121.08','0','7','13'),
-('SL006','Lahiru Thirimanne','Batsman','9 September 1989','Left Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\thirimanne.jpg','Test','35','64','1684','26.31','54.31','0','2','0','ODI','35','35','1684','26.31','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),
-('SL007','Thisara Perera','All-rounder','3 April 1989','Left Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\thisara.jpg','Test','6','11','339','26.07','54.31','0','2','0','ODI','166','156','3059','32.58','85.96','3','20','102','T20I','78','68','1567','22.38','121.08','0','7','13'),
-('SL008','Nuwan Pradeep','Bowler','19 October 1986','Right Handed','Right-arm fast-medium','D:\Buet\Crazycric-project\player_images\pradeep.jpg','Test','25','47','1684','16.79','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),
-('SL009','Lasith Malinga','Bowler','28 August 1983','Right Handed','Right-arm fast','D:\Buet\Crazycric-project\player_images\malinga.jpg','Test','30','58','1684','16.79','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),
-('SL010','Suranga Lakmal','Bowler','10 March 1987','Right Handed','Right-arm fast-medium','D:\Buet\Crazycric-project\player_images\lakmal.jpg','Test','59','105','1684','16.79','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),
-('SL011','Isuru Udana','Bowler','17 February 1988','Left Handed','Right-arm fast-medium','D:\Buet\Crazycric-project\player_images\udana.jpg','Test','59','105','1684','16.79','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),       
-('SL012','Akila Dananjaya','Bowler','4 October 1993','Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\dananjaya.jpg','Test','59','105','1684','16.79','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),       
-('SL013','Dhananjaya de Silva','All-rounder','6 September 1991','Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\de silva.jpg','Test','59','105','1684','16.79','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),
-
---new zealand
-('NZ001','Kane Williamson','Batsman','8 August 1990','Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\williamson.jpg','Test','77','142','6476','50.99','54.31','20','30','0','ODI','139','134','6173','47.48','85.96','13','39','39','T20I','60','60','1665','32.64','121.08','0','7','60'),
-('NZ002','Ross Taylor','Batsman','8 March 1984','Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\taylor.jpg','Test','94','169','7174','46.28','54.31','19','34','0','ODI','218','209','7387','48.03','85.96','21','48','48','T20I','89','84','1567','22.38','121.08','0','7','84'),
-('NZ003','Martin Guptill','Batsman','30 September 1986','Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\guptill.jpg','Test','47','87','2586','29.72','54.31','3','18','0','ODI','169','169','6626','42.99','85.96','16','37','37','T20I','89','84','1567','22.38','121.08','0','7','84'),
-('NZ004','Colin Munro','All-rounder','11 March 1987','Left Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\munro.jpg','Test','7','13','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),
-('NZ005','Tom Latham','Wicket-keeper batsman','2 April 1992','Left Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\latham.jpg','Test','56','105','3652','36.00','54.31','5','14','0','ODI','84','84','3652','36.00','50.00','5','14','14','T20I','22','22','1567','22.38','121.08','0','7','13'),
-('NZ006','James Neesham','All-rounder','17 September 1990','Left Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\neesham.jpg','Test','12','22','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),
-('NZ007','Colin de Grandhomme','All-rounder','22 July 1986','Right Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\grandhomme.jpg','Test','7','13','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),
-('NZ008','Mitchell Santner','All-rounder','5 February 1992','Left Handed','Slow left-arm orthodox','D:\Buet\Crazycric-project\player_images\santner.jpg','Test','25','47','1684','16.79','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),
-('NZ009','Tim Southee','Bowler','11 December 1988','Right Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\southee.jpg','Test','65','121','1684','16.79','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),
-('NZ010','Trent Boult','Bowler','22 July 1989','Right Handed','Left-arm fast-medium','D:\Buet\Crazycric-project\player_images\boult.jpg','Test','65','121','1684','16.79','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),       
-('NZ011','Ish Sodhi','Bowler','31 October 1992','Right Handed','Right-arm legbreak googly','D:\Buet\Crazycric-project\player_images\sodhi.jpg','Test','15','28','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),       
-('NZ012','Lockie Ferguson','Bowler','13 June 1991','Right Handed','Right-arm fast','D:\Buet\Crazycric-project\player_images\ferguson.jpg','Test','15','28','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),       
-('NZ013','Matt Henry','Bowler','14 December 1991','Right Handed','Right-arm fast-medium','D:\Buet\Crazycric-project\player_images\henry.jpg','Test','15','28','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),
-
---south africa
-('SA001','Faf du Plessis','Batsman','13 July 1984','Right Handed','Right-arm legbreak','D:\Buet\Crazycric-project\player_images\du plessis.jpg','Test','63','116','3901','40.02','54.31','10','21','0','ODI','143','136','5327','47.47','85.96','11','39','39','T20I','44','40','1277','35.47','121.08','0','7','40'),
-('SA002','Quinton de Kock','Wicket-keeper batsman','17 December 1992','Left Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\de kock.jpg','Test','44','82','2543','34.78','54.31','4','15','0','ODI','121','121','5135','45.90','85.96','14','25','25','T20I','44','40','1277','35.47','121.08','0','7','40'),
-('SA003','Hashim Amla','Batsman','31 March 1983','Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\amla.jpg','Test','124','215','9282','46.64','54.31','28','41','0','ODI','181','178','8113','49.74','85.96','27','39','39','T20I','44','40','1277','35.47','121.08','0','7','40'),
-('SA004','David Miller','Batsman','10 June 1989','Left Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\miller.jpg','Test','63','116','3901','40.02','54.31','10','21','0','ODI','143','136','5327','47.47','85.96','11','39','39','T20I','44','40','1277','35.47','121.08','0','7','40'),
-('SA005','JP Duminy','All-rounder','14 April 1984','Left Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\duminy.jpg','Test','46','78','2103','32.85','54.31','2','13','0','ODI','199','189','5117','36.81','85.96','4','27','27','T20I','81','76','1934','38.68','121.08','0','7','76'),
-('SA006','Dwaine Pretorius','All-rounder','29 March 1989','Right Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\pretorius.jpg','Test','7','13','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),
-('SA007','Andile Phehlukwayo','All-rounder','3 March 1996','Left Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\phehlukwayo.jpg','Test','7','13','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),
-('SA008','Kagiso Rabada','Bowler','25 May 1995','Left Handed','Right-arm fast','D:\Buet\Crazycric-project\player_images\rabada.jpg','Test','37','70','1684','16.79','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),
---('SA009','Imran Tahir','Bowler','27 March 1979','Right Handed','Right-arm legbreak googly','D:\Buet\Crazycric-project\player_images\tahir.jpg','test','55'
-
---west indies
-('WI001','Jason Holder','All-rounder','5 November 1991','Right Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\holder.jpg','Test','37','70','1684','16.79','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),
-('WI002','Chris Gayle','Batsman','21 September 1979','Left Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\gayle.jpg','Test','103','182','7214','42.18','54.31','15','37','0','ODI','301','294','10480','37.83','85.96','25','54','54','T20I','58','54','1627','32.54','121.08','0','7','54'),
-('WI003','Shai Hope','Wicket-keeper batsman','10 November 1993','Right Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\hope.jpg','Test','30','56','1684','16.79','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),
-('WI004','Shimron Hetmyer','Batsman','26 December 1996','Left Handed','Right-arm legbreak googly','D:\Buet\Crazycric-project\player_images\hetmyer.jpg','Test','15','28','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),       
-('WI005','Darren Bravo','Batsman','6 February 1989','Left Handed','Right-arm medium',' D:\Buet\Crazycric-project\player_images\bravo.jpg','Test','54','100','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),       
-('WI006','Nicholas Pooran','Wicket-keeper batsman','2 October 1995','Left Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\pooran.jpg','Test','15','28','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),       
-('WI007','Carlos Brathwaite','All-rounder','18 July 1988','Right Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\brathwaite.jpg','Test','15','28','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),       
-('WI008','Ashley Nurse','All-rounder','22 December 1988','Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\nurse.jpg','Test','15','28','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),       
-('WI009','Shannon Gabriel','Bowler','28 April 1988','Right Handed','Right-arm fast','D:\Buet\Crazycric-project\player_images\gabriel.jpg','Test','15','28','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),       
-('WI010','Kemar Roach','Bowler','30 June 1988','Right Handed','Right-arm fast','D:\Buet\Crazycric-project\player_images\roach.jpg','Test','15','28','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),       
-('WI011','Oshane Thomas','Bowler','18 February 1997','Right Handed','Right-arm fast','D:\Buet\Crazycric-project\player_images\thomas.jpg','Test','15','28','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),       
-('WI012','Sheldon Cottrell','Bowler','19 August 1989','Left Handed','Left-arm fast-medium','D:\Buet\Crazycric-project\player_images\cottrell.jpg','Test','15','28','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','22','22','1567','22.38','121.08','0','7','13'),
-
---zimbabwe
-('ZI001','Hamilton Masakadza','Batsman','9 August 1983','Right Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\masakadza.jpg','Test','38','71','1684','16.79','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','66','66','1567','22.38','121.08','0','7','66'),
-('ZI002','Brendan Taylor','Wicket-keeper batsman','6 February 1986','Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\taylor.jpg','Test','38','71','1684','16.79','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','66','66','1567','22.38','121.08','0','7','66'),
-('ZI003','Craig Ervine','Batsman','19 August 1985','Left Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\ervine.jpg','Test','38','71','1684','16.79','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','66','66','1567','22.38','121.08','0','7','66'),
-('ZI004','Sean Williams','All-rounder','26 September 1986','Left Handed','Slow left-arm orthodox','D:\Buet\Crazycric-project\player_images\williams.jpg','Test','38','71','1684','16.79','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','66','66','1567','22.38','121.08','0','7','66'),
-('ZI005','Sikandar Raza','All-rounder','24 April 1986','Right Handed',' Right-arm offbreak','D:\Buet\Crazycric-project\player_images\raza.jpg','Test','38','71','1684','16.79','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','66','66','1567','22.38','121.08','0','7','66'),
-('ZI006','Solomon Mire','All-rounder','21 August 1989','Right Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\mire.jpg','Test','38','71','1684','16.79','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','66','66','1567','22.38','121.08','0','7','66'),
-('ZI007','Peter Moor','Wicket-keeper batsman','2 February 1992','Right Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\moor.jpg','Test','38','71','1684','16.79','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','66','66','1567','22.38','121.08','0','7','66'),
-('ZI008','Elton Chigumbura','All-rounder','14 March 1986','Right Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\chigumbura.jpg','Test','38','71','1684','16.79','54.31','0','2','0','ODI','213','213','1684','16.79','50.00','0','2','2','T20I','66','66','1567','22.38','121.08','0','7','66'),
-('ZI009','Tendai Chatara','Bowler','28 February 1991','Right Handed','Right-arm fast-medium','D:\Buet\Crazycric-project\player_images\chatara.jpg','Test',' 38','71','1684','16.79','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','66','66','1567','22.38','121.08','0','7','66'),
-('ZI010','Kyle Jarvis','Bowler','16 January 1989','Right Handed','Right-arm fast-medium','D:\Buet\Crazycric-project\player_images\jarvis.jpg','Test','38','71','1684','16.79','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','66','66','1567','22.38','121.08','0','7','66'),       
-('ZI011','Donald Tiripano','Bowler','24 March 1987','Right Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\tiripano.jpg','Test','38','71','1684','16.79','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','66','66','1567','22.38','121.08','0','7','66'),       
-('ZI012','Tendai Chisoro','Bowler','14 March 1986','Right Handed','Slow left-arm orthodox','D:\Buet\Crazycric-project\player_images\chisoro.jpg','Test','38','71','1684','16.79','54.31','0','2','0','ODI','213','213','1684','16.79','50.00','0','2','2','T20I','66','66','1567','22.38','121.08','0','7','66'),       
-
-
---afganistan
-('AF001','Rashid Khan','Bowler','20 September 1998','Right Handed','Right-arm legbreak googly','D:\Buet\Crazycric-project\player_images\rashid.jpg','Test','2','4','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','38','38','1567','22.38','121.08','0','7','38'),
-('AF002','Mohammad Nabi','All-rounder','3 March 1985','Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\nabi.jpg','Test','2','4','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','38','38','1567','22.38','121.08','0','7','38'),
-('AF003','Asghar Afghan','Batsman','22 December 1988','Right Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\afghan.jpg','Test','2','4','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','38','38','1567','22.38','121.08','0','7','38'),
-('AF004','Hazratullah Zazai','Batsman','23 March 1998','Left Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\zazai.jpg','Test','2','4','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','38','38','1567','22.38','121.08','0','7','38'),
-('AF005','Najibullah Zadran','Batsman','18 February 1993','Left Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\zadran.jpg','Test','2','4','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','38','38','1567','22.38','121.08','0','7','38'),
-('AF006','Samiullah Shinwari','All-rounder','31 December 1987','Right Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\shinwari.jpg','Test','2','4','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','38','38','1567','22.38','121.08','0','7','38'),
-('AF007','Mohammad Shahzad','Wicket-keeper batsman','31 December 1987','Right Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\shahzad.jpg','Test','2','4','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','38','38','1567','22.38','121.08','0','7','38'),
-('AF008','Gulbadin Naib','All-rounder','16 March 1991','Right Handed','Right-arm medium','D:\Buet\Crazycric-project\player_images\naib.jpg','Test','2','4','339','26.07','54.31','0','2','0','ODI','54','54','1684','16.79','50.00','0','2','2','T20I','38','38','1567','22.38','121.08','0','7','38'),
-('AF009','Rahmat Shah','Batsman','6 July 1993','Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\rahmat.jpg','Test','2','4','339','26','54.31','0','2','0','ODI','54','54','1684','16.79','50','0','2','2','T20I','38','38','1567','22.38','121.08','0','7','38'),
-('AF010','Hashmatullah Shahidi','Batsman','6 November 1994','Left Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\shahidi.jpg','Test','2','4','339','26','54.31','0','2','0','ODI','54','54','1684','16.79','50','0','2','2','T20I','38','38','1567','22.38','121.08','0','7','38'),       
-('AF011','Dawlat Zadran','Bowler','19 March 1988','Right Handed','Right-arm fast-medium','D:\Buet\Crazycric-project\player_images\zadran.jpg','Test','2','4','339','26','54.31','0','2','0','ODI','54','54','1684','16.79','50','0','2','2','T20I','38','38','1567','22.38','121.08','0','7','38'),       
-('AF012','Aftab Alam','Bowler','30 November 1992','Right Handed','Right-arm fast-medium','D:\Buet\Crazycric-project\player_images\alam.jpg','Test','2','4','339','26','54.31','0','2','0','ODI','54','54','1684','16.79','50','0','2','2','T20I','38','38','1567','22.38','121.08','0','7','38'),       
-('AF013','Mujeeb Ur Rahman','Bowler','28 March 2001','Right Handed','Right-arm offbreak','D:\Buet\Crazycric-project\player_images\rahman.jpg','Test','2','4','339','26','54.31','0','2','0','ODI','54','54','1684','16.79','50','0','2','2','T20I','38','38','1567','22.38','121.08','0','7','38');      
-
 insert into umpire_info values
 ('ump001','Aleem Dar','Pakistan','D:\Buet\Crazycric-project\umpire_images\dar.jpg'),
 ('ump002','Kumar Dharmasena','Sri Lanka','D:\Buet\Crazycric-project\umpire_images\dharmasena.jpg'),
@@ -447,10 +1316,7 @@ insert into umpire_info values
 ('ump015','Paul Wilson','Australia','D:\Buet\Crazycric-project\umpire_images\wilson.jpg'),
 ('ump016','Kumar Dharmasena','Sri Lanka','D:\Buet\Crazycric-project\umpire_images\dharmasena.jpg');
 
-
-
-
-
+---------------------------------------------------------
 
 
 

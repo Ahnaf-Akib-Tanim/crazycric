@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
@@ -31,6 +32,7 @@ const Userloginpage = () => {
 
       if (data.status === "success") {
         navigate("/user/loggedin");
+        //navigate("/loggedin");
       } else if (data.status === "failure") {
         setServerResponse("failure");
       } else {

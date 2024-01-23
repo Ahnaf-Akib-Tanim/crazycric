@@ -1,0 +1,1 @@
+app.use('/images', express.static('D:/Buet/Crazycric-project/player images'));

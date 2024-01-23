@@ -43,7 +43,11 @@ app.use(bodyParser.json());
 
 const staticFilePath = path.resolve(__dirname, './react/vite-project/public');
 app.use(express.static(staticFilePath));
-
+// Assuming the 'player images' folder is now in the 'public' folder of your project
+app.use(
+    '/images',
+    express.static(path.join(__dirname, './react/vite-project/public/player images')),
+);
 // Configure multer
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -112,6 +116,44 @@ app.post('/user/signup', upload.single('image'), async (req, res) => {
 });
 app.post('/user/loggedin', async (req, res) => {
     // Handle '/user/loggedin' logic
+});
+app.post('/user/loggedin/players', async (req, res) => {
+    const { text, team, role, battingStyle } = req.body;
+    try {
+        const players = await db.any(
+            `SELECT player_id, player_name, team_name, player_image_path 
+            FROM player_info 
+            WHERE LOWER(player_name) LIKE LOWER($1) 
+            AND (array_length($2::varchar[], 1) IS NULL OR team_name = ANY($2::varchar[]))
+            AND (array_length($3::varchar[], 1) IS NULL OR player_role = ANY($3::varchar[]))
+            AND (array_length($4::varchar[], 1) IS NULL OR player_batting_style = ANY($4::varchar[]))`,
+            [`%${text}%`, team, role, battingStyle]
+        );
+
+        res.json(players);
+        console.log(players);
+    } catch (error) {
+        console.error('Error running query:', error.message || error);
+        res.status(500).json({ error: 'An error occurred while processing your request.' });
+    }
+});
+app.get('/user/loggedin/playerinfo/:player_id', (req, res) => {
+    const { player_id } = req.params;
+    console.log('Player ID:', player_id);
+
+    db.one('SELECT * FROM player_info WHERE player_id = $1', player_id)
+        .then((playerData) => {
+            console.log('Player Data:', playerData);
+            res.json(playerData);
+        })
+        .catch((error) => {
+            console.error('DB Error:', error);
+            if (error instanceof db.errors.QueryResultError) {
+                // A query result error (e.g., no data found) has a code property
+                console.error('DB Error Code:', error.code);
+            }
+            res.status(500).json({ error: 'Internal server error', details: error.message });
+        });
 });
 
 app.post('/admin', async (req, res) => {
