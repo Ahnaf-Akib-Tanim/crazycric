@@ -26,7 +26,7 @@ const Players = () => {
     "West Indies",
     "England",
   ];
-  const roles = ["Batsman", "Bowler", "Wk", "All rounder"];
+  const roles = ["Batsman", "Bowler", "Wk", "All-Rounder"];
   const styles = ["Left handed", "Right handed"];
 
   const handleSearch = () => {
