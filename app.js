@@ -48,6 +48,18 @@ app.use(
     '/images',
     express.static(path.join(__dirname, './react/vite-project/public/player images')),
 );
+app.use(
+    '/umpireimages',
+    express.static(path.join(__dirname, './react/vite-project/public/umpire_images')),
+);
+app.use(
+    '/stasdiumimages',
+    express.static(path.join(__dirname, './react/vite-project/public/stadium_images')),
+);
+app.use(
+    '/coachimages',
+    express.static(path.join(__dirname, './react/vite-project/public/coach_images')),
+);
 // Configure multer
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {

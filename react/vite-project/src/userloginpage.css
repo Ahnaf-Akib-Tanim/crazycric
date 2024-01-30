@@ -1,4 +1,4 @@
-.user-page-container {
+/*.user-page-container {
   background-image: url("D:\Buet\Crazycric-project\react\vite-project\src\bg9.jpg");
   background-size: cover;
   height: 100vh;
@@ -26,12 +26,11 @@
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 2em; /* Adjust this to change the size of the arrow */
+  font-size: 2em;
 }
-
 .go-back-button svg {
-  width: 60px; /* Adjust this to change the size of the arrow */
-  stroke-width: 10px; /* Adjust this to change the stroke width of the arrow */
+  width: 60px;
+  stroke-width: 10px;
 }
 
 .error-message {
@@ -44,3 +43,4 @@
   left: 85px;
   top: -80px;
 }
+*/

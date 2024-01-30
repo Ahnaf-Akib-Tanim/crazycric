@@ -1,5 +1,6 @@
-body {
+.homepage-body {
   background-color: #a33fa3;
+  height: 100vh;
 }
 
 .home-icon {

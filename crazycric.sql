@@ -1,24 +1,34 @@
-drop table cricket_board;
+drop table if exists cricket_board;
 create TABLE cricket_board
 (
 board_name VARCHAR not NULL, 
 board_president VARCHAR not NULL,
-country_name VARCHAR not NULL,
+team_name VARCHAR not NULL,
 located varchar not NULL,
-abbreviation varchar not NULL,
+full_form varchar not NULL,
 image text not null,
-CONSTRAINT cricket_board_pk PRIMARY key(board_name)
+CONSTRAINT cricket_board_pk PRIMARY key(board_name),
+FOREIGN key(team_name) REFERENCES national_team(team_name)
 );
-insert into cricket_board values('Bangladesh Cricket Board','Najmul Hossain Papon','Bangladesh','Dhaka','BCB','D:\Buet\Crazycric-project\cricketboard_images\bd.png');
-insert into cricket_board values('Board of Control for Cricket in India','Rojer Binny','India','Mumbai','BCCI','D:\Buet\Crazycric-project\cricketboard_images\ind.png');
-insert into cricket_board values('England and Wales Cricket Board','Richard Thompson','England','London','ECB','D:\Buet\Crazycric-project\cricketboard_images\eng.png');
-insert into cricket_board values('Cricket Australia','Mike Baird','Australia','Melbourne','CA','D:\Buet\Crazycric-project\cricketboard_images\aus.png');
-insert into cricket_board values('Cricket South Africa','Rihan Richards','South Africa','	Johannesburg','CSA','D:\Buet\Crazycric-project\cricketboard_images\sa.png');
-insert into cricket_board values('Cricket West Indies','Dr. Kishore Shallow','West Indies','Antigua and Barbuda','CWI','D:\Buet\Crazycric-project\cricketboard_images\wi.png');
-insert into cricket_board values('New Zealand Cricket','Debbie Hockley','New Zealand','	Christchurch','NZC','D:\Buet\Crazycric-project\cricketboard_images\nz.png');
-insert into cricket_board values(' Pakistan Cricket Board','Zaka Ashraf','Pakistan',' Ferozepur','PCB','D:\Buet\Crazycric-project\cricketboard_images\pak.png');
-insert into cricket_board values('Afghanistan Cricket Board','	Mirwais Ashraf','Afghanistan','Kabul','ACB','D:\Buet\Crazycric-project\cricketboard_images\afg.png');
-insert into cricket_board values('Srilanka Cricket Board','Shammi Silva','Srilanka','Colombo','SLC','D:\Buet\Crazycric-project\cricketboard_images\sl.png');
+DELETE FROM "cricket_board"
+WHERE "board_name" = 'ACB';
+insert into cricket_board values('BCB','Najmul Hossain Papon','Bangladesh','Dhaka','Bangladesh Cricket Board ','D:\Buet\Crazycric-project\cricketboard_images\bd.png');
+insert into cricket_board values('BCCI','Rojer Binny','India','Mumbai','Board of Control for Cricket in India','D:\Buet\Crazycric-project\cricketboard_images\ind.png');
+insert into cricket_board values('ECB','Richard Thompson','England','London','England and Wales Cricket Board','D:\Buet\Crazycric-project\cricketboard_images\eng.png');
+insert into cricket_board values('CA','Mike Baird','Australia','Melbourne','Cricket Australia','D:\Buet\Crazycric-project\cricketboard_images\aus.png');
+insert into cricket_board values('CSA','Rihan Richards','South Africa','	Johannesburg','Cricket South Africa','D:\Buet\Crazycric-project\cricketboard_images\sa.png');
+insert into cricket_board values('CWI','Dr. Kishore Shallow','West Indies','Antigua and Barbuda','Cricket West Indies','D:\Buet\Crazycric-project\cricketboard_images\wi.png');
+insert into cricket_board values('NZC','Debbie Hockley','New Zealand','	Christchurch','New Zealand Cricket ','D:\Buet\Crazycric-project\cricketboard_images\nz.png');
+insert into cricket_board values('PCB','Zaka Ashraf','Pakistan',' Ferozepur','Pakistan Cricket Board','D:\Buet\Crazycric-project\cricketboard_images\pak.png');
+insert into cricket_board values('ACB','	Mirwais Ashraf','Afghanistan','Kabul','Afghanistan Cricket Board','D:\Buet\Crazycric-project\cricketboard_images\afg.png');
+insert into cricket_board values('SLC','Shammi Silva','Sri Lanka','Colombo','Srilanka Cricket Board','D:\Buet\Crazycric-project\cricketboard_images\sl.png');
+------updating the table......
+ALTER TABLE cricket_board ADD full_form VARCHAR;
+UPDATE cricket_board SET full_form = abbreviation;
+UPDATE cricket_board SET abbreviation = board_name;
+UPDATE cricket_board SET board_name = full_form;
+ALTER TABLE cricket_board DROP COLUMN full_form;
+ALTER TABLE cricket_board RENAME COLUMN abbreviation TO full_form;
 --drop table Users;
 --create TABLE Users
 --(
@@ -31,7 +41,8 @@ insert into cricket_board values('Srilanka Cricket Board','Shammi Silva','Srilan
 --image text,
 --CONSTRAINT user_pk PRIMARY key(userid)
 --);
-drop table player_info;
+DELETE FROM player_info WHERE player_id = '37';
+drop table if exists player_info;
 create TABLE player_info
 (
 player_id VARCHAR not NULL,
@@ -108,8 +119,11 @@ player_image_path VARCHAR not null,
     bowling_t20_economy DOUBLE PRECISION,
     bowling_t20_10w INT,
     bowling_t20_5w INT,
-    CONSTRAINT player_info_pk PRIMARY KEY(player_id)
+		 FOREIGN KEY (team_name) REFERENCES national_team(team_name)
 );
+ALTER TABLE player_info
+ADD FOREIGN KEY (team_name)
+REFERENCES national_team(team_name);
 INSERT INTO player_info VALUES
 ('1', 'Tamim Iqbal', 'Batsman', 'March 20, 1989', 'Left-Handed', NULL, 'Bangladesh', 'http://localhost:3000/images/Tamim%20Iqbal.jpeg
 ',
@@ -620,7 +634,7 @@ INSERT INTO player_info VALUES
   65, 8, 45, NULL, NULL, 5.0, NULL, NULL
 );
 INSERT INTO player_info VALUES
-('37', 'Colin Munro', 'All-rounder', '11 March 1987', 'Left Handed', 'Right Arm medium', 'http://localhost:3000/images/Colin_Munro.jpeg',
+('37', 'Colin Munro', 'All-rounder', '11 March 1987', 'Left Handed', 'Right Arm medium', 'New Zealand','http://localhost:3000/images/Colin_Munro.jpeg',
 -- Test Batting Stats
   7, 13, 339, 26.07, 54.31, 0, 2, 0, NULL, NULL,
 -- ODI Batting Stats
@@ -634,8 +648,9 @@ INSERT INTO player_info VALUES
 -- T20I Bowling Stats
   22, 0, 0, NULL, NULL, NULL, NULL, NULL
 );
+DELETE FROM player_info WHERE player_id = '38';
 INSERT INTO player_info VALUES
-('38', 'Colin de Grandhomme', 'All-rounder', '22 July 1986', 'Right Handed', 'Right Arm Fast', 'http://localhost:3000/images/Colin%20De%20Grandhomme.jpeg',
+('38', 'Colin de Grandhomme', 'All-rounder', '22 July 1986', 'Right Handed', 'Right Arm Fast','New Zealand', 'http://localhost:3000/images/Colin%20De%20Grandhomme.jpeg',
 -- Test Batting Stats
   7, 13, 339, 26.07, 54.31, 0, 2, 0, NULL, NULL,
 -- ODI Batting Stats
@@ -2367,21 +2382,12 @@ VALUES
 ----
 --
 -
-drop table umpire_info;
-create TABLE umpire_info
-(
-umpire_id VARCHAR not NULL,
-umpire_name VARCHAR not NULL,
-umpire_country VARCHAR not NULL,
-umpire_image_path VARCHAR not null,
-CONSTRAINT umpire_info_pk PRIMARY key(umpire_id)
-);
 
-drop table national_team;
+drop table if exists national_team;
 create TABLE national_team
 (
-    icc_membership VARCHAR not NULL,
     team_name VARCHAR not NULL,
+		board_name VARCHAR not null,
     current_coach VARCHAR not NULL,
     most_runs_test VARCHAR not NULL,
     most_wickets_test VARCHAR not NULL,
@@ -2392,59 +2398,554 @@ create TABLE national_team
     --most_wickets VARCHAR not NULL,
     most_matches_played_against VARCHAR not NULL,
     most_matches_won_against VARCHAR not NULL,
-    total_odi_matches_played VARCHAR not NULL,
-    total_odi_matches_won VARCHAR not NULL,
-    total_t20_matches_played VARCHAR not NULL,
-    total_t20_matches_won VARCHAR not NULL,
-    total_test_matches_played VARCHAR not NULL,
-    total_test_matches_won VARCHAR not NULL,
-    icc_t20_ranking VARCHAR not NULL,
-    icc_test_ranking VARCHAR not NULL,
-    icc_odi_ranking VARCHAR not NULL,
+    total_odi_matches_played int not NULL,
+    total_odi_matches_won int not NULL,
+    total_t20_matches_played int not NULL,
+    total_t20_matches_won int not NULL,
+    total_test_matches_played int not NULL,
+    total_test_matches_won int not NULL,
+    icc_t20_ranking int not NULL,
+    icc_test_ranking int not NULL,
+    icc_odi_ranking int not NULL,
     home_ground VARCHAR not NULL,
     most_100s VARCHAR not NULL,
     most_wickets VARCHAR not NULL,
     --{hall_of_fame} VARCHAR not NULL,
-    CONSTRAINT national_team_pk PRIMARY key(icc_membership)
+    CONSTRAINT national_team_pk PRIMARY key(team_name),
+		  CONSTRAINT fk_national_team_coach FOREIGN KEY (current_coach) REFERENCES coaches(coach_name),
+    CONSTRAINT fk_national_team_board FOREIGN KEY (board_name) REFERENCES cricket_board(board_name)
+);
+
+INSERT INTO national_team VALUES
+('Bangladesh',
+    'BCB',
+    'Chandika Hathurusingha',
+    '3', -- most_runs_test
+    '2', -- most_wickets_test
+    '1', -- most_runs_odi
+    '2', -- most_wickets_odi
+    '13', -- most_runs_t20
+    '2', -- most_wickets_t20
+    'Zimbabwe', -- most_matches_played_against
+    'Zimbabwe', -- most_matches_won_against
+    419, -- total_odi_matches_played
+    153, -- total_odi_matches_won
+    158, -- total_t20_matches_played
+    59, -- total_t20_matches_won
+    140, -- total_test_matches_played
+    19, -- total_test_matches_won
+    10, -- icc_t20_ranking
+    9, -- icc_test_ranking
+    8, -- icc_odi_ranking
+    'st10', -- home_ground
+    '1', -- most_100s
+    '2' -- most_wickets
+);
+		insert into national_team values
+('India',
+    'BCCI',
+    'Ravi Shastri', -- You can replace this with the current coach's name
+    '18', -- Virat Kohli's player ID for most runs in Test
+    '20', -- Jasprit Bumrah's player ID for most wickets in Test
+    '19', -- Rohit Sharma's player ID for most runs in ODI
+    '30', -- Mohammed Shami's player ID for most wickets in ODI
+    '21', -- Shikhar Dhawan's player ID for most runs in T20
+    '25', -- Hardik Pandya's player ID for most wickets in T20
+    'Australia', -- Replace with the country with most matches played against
+    'Australia', -- Replace with the country with most matches won against
+    987, -- Replace with the total ODI matches played
+    656, -- Replace with the total ODI matches won
+    125, -- Replace with the total T20 matches played
+    92,  -- Replace with the total T20 matches won
+    566, -- Replace with the total Test matches played
+    358, -- Replace with the total Test matches won
+    2,   -- Replace with the ICC T20 ranking
+    1,   -- Replace with the ICC Test ranking
+    3,   -- Replace with the ICC ODI ranking
+    'st37', -- Replace with the home ground
+    '40',  -- Replace with Virat Kohli's player ID for most centuries
+    '32'   -- Replace with Ravichandran Ashwin's player ID for most wickets overall
+);
+-- Insert data for England
+
+insert into national_team values
+('England',
+    'ECB',
+    'Chris Silverwood', -- You can replace this with the current coach's name
+    '163', -- Joe Root's player ID for most runs in Test
+    '171', -- Stuart Broad's player ID for most wickets in Test
+    '167', -- Jason Roy's player ID for most runs in ODI
+    '174', -- Adil Rashid's player ID for most wickets in ODI
+    '165', -- Jonny Bairstow's player ID for most runs in T20
+    '172', -- Jofra Archer's player ID for most wickets in T20
+    'Australia', -- Replace with the country with most matches played against
+    'Australia', -- Replace with the country with most matches won against
+    789, -- Replace with the total ODI matches played
+    512, -- Replace with the total ODI matches won
+    110, -- Replace with the total T20 matches played
+    78,  -- Replace with the total T20 matches won
+    623, -- Replace with the total Test matches played
+    374, -- Replace with the total Test matches won
+    4,   -- Replace with the ICC T20 ranking
+    2,   -- Replace with the ICC Test ranking
+    5,   -- Replace with the ICC ODI ranking
+    'st3', -- Replace with the home ground
+    '35',  -- Replace with Joe Root's player ID for most centuries
+    '169'   -- Replace with Chris Woakes's player ID for most wickets overall
+);
+insert into national_team values
+('West Indies',
+    'CWI',
+    'Phil Simmons', -- You can replace this with the current coach's name
+    '44', -- Shai Hope's player ID for most runs in Test
+    '45', -- Kemar Roach's player ID for most wickets in Test
+    '46', -- Nicholas Pooran's player ID for most runs in ODI
+    '103', -- Sheldon Cottrell's player ID for most wickets in ODI
+    '47', -- Shimron Hetmyer's player ID for most runs in T20
+    '99', -- Andre Russell's player ID for most wickets in T20
+    'Pakistan', -- Replace with the country with most matches played against
+    'Pakistan', -- Replace with the country with most matches won against
+    567, -- Replace with the total ODI matches played
+    281, -- Replace with the total ODI matches won
+    98, -- Replace with the total T20 matches played
+    54,  -- Replace with the total T20 matches won
+    470, -- Replace with the total Test matches played
+    172, -- Replace with the total Test matches won
+    7,   -- Replace with the ICC T20 ranking
+    8,   -- Replace with the ICC Test ranking
+    9,   -- Replace with the ICC ODI ranking
+    'st38', -- Replace with the home ground
+    '20',  -- Replace with Shai Hope's player ID for most centuries
+    '100'   -- Replace with Dwayne Bravo's player ID for most wickets overall
+);
+insert into national_team values
+('Pakistan',
+    'PCB',
+    'Misbah-ul-Haq', -- You can replace this with the current coach's name
+    '58', -- Babar Azam's player ID for most runs in Test
+    '142', -- Muhammad Abbas's player ID for most wickets in Test
+    '61', -- Fakhar Zaman's player ID for most runs in ODI
+    '140', -- Hasan Ali's player ID for most wickets in ODI
+    '59', -- Shaheen Afridi's player ID for most runs in T20
+    '138', -- Usman Qadir's player ID for most wickets in T20
+    'India', -- Replace with the country with most matches played against
+    'India', -- Replace with the country with most matches won against
+    510, -- Replace with the total ODI matches played
+    266, -- Replace with the total ODI matches won
+    115, -- Replace with the total T20 matches played
+    72,  -- Replace with the total T20 matches won
+    458, -- Replace with the total Test matches played
+    185, -- Replace with the total Test matches won
+    6,   -- Replace with the ICC T20 ranking
+    5,   -- Replace with the ICC Test ranking
+    4,   -- Replace with the ICC ODI ranking
+    'st24', -- Replace with the home ground
+    '14',  -- Replace with Babar Azam's player ID for most centuries
+    '135'   -- Replace with Faheem Ashraf's player ID for most wickets overall
+);
+
+insert into national_team values
+('Afghanistan',
+    'ACB',
+    'Lalchand Rajput', -- You can replace this with the current coach's name
+    '71', -- Asghar Afghan's player ID for most runs in Test
+    '154', -- Mujeeb Ur Rahman's player ID for most wickets in Test
+    '70', -- Hazratullah Zazai's player ID for most runs in ODI
+    '69', -- Mohammad Nabi's player ID for most wickets in ODI
+    '72', -- Najibullah Zadran's player ID for most runs in T20
+    '68', -- Rashid Khan's player ID for most wickets in T20
+    'Ireland', -- Replace with the country with most matches played against
+    'Ireland', -- Replace with the country with most matches won against
+    73, -- Replace with the total ODI matches played
+    32, -- Replace with the total ODI matches won
+    72, -- Replace with the total T20 matches played
+    45,  -- Replace with the total T20 matches won
+    12, -- Replace with the total Test matches played
+    2, -- Replace with the total Test matches won
+    10,   -- Replace with the ICC T20 ranking
+    12,   -- Replace with the ICC Test ranking
+    8,   -- Replace with the ICC ODI ranking
+    'st33', -- Replace with the home ground
+    '5',  -- Replace with Asghar Afghan's player ID for most centuries
+    '159'   -- Replace with Karim Janat's player ID for most wickets overall
+);
+
+insert into national_team values
+('New Zealand',
+    'NZC',
+    'Gary Stead', -- You can replace this with the current coach's name
+    '33', -- Kane Williamson's player ID for most runs in Test
+    '74', -- Trent Boult's player ID for most wickets in Test
+    '36', -- Martin Guptill's player ID for most runs in ODI
+    '73', -- Tim Southee's player ID for most wickets in ODI
+    '35', -- Tom Latham's player ID for most runs in T20
+    '76', -- Lockie Ferguson's player ID for most wickets in T20
+    'Australia', -- Replace with the country with most matches played against
+    'Australia', -- Replace with the country with most matches won against
+    737, -- Replace with the total ODI matches played
+    367, -- Replace with the total ODI matches won
+    121, -- Replace with the total T20 matches played
+    66,  -- Replace with the total T20 matches won
+    501, -- Replace with the total Test matches played
+    200, -- Replace with the total Test matches won
+    3,   -- Replace with the ICC T20 ranking
+    2,   -- Replace with the ICC Test ranking
+    1,   -- Replace with the ICC ODI ranking
+    'st19', -- Replace with the home ground
+    '22',  -- Replace with Kane Williamson's player ID for most centuries
+    '77'   -- Replace with Mitchell Santner's player ID for most wickets overall
+);
+insert into national_team values
+('Australia',
+    'CA',
+    'Justin Langer', -- You can replace this with the current coach's name
+    '39', -- Steve Smith's player ID for most runs in Test
+    '42', -- Mitchell Starc's player ID for most wickets in Test
+    '40', -- David Warner's player ID for most runs in ODI
+    '41', -- Pat Cummins's player ID for most wickets in ODI
+    '83', -- Aaron Finch's player ID for most runs in T20
+    '91', -- Jhye Richardson's player ID for most wickets in T20
+    'England', -- Replace with the country with most matches played against
+    'England', -- Replace with the country with most matches won against
+    987, -- Replace with the total ODI matches played
+    635, -- Replace with the total ODI matches won
+    132, -- Replace with the total T20 matches played
+    87,  -- Replace with the total T20 matches won
+    508, -- Replace with the total Test matches played
+    287, -- Replace with the total Test matches won
+    5,   -- Replace with the ICC T20 ranking
+    3,   -- Replace with the ICC Test ranking
+    2,   -- Replace with the ICC ODI ranking
+    'st2', -- Replace with the home ground
+    '29',  -- Replace with Steve Smith's player ID for most centuries
+    '89'   -- Replace with Mitchell Marsh's player ID for most wickets overall
+);
+insert into national_team values
+('South Africa',
+    'CSA',
+    'Mickey Arthur', -- You can replace this with the current coach's name
+    '55', -- Faf du Plessis's player ID for most runs in Test
+    '127', -- Dale Steyn's player ID for most wickets in Test
+    '53', -- Quinton de Kock's player ID for most runs in ODI
+    '54', -- Kagiso Rabada's player ID for most wickets in ODI
+    '56', -- Aiden Markram's player ID for most runs in T20
+    '125', -- Lungi Ngidi's player ID for most wickets in T20
+    'Australia', -- Replace with the country with most matches played against
+    'Australia', -- Replace with the country with most matches won against
+    643, -- Replace with the total ODI matches played
+    394, -- Replace with the total ODI matches won
+    99, -- Replace with the total T20 matches played
+    62,  -- Replace with the total T20 matches won
+    512, -- Replace with the total Test matches played
+    225, -- Replace with the total Test matches won
+    8,   -- Replace with the ICC T20 ranking
+    7,   -- Replace with the ICC Test ranking
+    3,   -- Replace with the ICC ODI ranking
+    'st27', -- Replace with the home ground
+    '21',  -- Replace with Faf du Plessis's player ID for most centuries
+    '121'   -- Replace with Imran Tahir's player ID for most wickets overall
+);
+insert into national_team values
+('Sri Lanka',
+    'SLC',
+    'Mickey Arthur', -- You can replace this with the current coach's name
+    '48', -- Dimuth Karunaratne's player ID for most runs in Test
+    '52', -- Lasith Malinga's player ID for most wickets in ODI
+    '50', -- Kusal Perera's player ID for most runs in ODI
+    '52', -- Lasith Malinga's player ID for most wickets in ODI (assuming same as T20)
+    '51', -- Dhananjaya de Silva's player ID for most runs in T20
+    '52', -- Lasith Malinga's player ID for most wickets in T20
+    'Pakistan', -- Replace with the country with most matches played against
+    'Pakistan', -- Replace with the country with most matches won against
+    654, -- Replace with the total ODI matches played
+    281, -- Replace with the total ODI matches won
+    112, -- Replace with the total T20 matches played
+    54,  -- Replace with the total T20 matches won
+    474, -- Replace with the total Test matches played
+    176, -- Replace with the total Test matches won
+    10,   -- Replace with the ICC T20 ranking
+    7,   -- Replace with the ICC Test ranking
+    8,   -- Replace with the ICC ODI ranking
+    'st23', -- Replace with the home ground
+    '15',  -- Replace with Dimuth Karunaratne's player ID for most centuries
+    '52'   -- Replace with Lasith Malinga's player ID for most wickets overall
+);
+drop table if exists umpire_info;
+create TABLE umpire_info
+(
+umpire_id VARCHAR not NULL,
+umpire_name VARCHAR not NULL,
+umpire_country VARCHAR not NULL,
+umpire_image_path VARCHAR not null,
+CONSTRAINT umpire_info_pk PRIMARY key(umpire_id)
+);
+ALTER TABLE umpire_info
+ADD FOREIGN KEY (umpire_country)
+REFERENCES national_team(team_name);
+insert into umpire_info values
+('ump1','Aleem Dar','Pakistan','D:\Buet\Crazycric-project\react\vite-project\public\umpire_images\ump1.jpeg'),
+('ump2','Kumar Dharmasena','Sri Lanka','D:\Buet\Crazycric-project\react\vite-project\public\umpire_images\ump2.jpeg'),
+('ump3','Marais Erasmus','South Africa','D:\Buet\Crazycric-project\react\vite-project\public\umpire_images\ump3.jpeg'),
+('ump4','Chris Gaffaney','New Zealand','D:\Buet\Crazycric-project\react\vite-project\public\umpire_images\ump4.jpeg'),
+('ump5','Ian Gould','England','D:\Buet\Crazycric-project\react\vite-project\public\umpire_images\ump5.jpeg'),
+('ump6','Richard Illingworth','England','D:\Buet\Crazycric-project\react\vite-project\public\umpire_images\ump6.jpeg'),
+('ump7','Richard Kettleborough','England','D:\Buet\Crazycric-project\react\vite-project\public\umpire_images\ump7.jpeg'),
+('ump8','Nigel Llong','England','D:\Buet\Crazycric-project\react\vite-project\public\umpire_images\ump8.jpeg'),
+('ump9','Bruce Oxenford','Australia','D:\Buet\Crazycric-project\react\vite-project\public\umpire_images\ump9.jpeg'),
+('ump10','Paul Reiffel','Australia','D:\Buet\Crazycric-project\react\vite-project\public\umpire_images\ump10.jpeg'),
+('ump11','Rod Tucker','Australia','D:\Buet\Crazycric-project\react\vite-project\public\umpire_images\ump11.jpeg'),
+('ump12','Joel Wilson','West Indies','D:\Buet\Crazycric-project\react\vite-project\public\umpire_images\ump12.jpeg'),
+('ump13','Michael Gough','England','D:\Buet\Crazycric-project\react\vite-project\public\umpire_images\ump13.jpeg'),
+('ump14','Ruchira Palliyaguruge','Sri Lanka','D:\Buet\Crazycric-project\react\vite-project\public\umpire_images\ump14.jpeg'),
+('ump15','Paul Wilson','Australia','D:\Buet\Crazycric-project\react\vite-project\public\umpire_images\ump15.jpeg');
+
+INSERT INTO umpire_info
+VALUES
+('ump16', 'Enamul Haque', 'Bangladesh', 'D:\Buet\Crazycric-project\react\vite-project\public\umpire_images\ump16.jpeg'),
+('ump17', 'Sharfuddoula Ibne Shahid', 'Bangladesh', 'D:\Buet\Crazycric-project\react\vite-project\public\umpire_images\ump17.jpeg'),
+('ump18', 'Sundaram Ravi', 'India', 'D:\Buet\Crazycric-project\react\vite-project\public\umpire_images\ump18.jpeg');
+UPDATE umpire_info
+SET umpire_image_path = CONCAT('http://localhost:3000/umpireimages/', umpire_id, '.jpeg');
+
+---------------------------------------------------------
+------dream11..........................
+---...............
+CREATE TABLE if exists dream11 (
+    userid VARCHAR NOT NULL,
+    captain VARCHAR NOT NULL,
+    player1 VARCHAR NOT NULL,
+    player2 VARCHAR NOT NULL,
+    player3 VARCHAR NOT NULL,
+    player4 VARCHAR NOT NULL,
+    player5 VARCHAR NOT NULL,
+    player6 VARCHAR NOT NULL,
+    player7 VARCHAR NOT NULL,
+    player8 VARCHAR NOT NULL,
+    player9 VARCHAR NOT NULL,
+    player10 VARCHAR NOT NULL,
+    player11 VARCHAR NOT NULL,
+    player12 VARCHAR NOT NULL,
+    player13 VARCHAR NOT NULL,
+    player14 VARCHAR NOT NULL,
+    player15 VARCHAR NOT NULL,
+    PRIMARY KEY (userid),
+    FOREIGN KEY (userid) REFERENCES users(userid),
+    FOREIGN KEY (captain) REFERENCES player_info(player_id),
+    FOREIGN KEY (player1) REFERENCES player_info(player_id),
+    FOREIGN KEY (player2) REFERENCES player_info(player_id),
+    FOREIGN KEY (player3) REFERENCES player_info(player_id),
+    FOREIGN KEY (player4) REFERENCES player_info(player_id),
+    FOREIGN KEY (player5) REFERENCES player_info(player_id),
+    FOREIGN KEY (player6) REFERENCES player_info(player_id),
+    FOREIGN KEY (player7) REFERENCES player_info(player_id),
+    FOREIGN KEY (player8) REFERENCES player_info(player_id),
+    FOREIGN KEY (player9) REFERENCES player_info(player_id),
+    FOREIGN KEY (player10) REFERENCES player_info(player_id),
+    FOREIGN KEY (player11) REFERENCES player_info(player_id),
+    FOREIGN KEY (player12) REFERENCES player_info(player_id),
+    FOREIGN KEY (player13) REFERENCES player_info(player_id),
+    FOREIGN KEY (player14) REFERENCES player_info(player_id),
+    FOREIGN KEY (player15) REFERENCES player_info(player_id)
 );
 
 
+----------------stadiums.......... 
+---.........................
+drop table if exists stadiums
+CREATE TABLE stadiums (
+    stadium_id VARCHAR PRIMARY KEY,
+    stadium_name VARCHAR NOT NULL,
+    capacity INT NOT NULL,
+    matches_hosted INT NOT NULL,
+    country_name VARCHAR NOT NULL,
+    image_path VARCHAR NOT NULL,
+    CONSTRAINT unique_stadium_name UNIQUE (stadium_name)
+);
+ALTER TABLE stadiums
+ADD FOREIGN KEY (country_name)
+REFERENCES national_team(team_name);
+INSERT INTO stadiums (stadium_id, stadium_name, capacity, matches_hosted, country_name, image_path)
+VALUES
+('st1', 'Eden Gardens', 66000, 150, 'India', 'http://localhost:3000/stadiumimages/st1.jpeg'),
+('st2', 'MCG - Melbourne Cricket Ground', 100024, 170, 'Australia', 'http://localhost:3000/stadiumimages/st2.jpeg'),
+('st3', 'Lords Cricket Ground', 30000, 120, 'England', 'http://localhost:3000/stadiumimages/st3.jpeg'),
+('st4', 'Wanderers Stadium', 34000, 90, 'South Africa', 'http://localhost:3000/stadiumimages/st4.jpeg'),
+('st5', 'Galle International Stadium', 35000, 60, 'Sri Lanka', 'http://localhost:3000/stadiumimages/st5.jpeg'),
+('st6', 'Basin Reserve', 11000, 80, 'New Zealand', 'http://localhost:3000/stadiumimages/st6.jpeg'),
+('st7', 'Sabina Park', 15000, 45, 'West Indies', 'http://localhost:3000/stadiumimages/st7.jpeg');
+INSERT INTO stadiums (stadium_id, stadium_name, capacity, matches_hosted, country_name, image_path)
+VALUES
+('st8', 'Wankhede Stadium', 33000, 110, 'India', 'http://localhost:3000/stadiumimages/st8.jpeg'),
+('st9', 'Chinnaswamy Stadium', 40000, 120, 'India', 'http://localhost:3000/stadiumimages/st9.jpeg'),
+-- Add more stadiums for India
+-- ...
+('st10', 'Sher-e-Bangla National Cricket Stadium', 26000, 80, 'Bangladesh', 'http://localhost:3000/stadiumimages/st10.jpeg'),
+('st11', 'Zahur Ahmed Chowdhury Stadium', 22000, 70, 'Bangladesh', 'http://localhost:3000/stadiumimages/st11.jpeg'),
+('st12', 'Sylhet International Cricket Stadium', 18000, 60, 'Bangladesh', 'http://localhost:3000/stadiumimages/st12.jpeg'),
+-- Add more stadiums for Bangladesh
+-- ...
+('st13', 'Sydney Cricket Ground', 48000, 130, 'Australia', 'http://localhost:3000/stadiumimages/st13.jpeg'),
+('st14', 'Adelaide Oval', 53000, 120, 'Australia', 'http://localhost:3000/stadiumimages/st14.jpeg'),
+('st15', 'The Gabba', 42000, 110, 'Australia', 'http://localhost:3000/stadiumimages/st15.jpeg');
+INSERT INTO stadiums (stadium_id, stadium_name, capacity, matches_hosted, country_name, image_path)
+VALUES
+('st16', 'Old Trafford', 26000, 90, 'England', 'http://localhost:3000/stadiumimages/st16.jpeg'),
+('st17', 'Headingley', 18000, 70, 'England', 'http://localhost:3000/stadiumimages/st17.jpeg'),
+('st18', 'Trent Bridge', 17000, 80, 'England', 'http://localhost:3000/stadiumimages/st18.jpeg'),
+-- Add more stadiums for England
+-- ...
+('st19', 'Eden Park', 50000, 100, 'New Zealand', 'http://localhost:3000/stadiumimages/st19.jpeg'),
+('st20', 'Hagley Oval', 18000, 50, 'New Zealand', 'http://localhost:3000/stadiumimages/st20.jpeg'),
+('st21', 'Westpac Stadium', 34000, 60, 'New Zealand', 'http://localhost:3000/stadiumimages/st21.jpeg'),
+-- Add more stadiums for New Zealand
+-- ...
+('st22', 'R. Premadasa Stadium', 35000, 80, 'Sri Lanka', 'http://localhost:3000/stadiumimages/st22.jpeg'),
+('st23', 'Pallekele International Cricket Stadium', 35000, 60, 'Sri Lanka', 'http://localhost:3000/stadiumimages/st23.jpeg');
+INSERT INTO stadiums (stadium_id, stadium_name, capacity, matches_hosted, country_name, image_path)
+VALUES
+('st24', 'Gaddafi Stadium', 27000, 70, 'Pakistan', 'http://localhost:3000/stadiumimages/st24.jpeg'),
+('st25', 'National Stadium, Karachi', 35000, 60, 'Pakistan', 'http://localhost:3000/stadiumimages/st25.jpeg'),
+('st26', 'Rawalpindi Cricket Stadium', 25000, 50, 'Pakistan', 'http://localhost:3000/stadiumimages/st26.jpeg'),
+-- Add more stadiums for Pakistan
+-- ...
+('st27', 'Newlands, Cape Town', 25000, 70, 'South Africa', 'http://localhost:3000/stadiumimages/st27.jpeg'),
+('st28', 'SuperSport Park, Centurion', 22000, 60, 'South Africa', 'http://localhost:3000/stadiumimages/st28.jpeg'),
+('st29', 'Kingsmead, Durban', 25000, 50, 'South Africa', 'http://localhost:3000/stadiumimages/st29.jpeg'),
+-- Add more stadiums for South Africa
+-- ...
+('st30', 'Kensington Oval, Bridgetown', 28000, 60, 'West Indies', 'http://localhost:3000/stadiumimages/st30.jpeg'),
+('st31', 'Queens Park Oval, Port of Spain', 25000, 50, 'West Indies', 'http://localhost:3000/stadiumimages/st31.jpeg'),
+('st32', 'Providence Stadium, Guyana', 15000, 40, 'West Indies', 'http://localhost:3000/stadiumimages/st32.jpeg');
+INSERT INTO stadiums (stadium_id, stadium_name, capacity, matches_hosted, country_name, image_path)
+VALUES
+('st33', 'Alokozay Kabul International Cricket Stadium', 15000, 30, 'Afghanistan', 'http://localhost:3000/stadiumimages/st33.jpeg');
+INSERT INTO stadiums VALUES
+('st37', 'Narendra Modi Stadium', 132000, 10, 'India', 'http://localhost:3000/stadiumimages/st37.jpeg');
+INSERT INTO stadiums (stadium_id, stadium_name, capacity, matches_hosted, country_name, image_path)
+VALUES
+('st38', 'Kensington Oval, Barbados', 28000, 60, 'West Indies', 'http://localhost:3000/stadiumimages/st38.jpeg');
 
-insert into national_team values
-('Full Member','Bangladesh','Chandrika haturashingha','Mushfiqur Rahim','Shakib Al Hasan','Tamim Iqbal','Shakib Al Hasan','Tamim Iqbal','Shakib Al Hasan','India','Zimbabwe','419','173','125','44','9','140','19','9','9','8','Sher-e-bangla National Cricket stadium','Tamim Iqbal','Shakib Al Hasan'),
-('Full Member', 'India', 'Ravi Shastri', 'Sachin Tendulkar', 'Anil Kumble', 'Virat Kohli', 'Jasprit Bumrah', 'Virat Kohli', 'Jasprit Bumrah', 'Ravi Shastri', 'Pakistan', '985', '544', '834', '523', '120', '550', '150', '560', '360', '1', 'Wankhede Stadium', 'Sachin Tendulkar', 'Anil Kumble'),
-('Full Member', 'England', 'Chris Silverwood', 'Alastair Cook', 'James Anderson', 'Eoin Morgan', 'James Anderson', 'Eoin Morgan', 'Chris Jordan', 'Stuart Broad', 'Australia', '1000', '600', '900', '480', '130', '650', '200', '670', '430', '2', 'Lord Cricket Ground', 'Alastair Cook', 'James Anderson'),
-('Full Member', 'West Indies', 'Phil Simmons', 'Brian Lara', 'Courtney Walsh', 'Chris Gayle', 'Courtney Walsh', 'Chris Gayle', 'Samuel Badree', 'Courtney Walsh', 'England', '850', '500', '750', '420', '110', '600', '180', '620', '390', '3', 'Kensington Oval', 'Brian Lara', 'Courtney Walsh'),
-('Full Member', 'Pakistan', 'Misbah-ul-Haq', 'Younis Khan', 'Wasim Akram', 'Babar Azam', 'Wasim Akram', 'Shoaib Malik', 'Shoaib Malik', 'Shoaib Malik', 'India', '920', '510', '880', '480', '140', '700', '160', '720', '410', '4', 'Gaddafi Stadium', 'Younis Khan', 'Wasim Akram'),
-('Associate Member', 'Afghanistan', 'Lance Klusener', 'Rahmat Shah', 'Rashid Khan', 'Mohammad Nabi', 'Rashid Khan', 'Mohammad Nabi', 'Hazratullah Zazai', 'Rashid Khan', 'Zimbabwe', '380', '220', '340', '190', '70', '250', '50', '270', '150', '8', 'Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium', 'Rahmat Shah', 'Rashid Khan'),
-('Full Member', 'New Zealand', 'Gary Stead', 'Kane Williamson', 'Richard Hadlee', 'Kane Williamson', 'Daniel Vettori', 'Martin Guptill', 'Colin Munro', 'Daniel Vettori', 'Australia', '880', '470', '820', '450', '130', '590', '140', '610', '380', '5', 'Seddon Park', 'Kane Williamson', 'Daniel Vettori'),
-('Full Member', 'Australia', 'Justin Langer', 'Ricky Ponting', 'Shane Warne', 'Aaron Finch', 'Glenn Maxwell', 'Aaron Finch', 'Glenn Maxwell', 'Adam Zampa', 'England', '920', '530', '870', '480', '140', '680', '170', '700', '410', '6', 'Melbourne Cricket Ground', 'Ricky Ponting', 'Shane Warne'),
-('Full Member', 'South Africa', 'Mark Boucher', 'Jacques Kallis', 'Shaun Pollock', 'Quinton de Kock', 'Makhaya Ntini', 'Quinton de Kock', 'David Miller', 'Imran Tahir', 'Australia', '890', '490', '850', '460', '130', '610', '160', '630', '380', '7', 'Newlands, Cape Town', 'Jacques Kallis', 'Shaun Pollock'),
-('Associate Member', 'Zimbabwe', 'Lalchand Rajput', 'Brendan Taylor', 'Heath Streak', 'Hamilton Masakadza', 'Heath Streak', 'Brendan Taylor', 'Sikandar Raza', 'Heath Streak', 'Pakistan', '430', '230', '390', '200', '60', '280', '30', '300', '160', '9', 'Harare Sports Club', 'Brendan Taylor', 'Heath Streak'),
-('Full Member', 'Sri Lanka', 'Mickey Arthur', 'Kumar Sangakkara', 'Muttiah Muralitharan', 'Sanath Jayasuriya', 'Muttiah Muralitharan', 'Tillakaratne Dilshan', 'Tillakaratne Dilshan', 'Lasith Malinga', 'India', '890', '480', '860', '440', '140', '640', '170', '660', '380', '9', 'R. Premadasa Stadium', 'Kumar Sangakkara', 'Muttiah Muralitharan');
+-------------coach----
+----------.....
+--------
+drop table if exists coaches
+CREATE TABLE coaches (
+    coach_name VARCHAR PRIMARY KEY,
+    coach_country_name VARCHAR NOT NULL,
+    coaching_team VARCHAR NOT NULL,
+    image_path VARCHAR NOT NULL,
+    num_of_matches_won INT NOT NULL,
+    success_percentage FLOAT NOT NULL,
+    coach_age INT NOT NULL,
+    FOREIGN KEY (coaching_team) REFERENCES national_team(team_name)
+);
+INSERT INTO coaches VALUES
+('Chandika Hathurusingha', 'Sri Lanka', 'Bangladesh', 'http://localhost:3000/coachimages/Chandika%20Hathurusingha.jpeg', 140, 60.0, 53),
+('Ravi Shastri', 'India', 'India', 'http://localhost:3000/coachimages/Ravi%20Shastri.jpeg', 40, 70.0, 59),
+('Justin Langer', 'Australia', 'Australia', 'http://localhost:3000/coachimages/Justin%20Langer.jpeg', 50, 72.5, 51),
+('Mickey Arthur', 'South Africa', 'Pakistan', 'http://localhost:3000/coachimages/Mickey%20Arthur.jpeg', 90, 55.0, 53);
+INSERT INTO coaches VALUES
+('Gary Stead', 'New Zealand', 'New Zealand', 'http://localhost:3000/coachimages/Gary%20Stead.jpeg', 25, 68.0, 49),
+('Misbah-ul-Haq', 'Pakistan', 'Pakistan', 'http://localhost:3000/coachimages/Misbah-ul-Haq.jpeg', 20, 58.0, 47),
+('Phil Simmons', 'West Indies', 'West Indies', 'http://localhost:3000/coachimages/Phil%20Simmons.jpeg', 35, 62.0, 57);
+insert into coaches VALUES
+('Lalchand Rajput', 'India', 'Afghanistan', 'http://localhost:3000/coachimages/Lalchand%20Rajput.jpeg', 15, 50.0, 59);
+INSERT INTO coaches VALUES
+('Chris Silverwood', 'England', 'Sri Lanka', 'http://localhost:3000/coachimages/Chris%20Silverwood2.jpeg', 12, 60.0, 47);
+INSERT INTO coaches VALUES
+('Brendon McCullum', 'New Zealand', 'England', 'http://localhost:3000/coachimages/Brendon%20McCullum.jpeg', 8, 55.0, 40);
 
-insert into umpire_info values
-('ump001','Aleem Dar','Pakistan','D:\Buet\Crazycric-project\umpire_images\dar.jpg'),
-('ump002','Kumar Dharmasena','Sri Lanka','D:\Buet\Crazycric-project\umpire_images\dharmasena.jpg'),
-('ump003','Marais Erasmus','South Africa','D:\Buet\Crazycric-project\umpire_images\erasmus.jpg'),
-('ump004','Chris Gaffaney','New Zealand','D:\Buet\Crazycric-project\umpire_images\gaffaney.jpg'),
-('ump005','Ian Gould','England','D:\Buet\Crazycric-project\umpire_images\gould.jpg'),
-('ump006','Richard Illingworth','England','D:\Buet\Crazycric-project\umpire_images\illingworth.jpg'),
-('ump007','Richard Kettleborough','England','D:\Buet\Crazycric-project\umpire_images\kettleborough.jpg'),
-('ump008','Nigel Llong','England','D:\Buet\Crazycric-project\umpire_images\llong.jpg'),
-('ump009','Bruce Oxenford','Australia','D:\Buet\Crazycric-project\umpire_images\oxenford.jpg'),
-('ump010','Paul Reiffel','Australia','D:\Buet\Crazycric-project\umpire_images\reiffel.jpg'),
-('ump011','Rod Tucker','Australia','D:\Buet\Crazycric-project\umpire_images\tucker.jpg'),
-('ump012','Joel Wilson','West Indies','D:\Buet\Crazycric-project\umpire_images\wilson.jpg'),
-('ump013','Michael Gough','England','D:\Buet\Crazycric-project\umpire_images\gough.jpg'),
-('ump014','Ruchira Palliyaguruge','Sri Lanka','D:\Buet\Crazycric-project\umpire_images\palliyaguruge.jpg'),
-('ump015','Paul Wilson','Australia','D:\Buet\Crazycric-project\umpire_images\wilson.jpg'),
-('ump016','Kumar Dharmasena','Sri Lanka','D:\Buet\Crazycric-project\umpire_images\dharmasena.jpg');
+DROP TABLE IF EXISTS series_info;
+-- Create the series_info table
+CREATE TABLE series_info (
+    series_id VARCHAR PRIMARY KEY,
+    series_name VARCHAR NOT NULL,
+    team_name VARCHAR NOT NULL,
+    start_date VARCHAR NOT NULL,
+    end_date VARCHAR NOT NULL,
+    host_country VARCHAR NOT NULL,
+    man_of_the_series VARCHAR NOT NULL,
+    CONSTRAINT fk_series_team FOREIGN KEY (team_name) REFERENCES national_team(team_name),
+    CONSTRAINT fk_series_man_of_the_series FOREIGN KEY (man_of_the_series) REFERENCES player_info(player_id)
+);
+ALTER TABLE series_info
+DROP CONSTRAINT fk_series_team;
+ALTER TABLE series_info
+ADD CONSTRAINT fk_series_host_country FOREIGN KEY (host_country) REFERENCES national_team(team_name);
 
----------------------------------------------------------
+ALTER TABLE series_info
+RENAME COLUMN team_name TO team_names;
 
+ALTER TABLE series_info
+ALTER COLUMN team_names TYPE VARCHAR[] USING ARRAY[team_names]::VARCHAR[];
 
-
-
-
-
+drop table if exists match_summary;
+CREATE TABLE match_summary (
+    match_id VARCHAR NOT NULL,
+    series_id VARCHAR NOT NULL,
+    stadium_id VARCHAR NOT NULL,
+    man_of_the_match VARCHAR NOT NULL,
+    match_date DATE NOT NULL,
+		team1 VARCHAR not NULL,
+		team2 VARCHAR not NULL,
+		toss_won_by VARCHAR,
+		match_won_by VARCHAR,
+		margin_of_win VARCHAR,
+    match_format VARCHAR NOT NULL,
+    umpire_id1 VARCHAR NOT NULL,
+    umpire_id2 VARCHAR NOT NULL,
+		umpire_id3 VARCHAR NOT NULL,
+    PRIMARY KEY (match_id),
+    CONSTRAINT fk_match_series FOREIGN KEY (series_id) REFERENCES series_info(series_id),
+    CONSTRAINT fk_match_stadium FOREIGN KEY (stadium_id) REFERENCES stadiums(stadium_id),
+    CONSTRAINT fk_match_man_of_the_match FOREIGN KEY (man_of_the_match) REFERENCES player_info(player_id),
+    CONSTRAINT fk_match_umpire1 FOREIGN KEY (umpire_id1) REFERENCES umpire_info(umpire_id),
+    CONSTRAINT fk_match_umpire2 FOREIGN KEY (umpire_id2) REFERENCES umpire_info(umpire_id) ,
+		 CONSTRAINT fk_match_umpire3 FOREIGN KEY (umpire_id2) REFERENCES umpire_info(umpire_id),
+		 CONSTRAINT fk_match_team1 FOREIGN KEY (team1) REFERENCES national_team(team_name),
+    CONSTRAINT fk_match_team2 FOREIGN KEY (team2) REFERENCES national_team(team_name),
+    CONSTRAINT ck_match_toss_won_by CHECK (toss_won_by IN (team1, team2)),
+    CONSTRAINT ck_match_match_won_by CHECK (match_won_by IN (team1, team2)),
+    CONSTRAINT ck_margin_of_win CHECK (margin_of_win IS NULL OR match_won_by IS NOT NULL)
+);
+drop table if exists scorecard1;
+CREATE TABLE scorecard1 (
+    match_id VARCHAR,
+    player_id VARCHAR[],
+    run_with_balls varchar[],
+    wicket_type VARCHAR[],
+    wicket_taken_by VARCHAR[],
+    FOREIGN KEY (match_id) REFERENCES match_summary(match_id)
+    --FOREIGN KEY (player_id) REFERENCES player_info(player_id)
+);
+drop table if exists scorecard2;
+CREATE TABLE scorecard2 (
+    match_id VARCHAR,
+    player_id VARCHAR[],
+    run_with_balls varchar[],
+    wicket_type VARCHAR[],
+    wicket_taken_by VARCHAR[],
+    PRIMARY KEY (match_id, player_id),
+    FOREIGN KEY (match_id) REFERENCES match_summary(match_id)
+   -- FOREIGN KEY (player_id) REFERENCES player_info(player_id)
+);
+drop table if exists scorecard3;
+CREATE TABLE scorecard3 (
+    match_id VARCHAR PRIMARY KEY,
+    bowlers VARCHAR[],
+    overs_bowled VARCHAR[],
+    runs_given VARCHAR[],
+    taken_wickets VARCHAR[],
+    economy VARCHAR[],
+    FOREIGN KEY (match_id) REFERENCES match_summary(match_id)
+);
+drop table if exists scorecard3;
+CREATE TABLE scorecard4 (
+    match_id VARCHAR PRIMARY KEY,
+    bowlers VARCHAR[],
+    overs_bowled VARCHAR[],
+    runs_given VARCHAR[],
+    taken_wickets VARCHAR[],
+    economy VARCHAR[],
+    FOREIGN KEY (match_id) REFERENCES match_summary(match_id)
+);

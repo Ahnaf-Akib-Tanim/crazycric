@@ -54,7 +54,10 @@ const Players = () => {
   };
 
   return (
-    <div className="Players" style={{ backgroundColor: "#a33fa3" }}>
+    <div
+      className="Players"
+      style={{ backgroundColor: "#a33fa3", height: "100vh" }}
+    >
       <Row className="justify-content-md-center">
         <Col md="auto">
           <Form.Control
