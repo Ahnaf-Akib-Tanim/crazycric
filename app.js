@@ -48,6 +48,18 @@ app.use(
     '/images',
     express.static(path.join(__dirname, './react/vite-project/public/player images')),
 );
+app.use(
+    '/cricketboardimages',
+    express.static(path.join(__dirname, './react/vite-project/public/cricketboard_images')),
+);
+app.use(
+    '/seriesimages',
+    express.static(path.join(__dirname, './react/vite-project/public/series_images')),
+);
+app.use(
+    '/countryimages',
+    express.static(path.join(__dirname, './react/vite-project/public/country')),
+);
 app.use('/profileimages', express.static(path.join(__dirname, './react/vite-project/public')));
 app.use(
     '/umpireimages',
@@ -135,9 +147,28 @@ app.post('/user/signup', upload.single('image'), async (req, res) => {
         res.status(500).json({ status: 'error' });
     }
 });
-app.post('/user/loggedin', async (req, res) => {
-    // Handle '/user/loggedin' logic
+app.get('/user/loggedin', async (req, res) => {
+    try {
+        const playerNames = ['Tamim Iqbal', 'Virat Kohli', 'Shakib Al Hasan', 'Babar Azam'];
+        const matchIds = ['m1', 'm101'];
+
+        const playersQuery = 'SELECT * FROM player_info WHERE player_name = ANY($1)';
+        const matchesQuery = 'SELECT * FROM match_summary WHERE match_id = ANY($1)';
+
+        const players = await db.any(playersQuery, [playerNames]);
+        const matches = await db.any(matchesQuery, [matchIds]);
+        console.log(players);
+        console.log(matches);
+        res.json({
+            players,
+            matches,
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'An error occurred while fetching data' });
+    }
 });
+
 app.post('/user/loggedin/players', async (req, res) => {
     const { text, team, role, battingStyle } = req.body;
     try {

@@ -26,7 +26,6 @@
     0 0 30px #fff,
     0 0 40px #ff00de;
 }
-
 .nav-button {
   background-color: #ffa07a;
   border-radius: 10px;
@@ -42,4 +41,7 @@
 
 .nav-button:hover {
   background-color: #ff6347;
+}
+.card-title:hover {
+  color: red !important;
 }
