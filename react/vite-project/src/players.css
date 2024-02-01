@@ -8,7 +8,9 @@
   top: -250px;
   left: -200px;
 }
-
+body {
+  background-color: #afabe3;
+}
 .Players .table-layout tr,
 .Players .table-layout td,
 .Players .table-layout th {

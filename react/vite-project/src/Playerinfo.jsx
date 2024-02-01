@@ -25,7 +25,7 @@ function PlayerInfo() {
   }
 
   return (
-    <div style={{ backgroundColor: "#a33fa3" }}>
+    <div style={{ backgroundColor: "#AFABE3" }}>
       <h1>{playerData.player_name}</h1>
       <p>{playerData.player_role}</p>
       <p>{playerData.player_date_of_birth}</p>

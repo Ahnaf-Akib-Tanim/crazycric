@@ -1,7 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
 import "./Players.css";
 const Players = () => {
@@ -27,10 +26,9 @@ const Players = () => {
     "England",
   ];
   const roles = ["Batsman", "Bowler", "Wk", "All-Rounder"];
-  const styles = ["Left handed", "Right handed"];
+  const styles = ["Left-Handed", "Right-Handed"];
 
   const handleSearch = () => {
-    // Pass these 4 types of information to the server
     console.log(text, team, role, battingStyle);
 
     const data = { text, team, role, battingStyle };
@@ -56,7 +54,7 @@ const Players = () => {
   return (
     <div
       className="Players"
-      style={{ backgroundColor: "#a33fa3", height: "100vh" }}
+      style={{ backgroundColor: "#AFABE3", minheight: "100vh" }}
     >
       <Row className="justify-content-md-center">
         <Col md="auto">
@@ -151,39 +149,44 @@ const Players = () => {
       </Button>
       {searched && players.length === 0 && <p>No players found.</p>}
       {players.length > 0 && (
-        <Table striped bordered hover className="table-layout">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Player Name</th>
-              <th>Team Name</th>
-              <th>Image</th>
-            </tr>
-          </thead>
-          <tbody>
-            {players.map((player, index) => {
-              console.log(player.player_image_path);
-              return (
-                <tr key={player.player_id}>
-                  <td>{index + 1}</td>
-                  <td>
-                    <Link to={`/user/loggedin/playerinfo/${player.player_id}`}>
-                      {player.player_name}
-                    </Link>
-                  </td>
-                  <td>{player.team_name}</td>
-                  <td>
-                    <img
-                      src={player.player_image_path}
-                      alt={player.player_name}
-                      className="image-size"
-                    />
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            marginTop: "50px",
+            maxWidth: "900px",
+            margin: "auto",
+          }}
+        >
+          {players.map((player, index) => {
+            console.log(player.player_image_path);
+            return (
+              <div
+                key={player.player_id}
+                style={{ width: "150px", margin: "10px", textAlign: "center" }}
+              >
+                <img
+                  src={player.player_image_path}
+                  alt={player.player_name}
+                  className="image-size"
+                  style={{
+                    width: "120px",
+                    height: "120px",
+                    borderRadius: "50%",
+                  }}
+                />
+                <Link
+                  to={`/user/loggedin/playerinfo/${player.player_id}`}
+                  style={{ fontSize: "18px", fontFamily: "Arial, sans-serif" }}
+                >
+                  {player.player_name}
+                </Link>
+              </div>
+            );
+          })}
+        </div>
       )}
     </div>
   );
