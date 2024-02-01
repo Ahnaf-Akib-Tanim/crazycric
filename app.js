@@ -48,6 +48,7 @@ app.use(
     '/images',
     express.static(path.join(__dirname, './react/vite-project/public/player images')),
 );
+app.use('/profileimages', express.static(path.join(__dirname, './react/vite-project/public')));
 app.use(
     '/umpireimages',
     express.static(path.join(__dirname, './react/vite-project/public/umpire_images')),
@@ -61,9 +62,17 @@ app.use(
     express.static(path.join(__dirname, './react/vite-project/public/coach_images')),
 );
 // Configure multer
-const storage = multer.diskStorage({
+/* const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, staticFilePath);
+    },
+    filename: (req, file, cb) => {
+        cb(null, req.body.userId + path.extname(file.originalname));
+    },
+}); */
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, path.join(staticFilePath, 'profileimages'));
     },
     filename: (req, file, cb) => {
         cb(null, req.body.userId + path.extname(file.originalname));
@@ -99,8 +108,8 @@ app.post('/user', async (req, res) => {
 });
 app.post('/user/signup', upload.single('image'), async (req, res) => {
     const { userId, password, name, country, team, player } = req.body;
-    const image = req.file ? req.file.path : null;
-
+    // const image = req.file ? req.file.path : null;
+    const image = req.file ? `/profileimages/${req.file.filename}` : null;
     try {
         // Check if user ID already exists
         const existingUser = await db.oneOrNone('SELECT * FROM Users WHERE userid = $1', [userId]);
@@ -165,6 +174,19 @@ app.get('/user/loggedin/playerinfo/:player_id', (req, res) => {
                 console.error('DB Error Code:', error.code);
             }
             res.status(500).json({ error: 'Internal server error', details: error.message });
+        });
+});
+app.get('/user/loggedin/profile', (req, res) => {
+    console.log('Current User ID');
+    console.log('Current User ID:', currentuserid);
+    db.one('SELECT * FROM Users WHERE userid = $1', [currentuserid])
+        .then((data) => {
+            res.send(data);
+            console.log(data);
+        })
+        .catch((error) => {
+            console.error('Error fetching user profile:', error);
+            res.status(500).send('Error fetching user profile');
         });
 });
 

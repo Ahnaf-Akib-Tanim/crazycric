@@ -41,6 +41,15 @@ ALTER TABLE cricket_board RENAME COLUMN abbreviation TO full_form;
 --image text,
 --CONSTRAINT user_pk PRIMARY key(userid)
 --);
+update users
+set image='http://localhost:3000/profileimages/2105154.jpeg'
+where userid='2105154'
+UPDATE player_info
+SET player_image_path = 'http://localhost:3000/images/Rohit%20Sharma.jpeg'
+WHERE player_id = '19';
+UPDATE player_info
+SET player_batting_style = REPLACE(player_batting_style, ' ', '-')
+WHERE player_batting_style LIKE '%Handed';
 DELETE FROM player_info WHERE player_id = '37';
 drop table if exists player_info;
 create TABLE player_info
@@ -121,11 +130,11 @@ player_image_path VARCHAR not null,
     bowling_t20_5w INT,
 		 FOREIGN KEY (team_name) REFERENCES national_team(team_name)
 );
-ALTER TABLE player_info
-ADD FOREIGN KEY (team_name)
-REFERENCES national_team(team_name);
+-- Step 1: Create a temporary table
+
+DELETE FROM player_info WHERE team_name = 'Bangladesh';
 INSERT INTO player_info VALUES
-('1', 'Tamim Iqbal', 'Batsman', 'March 20, 1989', 'Left-Handed', NULL, 'Bangladesh', 'http://localhost:3000/images/Tamim%20Iqbal.jpeg
+('BA01', 'Tamim Iqbal', 'Batsman', 'March 20, 1989', 'Left-Handed', NULL, 'Bangladesh', 'http://localhost:3000/images/Tamim%20Iqbal.jpeg
 ',
 -- Batting Stats
   100, 190, 8500, 78.45, 45.20, 12, 32, 720, 45, 150,
@@ -139,7 +148,7 @@ INSERT INTO player_info VALUES
   70, NULL, NULL, NULL, NULL, NULL, NULL, NULL
 );
 INSERT INTO player_info VALUES
-('2', 'Shakib Al Hasan', 'All-Rounder', 'March 24, 1987', 'Left-Handed', 'Left Arm Orthodox', 'Bangladesh', 'http://localhost:3000/images/Shakib%20Al%20Hasan.jpeg
+('BA02', 'Shakib Al Hasan', 'All-Rounder', 'March 24, 1987', 'Left-Handed', 'Left Arm Orthodox', 'Bangladesh', 'http://localhost:3000/images/Shakib%20Al%20Hasan.jpeg
 ',
 -- Batting Stats
   60, 110, 4500, 82.60, 40.75, 5, 28, 480, 25, 120,
@@ -153,7 +162,7 @@ INSERT INTO player_info VALUES
   50, 60, 1200, 80, 18.90, 5.20, 1, 8
 );
 INSERT INTO player_info VALUES
-('3', 'Mushfiqur Rahim', 'Wk', 'June 9, 1987', 'Right-Handed', NULL, 'Bangladesh', 'http://localhost:3000/images/Mushfiqur%20Rahim.jpeg
+('BA03', 'Mushfiqur Rahim', 'Wk', 'June 9, 1987', 'Right-Handed', NULL, 'Bangladesh', 'http://localhost:3000/images/Mushfiqur%20Rahim.jpeg
 ',
 -- Batting Stats
   65, 120, 5200, 76.80, 38.50, 6, 22, 420, 30, 125,
@@ -166,9 +175,11 @@ INSERT INTO player_info VALUES
   210, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
   55, NULL, NULL, NULL, NULL, NULL, NULL, NULL
 );
-
+UPDATE player_info
+SET player_image_path = 'http://localhost:3000/images/Mahmudullah.jpeg'
+WHERE player_id = '4';
 INSERT INTO player_info VALUES
-('4', 'Mahmudullah', 'All-Rounder', 'February 4, 1986', 'Right-Handed', 'Right Arm Off Spin', 'Bangladesh', 'http://localhost:3000/images/Mahmudullah%20.jpeg
+('BA04', 'Mahmudullah', 'All-Rounder', 'February 4, 1986', 'Right-Handed', 'Right Arm Off Spin', 'Bangladesh', 'http://localhost:3000/images/Mahmudullah.jpeg
 ',
 -- Batting Stats
   50, 95, 3500, 85.20, 40.00, 4, 18, 320, 20, 110,
@@ -182,7 +193,7 @@ INSERT INTO player_info VALUES
   45, 45, 900, 55, 18.20, 5.20, 1, 5
 );
 	INSERT INTO player_info VALUES
-('5', 'Mustafizur Rahman', 'Bowler', 'September 6, 1995', 'Left-Handed', 'Left Arm Fast', 'Bangladesh', 'http://localhost:3000/images/Mustafizur%20Rahman.jpeg
+('BA05', 'Mustafizur Rahman', 'Bowler', 'September 6, 1995', 'Left-Handed', 'Left Arm Fast', 'Bangladesh', 'http://localhost:3000/images/Mustafizur%20Rahman.jpeg
 ',
 -- Batting Stats (Mustafizur is not known for his batting)
   NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
@@ -196,7 +207,7 @@ INSERT INTO player_info VALUES
   40, 40, 600, 30, 19.20, 4.50, 0, 2
 );	
 INSERT INTO player_info VALUES
-('6', 'Soumya Sarkar', 'All-Rounder', 'February 25, 1993', 'Left-Handed', 'Right Arm Medium', 'Bangladesh', 'http://localhost:3000/images/Soumya%20Sarkar.jpeg',
+('BA06', 'Soumya Sarkar', 'All-Rounder', 'February 25, 1993', 'Left-Handed', 'Right Arm Medium', 'Bangladesh', 'http://localhost:3000/images/Soumya%20Sarkar.jpeg',
 -- Batting Stats
   35, 60, 1800, 98.50, 30.00, 2, 12, 160, 10, 95,
 -- ODI Batting Stats
@@ -209,7 +220,7 @@ INSERT INTO player_info VALUES
   40, 30, 500, 10, 50.00, 7.00, 0, 0
 );
 INSERT INTO player_info VALUES
-('7', 'Mohammad Saifuddin', 'All-Rounder', 'November 1, 1996', 'Right-Handed', 'Right Arm Medium', 'Bangladesh', 'http://localhost:3000/images/Mohammad%20Saifuddin.jpeg',
+('BA07', 'Mohammad Saifuddin', 'All-Rounder', 'November 1, 1996', 'Right-Handed', 'Right Arm Medium', 'Bangladesh', 'http://localhost:3000/images/Mohammad%20Saifuddin.jpeg',
 -- Batting Stats
   15, 25, 300, 120.50, 20.00, 0, 1, 25, 5, 40,
 -- ODI Batting Stats
@@ -224,7 +235,7 @@ INSERT INTO player_info VALUES
 
 -- Player 8
 INSERT INTO player_info VALUES
-('8', 'Afif Hossain', 'All-Rounder', 'September 22, 1999', 'Left-Handed', 'Left Arm Orthodox', 'Bangladesh', 'http://localhost:3000/images/Afif%20Hossain.jpeg',
+('BA08', 'Afif Hossain', 'All-Rounder', 'September 22, 1999', 'Left-Handed', 'Left Arm Orthodox', 'Bangladesh', 'http://localhost:3000/images/Afif%20Hossain.jpeg',
 -- Batting Stats
   10, 18, 250, 130.20, 20.80, 0, 1, 20, 3, 30,
 -- ODI Batting Stats
@@ -237,7 +248,7 @@ INSERT INTO player_info VALUES
   15, 15, 200, 8, 25.00, 7.00, 0, 0
 );
 INSERT INTO player_info VALUES
-('9', 'Mehidy Hasan Miraz', 'All-Rounder', 'October 25, 1997', 'Right-Handed', 'Right Arm Off Spin', 'Bangladesh', 'http://localhost:3000/images/Mehidy%20Hasan%20Miraz.jpeg',
+('BA09', 'Mehidy Hasan Miraz', 'All-Rounder', 'October 25, 1997', 'Right-Handed', 'Right Arm Off Spin', 'Bangladesh', 'http://localhost:3000/images/Mehidy%20Hasan%20Miraz.jpeg',
 -- Batting Stats
   20, 35, 450, 95.20, 18.75, 0, 2, 40, 5, 30,
 -- ODI Batting Stats
@@ -250,7 +261,7 @@ INSERT INTO player_info VALUES
   25, 35, 480, 20, 24.00, 5.50, 0, 0
 );
 INSERT INTO player_info VALUES
-('10', 'Taskin Ahmed', 'Bowler', 'April 3, 1995', 'Right-Handed', 'Right Arm Fast', 'Bangladesh', 'http://localhost:3000/images/Taskin%20Ahmed.jpeg',
+('BA10', 'Taskin Ahmed', 'Bowler', 'April 3, 1995', 'Right-Handed', 'Right Arm Fast', 'Bangladesh', 'http://localhost:3000/images/Taskin%20Ahmed.jpeg',
 -- Batting Stats (Taskin is not known for his batting)
   5, 8, 20, 80.00, 5.00, 0, 0, 4, 0, 6,
 -- ODI Batting Stats
@@ -263,7 +274,7 @@ INSERT INTO player_info VALUES
   20, 25, 400, 18, 22.20, 5.00, 0, 0
 );
 INSERT INTO player_info VALUES
-('11', 'Rubel Hossain', 'Bowler', 'January 1, 1990', 'Right-Handed', 'Right Arm Fast', 'Bangladesh', 'http://localhost:3000/images/Rubel%20Hossain.jpeg',
+('BA11', 'Rubel Hossain', 'Bowler', 'January 1, 1990', 'Right-Handed', 'Right Arm Fast', 'Bangladesh', 'http://localhost:3000/images/Rubel%20Hossain.jpeg',
 -- Batting Stats (Rubel is not known for his batting)
   10, 18, 30, 33.30, 3.75, 0, 0, 2, 0, 2,
 -- ODI Batting Stats
@@ -276,7 +287,7 @@ INSERT INTO player_info VALUES
   55, 50, 750, 25, 30.00, 5.00, 0, 0
 );
 INSERT INTO player_info VALUES
-('12', 'Al-Amin Hossain', 'Bowler', 'January 1, 1990', 'Right-Handed', 'Right Arm Fast', 'Bangladesh','http://localhost:3000/images/Al-Amin%20Hossain.jpeg',
+('BA12', 'Al-Amin Hossain', 'Bowler', 'January 1, 1990', 'Right-Handed', 'Right Arm Fast', 'Bangladesh','http://localhost:3000/images/Al-Amin%20Hossain.jpeg',
 -- Batting Stats (Al-Amin is not known for his batting)
   8, 15, 25, 50.00, 3.75, 0, 0, 2, 0, 5,
 -- ODI Batting Stats
@@ -289,7 +300,7 @@ INSERT INTO player_info VALUES
   28, 28, 350, 15, 23.30, 5.00, 0, 0
 );
 INSERT INTO player_info VALUES
-('13', 'Liton Das', 'Wk', 'October 13, 1994', 'Right-Handed', NULL, 'Bangladesh', 'http://localhost:3000/images/Liton%20Das.jpeg',
+('BA13', 'Liton Das', 'Wk', 'October 13, 1994', 'Right-Handed', NULL, 'Bangladesh', 'http://localhost:3000/images/Liton%20Das.jpeg',
 -- Batting Stats
   30, 55, 1200, 105.60, 25.00, 1, 10, 110, 15, 80,
 -- ODI Batting Stats
@@ -302,7 +313,7 @@ INSERT INTO player_info VALUES
   40, NULL, NULL, NULL, NULL, NULL, NULL, NULL
 );
 INSERT INTO player_info VALUES
-('14', 'Anamul Haque', 'Wk', 'December 16, 1992', 'Right-Handed', NULL, 'Bangladesh', 'http://localhost:3000/images/Anamul%20Haque.jpeg',
+('BA14', 'Anamul Haque', 'Wk', 'December 16, 1992', 'Right-Handed', NULL, 'Bangladesh', 'http://localhost:3000/images/Anamul%20Haque.jpeg',
 -- Batting Stats
   20, 40, 850, 100.80, 21.00, 0, 5, 90, 10, 70,
 -- ODI Batting Stats
@@ -315,7 +326,7 @@ INSERT INTO player_info VALUES
   25, NULL, NULL, NULL, NULL, NULL, NULL, NULL
 );
 INSERT INTO player_info VALUES
-('15', 'Mohammad Mithun', 'Batsman', 'March 13, 1990', 'Right-Handed', NULL, 'Bangladesh', 'http://localhost:3000/images/Mohammad%20Mithun.jpeg',
+('BA15', 'Mohammad Mithun', 'Batsman', 'March 13, 1990', 'Right-Handed', NULL, 'Bangladesh', 'http://localhost:3000/images/Mohammad%20Mithun.jpeg',
 -- Batting Stats
   25, 45, 1100, 90.50, 26.00, 0, 10, 100, 18, 75,
 -- ODI Batting Stats
@@ -329,7 +340,7 @@ INSERT INTO player_info VALUES
 );
 
 INSERT INTO player_info VALUES
-('16', 'Mosaddek Hossain', 'Batsman', 'December 10, 1995', 'Right-Handed', 'Right Arm Off Spin', 'Bangladesh', 'http://localhost:3000/images/Mosaddek%20Hossain.jpeg',
+('BA16', 'Mosaddek Hossain', 'Batsman', 'December 10, 1995', 'Right-Handed', 'Right Arm Off Spin', 'Bangladesh', 'http://localhost:3000/images/Mosaddek%20Hossain.jpeg',
 -- Batting Stats
   15, 28, 650, 120.00, 32.50, 0, 5, 60, 10, 45,
 -- ODI Batting Stats
@@ -344,7 +355,7 @@ INSERT INTO player_info VALUES
 
 -- Player 19
 INSERT INTO player_info VALUES
-('17', 'Najmul Hossain Shanto', 'Batsman', 'February 25, 1999', 'Left-Handed', 'Right Arm Off Spin', 'Bangladesh', 'http://localhost:3000/images/Najmul%20Hossain%20Shanto.jpeg',
+('BA17', 'Najmul Hossain Shanto', 'Batsman', 'February 25, 1999', 'Left-Handed', 'Right Arm Off Spin', 'Bangladesh', 'http://localhost:3000/images/Najmul%20Hossain%20Shanto.jpeg',
 -- Batting Stats
   18, 35, 900, 85.60, 28.00, 0, 7, 80, 12, 60,
 -- ODI Batting Stats
@@ -358,7 +369,7 @@ INSERT INTO player_info VALUES
 );
 INSERT INTO player_info 
 VALUES 
-  ('18', 'Virat Kohli', 'Batsman', '05-Nov-1988', 'Right-Handed', 'Right Arm Medium', 'India', 'http://localhost:3000/images/Virat%20Kohli.jpeg', 
+  ('IN01', 'Virat Kohli', 'Batsman', '05-Nov-1988', 'Right-Handed', 'Right Arm Medium', 'India', 'http://localhost:3000/images/Virat%20Kohli.jpeg', 
    -- Batting Test Stats
    95, 164, 7547, 53.91, 52.04, 27, 25, 860, 23, 254,
    -- Batting ODI Stats
@@ -372,7 +383,7 @@ VALUES
    -- Bowling T20 Stats
    90, 41, 368, 4, 92.0, 8.00, 0, 0),
 
-  ('19', 'Rohit Sharma', 'Batsman', '30-Apr-1987', 'Right-Handed', 'Right Arm Off Spin', 'India', '',
+  ('IN02', 'Rohit Sharma', 'Batsman', '30-Apr-1987', 'Right-Handed', 'Right Arm Off Spin', 'India', '',
    -- Batting Test Stats
    38, 66, 2615, 61.32, 46.54, 7, 11, 356, 66, 212,
    -- Batting ODI Stats
@@ -388,7 +399,7 @@ VALUES
 
   -- Continue adding data for the remaining players...
   
-  ('20', 'Jasprit Bumrah', 'Bowler', '06-Dec-1993', 'Right-Handed', 'Right Arm Fast', 'India', 'http://localhost:3000/images/Jasprit%20Bumrah.jpeg',
+  ('IN03', 'Jasprit Bumrah', 'Bowler', '06-Dec-1993', 'Right-Handed', 'Right Arm Fast', 'India', 'http://localhost:3000/images/Jasprit%20Bumrah.jpeg',
    -- Batting Test Stats
    24, 28, 199, 18.09, 12.44, 0, 0, 25, 8, 10,
    -- Batting ODI Stats
@@ -403,7 +414,7 @@ VALUES
    50, 49, 947, 59, 16.05, 6.68, 0, 0);
 INSERT INTO player_info 
 VALUES 
-  ('21', 'Shikhar Dhawan', 'Batsman', '05-Dec-1985', 'Left-Handed', 'Right Arm Off Spin', 'India', 'http://localhost:3000/images/Shikhar%20Dhawan.jpeg',
+  ('IN04', 'Shikhar Dhawan', 'Batsman', '05-Dec-1985', 'Left-Handed', 'Right Arm Off Spin', 'India', 'http://localhost:3000/images/Shikhar%20Dhawan.jpeg',
    -- Batting Test Stats
    34, 62, 2315, 52.61, 40.25, 7, 9, 273, 29, 190,
    -- Batting ODI Stats
@@ -417,7 +428,7 @@ VALUES
    -- Bowling T20 Stats
    65, 6, 49, 1, 49.0, 8.17, 0, 0),
 
-  ('22', 'Ajinkya Rahane', 'Batsman', '06-Jun-1988', 'Right-Handed', 'Right Arm Medium', 'India', 'http://localhost:3000/images/Ajinkya%20Rahane.jpeg',
+  ('IN05', 'Ajinkya Rahane', 'Batsman', '06-Jun-1988', 'Right-Handed', 'Right Arm Medium', 'India', 'http://localhost:3000/images/Ajinkya%20Rahane.jpeg',
    -- Batting Test Stats
    82, 145, 4600, 45.97, 42.50, 12, 23, 519, 63, 188,
    -- Batting ODI Stats
@@ -431,7 +442,7 @@ VALUES
    -- Bowling T20 Stats
    32, 2, 20, 0, 0.0, 10.0, 0, 0),
 
-  ('23', 'KL Rahul', 'Wk', '18-Apr-1992', 'Right-Handed', 'Right Arm Medium', 'India', 'http://localhost:3000/images/KL%20Rahul.jpeg',
+  ('IN06', 'KL Rahul', 'Wk', '18-Apr-1992', 'Right-Handed', 'Right Arm Medium', 'India', 'http://localhost:3000/images/KL%20Rahul.jpeg',
    -- Batting Test Stats
    36, 62, 2006, 34.97, 34.55, 5, 11, 290, 46, 149,
    -- Batting ODI Stats
@@ -445,7 +456,7 @@ VALUES
    -- Bowling T20 Stats
    61, 2, 21, 0, 0.0, 10.5, 0, 0),
 
-  ('24', 'Rishabh Pant', 'Wk', '04-Oct-1997', 'Left-Handed', 'Right Arm Medium', 'India', 'http://localhost:3000/images/Rishabh%20Pant.jpeg',
+  ('IN07', 'Rishabh Pant', 'Wk', '04-Oct-1997', 'Left-Handed', 'Right Arm Medium', 'India', 'http://localhost:3000/images/Rishabh%20Pant.jpeg',
    -- Batting Test Stats
    28, 49, 1736, 60.34, 43.40, 3, 7, 204, 24, 159,
    -- Batting ODI Stats
@@ -460,7 +471,7 @@ VALUES
    39, 1, 2, 0, 0.0, 2.0, 0, 0);
 INSERT INTO player_info 
 VALUES 
-  ('25', 'Hardik Pandya', 'Batsman', '11-Oct-1993', 'Right-Handed', 'Right Arm Fast', 'India', 'http://localhost:3000/images/Hardik%20Pandya.jpeg',
+  ('IN08', 'Hardik Pandya', 'Batsman', '11-Oct-1993', 'Right-Handed', 'Right Arm Fast', 'India', 'http://localhost:3000/images/Hardik%20Pandya.jpeg',
    -- Batting Test Stats
    11, 18, 532, 40.92, 31.29, 1, 4, 74, 39, 108,
    -- Batting ODI Stats
@@ -474,7 +485,7 @@ VALUES
    -- Bowling T20 Stats
    45, 33, 485, 40, 12.12, 8.33, 0, 0),
 
-  ('26', 'Rahul Dravid', 'Batsman', '11-Jan-1973', 'Right-Handed', 'Right Arm Off Spin', 'India', 'http://localhost:3000/images/Rahul%20Dravid.jpeg',
+  ('IN09', 'Rahul Dravid', 'Batsman', '11-Jan-1973', 'Right-Handed', 'Right Arm Off Spin', 'India', 'http://localhost:3000/images/Rahul%20Dravid.jpeg',
    -- Batting Test Stats
    164, 286, 13288, 52.31, 52.63, 36, 63, 1659, 63, 270,
    -- Batting ODI Stats
@@ -491,7 +502,7 @@ VALUES
 -- Inserting data for 3 more renowned Indian all-rounders
 INSERT INTO player_info 
 VALUES 
-  ('27', 'Ravindra Jadeja', 'All-Rounder', '06-Dec-1988', 'Left-Handed', 'Left Arm Orthodox', 'India', 'http://localhost:3000/images/Ravindra%20Jadeja.jpeg',
+  ('IN10', 'Ravindra Jadeja', 'All-Rounder', '06-Dec-1988', 'Left-Handed', 'Left Arm Orthodox', 'India', 'http://localhost:3000/images/Ravindra%20Jadeja.jpeg',
    -- Batting Test Stats
    56, 94, 1954, 41.91, 35.81, 1, 15, 234, 50, 90,
    -- Batting ODI Stats
@@ -505,7 +516,7 @@ VALUES
    -- Bowling T20 Stats
    50, 46, 803, 39, 20.59, 7.12, 0, 0),
 
-  ('28', 'Yuvraj Singh', 'All-Rounder', '12-Dec-1981', 'Left-Handed', 'Left Arm Orthodox', 'India', 'http://localhost:3000/images/Yuvraj%20Singh.jpeg',
+  ('IN11', 'Yuvraj Singh', 'All-Rounder', '12-Dec-1981', 'Left-Handed', 'Left Arm Orthodox', 'India', 'http://localhost:3000/images/Yuvraj%20Singh.jpeg',
    -- Batting Test Stats
    40, 62, 1900, 33.92, 34.80, 3, 11, 169, 42, 169,
    -- Batting ODI Stats
@@ -519,7 +530,7 @@ VALUES
    -- Bowling T20 Stats
    58, 48, 568, 28, 20.28, 7.35, 0, 0),
 
-  ('29', 'Irfan Pathan', 'All-Rounder', '27-Oct-1984', 'Left-Handed', 'Left Arm Fast', 'India', 'http://localhost:3000/images/Irfan%20Pathan.jpeg',
+  ('IN12', 'Irfan Pathan', 'All-Rounder', '27-Oct-1984', 'Left-Handed', 'Left Arm Fast', 'India', 'http://localhost:3000/images/Irfan%20Pathan.jpeg',
    -- Batting Test Stats
    29, 40, 1105, 31.57, 23.39, 1, 5, 102, 28, 102,
    -- Batting ODI Stats
@@ -534,7 +545,7 @@ VALUES
    24, 23, 373, 28, 13.32, 7.57, 0, 0);
 INSERT INTO player_info 
 VALUES 
-  ('30', 'Mohammed Shami', 'Bowler', '03-Sep-1990', 'Right-Handed', 'Right Arm Fast', 'India', 'http://localhost:3000/images/Mohammed%20Shami.jpeg',
+  ('IN13', 'Mohammed Shami', 'Bowler', '03-Sep-1990', 'Right-Handed', 'Right Arm Fast', 'India', 'http://localhost:3000/images/Mohammed%20Shami.jpeg',
    -- Batting Test Stats
    52, 78, 771, 16.31, 11.84, 0, 2, 78, 29, 30,
    -- Batting ODI Stats
@@ -548,7 +559,7 @@ VALUES
    -- Bowling T20 Stats
    12, 12, 282, 12, 23.5, 7.05, 0, 0),
 
-  ('31', 'Bhuvneshwar Kumar', 'Bowler', '05-Dec-1990', 'Right-Handed', 'Right Arm Fast', 'India', 'http://localhost:3000/images/Bhuvneshwar%20Kumar.jpeg',
+  ('IN14', 'Bhuvneshwar Kumar', 'Bowler', '05-Dec-1990', 'Right-Handed', 'Right Arm Fast', 'India', 'http://localhost:3000/images/Bhuvneshwar%20Kumar.jpeg',
    -- Batting Test Stats
    21, 28, 552, 20.44, 19.39, 0, 3, 63, 32, 63,
    -- Batting ODI Stats
@@ -562,7 +573,7 @@ VALUES
    -- Bowling T20 Stats
    50, 49, 1184, 41, 28.88, 7.2, 0, 0),
 
-  ('32', 'Ravichandran Ashwin', 'Bowler', '17-Sep-1986', 'Right-Handed', 'Right Arm Off Spin', 'India', 'http://localhost:3000/images/Ravichandran%20Ashwin.jpeg',
+  ('IN15', 'Ravichandran Ashwin', 'Bowler', '17-Sep-1986', 'Right-Handed', 'Right Arm Off Spin', 'India', 'http://localhost:3000/images/Ravichandran%20Ashwin.jpeg',
    -- Batting Test Stats
    83, 152, 2685, 24.56, 29.18, 5, 11, 306, 106, 118,
    -- Batting ODI Stats
@@ -575,12 +586,12 @@ VALUES
    111, 109, 4800, 150, 31.99, 4.93, 0, 3,
    -- Bowling T20 Stats
    46, 45, 1026, 54, 19.0, 6.68, 0, 0);
-
+DELETE FROM player_info WHERE team_name='Bangladesh'or team_name='India'
    --new zealand players
 
    insert into player_info
     values
-    ('33', 'Kane Williamson', 'Batsman', 'August 8, 1990', 'Right-Handed', NULL, 'New Zealand', 'http://localhost:3000/images/Kane%20Williamson.jpeg',
+    ('NZ01', 'Kane Williamson', 'Batsman', 'August 8, 1990', 'Right-Handed', NULL, 'New Zealand', 'http://localhost:3000/images/Kane%20Williamson.jpeg',
 -- Batting Stats
   80, 150, 7000, 85.60, 47.80, 20, 45, 600, 60, 150,
 -- ODI Batting Stats
@@ -593,7 +604,7 @@ VALUES
   60, 5, 20, 2, 11.50, 3.2, NULL, NULL
 );
 INSERT INTO player_info VALUES
-('34', 'Ross Taylor', 'Batsman', 'March 8, 1984', 'Right-Handed', NULL, 'New Zealand', 'http://localhost:3000/images/Ross%20Taylor.jpeg',
+('NZ02', 'Ross Taylor', 'Batsman', 'March 8, 1984', 'Right-Handed', NULL, 'New Zealand', 'http://localhost:3000/images/Ross%20Taylor.jpeg',
 -- Batting Stats
   100, 180, 8500, 79.20, 43.60, 15, 40, 720, 50, 145,
 -- ODI Batting Stats
@@ -606,7 +617,7 @@ INSERT INTO player_info VALUES
   75, 2, 10, 1, 11.50, 3.0, NULL, NULL
 );
 INSERT INTO player_info VALUES
-('35', 'Tom Latham', 'Wk', 'April 2, 1992', 'Left-Handed', NULL, 'New Zealand', 'http://localhost:3000/images/Tom%20Latham.jpeg',
+('NZ03', 'Tom Latham', 'Wk', 'April 2, 1992', 'Left-Handed', NULL, 'New Zealand', 'http://localhost:3000/images/Tom%20Latham.jpeg',
 -- Batting Stats
   50, 90, 3500, 75.40, 42.10, 8, 20, 420, 35, 120,
 -- ODI Batting Stats
@@ -619,7 +630,7 @@ INSERT INTO player_info VALUES
   40, NULL, NULL, NULL, NULL, NULL, NULL, NULL
 );
 INSERT INTO player_info VALUES
-('36', 'Martin Guptill', 'Batsman', 'September 30, 1986', 'Right-Handed', NULL, 'New Zealand', 'http://localhost:3000/images/Martin%20Guptill.jpeg',
+('NZ04', 'Martin Guptill', 'Batsman', 'September 30, 1986', 'Right-Handed', NULL, 'New Zealand', 'http://localhost:3000/images/Martin%20Guptill.jpeg',
 -- Batting Stats (Test)
   45, 80, 3500, 75.40, 45.20, 5, 18, 320, 30, 110,
 -- Batting Stats (ODI)
@@ -634,7 +645,7 @@ INSERT INTO player_info VALUES
   65, 8, 45, NULL, NULL, 5.0, NULL, NULL
 );
 INSERT INTO player_info VALUES
-('37', 'Colin Munro', 'All-rounder', '11 March 1987', 'Left Handed', 'Right Arm medium', 'New Zealand','http://localhost:3000/images/Colin_Munro.jpeg',
+('NZ05', 'Colin Munro', 'All-rounder', '11 March 1987', 'Left Handed', 'Right Arm medium', 'New Zealand','http://localhost:3000/images/Colin_Munro.jpeg',
 -- Test Batting Stats
   7, 13, 339, 26.07, 54.31, 0, 2, 0, NULL, NULL,
 -- ODI Batting Stats
@@ -650,7 +661,7 @@ INSERT INTO player_info VALUES
 );
 DELETE FROM player_info WHERE player_id = '38';
 INSERT INTO player_info VALUES
-('38', 'Colin de Grandhomme', 'All-rounder', '22 July 1986', 'Right Handed', 'Right Arm Fast','New Zealand', 'http://localhost:3000/images/Colin%20De%20Grandhomme.jpeg',
+('NZ06', 'Colin de Grandhomme', 'All-rounder', '22 July 1986', 'Right Handed', 'Right Arm Fast','New Zealand', 'http://localhost:3000/images/Colin%20De%20Grandhomme.jpeg',
 -- Test Batting Stats
   7, 13, 339, 26.07, 54.31, 0, 2, 0, NULL, NULL,
 -- ODI Batting Stats
@@ -666,7 +677,7 @@ INSERT INTO player_info VALUES
 );
 -- Insert data for 4 New Zealand fast bowlers
 INSERT INTO player_info VALUES
-('73', 'Tim Southee', 'Bowler', '1998-12-11', 'Right-handed', 'Right Arm Fast', 'New Zealand', 'http://localhost:3000/images/Tim%20Southee.jpeg',
+('NZ07', 'Tim Southee', 'Bowler', '1998-12-11', 'Right-handed', 'Right Arm Fast', 'New Zealand', 'http://localhost:3000/images/Tim%20Southee.jpeg',
   -- Batting Stats - Test
   75, 105, 1774, 61.27, 18.94, 3, 8, 202, 45,
   -- Batting Stats - ODI
@@ -683,7 +694,7 @@ INSERT INTO player_info VALUES
 
 -- Insert data for another fast bowler
 INSERT INTO player_info VALUES
-('74', 'Trent Boult', 'Bowler', '1989-07-22', 'Left-handed', 'Left Arm Fast', 'New Zealand', 'http://localhost:3000/images/Trent%20Boult.jpeg',
+('NZ08', 'Trent Boult', 'Bowler', '1989-07-22', 'Left-handed', 'Left Arm Fast', 'New Zealand', 'http://localhost:3000/images/Trent%20Boult.jpeg',
   -- Batting Stats - Test
   75, 97, 1603, 58.14, 18.53, 1, 3, 52, 37,
   -- Batting Stats - ODI
@@ -700,7 +711,7 @@ INSERT INTO player_info VALUES
 
 -- Insert data for another fast bowler
 INSERT INTO player_info VALUES
-('75', 'Neil Wagner', 'Bowler', '1986-10-13', 'Left-handed', 'Left Arm Fast', 'New Zealand', 'http://localhost:3000/images/Neil%20Wagner.jpeg',
+('NZ09', 'Neil Wagner', 'Bowler', '1986-10-13', 'Left-handed', 'Left Arm Fast', 'New Zealand', 'http://localhost:3000/images/Neil%20Wagner.jpeg',
   -- Batting Stats - Test
   54, 79, 1191, 49.89, 15.65, 0, 7, 37, 37,
   -- Batting Stats - ODI
@@ -717,7 +728,7 @@ INSERT INTO player_info VALUES
 
 -- Insert data for another fast bowler
 INSERT INTO player_info VALUES
-('76', 'Lockie Ferguson', 'Bowler', '1991-06-13', 'Right-handed', 'Right Arm Fast', 'New Zealand', 'http://localhost:3000/images/Lockie%20Ferguson.jpeg',
+('NZ10', 'Lockie Ferguson', 'Bowler', '1991-06-13', 'Right-handed', 'Right Arm Fast', 'New Zealand', 'http://localhost:3000/images/Lockie%20Ferguson.jpeg',
   -- Batting Stats - Test
   0, 0, 0, 0, 0, 0, 0, 0, 0,
   -- Batting Stats - ODI
@@ -734,7 +745,7 @@ INSERT INTO player_info VALUES
 
 -- Insert data for a spinner
 INSERT INTO player_info VALUES
-('77', 'Mitchell Santner', 'Bowler', '1992-02-05', 'Left-handed', 'Left Arm Orthodox', 'New Zealand', 'http://localhost:3000/images/Mitchell%20Santner.jpeg',
+('NZ11', 'Mitchell Santner', 'Bowler', '1992-02-05', 'Left-handed', 'Left Arm Orthodox', 'New Zealand', 'http://localhost:3000/images/Mitchell%20Santner.jpeg',
   -- Batting Stats - Test
   24, 36, 966, 63.52, 23.04, 1, 6, 73, 45,
   -- Batting Stats - ODI
@@ -749,7 +760,7 @@ INSERT INTO player_info VALUES
   54, 53, 1100, 61, 18.03, 7.52, 0, 0
 );
 INSERT INTO player_info VALUES
-('78', 'James Neesham', 'All-rounder', '1990-09-17', 'Left-handed', 'Right Arm Fast', 'New Zealand', 'http://localhost:3000/images/James%20Neesham.jpeg',
+('NZ12', 'James Neesham', 'All-rounder', '1990-09-17', 'Left-handed', 'Right Arm Fast', 'New Zealand', 'http://localhost:3000/images/James%20Neesham.jpeg',
   -- Batting Stats - Test
   12, 18, 709, 39.38, 32.23, 2, 3, 91, 174,
   -- Batting Stats - ODI
@@ -764,7 +775,7 @@ INSERT INTO player_info VALUES
   32, 21, 383, 23, 16.65, 8.28, 0, 0
 );
 INSERT INTO player_info VALUES
-('79', 'Tom Blundell', 'Batsman', '1990-09-01', 'Right-handed', NULL, 'New Zealand', 'http://localhost:3000/images/Tom%20Blundell.jpeg',
+('NZ13', 'Tom Blundell', 'Batsman', '1990-09-01', 'Right-handed', NULL, 'New Zealand', 'http://localhost:3000/images/Tom%20Blundell.jpeg',
   -- Batting Stats - Test
   9, 18, 567, 35.43, 43.55, 1, 4, 77, 121,
   -- Batting Stats - ODI
@@ -781,7 +792,7 @@ INSERT INTO player_info VALUES
 
 -- Batsman 6
 INSERT INTO player_info VALUES
-('80', 'Henry Nicholls', 'Batsman', '1991-11-15', 'Left-handed', 'Right Arm Medium', 'New Zealand', 'http://localhost:3000/images/Henry%20Nicholls.jpeg',
+('NZ14', 'Henry Nicholls', 'Batsman', '1991-11-15', 'Left-handed', 'Right Arm Medium', 'New Zealand', 'http://localhost:3000/images/Henry%20Nicholls.jpeg',
   -- Batting Stats - Test
   42, 72, 2076, 35.10, 45.30, 3, 13, 162, 174,
   -- Batting Stats - ODI
@@ -796,7 +807,7 @@ INSERT INTO player_info VALUES
   23, 1, 5, 0, 0, 7.5, 0, 0
 );
 INSERT INTO player_info VALUES
-('81', 'Ish Sodhi', 'All-rounder', '1992-10-31', 'Right-handed', 'Right Arm Leg Spin', 'New Zealand', 'http://localhost:3000/images/Ish%20Sodhi.jpeg',
+('NZ15', 'Ish Sodhi', 'All-rounder', '1992-10-31', 'Right-handed', 'Right Arm Leg Spin', 'New Zealand', 'http://localhost:3000/images/Ish%20Sodhi.jpeg',
   -- Batting Stats - Test
   21, 28, 359, 17.09, 28.64, 0, 2, 63, 63,
   -- Batting Stats - ODI
@@ -814,7 +825,7 @@ INSERT INTO player_info VALUES
 --australia
 
 INSERT INTO player_info VALUES
-('39', 'Steve Smith', 'Batsman', 'June 2, 1989', 'Right-Handed', 'Right Arm Leg Spin', 'Australia', 'http://localhost:3000/images/Steve%20Smith.jpeg',
+('AUS01', 'Steve Smith', 'Batsman', 'June 2, 1989', 'Right-Handed', 'Right Arm Leg Spin', 'Australia', 'http://localhost:3000/images/Steve%20Smith.jpeg',
   -- Batting Stats - Test
   80, 150, 7500, 65.80, 61.20, 28, 40, 900, 80, 170,
   -- Batting Stats - ODI
@@ -831,7 +842,7 @@ INSERT INTO player_info VALUES
 
 -- Player 2
 INSERT INTO player_info VALUES
-('40', 'David Warner', 'Batsman', 'October 27, 1986', 'Left-Handed', 'Right Arm Medium', 'Australia', 'http://localhost:3000/images/David%20Warner.jpeg',
+('AUS02', 'David Warner', 'Batsman', 'October 27, 1986', 'Left-Handed', 'Right Arm Medium', 'Australia', 'http://localhost:3000/images/David%20Warner.jpeg',
   -- Batting Stats - Test
   85, 160, 8000, 75.20, 55.80, 23, 35, 880, 70, 155,
   -- Batting Stats - ODI
@@ -848,7 +859,7 @@ INSERT INTO player_info VALUES
 
 -- Player 3
 INSERT INTO player_info VALUES
-('41', 'Pat Cummins', 'Bowler', 'May 8, 1993', 'Right-Handed', 'Right Arm Fast', 'Australia', 'http://localhost:3000/images/Pat%20Cummins.jpeg',
+('AUS03', 'Pat Cummins', 'Bowler', 'May 8, 1993', 'Right-Handed', 'Right Arm Fast', 'Australia', 'http://localhost:3000/images/Pat%20Cummins.jpeg',
   -- Batting Stats - Test
   60, 80, 1500, 50.60, 18.20, 1, 10, 150, 20, 55,
   -- Batting Stats - ODI
@@ -865,7 +876,7 @@ INSERT INTO player_info VALUES
 
 -- Player 4
 INSERT INTO player_info VALUES
-('42', 'Mitchell Starc', 'Bowler', 'January 30, 1990', 'Left-Handed', 'Left Arm Fast', 'Australia', 'http://localhost:3000/images/Mitchell%20Starc.jpeg',
+('AUS04', 'Mitchell Starc', 'Bowler', 'January 30, 1990', 'Left-Handed', 'Left Arm Fast', 'Australia', 'http://localhost:3000/images/Mitchell%20Starc.jpeg',
   -- Batting Stats - Test
   55, 70, 900, 30.40, 14.80, 0, 5, 90, 12, 35,
   -- Batting Stats - ODI
@@ -880,7 +891,7 @@ INSERT INTO player_info VALUES
   40, 35, 1000, 45, 18.80, 5.20, 1, 5
 );
 INSERT INTO player_info VALUES
-('82', 'Marnus Labuschagne', 'Batsman', '1994-06-22', 'Right-handed', 'Right Arm Leg Spin', 'Australia', 'http://localhost:3000/images/Marnus%20Labuschagne.jpeg',
+('AUS05', 'Marnus Labuschagne', 'Batsman', '1994-06-22', 'Right-handed', 'Right Arm Leg Spin', 'Australia', 'http://localhost:3000/images/Marnus%20Labuschagne.jpeg',
   -- Batting Stats - Test 
   21, 41, 2144, 60.94, 50.63, 8, 7, 16, 215,
   -- Batting Stats - ODI
@@ -897,7 +908,7 @@ INSERT INTO player_info VALUES
 
 -- Batsman 4
 INSERT INTO player_info VALUES
-('83', 'Aaron Finch', 'Batsman', '1986-11-17', 'Right-handed', 'Left Arm Orthodox', 'Australia', 'http://localhost:3000/images/Aaron%20Finch.jpeg',
+('AUS06', 'Aaron Finch', 'Batsman', '1986-11-17', 'Right-handed', 'Left Arm Orthodox', 'Australia', 'http://localhost:3000/images/Aaron%20Finch.jpeg',
   -- Batting Stats - Test
   5, 10, 278, 27.8, 27.8, 0, 2, 20, 62,
   -- Batting Stats - ODI
@@ -914,7 +925,7 @@ INSERT INTO player_info VALUES
 
 -- Batsman 5
 INSERT INTO player_info VALUES
-('84', 'Travis Head', 'Batsman', '1993-12-29', 'Left-handed', 'Right Arm Off Spin', 'Australia', 'http://localhost:3000/images/Travis%20Head.jpeg',
+('AUS07', 'Travis Head', 'Batsman', '1993-12-29', 'Left-handed', 'Right Arm Off Spin', 'Australia', 'http://localhost:3000/images/Travis%20Head.jpeg',
   -- Batting Stats - Test
   19, 36, 1342, 38.34, 38.34, 2, 8, 114, 161,
   -- Batting Stats - ODI
@@ -929,7 +940,7 @@ INSERT INTO player_info VALUES
   11, 1, 2, 0, 0, 2, 0, 0
 );
 INSERT INTO player_info VALUES
-('85', 'Usman Khawaja', 'Batsman', '1986-12-18', 'Left-handed', 'Right Arm Medium', 'Australia', 'http://localhost:3000/images/Usman%20Khawaja.jpeg',
+('AUS08', 'Usman Khawaja', 'Batsman', '1986-12-18', 'Left-handed', 'Right Arm Medium', 'Australia', 'http://localhost:3000/images/Usman%20Khawaja.jpeg',
   -- Batting Stats - Test
   44, 75, 2887, 40.97, 48.24, 8, 16, 324, 174,
   -- Batting Stats - ODI
@@ -944,7 +955,7 @@ INSERT INTO player_info VALUES
 
 -- Batsman 7
 INSERT INTO player_info VALUES
-('86', 'Marcus Harris', 'Batsman', '1992-07-21', 'Left-handed', 'Right Arm Medium', 'Australia', 'http://localhost:3000/images/Marcus%20Harris.jpeg',
+('AUS09', 'Marcus Harris', 'Batsman', '1992-07-21', 'Left-handed', 'Right Arm Medium', 'Australia', 'http://localhost:3000/images/Marcus%20Harris.jpeg',
   -- Batting Stats - Test
   12, 24, 724, 30.17, 33.95, 1, 5, 83, 79,
   -- Batting Stats - ODI
@@ -959,7 +970,7 @@ INSERT INTO player_info VALUES
 
 -- Batsman 8
 INSERT INTO player_info VALUES
-('87', 'Joe Burns', 'Batsman', '1989-09-06', 'Right-handed', 'Right Arm Medium', 'Australia', 'http://localhost:3000/images/Joe%20Burns.jpeg',
+('AUS10', 'Joe Burns', 'Batsman', '1989-09-06', 'Right-handed', 'Right Arm Medium', 'Australia', 'http://localhost:3000/images/Joe%20Burns.jpeg',
   -- Batting Stats - Test
   23, 40, 1446, 36.15, 38.78, 4, 8, 175, 170,
   -- Batting Stats - ODI
@@ -976,7 +987,7 @@ INSERT INTO player_info VALUES
 -- Insert data for 4 more all-rounders
 -- All-rounder 5
 INSERT INTO player_info VALUES
-('88', 'Glenn Maxwell', 'All-rounder', '1988-10-14', 'Right-handed', 'Right Arm Off Spin', 'Australia', 'http://localhost:3000/images/Glenn%20Maxwell.jpeg',
+('AUS11', 'Glenn Maxwell', 'All-rounder', '1988-10-14', 'Right-handed', 'Right Arm Off Spin', 'Australia', 'http://localhost:3000/images/Glenn%20Maxwell.jpeg',
   -- Batting Stats - Test
   7, 12, 339, 28.25, 60.79, 0, 2, 40, 64,
   -- Batting Stats - ODI
@@ -993,7 +1004,7 @@ INSERT INTO player_info VALUES
 
 -- All-rounder 6
 INSERT INTO player_info VALUES
-('89', 'Mitchell Marsh', 'All-rounder', '1991-10-20', 'Right-handed', 'Right Arm Fast Medium', 'Australia', 'http://localhost:3000/images/Mitchell%20Marsh.jpeg',
+('AUS12', 'Mitchell Marsh', 'All-rounder', '1991-10-20', 'Right-handed', 'Right Arm Fast Medium', 'Australia', 'http://localhost:3000/images/Mitchell%20Marsh.jpeg',
   -- Batting Stats - Test
   32, 57, 1264, 26.33, 36.83, 2, 4, 151, 96,
   -- Batting Stats - ODI
@@ -1010,7 +1021,7 @@ INSERT INTO player_info VALUES
 
 -- All-rounder 7
 INSERT INTO player_info VALUES
-('90', 'Ashton Agar', 'All-rounder', '1993-10-14', 'Left-handed', 'Left Arm Orthodox', 'Australia', 'http://localhost:3000/images/Ashton%20Agar.jpeg',
+('AUS13', 'Ashton Agar', 'All-rounder', '1993-10-14', 'Left-handed', 'Left Arm Orthodox', 'Australia', 'http://localhost:3000/images/Ashton%20Agar.jpeg',
   -- Batting Stats - Test
   4, 7, 142, 20.29, 39.11, 0, 1, 19, 35,
   -- Batting Stats - ODI
@@ -1026,7 +1037,7 @@ INSERT INTO player_info VALUES
 );
 -- Pace Bowler 5
 INSERT INTO player_info VALUES
-('91', 'Jhye Richardson', 'Bowler', '1996-09-20', 'Right-handed', 'Right Arm Fast', 'Australia', 'http://localhost:3000/images/Jhye%20Richardson.jpeg',
+('AUS14', 'Jhye Richardson', 'Bowler', '1996-09-20', 'Right-handed', 'Right Arm Fast', 'Australia', 'http://localhost:3000/images/Jhye%20Richardson.jpeg',
   -- Batting Stats - Test
   2, 4, 52, 26, 13, 6.5, 0, 0, 14,
   -- Batting Stats - ODI
@@ -1043,7 +1054,7 @@ INSERT INTO player_info VALUES
 
 -- Pace Bowler 6
 INSERT INTO player_info VALUES
-('92', 'Kane Richardson', 'Bowler', '1991-02-12', 'Right-handed', 'Right Arm Fast', 'Australia', 'http://localhost:3000/images/Kane%20Richardson.jpeg',
+('AUS15', 'Kane Richardson', 'Bowler', '1991-02-12', 'Right-handed', 'Right Arm Fast', 'Australia', 'http://localhost:3000/images/Kane%20Richardson.jpeg',
   -- Batting Stats - Test
   0, 0, 0, 0, 0, 0, 0, 0, 0,
   -- Batting Stats - ODI
@@ -1060,7 +1071,7 @@ INSERT INTO player_info VALUES
 
 -- Pace Bowler 7
 INSERT INTO player_info VALUES
-('93', 'Josh Hazlewood', 'Bowler', '1991-01-08', 'Left-handed', 'Right Arm Fast', 'Australia', 'http://localhost:3000/images/Josh%20Hazlewood.jpeg',
+('AUS16', 'Josh Hazlewood', 'Bowler', '1991-01-08', 'Left-handed', 'Right Arm Fast', 'Australia', 'http://localhost:3000/images/Josh%20Hazlewood.jpeg',
   -- Batting Stats - Test
   55, 19, 176, 39.2, 14.67, 2, 0, 0, 39,
   -- Batting Stats - ODI
@@ -1077,7 +1088,7 @@ INSERT INTO player_info VALUES
 
 -- West Indies Player 1
 INSERT INTO player_info VALUES
-('43', 'Jason Holder', 'All-Rounder', 'November 5, 1991', 'Right-Handed', 'Right Arm Fast', 'West Indies','http://localhost:3000/images/Jason%20Holder.jpeg',
+('WI01', 'Jason Holder', 'All-Rounder', 'November 5, 1991', 'Right-Handed', 'Right Arm Fast', 'West Indies','http://localhost:3000/images/Jason%20Holder.jpeg',
   -- Batting Stats - Test
   69, 115, 3665, 31.89, 202, 0, 16, 91.96, 4, 18,
   -- Batting Stats - ODI
@@ -1094,7 +1105,7 @@ INSERT INTO player_info VALUES
 
 -- West Indies Player 2
 INSERT INTO player_info VALUES
-('44', 'Shai Hope', 'Batsman', 'November 10, 1993', 'Left-Handed', NULL, 'West Indies','http://localhost:3000/images/Shai%20Hope.jpeg',
+('WI02', 'Shai Hope', 'Batsman', 'November 10, 1993', 'Left-Handed', NULL, 'West Indies','http://localhost:3000/images/Shai%20Hope.jpeg',
   -- Batting Stats - Test
   45, 80, 3499, 47.94, 211, 8, 17, 56.02, 9, 16,
   -- Batting Stats - ODI
@@ -1111,7 +1122,7 @@ INSERT INTO player_info VALUES
 
 -- West Indies Player 3
 INSERT INTO player_info VALUES
-('45', 'Kemar Roach', 'Bowler', 'June 30, 1988', 'Right-Handed', 'Right Arm Fast', 'West Indies','http://localhost:3000/images/Kemar%20Roach.jpeg',
+('WI03', 'Kemar Roach', 'Bowler', 'June 30, 1988', 'Right-Handed', 'Right Arm Fast', 'West Indies','http://localhost:3000/images/Kemar%20Roach.jpeg',
   -- Batting Stats - Test
   67, 87, 655, 8.90, 41, 0, 0, 47.25, 0, 0,
   -- Batting Stats - ODI
@@ -1128,7 +1139,7 @@ INSERT INTO player_info VALUES
 
 -- West Indies Player 4
 INSERT INTO player_info VALUES
-('46', 'Nicholas Pooran', 'Wk', 'October 2, 1995', 'Left Handed', NULL, 'West Indies','http://localhost:3000/images/Nicholas%20Pooran.jpeg',
+('WI04', 'Nicholas Pooran', 'Wk', 'October 2, 1995', 'Left Handed', NULL, 'West Indies','http://localhost:3000/images/Nicholas%20Pooran.jpeg',
   -- Batting Stats - Test
   0, 0, 0, 0.00, 0, 0, 0, 0.00, 0, 0,
   -- Batting Stats - ODI
@@ -1145,7 +1156,7 @@ INSERT INTO player_info VALUES
 
 -- West Indies Player 5
 INSERT INTO player_info VALUES
-('47', 'Shimron Hetmyer', 'Batsman', 'December 26, 1996', 'Right-Handed', NULL, 'West Indies','http://localhost:3000/images/Shimron%20Hetmyer.jpeg',
+('WI05', 'Shimron Hetmyer', 'Batsman', 'December 26, 1996', 'Right-Handed', NULL, 'West Indies','http://localhost:3000/images/Shimron%20Hetmyer.jpeg',
   -- Batting Stats - Test
   21, 38, 838, 23.27, 93, 0, 5, 48.61, 0, 4,
   -- Batting Stats - ODI
@@ -1160,7 +1171,7 @@ INSERT INTO player_info VALUES
   31, 2, 8, 0, 0, 0, NULL, 4
 );
 INSERT INTO player_info VALUES
-('94', 'Kraigg Brathwaite', 'Batsman', '1992-12-01', 'Right-handed', 'Right arm Off Spin', 'West Indies', 'http://localhost:3000/images/Kraigg%20Brathwaite.jpeg',
+('WI06', 'Kraigg Brathwaite', 'Batsman', '1992-12-01', 'Right-handed', 'Right arm Off Spin', 'West Indies', 'http://localhost:3000/images/Kraigg%20Brathwaite.jpeg',
   -- Batting Stats - Test
   73, 137, 4163, 33.96, 45.74, 9, 22, 458, 212,
   -- Batting Stats - ODI
@@ -1175,7 +1186,7 @@ INSERT INTO player_info VALUES
   20, 0, 0, 0, 0, 0, 0, 0
 );
 INSERT INTO player_info VALUES
-('95', 'Darren Bravo', 'Batsman', '1989-02-06', 'Left-handed', 'Right Arm Medium', 'West Indies', 'http://localhost:3000/images/Darren%20Bravo.jpeg',
+('WI07', 'Darren Bravo', 'Batsman', '1989-02-06', 'Left-handed', 'Right Arm Medium', 'West Indies', 'http://localhost:3000/images/Darren%20Bravo.jpeg',
   -- Batting Stats - Test
   56, 101, 3804, 40.91, 44.62, 8, 24, 413, 218,
   -- Batting Stats - ODI
@@ -1190,7 +1201,7 @@ INSERT INTO player_info VALUES
   29, 0, 0, 0, 0, 0, 0, 0
 );
 INSERT INTO player_info VALUES
-('97', 'Roston Chase', 'Batsman', '1992-03-22', 'Right-handed', 'Right Arm Off Spin', 'West Indies', 'http://localhost:3000/images/Roston%20Chase.jpeg',
+('WI08', 'Roston Chase', 'Batsman', '1992-03-22', 'Right-handed', 'Right Arm Off Spin', 'West Indies', 'http://localhost:3000/images/Roston%20Chase.jpeg',
   -- Batting Stats - Test
   44, 78, 2099, 32.84, 42.17, 4, 10, 250, 137,
   -- Batting Stats - ODI
@@ -1206,7 +1217,7 @@ INSERT INTO player_info VALUES
 );
 INSERT INTO player_info 
 VALUES 
-('98', 'Kieron Pollard', 'All-Rounder', 'May 22, 1987', 'Right-Handed', 'Right Arm Medium', 'West Indies', 'http://localhost:3000/images/Kieron%20Pollard.jpeg',
+('WI09', 'Kieron Pollard', 'All-Rounder', 'May 22, 1987', 'Right-Handed', 'Right Arm Medium', 'West Indies', 'http://localhost:3000/images/Kieron%20Pollard.jpeg',
  -- Batting Stats - Test
  20, 40, 1200, 65.0, 35.0, 1, 10, 120, 25, 150,
  -- Batting Stats - ODI
@@ -1221,7 +1232,7 @@ VALUES
  60, 120, 1500, 80, 18.0, 6.0, 0, 5);
  INSERT INTO player_info 
 VALUES 
-('99', 'Andre Russell', 'All-Rounder', 'April 29, 1988', 'Right-Handed', 'Right Arm Fast', 'West Indies', 'http://localhost:3000/images/Andre%20Russell.jpeg',
+('WI10', 'Andre Russell', 'All-Rounder', 'April 29, 1988', 'Right-Handed', 'Right Arm Fast', 'West Indies', 'http://localhost:3000/images/Andre%20Russell.jpeg',
  -- Batting Stats - Test
  10, 20, 600, 70.0, 40.0, 0, 5, 80, 15, 110,
  -- Batting Stats - ODI
@@ -1236,7 +1247,7 @@ VALUES
  40, 80, 1200, 50, 22.0, 6.0, 0, 4);
 INSERT INTO player_info 
 VALUES 
-('100', 'Dwayne Bravo', 'All-Rounder', 'October 7, 1983', 'Right-Handed', 'Right Arm Fast', 'West Indies', 'http://localhost:3000/images/Dwayne%20Bravo.jpeg',
+('WI11', 'Dwayne Bravo', 'All-Rounder', 'October 7, 1983', 'Right-Handed', 'Right Arm Fast', 'West Indies', 'http://localhost:3000/images/Dwayne%20Bravo.jpeg',
  -- Batting Stats - Test
  40, 80, 2500, 60.0, 30.0, 2, 15, 200, 40, 150,
  -- Batting Stats - ODI
@@ -1251,7 +1262,7 @@ VALUES
  80, 160, 2000, 100, 20.0, 6.0, 0, 6);
  INSERT INTO player_info 
 VALUES 
-('101', 'Sunil Narine', 'Bowler', 'May 26, 1988', 'Left-Handed', 'Right Arm Off Spin', 'West Indies', 'http://localhost:3000/images/Sunil%20Narine.jpeg',
+('WI12', 'Sunil Narine', 'Bowler', 'May 26, 1988', 'Left-Handed', 'Right Arm Off Spin', 'West Indies', 'http://localhost:3000/images/Sunil%20Narine.jpeg',
  -- Batting Stats - Test
  15, 30, 500, 45.0, 20.0, 0, 2, 40, 5, 75,
  -- Batting Stats - ODI
@@ -1266,7 +1277,7 @@ VALUES
  60, 120, 1200, 80, 20.0, 6.0, 0, 5);
  INSERT INTO player_info 
 VALUES 
-('103', 'Sheldon Cottrell', 'Bowler', 'August 19, 1989', 'Right-Handed', 'Left Arm Fast', 'West Indies', 'http://localhost:3000/images/Sheldon%20Cottrell.jpeg',
+('WI13', 'Sheldon Cottrell', 'Bowler', 'August 19, 1989', 'Right-Handed', 'Left Arm Fast', 'West Indies', 'http://localhost:3000/images/Sheldon%20Cottrell.jpeg',
  -- Batting Stats - Test
  5, 10, 100, 20.0, 10.0, 0, 0, 10, 1, 15,
  -- Batting Stats - ODI
@@ -1283,7 +1294,7 @@ VALUES
 -- Inserting data for Pacer 2
 INSERT INTO player_info 
 VALUES 
-('104', 'Alzarri Joseph', 'Bowler', 'November 20, 1996', 'Right-Handed', 'Right Arm Fast', 'West Indies', 'http://localhost:3000/images/Alzarri%20Joseph.jpeg',
+('WI14', 'Alzarri Joseph', 'Bowler', 'November 20, 1996', 'Right-Handed', 'Right Arm Fast', 'West Indies', 'http://localhost:3000/images/Alzarri%20Joseph.jpeg',
  -- Batting Stats - Test
  10, 20, 250, 30.0, 12.0, 0, 1, 20, 3, 30,
  -- Batting Stats - ODI
@@ -1300,7 +1311,7 @@ VALUES
 
 -- Player 1
 INSERT INTO player_info VALUES
-('48', 'Dimuth Karunaratne', 'Batsman', 'April 21, 1988', 'Left-Handed', NULL, 'Sri Lanka', 'http://localhost:3000/images/Dimuth%20Karunaratne.jpeg',
+('SL01', 'Dimuth Karunaratne', 'Batsman', 'April 21, 1988', 'Left-Handed', NULL, 'Sri Lanka', 'http://localhost:3000/images/Dimuth%20Karunaratne.jpeg',
 -- Batting Stats - Test
   70, 140, 5800, 45.60, 42.80, 9, 28, 520, 30, 135,
 -- Batting Stats - ODI
@@ -1317,7 +1328,7 @@ INSERT INTO player_info VALUES
 
 -- Player 2
 INSERT INTO player_info VALUES
-('49', 'Angelo Mathews', 'All-Rounder', 'June 2, 1987', 'Right-Handed', 'Right Arm Fast', 'Sri Lanka', 'http://localhost:3000/images/Angelo%20Mathews.jpeg',
+('SL02', 'Angelo Mathews', 'All-Rounder', 'June 2, 1987', 'Right-Handed', 'Right Arm Fast', 'Sri Lanka', 'http://localhost:3000/images/Angelo%20Mathews.jpeg',
 -- Batting Stats - Test
   80, 150, 6500, 40.20, 35.60, 6, 23, 600, 35, 128,
 -- Batting Stats - ODI
@@ -1334,7 +1345,7 @@ INSERT INTO player_info VALUES
 
 -- Player 3
 INSERT INTO player_info VALUES
-('50', 'Kusal Perera', 'Wk', 'August 17, 1990', 'Left-Handed', NULL, 'Sri Lanka', 'http://localhost:3000/images/Kusal%20Perera.jpeg',
+('SL03', 'Kusal Perera', 'Wk', 'August 17, 1990', 'Left-Handed', NULL, 'Sri Lanka', 'http://localhost:3000/images/Kusal%20Perera.jpeg',
 -- Batting Stats - Test
   30, 60, 2800, 65.30, 47.60, 5, 18, 320, 20, 112,
 -- Batting Stats - ODI
@@ -1351,7 +1362,7 @@ INSERT INTO player_info VALUES
 
 -- Player 4
 INSERT INTO player_info VALUES
-('51', 'Dhananjaya de Silva', 'All-Rounder', 'September 6, 1991', 'Right-Handed', 'Right Arm Off Spin', 'Sri Lanka', 'http://localhost:3000/images/Dhananjaya%20de%20Silva.jpeg',
+('SL04', 'Dhananjaya de Silva', 'All-Rounder', 'September 6, 1991', 'Right-Handed', 'Right Arm Off Spin', 'Sri Lanka', 'http://localhost:3000/images/Dhananjaya%20de%20Silva.jpeg',
 -- Batting Stats - Test
   40, 70, 3100, 42.80, 38.20, 3, 20, 280, 18, 105,
 -- Batting Stats - ODI
@@ -1368,7 +1379,7 @@ INSERT INTO player_info VALUES
 
 -- Player 5
 INSERT INTO player_info VALUES
-('52', 'Lasith Malinga', 'Bowler', 'August 28, 1983', 'Right-Handed', 'Right Arm Fast', 'Sri Lanka', 'http://localhost:3000/images/Lasith%20Malinga.jpeg',
+('SL05', 'Lasith Malinga', 'Bowler', 'August 28, 1983', 'Right-Handed', 'Right Arm Fast', 'Sri Lanka', 'http://localhost:3000/images/Lasith%20Malinga.jpeg',
 
 --batting stats -test
   30, 60, 2800, 65.30, 47.60, 5, 18, 320, 20, 112,
@@ -1386,7 +1397,7 @@ INSERT INTO player_info VALUES
 );
 INSERT INTO player_info 
 VALUES 
-('108', 'Dinesh Chandimal', 'Batsman', 'November 18, 1989', 'Right-Handed', 'Right Arm Off Spin', 'Sri Lanka', 'http://localhost:3000/images/Dinesh%20Chandimal.jpeg',
+('SL06', 'Dinesh Chandimal', 'Batsman', 'November 18, 1989', 'Right-Handed', 'Right Arm Off Spin', 'Sri Lanka', 'http://localhost:3000/images/Dinesh%20Chandimal.jpeg',
  -- Batting Stats - Test
  50, 100, 3500, 40.0, 37.0, 4, 20, 320, 30, 164,
  -- Batting Stats - ODI
@@ -1401,7 +1412,7 @@ VALUES
  25, 50, 300, 5, 25.0, 6.0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('109', 'Kusal Mendis', 'Batsman', 'February 2, 1995', 'Right-Handed', 'Right Arm Off Spin', 'Sri Lanka', 'http://localhost:3000/images/Kusal%20Mendis.jpeg',
+('SL07', 'Kusal Mendis', 'Batsman', 'February 2, 1995', 'Right-Handed', 'Right Arm Off Spin', 'Sri Lanka', 'http://localhost:3000/images/Kusal%20Mendis.jpeg',
  -- Batting Stats - Test
  40, 80, 3200, 45.0, 35.0, 4, 15, 280, 25, 176,
  -- Batting Stats - ODI
@@ -1416,7 +1427,7 @@ VALUES
  20, 40, 200, 3, 18.0, 5.0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('110', 'Lahiru Thirimanne', 'Batsman', 'September 8, 1989', 'Left-Handed', 'Right Arm Medium', 'Sri Lanka', 'http://localhost:3000/images/Lahiru%20Thirimanne.jpeg',
+('SL08', 'Lahiru Thirimanne', 'Batsman', 'September 8, 1989', 'Left-Handed', 'Right Arm Medium', 'Sri Lanka', 'http://localhost:3000/images/Lahiru%20Thirimanne.jpeg',
  -- Batting Stats - Test
  45, 90, 2800, 35.0, 30.0, 2, 10, 240, 20, 156,
  -- Batting Stats - ODI
@@ -1433,7 +1444,7 @@ VALUES
 
 -- Player 1
 INSERT INTO player_info VALUES
-('53', 'Quinton de Kock', 'Wk', 'December 17, 1992', 'Left-Handed', NULL, 'South Africa', 'http://localhost:3000/images/Quinton%20de%20Kock.jpeg',
+('SA01', 'Quinton de Kock', 'Wk', 'December 17, 1992', 'Left-Handed', NULL, 'South Africa', 'http://localhost:3000/images/Quinton%20de%20Kock.jpeg',
 -- Batting Stats - Test
   50, 90, 4200, 75.60, 47.20, 7, 22, 380, 45, 128,
 -- Batting Stats - ODI
@@ -1450,7 +1461,7 @@ INSERT INTO player_info VALUES
 
 -- Player 2
 INSERT INTO player_info VALUES
-('54', 'Kagiso Rabada', 'Bowler', 'May 25, 1995', 'Right-Handed', 'Right Arm Fast', 'South Africa', 'http://localhost:3000/images/Kagiso%20Rabada.jpeg',
+('SA02', 'Kagiso Rabada', 'Bowler', 'May 25, 1995', 'Right-Handed', 'Right Arm Fast', 'South Africa', 'http://localhost:3000/images/Kagiso%20Rabada.jpeg',
 -- Batting Stats - Test
   35, 60, 800, 34.20, 15.80, 0, 2, 45, 10, 22,
 -- Batting Stats - ODI
@@ -1467,7 +1478,7 @@ INSERT INTO player_info VALUES
 
 -- Player 3
 INSERT INTO player_info VALUES
-('55', 'Faf du Plessis', 'Batsman', 'July 13, 1984', 'Right-Handed', 'Right Arm Leg Spin', 'South Africa', 'http://localhost:3000/images/Faf%20du%20Plessis.jpeg',
+('SA03', 'Faf du Plessis', 'Batsman', 'July 13, 1984', 'Right-Handed', 'Right Arm Leg Spin', 'South Africa', 'http://localhost:3000/images/Faf%20du%20Plessis.jpeg',
 -- Batting Stats - Test
   70, 130, 5500, 45.80, 41.60, 9, 25, 480, 40, 135,
 -- Batting Stats - ODI
@@ -1484,7 +1495,7 @@ INSERT INTO player_info VALUES
 
 -- Player 4
 INSERT INTO player_info VALUES
-('56', 'Aiden Markram', 'Batsman', 'October 4, 1994', 'Right-Handed', 'Right Arm Off Spin', 'South Africa', 'http://localhost:3000/images/Aiden%20Markram.jpeg',
+('SSA04', 'Aiden Markram', 'Batsman', 'October 4, 1994', 'Right-Handed', 'Right Arm Off Spin', 'South Africa', 'http://localhost:3000/images/Aiden%20Markram.jpeg',
 -- Batting Stats - Test
   30, 60, 2800, 52.30, 46.80, 6, 18, 320, 25, 112,
 -- Batting Stats - ODI
@@ -1501,7 +1512,7 @@ INSERT INTO player_info VALUES
 
 -- Player 5
 INSERT INTO player_info VALUES
-('57', 'Lungi Ngidi', 'Bowler', 'March 29, 1996', 'Right-Handed', 'Right Arm Fast', 'South Africa', 'http://localhost:3000/images/Lungi%20Ngidi.jpeg',
+('SA05', 'Lungi Ngidi', 'Bowler', 'March 29, 1996', 'Right-Handed', 'Right Arm Fast', 'South Africa', 'http://localhost:3000/images/Lungi%20Ngidi.jpeg',
 -- Batting Stats - Test
   20, 35, 200, 16.80, 8.50, 0, 0, 15, 2, 10,
 -- Batting Stats - ODI
@@ -1517,7 +1528,7 @@ INSERT INTO player_info VALUES
 );
 INSERT INTO player_info 
 VALUES 
-('115', 'Hashim Amla', 'Batsman', 'March 31, 1983', 'Right-Handed', 'Right Arm Off Spin', 'South Africa', 'http://localhost:3000/images/Hashim%20Amla.jpeg',
+('SA07', 'Hashim Amla', 'Batsman', 'March 31, 1983', 'Right-Handed', 'Right Arm Off Spin', 'South Africa', 'http://localhost:3000/images/Hashim%20Amla.jpeg',
  -- Batting Stats - Test
  120, 240, 9000, 52.0, 45.0, 27, 41, 700, 60, 311,
  -- Batting Stats - ODI
@@ -1532,7 +1543,7 @@ VALUES
  5, 10, 50, 1, 15.0, 6.0, 0, 0);
 INSERT INTO player_info 
 VALUES 
-('116', 'David Miller', 'Batsman', 'June 10, 1989', 'Left-Handed', 'Right Arm Off Spin', 'South Africa', 'http://localhost:3000/images/David%20Miller.jpeg',
+('SA08', 'David Miller', 'Batsman', 'June 10, 1989', 'Left-Handed', 'Right Arm Off Spin', 'South Africa', 'http://localhost:3000/images/David%20Miller.jpeg',
  -- Batting Stats - Test
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
  -- Batting Stats - ODI
@@ -1547,7 +1558,7 @@ VALUES
  40, 70, 500, 8, 22.0, 6.0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('117', 'Rassie van der Dussen', 'Batsman', 'February 7, 1989', 'Right-Handed', 'Right Arm Leg Spin', 'South Africa', 'http://localhost:3000/images/Rassie%20van%20der%20Dussen.jpeg',
+('SA09', 'Rassie van der Dussen', 'Batsman', 'February 7, 1989', 'Right-Handed', 'Right Arm Leg Spin', 'South Africa', 'http://localhost:3000/images/Rassie%20van%20der%20Dussen.jpeg',
  -- Batting Stats - Test
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
  -- Batting Stats - ODI
@@ -1562,7 +1573,7 @@ VALUES
  0, 0, 0, 0, 0, 0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('118', 'Chris Morris', 'All-Rounder', 'April 30, 1987', 'Right-Handed', 'Right Arm Fast', 'South Africa', 'http://localhost:3000/images/Chris%20Morris.jpeg',
+('SA10', 'Chris Morris', 'All-Rounder', 'April 30, 1987', 'Right-Handed', 'Right Arm Fast', 'South Africa', 'http://localhost:3000/images/Chris%20Morris.jpeg',
  -- Batting Stats - Test
  20, 40, 800, 45.0, 25.0, 0, 5, 80, 12, 62,
  -- Batting Stats - ODI
@@ -1577,7 +1588,7 @@ VALUES
  50, 90, 700, 40, 22.0, 6.0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('119', 'Andile Phehlukwayo', 'All-Rounder', 'March 3, 1996', 'Left-Handed', 'Right Arm Fast', 'South Africa', 'http://localhost:3000/images/Andile%20Phehlukwayo.jpeg',
+('SA11', 'Andile Phehlukwayo', 'All-Rounder', 'March 3, 1996', 'Left-Handed', 'Right Arm Fast', 'South Africa', 'http://localhost:3000/images/Andile%20Phehlukwayo.jpeg',
  -- Batting Stats - Test
  10, 20, 300, 30.0, 15.0, 0, 2, 30, 5, 28,
  -- Batting Stats - ODI
@@ -1594,7 +1605,7 @@ VALUES
 -- Inserting data for South African All-Rounder 3
 INSERT INTO player_info 
 VALUES 
-('120', 'Dwaine Pretorius', 'All-Rounder', 'March 29, 1989', 'Right-Handed', 'Right Arm Fast', 'South Africa', 'http://localhost:3000/images/Dwaine%20Pretorius.jpeg',
+('SA12', 'Dwaine Pretorius', 'All-Rounder', 'March 29, 1989', 'Right-Handed', 'Right Arm Fast', 'South Africa', 'http://localhost:3000/images/Dwaine%20Pretorius.jpeg',
  -- Batting Stats - Test
  5, 10, 150, 20.0, 15.0, 0, 1, 20, 3, 18,
  -- Batting Stats - ODI
@@ -1609,7 +1620,7 @@ VALUES
  20, 30, 300, 15, 18.0, 6.0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('121', 'Imran Tahir', 'Bowler', 'March 27, 1979', 'Right-Handed', 'Right Arm Leg Spin', 'South Africa', 'http://localhost:3000/images/Imran%20Tahir.jpeg',
+('SA13', 'Imran Tahir', 'Bowler', 'March 27, 1979', 'Right-Handed', 'Right Arm Leg Spin', 'South Africa', 'http://localhost:3000/images/Imran%20Tahir.jpeg',
  -- Batting Stats - Test
  20, 30, 400, 18.0, 15.0, 0, 1, 30, 5, 28,
  -- Batting Stats - ODI
@@ -1624,7 +1635,7 @@ VALUES
  60, 80, 800, 120, 18.0, 5.0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('122', 'Keshav Maharaj', 'Bowler', 'February 7, 1990', 'Left-Handed', 'Left Arm Orthodox', 'South Africa', 'http://localhost:3000/images/Keshav%20Maharaj.jpeg',
+('SA14', 'Keshav Maharaj', 'Bowler', 'February 7, 1990', 'Left-Handed', 'Left Arm Orthodox', 'South Africa', 'http://localhost:3000/images/Keshav%20Maharaj.jpeg',
  -- Batting Stats - Test
  30, 60, 800, 25.0, 15.0, 0, 3, 50, 8, 38,
  -- Batting Stats - ODI
@@ -1641,7 +1652,7 @@ VALUES
 -- Inserting data for South African Spinner 3
 INSERT INTO player_info 
 VALUES 
-('123', 'Tabraiz Shamsi', 'Bowler', 'February 18, 1990', 'Left-Handed', 'Left Arm Leg Spin', 'South Africa', 'http://localhost:3000/images/Tabraiz%20Shamsi.jpeg',
+('SA15', 'Tabraiz Shamsi', 'Bowler', 'February 18, 1990', 'Left-Handed', 'Left Arm Leg Spin', 'South Africa', 'http://localhost:3000/images/Tabraiz%20Shamsi.jpeg',
  -- Batting Stats - Test
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
  -- Batting Stats - ODI
@@ -1656,7 +1667,7 @@ VALUES
  40, 50, 250, 25, 20.0, 6.0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('125', 'Lungi Ngidi', 'Bowler', 'March 29, 1996', 'Right-Handed', 'Right Arm Fast', 'South Africa', 'http://localhost:3000/images/Lungi%20Ngidi.jpeg',
+('SA16', 'Lungi Ngidi', 'Bowler', 'March 29, 1996', 'Right-Handed', 'Right Arm Fast', 'South Africa', 'http://localhost:3000/images/Lungi%20Ngidi.jpeg',
  -- Batting Stats - Test
  20, 30, 300, 25.0, 10.0, 0, 1, 30, 8, 22,
  -- Batting Stats - ODI
@@ -1672,7 +1683,7 @@ VALUES
  -- Inserting data for South African Pacer 3
 INSERT INTO player_info 
 VALUES 
-('126', 'Anrich Nortje', 'Bowler', 'November 16, 1993', 'Right-Handed', 'Right Arm Fast', 'South Africa', 'http://localhost:3000/images/Anrich%20Nortje.jpeg',
+('SA17', 'Anrich Nortje', 'Bowler', 'November 16, 1993', 'Right-Handed', 'Right Arm Fast', 'South Africa', 'http://localhost:3000/images/Anrich%20Nortje.jpeg',
  -- Batting Stats - Test
  10, 20, 150, 20.0, 12.0, 0, 1, 20, 4, 16,
  -- Batting Stats - ODI
@@ -1689,7 +1700,7 @@ VALUES
 -- Inserting data for South African Pacer 4
 INSERT INTO player_info 
 VALUES 
-('127', 'Dale Steyn', 'Bowler', 'June 27, 1983', 'Right-Handed', 'Right Arm Fast', 'South Africa', 'http://localhost:3000/images/Dale%20Steyn.jpeg',
+('SA18', 'Dale Steyn', 'Bowler', 'June 27, 1983', 'Right-Handed', 'Right Arm Fast', 'South Africa', 'http://localhost:3000/images/Dale%20Steyn.jpeg',
  -- Batting Stats - Test
  93, 168, 2700, 29.0, 12.0, 1, 5, 200, 20, 76,
  -- Batting Stats - ODI
@@ -1706,7 +1717,7 @@ VALUES
 -- Inserting data for South African Pacer 5
 INSERT INTO player_info 
 VALUES 
-('128', 'Beuran Hendricks', 'Bowler', 'June 8, 1990', 'Left-Handed', 'Left Arm Fast', 'South Africa', 'http://localhost:3000/images/Beuran%20Hendricks.jpeg',
+('SA19', 'Beuran Hendricks', 'Bowler', 'June 8, 1990', 'Left-Handed', 'Left Arm Fast', 'South Africa', 'http://localhost:3000/images/Beuran%20Hendricks.jpeg',
  -- Batting Stats - Test
  5, 10, 80, 15.0, 8.0, 0, 0, 12, 2, 8,
  -- Batting Stats - ODI
@@ -1719,9 +1730,9 @@ VALUES
  20, 35, 250, 28, 22.0, 5.0, 0, 0,
  -- Bowling Stats - T20
  15, 25, 120, 20, 18.0, 6.0, 0, 0);
-
+ 
 INSERT INTO player_info VALUES
-('58', 'Babar Azam', 'Batsman', 'October 15, 1994', 'Right-Handed', NULL, 'Pakistan', 'http://localhost:3000/images/Babar%20Azam.jpeg',
+('PAK01', 'Babar Azam', 'Batsman', 'October 15, 1994', 'Right-Handed', NULL, 'Pakistan', 'http://localhost:3000/images/Babar%20Azam.jpeg',
 -- Batting Stats - Test
   30, 60, 2800, 68.20, 52.40, 7, 20, 320, 30, 143,
 -- Batting Stats - ODI
@@ -1738,7 +1749,7 @@ INSERT INTO player_info VALUES
 
 -- Player 2
 INSERT INTO player_info VALUES
-('59', 'Shaheen Afridi', 'Bowler', 'April 6, 2000', 'Left-Handed', 'Left Arm Fast', 'Pakistan', 'http://localhost:3000/images/Shaheen%20Afridi.jpeg',
+('PAK02', 'Shaheen Afridi', 'Bowler', 'April 6, 2000', 'Left-Handed', 'Left Arm Fast', 'Pakistan', 'http://localhost:3000/images/Shaheen%20Afridi.jpeg',
 -- Batting Stats - Test
   20, 35, 300, 18.60, 8.70, 0, 0, 25, 3, 15,
 -- Batting Stats - ODI
@@ -1755,7 +1766,7 @@ INSERT INTO player_info VALUES
 
 -- Player 3
 INSERT INTO player_info VALUES
-('60', 'Mohammad Rizwan', 'Wk', 'June 1, 1992', 'Right-Handed', NULL, 'Pakistan', 'http://localhost:3000/images/Mohammad%20Rizwan.jpeg',
+('PAK03', 'Mohammad Rizwan', 'Wk', 'June 1, 1992', 'Right-Handed', NULL, 'Pakistan', 'http://localhost:3000/images/Mohammad%20Rizwan.jpeg',
 -- Batting Stats - Test
   25, 50, 1800, 65.80, 40.90, 3, 12, 220, 25, 115,
 -- Batting Stats - ODI
@@ -1772,7 +1783,7 @@ INSERT INTO player_info VALUES
 
 -- Player 4
 INSERT INTO player_info VALUES
-('61', 'Fakhar Zaman', 'Batsman', 'April 10, 1990', 'Left-Handed', 'Left Arm Fast', 'Pakistan', 'http://localhost:3000/images/Fakhar%20Zaman.jpeg',
+('PAK04', 'Fakhar Zaman', 'Batsman', 'April 10, 1990', 'Left-Handed', 'Left Arm Fast', 'Pakistan', 'http://localhost:3000/images/Fakhar%20Zaman.jpeg',
 -- Batting Stats - Test
   15, 30, 1200, 45.60, 40.20, 2, 8, 130, 15, 92,
 -- Batting Stats - ODI
@@ -1789,7 +1800,7 @@ INSERT INTO player_info VALUES
 
 -- Player 5
 INSERT INTO player_info VALUES
-('62', 'Shadab Khan', 'All-Rounder', 'October 4, 1998', 'Right-Handed', 'Right Arm Leg Spin', 'Pakistan', 'http://localhost:3000/images/Shadab%20Khan.jpeg',
+('PAK05', 'Shadab Khan', 'All-Rounder', 'October 4, 1998', 'Right-Handed', 'Right Arm Leg Spin', 'Pakistan', 'http://localhost:3000/images/Shadab%20Khan.jpeg',
 -- Batting Stats - Test
   15, 28, 800, 35.60, 28.70, 0, 2, 70, 8, 55,
 -- Batting Stats - ODI
@@ -1806,7 +1817,7 @@ INSERT INTO player_info VALUES
 -- Inserting data for Pakistani Batsman 1
 INSERT INTO player_info 
 VALUES 
-('129', 'Imam-ul-Haq', 'Batsman', 'December 12, 1995', 'Left-Handed', 'Right Arm Off Spin', 'Pakistan', 'http://localhost:3000/images/Imam-ul-Haq.jpeg',
+('PAK06', 'Imam-ul-Haq', 'Batsman', 'December 12, 1995', 'Left-Handed', 'Right Arm Off Spin', 'Pakistan', 'http://localhost:3000/images/Imam-ul-Haq.jpeg',
  -- Batting Stats - Test
  20, 40, 1500, 45.0, 35.0, 5, 8, 180, 20, 132,
  -- Batting Stats - ODI
@@ -1823,7 +1834,7 @@ VALUES
 -- Inserting data for Pakistani Batsman 2
 INSERT INTO player_info 
 VALUES 
-('130', 'Azhar Ali', 'Batsman', 'February 19, 1985', 'Right-Handed', 'Right Arm Leg Spin', 'Pakistan', 'http://localhost:3000/images/Azhar%20Ali.jpeg',
+('PAK07', 'Azhar Ali', 'Batsman', 'February 19, 1985', 'Right-Handed', 'Right Arm Leg Spin', 'Pakistan', 'http://localhost:3000/images/Azhar%20Ali.jpeg',
  -- Batting Stats - Test
  80, 140, 6000, 50.0, 45.0, 15, 30, 420, 40, 226,
  -- Batting Stats - ODI
@@ -1840,7 +1851,7 @@ VALUES
 -- Inserting data for Pakistani Batsman 3
 INSERT INTO player_info 
 VALUES 
-('131', 'Haris Sohail', 'Batsman', 'January 9, 1989', 'Left-Handed', 'Left Arm Orthodox', 'Pakistan', 'http://localhost:3000/images/Haris%20Sohail.jpeg',
+('PAK08', 'Haris Sohail', 'Batsman', 'January 9, 1989', 'Left-Handed', 'Left Arm Orthodox', 'Pakistan', 'http://localhost:3000/images/Haris%20Sohail.jpeg',
  -- Batting Stats - Test
  25, 45, 1700, 48.0, 42.0, 3, 10, 160, 22, 147,
  -- Batting Stats - ODI
@@ -1857,7 +1868,7 @@ VALUES
 -- Inserting data for Pakistani Batsman 4
 INSERT INTO player_info 
 VALUES 
-('132', 'Asad Shafiq', 'Batsman', 'January 28, 1986', 'Right-Handed', 'Right Arm Leg Spin', 'Pakistan', 'http://localhost:3000/images/Asad%20Shafiq.jpeg',
+('PAK09', 'Asad Shafiq', 'Batsman', 'January 28, 1986', 'Right-Handed', 'Right Arm Leg Spin', 'Pakistan', 'http://localhost:3000/images/Asad%20Shafiq.jpeg',
  -- Batting Stats - Test
  80, 140, 4500, 42.0, 38.0, 11, 28, 280, 32, 137,
  -- Batting Stats - ODI
@@ -1873,7 +1884,7 @@ VALUES
 -- Inserting data for Pakistani All-Rounder 1
 INSERT INTO player_info 
 VALUES 
-('133', 'Shoaib Malik', 'All-Rounder', 'February 1, 1982', 'Right-Handed', 'Right Arm Off Spin', 'Pakistan', 'http://localhost:3000/images/Shoaib%20Malik.jpeg',
+('PAK10', 'Shoaib Malik', 'All-Rounder', 'February 1, 1982', 'Right-Handed', 'Right Arm Off Spin', 'Pakistan', 'http://localhost:3000/images/Shoaib%20Malik.jpeg',
  -- Batting Stats - Test
  40, 70, 1800, 45.0, 35.0, 5, 12, 200, 20, 132,
  -- Batting Stats - ODI
@@ -1890,7 +1901,7 @@ VALUES
 -- Inserting data for Pakistani All-Rounder 2
 INSERT INTO player_info 
 VALUES 
-('134', 'Mohammad Hafeez', 'All-Rounder', 'October 17, 1980', 'Right-Handed', 'Right Arm Off Spin', 'Pakistan', 'http://localhost:3000/images/Mohammad%20Hafeez.jpeg',
+('PAK11', 'Mohammad Hafeez', 'All-Rounder', 'October 17, 1980', 'Right-Handed', 'Right Arm Off Spin', 'Pakistan', 'http://localhost:3000/images/Mohammad%20Hafeez.jpeg',
  -- Batting Stats - Test
  50, 90, 2500, 45.0, 35.0, 3, 15, 250, 30, 136,
  -- Batting Stats - ODI
@@ -1907,7 +1918,7 @@ VALUES
 -- Inserting data for Pakistani All-Rounder 3
 INSERT INTO player_info 
 VALUES 
-('135', 'Faheem Ashraf', 'All-Rounder', 'January 16, 1994', 'Left-Handed', 'Right Arm Fast', 'Pakistan', 'http://localhost:3000/images/Faheem%20Ashraf.jpeg',
+('PAK12', 'Faheem Ashraf', 'All-Rounder', 'January 16, 1994', 'Left-Handed', 'Right Arm Fast', 'Pakistan', 'http://localhost:3000/images/Faheem%20Ashraf.jpeg',
  -- Batting Stats - Test
  10, 20, 300, 30.0, 15.0, 0, 3, 50, 5, 38,
  -- Batting Stats - ODI
@@ -1922,7 +1933,7 @@ VALUES
  50, 90, 700, 40, 22.0, 6.0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('136', 'Yasir Shah', 'Bowler', 'May 2, 1986', 'Right-Handed', 'Right Arm Leg Spin', 'Pakistan', 'http://localhost:3000/images/Yasir%20Shah.jpeg',
+('PAK13', 'Yasir Shah', 'Bowler', 'May 2, 1986', 'Right-Handed', 'Right Arm Leg Spin', 'Pakistan', 'http://localhost:3000/images/Yasir%20Shah.jpeg',
  -- Batting Stats - Test
  40, 70, 1500, 25.0, 12.0, 0, 5, 150, 10, 42,
  -- Batting Stats - ODI
@@ -1937,7 +1948,7 @@ VALUES
  15, 25, 200, 25, 22.0, 6.0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('138', 'Usman Qadir', 'Bowler', 'August 12, 1993', 'Right-Handed', 'Right Arm Leg Spin', 'Pakistan', 'http://localhost:3000/images/Usman%20Qadir.jpeg',
+('PAK14', 'Usman Qadir', 'Bowler', 'August 12, 1993', 'Right-Handed', 'Right Arm Leg Spin', 'Pakistan', 'http://localhost:3000/images/Usman%20Qadir.jpeg',
  -- Batting Stats - Test
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
  -- Batting Stats - ODI
@@ -1952,7 +1963,7 @@ VALUES
  30, 40, 250, 25, 20.0, 6.0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('140', 'Hasan Ali', 'Bowler', 'July 7, 1994', 'Right-Handed', 'Right Arm Fast', 'Pakistan', 'http://localhost:3000/images/Hasan%20Ali.jpeg',
+('PAK15', 'Hasan Ali', 'Bowler', 'July 7, 1994', 'Right-Handed', 'Right Arm Fast', 'Pakistan', 'http://localhost:3000/images/Hasan%20Ali.jpeg',
  -- Batting Stats - Test
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
  -- Batting Stats - ODI
@@ -1969,7 +1980,7 @@ VALUES
 -- Inserting data for Pakistani Pacer 3
 INSERT INTO player_info 
 VALUES 
-('141', 'Mohammad Hasnain', 'Bowler', 'April 5, 2000', 'Right-Handed', 'Right Arm Fast', 'Pakistan', 'http://localhost:3000/images/Mohammad%20Hasnain.jpeg',
+('PAK16', 'Mohammad Hasnain', 'Bowler', 'April 5, 2000', 'Right-Handed', 'Right Arm Fast', 'Pakistan', 'http://localhost:3000/images/Mohammad%20Hasnain.jpeg',
  -- Batting Stats - Test
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
  -- Batting Stats - ODI
@@ -1985,7 +1996,7 @@ VALUES
 -- Inserting data for Pakistani Pacer 4
 INSERT INTO player_info 
 VALUES 
-('142', 'Muhammad Abbas', 'Bowler', 'August 10, 1989', 'Right-Handed', 'Right Arm Fast', 'Pakistan', 'http://localhost:3000/images/Muhammad%20Abbas.jpeg',
+('PAK17', 'Muhammad Abbas', 'Bowler', 'August 10, 1989', 'Right-Handed', 'Right Arm Fast', 'Pakistan', 'http://localhost:3000/images/Muhammad%20Abbas.jpeg',
  -- Batting Stats - Test
  35, 60, 800, 20.0, 15.0, 0, 0, 60, 7, 29,
  -- Batting Stats - ODI
@@ -2002,7 +2013,7 @@ VALUES
 -- Inserting data for Pakistani Pacer 5
 INSERT INTO player_info 
 VALUES 
-('143', 'Naseem Shah', 'Bowler', 'February 15, 2003', 'Right-Handed', 'Right Arm Fast', 'Pakistan', 'http://localhost:3000/images/Naseem%20Shah.jpeg',
+('PAK18', 'Naseem Shah', 'Bowler', 'February 15, 2003', 'Right-Handed', 'Right Arm Fast', 'Pakistan', 'http://localhost:3000/images/Naseem%20Shah.jpeg',
  -- Batting Stats - Test
  10, 15, 100, 12.0, 8.0, 0, 0, 25, 3, 15,
  -- Batting Stats - ODI
@@ -2019,7 +2030,7 @@ VALUES
 -- Afghan Players
 -- Player 1
 INSERT INTO player_info VALUES
-('68', 'Rashid Khan', 'Bowler', 'September 20, 1998', 'Right-Handed', 'Right Arm Leg Spin', 'Afghanistan', 'http://localhost:3000/images/Rashid%20Khan.jpeg',
+('AFG01', 'Rashid Khan', 'Bowler', 'September 20, 1998', 'Right-Handed', 'Right Arm Leg Spin', 'Afghanistan', 'http://localhost:3000/images/Rashid%20Khan.jpeg',
 -- Batting Stats - Test
   15, 25, 589, 37.72, 23.45, 0, 2, 57, 14, 49,
 -- Batting Stats - ODI
@@ -2036,7 +2047,7 @@ INSERT INTO player_info VALUES
 
 -- Player 2
 INSERT INTO player_info VALUES
-('69', 'Mohammad Nabi', 'All-Rounder', 'January 1, 1985', 'Right-Handed', 'Right Arm Off Spin', 'Afghanistan', 'http://localhost:3000/images/Mohammad%20Nabi.jpeg',
+('AFG02', 'Mohammad Nabi', 'All-Rounder', 'January 1, 1985', 'Right-Handed', 'Right Arm Off Spin', 'Afghanistan', 'http://localhost:3000/images/Mohammad%20Nabi.jpeg',
 -- Batting Stats - Test
   25, 40, 1189, 35.69, 28.87, 2, 9, 118, 19, 87,
 -- Batting Stats - ODI
@@ -2053,7 +2064,7 @@ INSERT INTO player_info VALUES
 
 -- Player 3
 INSERT INTO player_info VALUES
-('70', 'Hazratullah Zazai', 'Batsman', 'March 23, 1998', 'Left-Handed', NULL, 'Afghanistan', 'http://localhost:3000/images/Hazratullah%20Zazai.jpeg',
+('AFG03', 'Hazratullah Zazai', 'Batsman', 'March 23, 1998', 'Left-Handed', NULL, 'Afghanistan', 'http://localhost:3000/images/Hazratullah%20Zazai.jpeg',
 -- Batting Stats - Test
   20, 39, 1278, 48.79, 45.23, 4, 15, 138, 23, 96,
 -- Batting Stats - ODI
@@ -2070,7 +2081,7 @@ INSERT INTO player_info VALUES
 
 -- Player 4
 INSERT INTO player_info VALUES
-('71', 'Asghar Afghan', 'Batsman', 'February 27, 1987', 'Right-Handed', NULL, 'Afghanistan', 'http://localhost:3000/images/Asghar%20Afghan.jpeg',
+('AFG04', 'Asghar Afghan', 'Batsman', 'February 27, 1987', 'Right-Handed', NULL, 'Afghanistan', 'http://localhost:3000/images/Asghar%20Afghan.jpeg',
 -- Batting Stats - Test
   15, 30, 879, 45.67, 41.26, 2, 12, 92, 18, 67,
 -- Batting Stats - ODI
@@ -2087,7 +2098,7 @@ INSERT INTO player_info VALUES
 
 -- Player 5
 INSERT INTO player_info VALUES
-('72', 'Najibullah Zadran', 'Batsman', 'February 1, 1993', 'Left-Handed', NULL, 'Afghanistan', 'http://localhost:3000/images/Najibullah%20Zadran.jpeg',
+('AFG05', 'Najibullah Zadran', 'Batsman', 'February 1, 1993', 'Left-Handed', NULL, 'Afghanistan', 'http://localhost:3000/images/Najibullah%20Zadran.jpeg',
 -- Batting Stats - Test
   10, 20, 789, 41.52, 39.68, 1, 8, 68, 14, 54,
 -- Batting Stats - ODI
@@ -2103,7 +2114,7 @@ INSERT INTO player_info VALUES
 );
 INSERT INTO player_info 
 VALUES 
-('151', 'Gulbadin Naib', 'All-Rounder', 'March 16, 1991', 'Right-Handed', 'Right Arm Fast', 'Afghanistan', 'http://localhost:3000/images/Gulbadin%20Naib.jpeg',
+('AFG06', 'Gulbadin Naib', 'All-Rounder', 'March 16, 1991', 'Right-Handed', 'Right Arm Fast', 'Afghanistan', 'http://localhost:3000/images/Gulbadin%20Naib.jpeg',
  -- Batting Stats - Test
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
  -- Batting Stats - ODI
@@ -2118,7 +2129,7 @@ VALUES
  50, 80, 800, 60, 20.0, 5.0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('154', 'Mujeeb Ur Rahman', 'All-Rounder', 'March 28, 2001', 'Right-Handed', 'Right Arm Off Spin', 'Afghanistan', 'http://localhost:3000/images/Mujeeb%20Ur%20Rahman.jpeg',
+('AFG07', 'Mujeeb Ur Rahman', 'All-Rounder', 'March 28, 2001', 'Right-Handed', 'Right Arm Off Spin', 'Afghanistan', 'http://localhost:3000/images/Mujeeb%20Ur%20Rahman.jpeg',
  -- Batting Stats - Test
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
  -- Batting Stats - ODI
@@ -2133,7 +2144,7 @@ VALUES
  30, 50, 400, 25, 18.0, 6.0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('157', 'Hamid Hassan', 'Bowler', 'June 1, 1987', 'Right-Handed', 'Right Arm Fast', 'Afghanistan', 'http://localhost:3000/images/Hamid%20Hassan.jpeg',
+('AFG08', 'Hamid Hassan', 'Bowler', 'June 1, 1987', 'Right-Handed', 'Right Arm Fast', 'Afghanistan', 'http://localhost:3000/images/Hamid%20Hassan.jpeg',
  -- Batting Stats - Test
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
  -- Batting Stats - ODI
@@ -2148,7 +2159,7 @@ VALUES
  30, 45, 250, 35, 18.0, 6.0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('159', 'Karim Janat', 'Bowler', 'September 4, 1997', 'Right-Handed', 'Right Arm Fast', 'Afghanistan', 'http://localhost:3000/images/Karim%20Janat.jpeg',
+('AFG09', 'Karim Janat', 'Bowler', 'September 4, 1997', 'Right-Handed', 'Right Arm Fast', 'Afghanistan', 'http://localhost:3000/images/Karim%20Janat.jpeg',
  -- Batting Stats - Test
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
  -- Batting Stats - ODI
@@ -2164,7 +2175,7 @@ VALUES
  -- Inserting data for Afghan Player 6 (Nur Ahmad)
 INSERT INTO player_info 
 VALUES 
-('161', 'Nur Ahmad', 'Batsman', 'April 2, 1998', 'Left-Handed', 'Left Arm Leg Spin', 'Afghanistan', 'http://localhost:3000/images/Nur%20Ahmad.jpeg',
+('AFG10', 'Nur Ahmad', 'Batsman', 'April 2, 1998', 'Left-Handed', 'Left Arm Leg Spin', 'Afghanistan', 'http://localhost:3000/images/Nur%20Ahmad.jpeg',
  -- Batting Stats - Test
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
  -- Batting Stats - ODI
@@ -2177,9 +2188,10 @@ VALUES
  5, 10, 40, 1, 30.0, 5.0, 0, 0,
  -- Bowling Stats - T20
  10, 15, 80, 2, 25.0, 6.0, 0, 0);
+
 INSERT INTO player_info 
 VALUES 
-('162', 'Rahmanullah Gurbaz', 'Wk', 'June 6, 2002', 'Right-Handed', NULL, 'Afghanistan', 'http://localhost:3000/images/Rahmanullah%20Gurbaz.jpeg',
+('AFG11', 'Rahmanullah Gurbaz', 'Wk', 'June 6, 2002', 'Right-Handed', NULL, 'Afghanistan', 'http://localhost:3000/images/Rahmanullah%20Gurbaz.jpeg',
  -- Batting Stats - Test
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
  -- Batting Stats - ODI
@@ -2195,7 +2207,7 @@ VALUES
  ----eng players 
  INSERT INTO player_info 
 VALUES 
-('163', 'Joe Root', 'Batsman', 'December 30, 1990', 'Right-Handed', 'Right Arm Off Spin', 'England', 'http://localhost:3000/images/Joe%20Root.jpeg',
+('ENG01', 'Joe Root', 'Batsman', 'December 30, 1990', 'Right-Handed', 'Right Arm Off Spin', 'England', 'http://localhost:3000/images/Joe%20Root.jpeg',
  -- Batting Stats - Test
  100, 180, 9000, 55.0, 50.0, 25, 45, 1200, 120, 254,
  -- Batting Stats - ODI
@@ -2210,7 +2222,7 @@ VALUES
  40, 60, 500, 20, 18.0, 6.0, 0, 0);
 INSERT INTO player_info 
 VALUES 
-('164', 'Ben Stokes', 'Batsman', 'June 4, 1991', 'Left-Handed', 'Right Arm Fast', 'England', 'http://localhost:3000/images/Ben%20Stokes.jpeg',
+('ENG02', 'Ben Stokes', 'Batsman', 'June 4, 1991', 'Left-Handed', 'Right Arm Fast', 'England', 'http://localhost:3000/images/Ben%20Stokes.jpeg',
  -- Batting Stats - Test
  80, 140, 6000, 50.0, 40.0, 15, 30, 800, 80, 176,
  -- Batting Stats - ODI
@@ -2225,7 +2237,7 @@ VALUES
  50, 80, 800, 35, 18.0, 6.0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('165', 'Jonny Bairstow', 'Wk', 'September 26, 1989', 'Right-Handed', NULL, 'England', 'http://localhost:3000/images/Jonny%20Bairstow.jpeg',
+('ENG03', 'Jonny Bairstow', 'Wk', 'September 26, 1989', 'Right-Handed', NULL, 'England', 'http://localhost:3000/images/Jonny%20Bairstow.jpeg',
  -- Batting Stats - Test
  70, 120, 4500, 40.0, 35.0, 12, 20, 600, 60, 167,
  -- Batting Stats - ODI
@@ -2240,7 +2252,7 @@ VALUES
  5, 10, 40, 0, 0, 0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('166', 'Jos Buttler', 'Wk', 'September 8, 1990', 'Right-Handed', NULL, 'England', 'http://localhost:3000/images/Jos%20Buttler.jpeg',
+('ENG04', 'Jos Buttler', 'Wk', 'September 8, 1990', 'Right-Handed', NULL, 'England', 'http://localhost:3000/images/Jos%20Buttler.jpeg',
  -- Batting Stats - Test
  50, 80, 3000, 35.0, 30.0, 8, 15, 400, 40, 152,
  -- Batting Stats - ODI
@@ -2255,7 +2267,7 @@ VALUES
  15, 20, 100, 2, 20.0, 4.0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('167', 'Jason Roy', 'Batsman', 'July 21, 1990', 'Right-Handed', 'Right Arm Medium', 'England', 'http://localhost:3000/images/Jason%20Roy.jpeg',
+('ENG05', 'Jason Roy', 'Batsman', 'July 21, 1990', 'Right-Handed', 'Right Arm Medium', 'England', 'http://localhost:3000/images/Jason%20Roy.jpeg',
  -- Batting Stats - Test
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
  -- Batting Stats - ODI
@@ -2270,7 +2282,7 @@ VALUES
  5, 10, 50, 1, 22.0, 4.0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('168', 'Moeen Ali', 'All-Rounder', 'June 18, 1987', 'Left-Handed', 'Right Arm Off Spin', 'England', 'http://localhost:3000/images/Moeen%20Ali.jpeg',
+('ENG06', 'Moeen Ali', 'All-Rounder', 'June 18, 1987', 'Left-Handed', 'Right Arm Off Spin', 'England', 'http://localhost:3000/images/Moeen%20Ali.jpeg',
  -- Batting Stats - Test
  60, 90, 2000, 30.0, 25.0, 5, 10, 220, 40, 87,
  -- Batting Stats - ODI
@@ -2285,7 +2297,7 @@ VALUES
  80, 110, 800, 30, 20.0, 6.0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('169', 'Chris Woakes', 'All-Rounder', 'March 2, 1989', 'Right-Handed', 'Right Arm Fast', 'England', 'http://localhost:3000/images/Chris%20Woakes.jpeg',
+('ENG07', 'Chris Woakes', 'All-Rounder', 'March 2, 1989', 'Right-Handed', 'Right Arm Fast', 'England', 'http://localhost:3000/images/Chris%20Woakes.jpeg',
  -- Batting Stats - Test
  50, 80, 1000, 20.0, 15.0, 0, 5, 80, 10, 58,
  -- Batting Stats - ODI
@@ -2300,7 +2312,7 @@ VALUES
  50, 70, 800, 30, 18.0, 6.0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('170', 'Sam Curran', 'All-Rounder', 'June 3, 1998', 'Left-Handed', 'Left Arm Fast', 'England', 'http://localhost:3000/images/Sam%20Curran.jpeg',
+('ENG08', 'Sam Curran', 'All-Rounder', 'June 3, 1998', 'Left-Handed', 'Left Arm Fast', 'England', 'http://localhost:3000/images/Sam%20Curran.jpeg',
  -- Batting Stats - Test
  30, 50, 800, 25.0, 20.0, 0, 5, 60, 10, 46,
  -- Batting Stats - ODI
@@ -2315,7 +2327,7 @@ VALUES
  20, 30, 400, 25, 18.0, 6.0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('171', 'Stuart Broad', 'All-Rounder', 'June 24, 1986', 'Left-Handed', 'Right Arm Fast', 'England', 'http://localhost:3000/images/Stuart%20Broad.jpeg',
+('ENG09', 'Stuart Broad', 'All-Rounder', 'June 24, 1986', 'Left-Handed', 'Right Arm Fast', 'England', 'http://localhost:3000/images/Stuart%20Broad.jpeg',
  -- Batting Stats - Test
  140, 220, 3000, 20.0, 15.0, 0, 5, 80, 10, 58,
  -- Batting Stats - ODI
@@ -2330,7 +2342,7 @@ VALUES
  40, 60, 800, 35, 18.0, 6.0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('172', 'Jofra Archer', 'Bowler', 'April 1, 1995', 'Right-Handed', 'Right Arm Fast', 'England', 'http://localhost:3000/images/Jofra%20Archer.jpeg',
+('ENG10', 'Jofra Archer', 'Bowler', 'April 1, 1995', 'Right-Handed', 'Right Arm Fast', 'England', 'http://localhost:3000/images/Jofra%20Archer.jpeg',
  -- Batting Stats - Test
  15, 25, 400, 20.0, 15.0, 0, 2, 40, 4, 25,
  -- Bowling Stats - Test
@@ -2345,7 +2357,7 @@ VALUES
  15, 25, 450, 25, 20.0, 7.0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('173', 'Mark Wood', 'Bowler', 'January 11, 1990', 'Right-Handed', 'Right Arm Fast', 'England', 'http://localhost:3000/images/Mark%20Wood.jpeg',
+('ENG11', 'Mark Wood', 'Bowler', 'January 11, 1990', 'Right-Handed', 'Right Arm Fast', 'England', 'http://localhost:3000/images/Mark%20Wood.jpeg',
  -- Batting Stats - Test
  20, 30, 400, 18.0, 10.0, 0, 2, 40, 3, 28,
  -- Bowling Stats - Test
@@ -2360,7 +2372,7 @@ VALUES
  25, 35, 600, 30, 18.0, 7.0, 0, 0);
  INSERT INTO player_info 
 VALUES 
-('174', 'Adil Rashid', 'Bowler', 'February 17, 1988', 'Right-Handed', 'Right Arm Leg Spin', 'England', 'http://localhost:3000/images/Adil%20Rashid.jpeg',
+('ENG12', 'Adil Rashid', 'Bowler', 'February 17, 1988', 'Right-Handed', 'Right Arm Leg Spin', 'England', 'http://localhost:3000/images/Adil%20Rashid.jpeg',
  -- Batting Stats - Test
  20, 30, 500, 20.0, 15.0, 0, 2, 40, 3, 28,
  -- Bowling Stats - Test
@@ -2373,6 +2385,7 @@ VALUES
  25, 35, 400, 25.0, 15.0, 0, 0, 25, 2, 15,
  -- Bowling Stats - T20
  40, 60, 900, 60, 20.0, 7.0, 0, 0);
+
  
 ----------------from here i have filter and modify.......................................................................
 -------------------------------------------------------------------
@@ -2869,6 +2882,8 @@ CREATE TABLE series_info (
     CONSTRAINT fk_series_man_of_the_series FOREIGN KEY (man_of_the_series) REFERENCES player_info(player_id)
 );
 ALTER TABLE series_info
+ADD COLUMN image_path VARCHAR;
+ALTER TABLE series_info
 DROP CONSTRAINT fk_series_team;
 ALTER TABLE series_info
 ADD CONSTRAINT fk_series_host_country FOREIGN KEY (host_country) REFERENCES national_team(team_name);
@@ -2878,7 +2893,28 @@ RENAME COLUMN team_name TO team_names;
 
 ALTER TABLE series_info
 ALTER COLUMN team_names TYPE VARCHAR[] USING ARRAY[team_names]::VARCHAR[];
-
+insert into series_info values
+('s1', 'India vs Australia 2020', ARRAY['India', 'Australia'], '2020-11-27', '2021-01-19', 'India', 'IN01'),
+('s2', 'England vs South Africa 2020', ARRAY['England', 'South Africa'], '2020-11-27', '2020-12-09', 'South Africa', 'ENG01'),
+('s3', 'New Zealand vs West Indies 2020', ARRAY['New Zealand', 'West Indies'], '2020-11-27', '2020-12-15', 'New Zealand', 'NZ01'),
+('s4', 'Pakistan vs Zimbabwe 2020', ARRAY['Pakistan', 'Zimbabwe'], '2020-11-27', '2020-12-08', 'Pakistan', 'PAK01'),
+('s5', 'Bangladesh vs West Indies 2021', ARRAY['Bangladesh', 'West Indies'], '2021-01-20', '2021-02-15', 'Bangladesh', 'BA01'),
+('s6', 'Sri Lanka vs England 2021', ARRAY['Sri Lanka', 'England'], '2021-01-14', '2021-01-26', 'Sri Lanka', 'ENG01'),
+('s7', 'Pakistan vs South Africa 2021', ARRAY['Pakistan', 'South Africa'], '2021-01-26', '2021-02-14', 'Pakistan', 'PAK01'),
+('s8', 'India vs England 2021', ARRAY['India', 'England'], '2021-02-05', '2021-03-28', 'India', 'IN15'),
+('s9', 'New Zealand vs Australia 2021', ARRAY['New Zealand', 'Australia'], '2021-02-22', '2021-03-07', 'New Zealand', 'AUS06'),
+('s10', 'Bangladesh vs Sri Lanka 2021', ARRAY['Bangladesh', 'Sri Lanka'], '2021-05-23', '2021-06-15', 'Bangladesh', 'BA01'),
+('s11', 'England vs New Zealand 2021', ARRAY['England', 'New Zealand'], '2021-06-02', '2021-06-14', 'England', 'ENG01'),
+('s12', 'India vs Sri Lanka 2021', ARRAY['India', 'Sri Lanka'], '2021-07-13', '2021-07-25', 'India', 'IN04'),
+('s13', 'West Indies vs Pakistan 2021', ARRAY['West Indies', 'Pakistan'], '2021-07-27', '2021-08-24', 'West Indies', 'PAK01'),
+('s14', 'Bangladesh vs Australia 2021', ARRAY['Bangladesh', 'Australia'], '2021-08-03', '2021-08-08', 'Bangladesh', 'BA01'),
+('s15', 'England vs India 2021', ARRAY['England', 'India'], '2021-08-04', '2021-09-14', 'England', 'ENG01'),
+('s16', 'Bangladesh vs New Zealand 2021', ARRAY['Bangladesh', 'New Zealand'], '2021-09-01', '2021-09-10', 'Bangladesh', 'BA02'),
+('s17', 'Pakistan vs New Zealand 2021', ARRAY['Pakistan', 'New Zealand'], '2021-09-17', '2021-10-03', 'Pakistan', 'PAK01'),
+('s18', 'India vs South Africa 2021', ARRAY['India', 'South Africa'], '2021-10-02', '2021-10-23', 'India', 'IN01'),
+('s19', 'Australia vs New Zealand 2021', ARRAY['Australia', 'New Zealand'], '2021-10-05', '2021-10-10', 'Australia', 'AUS06'),
+('s20', 'Bangladesh vs Pakistan 2021', ARRAY['Bangladesh', 'Pakistan'], '2021-11-03', '2021-11-10', 'Bangladesh', 'BA01'),
+('s21','Bangladesh vs India 2023',Array['Bangladesh','India'],'2023-01-01','2023-01-31','Bangladesh','BA09');
 drop table if exists match_summary;
 CREATE TABLE match_summary (
     match_id VARCHAR NOT NULL,
@@ -2908,6 +2944,8 @@ CREATE TABLE match_summary (
     CONSTRAINT ck_match_match_won_by CHECK (match_won_by IN (team1, team2)),
     CONSTRAINT ck_margin_of_win CHECK (margin_of_win IS NULL OR match_won_by IS NOT NULL)
 );
+insert into match_summary values
+('m1','s21','st10','BA09','2022-12-07','Bangladesh','India','Bangladesh','Bangladesh','5 runs','ODI','ump13','ump14','ump15');
 drop table if exists scorecard1;
 CREATE TABLE scorecard1 (
     match_id VARCHAR,
@@ -2949,3 +2987,15 @@ CREATE TABLE scorecard4 (
     economy VARCHAR[],
     FOREIGN KEY (match_id) REFERENCES match_summary(match_id)
 );
+
+insert into scorecard1 values
+('m1',ARRAY['BA14','BA13','BA17','BA02','BA03','BA04','BA08','BA09','BA10'],ARRAY['11(9)','7(23)','21(35)','8(20)','12(24)','77(96)','0(1)','100(83)','18(11)'],ARRAY['lbw','Bowled','Bowled','Caught','Caught','caught','bowled','not out','not out'],ARRAY['IN13','IN13','IN14','IN10','IN10','IN14','IN10','','']);
+
+insert into scorecard2 values
+('m1',ARRAY['IN02','IN01','IN04','IN06','IN07','IN10','IN08','IN15','IN13','IN14','IN13'],Array['5(6)','8(10)','82(102)','11(19)','14(28)','56(56)','7(23)','11(18)','51(28)','2(12)','0(0)'],Array['Bowled','Caught','Caught','Caught','lbw','Caught','Caught','bowled','not out','bowled','not out'],Array['BA10','BA05','BA09','BA02','BA09','BA10','BA02','BA10','','BA04','']);
+
+insert into scorecard3 VALUES
+('m1',ARRAY['IN15','IN13','IN08','IN14','IN10',''],ARRAY['3','10','10','10','10','7'],ARRAY['50','60','50','60','50',''],ARRAY['12','73','47','58','37','40'],ARRAY['4','7.3','4.7','5.8','3.7','5.7']);
+
+insert into scorecard4 VALUES
+('m1',ARRAY['BA09','BA10','BA05','BA08','BA02','BA04'],ARRAY['6.1','10','10','10','10','3.5'],ARRAY['46','45','43','54','39','33'],ARRAY['12','73','47','58','37','40'],ARRAY['2','3','1','0','2','1']);

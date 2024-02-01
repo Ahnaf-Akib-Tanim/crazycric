@@ -7,6 +7,7 @@ import Homepage from "./Homepage";
 import Loginpage from "./Loginpage";
 import Playerinfo from "./Playerinfo";
 import Players from "./Players";
+import Profile from "./Profile";
 import Userloginpage from "./Userloginpage";
 import Usersignup from "./Usersignup";
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
           path="/user/loggedin/playerinfo/:player_id"
           element={<Playerinfo />}
         />
+        <Route path="/user/loggedin/profile" element={<Profile />} />
         <Route path="/admin" element={<adminloginpage />} />
       </Routes>
     </BrowserRouter>
