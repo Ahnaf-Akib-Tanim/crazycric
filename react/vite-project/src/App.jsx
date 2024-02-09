@@ -8,6 +8,7 @@ import Loginpage from "./Loginpage";
 import Playerinfo from "./Playerinfo";
 import Players from "./Players";
 import Profile from "./Profile";
+import Teaminfo from "./Teaminfo";
 import Userloginpage from "./Userloginpage";
 import Usersignup from "./Usersignup";
 const App = () => {
@@ -22,6 +23,11 @@ const App = () => {
         <Route
           path="/user/loggedin/playerinfo/:player_id"
           element={<Playerinfo />}
+        />
+
+        <Route
+          path="/user/loggedin/teaminfo/:team_name"
+          element={<Teaminfo />}
         />
         <Route path="/user/loggedin/profile" element={<Profile />} />
         <Route path="/admin" element={<adminloginpage />} />

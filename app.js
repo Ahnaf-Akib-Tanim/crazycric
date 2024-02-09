@@ -73,6 +73,10 @@ app.use(
     '/coachimages',
     express.static(path.join(__dirname, './react/vite-project/public/coach_images')),
 );
+app.use(
+    '/country2images',
+    express.static(path.join(__dirname, './react/vite-project/public/country2')),
+);
 // Configure multer
 /* const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -94,7 +98,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 app.post('/user', async (req, res) => {
-    console.log(req.body);
     const { userId, password } = req.body;
     currentuserid = userId;
     currentpassword = password;
@@ -157,8 +160,6 @@ app.get('/user/loggedin', async (req, res) => {
 
         const players = await db.any(playersQuery, [playerNames]);
         const matches = await db.any(matchesQuery, [matchIds]);
-        console.log(players);
-        console.log(matches);
         res.json({
             players,
             matches,
@@ -183,7 +184,6 @@ app.post('/user/loggedin/players', async (req, res) => {
         );
 
         res.json(players);
-        console.log(players);
     } catch (error) {
         console.error('Error running query:', error.message || error);
         res.status(500).json({ error: 'An error occurred while processing your request.' });
@@ -206,6 +206,71 @@ app.get('/user/loggedin/playerinfo/:player_id', (req, res) => {
             }
             res.status(500).json({ error: 'Internal server error', details: error.message });
         });
+});
+app.get('/user/loggedin/teaminfo/:team_name', async (req, res) => {
+    console.log('Fetching team info');
+    try {
+        const { team_name } = req.params;
+        console.log('Team Name:', team_name);
+        const teamInfo = await db.oneOrNone('SELECT * FROM national_team WHERE team_name = $1', [
+            team_name,
+        ]);
+        console.log('Team Info:', teamInfo);
+
+        // Fetch associated data
+        const coach = await db.oneOrNone('SELECT * FROM coaches WHERE coach_name = $1', [
+            teamInfo?.current_coach,
+        ]);
+        console.log('Coach:', coach);
+        const homeGround = await db.oneOrNone('SELECT * FROM stadiums WHERE stadium_id = $1', [
+            teamInfo?.home_ground,
+        ]);
+        console.log('Home Ground:', homeGround);
+        const board = await db.oneOrNone('SELECT * FROM cricket_board WHERE board_name = $1', [
+            teamInfo?.board_name,
+        ]);
+        console.log('Board:', board);
+
+        const players = {
+            mostRunsTest: await db.oneOrNone('SELECT * FROM player_info WHERE player_id = $1', [
+                teamInfo?.most_runs_test,
+            ]),
+            mostWicketsTest: await db.oneOrNone('SELECT * FROM player_info WHERE player_id = $1', [
+                teamInfo?.most_wickets_test,
+            ]),
+            mostRunsODI: await db.oneOrNone('SELECT * FROM player_info WHERE player_id = $1', [
+                teamInfo?.most_runs_odi,
+            ]),
+            mostWicketsODI: await db.oneOrNone('SELECT * FROM player_info WHERE player_id = $1', [
+                teamInfo?.most_wickets_odi,
+            ]),
+            mostRunsT20: await db.oneOrNone('SELECT * FROM player_info WHERE player_id = $1', [
+                teamInfo?.most_runs_t20,
+            ]),
+            mostWicketsT20: await db.oneOrNone('SELECT * FROM player_info WHERE player_id = $1', [
+                teamInfo?.most_wickets_t20,
+            ]),
+            most100s: await db.oneOrNone('SELECT * FROM player_info WHERE player_id = $1', [
+                teamInfo?.most_100s,
+            ]),
+            mostWickets: await db.oneOrNone('SELECT * FROM player_info WHERE player_id = $1', [
+                teamInfo?.most_wickets,
+            ]),
+        };
+        const result = {
+            ...teamInfo,
+            coach,
+            homeGround,
+            board,
+            players,
+        };
+        console.log('Result:', result);
+
+        res.json(result);
+    } catch (error) {
+        console.error('Error fetching team info:', error.message || error);
+        res.status(500).json({ error: 'Failed to fetch team info' });
+    }
 });
 app.get('/user/loggedin/profile', (req, res) => {
     console.log('Current User ID');

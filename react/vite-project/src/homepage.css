@@ -18,7 +18,10 @@
 .glow-on-hover {
   transition: 0.3s;
 }
-
+.scorecard-button:hover {
+  background-color: #007bff;
+  color: white;
+}
 .glow-on-hover:hover {
   box-shadow:
     0 0 10px #fff,

@@ -43,19 +43,25 @@ const UpcomingMatches = () => (
     <Row>
       {[
         {
-          image: "http://localhost:3000/cricketboardimages/sl.png",
-          imgStyle: { width: "100px", height: "100px" },
+          image: "http://localhost:3000/cricketboardimages/slc.png",
+          imgStyle: {
+            width: "100px",
+            height: "100px",
+            position: "relative",
+            top: "00px",
+            left: "-82px",
+          },
           title: "Sri Lanka Tour of Bangladesh, 2024",
           titleStyle: {
             position: "relative",
-            top: "-90px",
-            left: "6px",
+            top: "-170px",
+            left: "-3px",
             fontSize: "18px",
           },
           subtitle: "First ODI, 26th of February, 11AM(BST)",
           subStyle: {
             position: "relative",
-            top: "-90px",
+            top: "-170px",
             left: "6px",
             fontSize: "15px",
           },
@@ -68,37 +74,43 @@ const UpcomingMatches = () => (
             // fontSize: "18px",
             fontWeight: "bold",
           },
-          image2: "http://localhost:3000/cricketboardimages/bd.png",
+          image2: "http://localhost:3000/cricketboardimages/BCB.png",
           imgStyle2: {
             width: "110px",
             height: "110px",
             position: "relative",
-            top: "00px",
-            left: "65px",
+            top: "-100px",
+            left: "85px",
           },
           image3: "http://localhost:3000/cricketboardimages/vs.png",
           imgStyle3: {
             width: "100px",
             height: "100px",
             position: "relative",
-            top: "-100px",
-            left: "80px",
+            top: "-200px",
+            left: "-6px",
           },
         },
         {
-          image: "http://localhost:3000/cricketboardimages/ind.png",
-          imgStyle: { width: "100px", height: "100px" },
+          image: "http://localhost:3000/cricketboardimages/BCCI.png",
+          imgStyle: {
+            width: "100px",
+            height: "100px",
+            position: "relative",
+            top: "00px",
+            left: "-82px",
+          },
           title: "England Tour of India, 2024",
           titleStyle: {
             position: "relative",
-            top: "-90px",
-            left: "6px",
+            top: "-170px",
+            left: "2px",
             fontSize: "18px",
           },
           subtitle: "Fifth Test, 27th of February, 10AM(IST)",
           subStyle: {
             position: "relative",
-            top: "-90px",
+            top: "-170px",
             left: "6px",
             fontSize: "15px",
           },
@@ -111,37 +123,43 @@ const UpcomingMatches = () => (
             // fontSize: "18px",
             fontWeight: "bold",
           },
-          image2: "http://localhost:3000/cricketboardimages/eng.png",
+          image2: "http://localhost:3000/cricketboardimages/ECB.png",
           imgStyle2: {
             width: "110px",
             height: "110px",
             position: "relative",
-            top: "00px",
-            left: "65px",
+            top: "-100px",
+            left: "85px",
           },
           image3: "http://localhost:3000/cricketboardimages/vs.png",
           imgStyle3: {
             width: "100px",
             height: "100px",
             position: "relative",
-            top: "-100px",
-            left: "80px",
+            top: "-200px",
+            left: "-6px",
           },
         },
         {
-          image: "http://localhost:3000/cricketboardimages/aus.png",
-          imgStyle: { width: "100px", height: "100px" },
+          image: "http://localhost:3000/cricketboardimages/CA.png",
+          imgStyle: {
+            width: "100px",
+            height: "100px",
+            position: "relative",
+            top: "00px",
+            left: "-82px",
+          },
           title: "New Zealand Tour of Australia, 2024",
           titleStyle: {
             position: "relative",
-            top: "-90px",
-            left: "6px",
+            top: "-170px",
+            left: "2px",
             fontSize: "18px",
           },
           subtitle: "1st Test, 27th of February, 3AM(IST)",
           subStyle: {
             position: "relative",
-            top: "-90px",
+            top: "-170px",
             left: "6px",
             fontSize: "15px",
           },
@@ -154,21 +172,21 @@ const UpcomingMatches = () => (
             // fontSize: "18px",
             fontWeight: "bold",
           },
-          image2: "http://localhost:3000/cricketboardimages/nz.png",
+          image2: "http://localhost:3000/cricketboardimages/NZC.png",
           imgStyle2: {
             width: "110px",
             height: "110px",
             position: "relative",
-            top: "00px",
-            left: "65px",
+            top: "-100px",
+            left: "85px",
           },
           image3: "http://localhost:3000/cricketboardimages/vs.png",
           imgStyle3: {
             width: "100px",
             height: "100px",
             position: "relative",
-            top: "-100px",
-            left: "80px",
+            top: "-200px",
+            left: "-6px",
           },
         },
       ].map((match, index) => (
@@ -359,7 +377,7 @@ const matchStyles = [
       width: "200px",
       height: "180px",
       position: "relative",
-      top: "-880px",
+      top: "-1540px",
       left: "310px",
       fontWeight: "bold",
       border: "5px solid orange",
@@ -377,6 +395,9 @@ const matchStyles = [
       borderColor: "lightblue",
       color: "orange",
       borderRadius: "10px",
+      position: "relative",
+      top: "-65px",
+      left: "50px",
     },
   },
   {
@@ -384,8 +405,8 @@ const matchStyles = [
       width: "200px",
       height: "180px",
       position: "relative",
-      top: "-880px",
-      left: "310px",
+      top: "-1750px",
+      left: "550px",
       fontWeight: "bold",
       border: "5px solid orange",
       borderRadius: "25px",
@@ -402,6 +423,9 @@ const matchStyles = [
       borderColor: "lightblue",
       color: "orange",
       borderRadius: "10px",
+      position: "relative",
+      top: "-65px",
+      left: "50px",
     },
   },
 ];
@@ -414,8 +438,8 @@ const RecentMatches = ({ matches }) => (
         textAlign: "center",
         fontSize: "32px",
         position: "relative",
-        top: "-860px",
-        left: "-310px",
+        top: "-1530px",
+        left: "-330px",
       }}
     >
       Recent Matches
@@ -431,12 +455,21 @@ const RecentMatches = ({ matches }) => (
             />
             <Card.Body>
               <Card.Title style={matchStyles[index].titleStyle}>
-                {match.match_won_by} {match.margin_of_win}
+                {match.match_won_by + "Won By"} {match.margin_of_win}
               </Card.Title>
               <Link to={`/user/loggedin/scorecard/${match.match_id}`}>
                 <Button
                   variant="primary"
-                  style={matchStyles[index].buttonStyle}
+                  style={{
+                    ...matchStyles[index].buttonStyle,
+                    fontSize: "15px",
+                    padding: "8px 12px",
+                    transition: "0.3s",
+                    position: "relative",
+                    top: "-60px",
+                    left: "40px",
+                  }}
+                  className="scorecard-button"
                 >
                   Scorecard
                 </Button>
@@ -536,8 +569,6 @@ const Homepage = () => {
       .then((response) => response.json())
       .then((data) => {
         setPlayers(data.players);
-        console.log(data.matches);
-        console.log(data.players);
         setMatches(data.matches);
       })
       .catch((error) => console.error("Error:", error));
