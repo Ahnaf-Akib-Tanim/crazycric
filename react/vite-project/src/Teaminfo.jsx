@@ -78,7 +78,7 @@ const Teaminfo = () => {
                   {teamdata.homeGround ? (
                     <div className="card">
                       <img
-                        src={`http://localhost:3000/stasdiumimages/${teamdata.homeGround.stadium_id}.jpeg`}
+                        src={`http://localhost:3000/stadiumimages/${teamdata.homeGround.stadium_id}.jpeg`}
                         alt={teamdata.homeGround.ground_name}
                       />
                       <p>{teamdata.homeGround.stadium_name}</p>

@@ -1,1 +1,1 @@
-/user/loggedin/playerinfo
+ console.log('Fetching coach info');

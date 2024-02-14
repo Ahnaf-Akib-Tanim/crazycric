@@ -61,7 +61,30 @@
 }
 .table-container.second-table {
   position: absolute;
-  top: -200px; /* adjust as needed */
-  left: 250px; /* adjust as needed */
-  width: 70%; /* adjust as needed */
+  top: -200px;
+  left: 250px;
+  width: 70%;
+}
+.stadium-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  top: -200px;
+  left: 250px;
+}
+
+.stadium-name-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.stadium-image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.stadium-name-container img {
+  width: 350px;
+  height: 400px;
 }

@@ -3,11 +3,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 //import { Route, BrowserRouter as Router } from "react-router-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Board from "./Board";
+import Coachinfo from "./Coachinfo";
 import Homepage from "./Homepage";
 import Loginpage from "./Loginpage";
 import Playerinfo from "./Playerinfo";
 import Players from "./Players";
 import Profile from "./Profile";
+import StadiumInfo from "./Stadiuminfo";
 import Teaminfo from "./Teaminfo";
 import Userloginpage from "./Userloginpage";
 import Usersignup from "./Usersignup";
@@ -24,10 +27,19 @@ const App = () => {
           path="/user/loggedin/playerinfo/:player_id"
           element={<Playerinfo />}
         />
+        <Route path="/user/loggedin/board/:board_name" element={<Board />} />
 
         <Route
           path="/user/loggedin/teaminfo/:team_name"
           element={<Teaminfo />}
+        />
+        <Route
+          path="/user/loggedin/coach/:coach_name"
+          element={<Coachinfo />}
+        />
+        <Route
+          path="/user/loggedin/stadium/:stadium_id"
+          element={<StadiumInfo />}
         />
         <Route path="/user/loggedin/profile" element={<Profile />} />
         <Route path="/admin" element={<adminloginpage />} />

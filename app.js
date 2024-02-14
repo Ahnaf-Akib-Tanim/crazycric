@@ -66,7 +66,7 @@ app.use(
     express.static(path.join(__dirname, './react/vite-project/public/umpire_images')),
 );
 app.use(
-    '/stasdiumimages',
+    '/stadiumimages',
     express.static(path.join(__dirname, './react/vite-project/public/stadium_images')),
 );
 app.use(
@@ -191,11 +191,11 @@ app.post('/user/loggedin/players', async (req, res) => {
 });
 app.get('/user/loggedin/playerinfo/:player_id', (req, res) => {
     const { player_id } = req.params;
-    console.log('Player ID:', player_id);
+    // console.log('Player ID:', player_id);
 
     db.one('SELECT * FROM player_info WHERE player_id = $1', player_id)
         .then((playerData) => {
-            console.log('Player Data:', playerData);
+            // console.log('Player Data:', playerData);
             res.json(playerData);
         })
         .catch((error) => {
@@ -208,28 +208,28 @@ app.get('/user/loggedin/playerinfo/:player_id', (req, res) => {
         });
 });
 app.get('/user/loggedin/teaminfo/:team_name', async (req, res) => {
-    console.log('Fetching team info');
+    // console.log('Fetching team info');
     try {
         const { team_name } = req.params;
-        console.log('Team Name:', team_name);
+        // console.log('Team Name:', team_name);
         const teamInfo = await db.oneOrNone('SELECT * FROM national_team WHERE team_name = $1', [
             team_name,
         ]);
-        console.log('Team Info:', teamInfo);
+        // console.log('Team Info:', teamInfo);
 
         // Fetch associated data
         const coach = await db.oneOrNone('SELECT * FROM coaches WHERE coach_name = $1', [
             teamInfo?.current_coach,
         ]);
-        console.log('Coach:', coach);
+        // console.log('Coach:', coach);
         const homeGround = await db.oneOrNone('SELECT * FROM stadiums WHERE stadium_id = $1', [
             teamInfo?.home_ground,
         ]);
-        console.log('Home Ground:', homeGround);
+        // console.log('Home Ground:', homeGround);
         const board = await db.oneOrNone('SELECT * FROM cricket_board WHERE board_name = $1', [
             teamInfo?.board_name,
         ]);
-        console.log('Board:', board);
+        // console.log('Board:', board);
 
         const players = {
             mostRunsTest: await db.oneOrNone('SELECT * FROM player_info WHERE player_id = $1', [
@@ -264,12 +264,48 @@ app.get('/user/loggedin/teaminfo/:team_name', async (req, res) => {
             board,
             players,
         };
-        console.log('Result:', result);
+        // console.log('Result:', result);
 
         res.json(result);
     } catch (error) {
         console.error('Error fetching team info:', error.message || error);
         res.status(500).json({ error: 'Failed to fetch team info' });
+    }
+});
+app.get('/user/loggedin/board/:board_name', async (req, res) => {
+    try {
+        const result = await db.any('SELECT * FROM get_board_info($1)', [req.params.board_name]);
+        res.json(result);
+    } catch (error) {
+        console.error('Error fetching board info:', error.message || error);
+        res.status(500).json({ error: 'Failed to fetch board info' });
+    }
+});
+
+app.get('/user/loggedin/coach/:coach_name', async (req, res) => {
+    console.log('Fetching coach info');
+    try {
+        const result = await db.any('SELECT * FROM get_coach_info($1)', [req.params.coach_name]);
+        res.json(result);
+        console.log(result);
+    } catch (error) {
+        console.error('Error fetching coach info:', error.message || error);
+        res.status(500).json({ error: 'Failed to fetch coach info' });
+    }
+});
+
+app.get('/user/loggedin/stadium/:stadium_id', async (req, res) => {
+    try {
+        const stadiumResult = await db.any('SELECT * FROM get_stadium_info($1)', [
+            req.params.stadium_id,
+        ]);
+        const matchResult = await db.any('SELECT * FROM get_matches_by_stadium($1)', [
+            req.params.stadium_id,
+        ]);
+        res.json({ stadium: stadiumResult, matches: matchResult });
+    } catch (error) {
+        console.error('Error fetching stadium info:', error.message || error);
+        res.status(500).json({ error: 'Failed to fetch stadium info' });
     }
 });
 app.get('/user/loggedin/profile', (req, res) => {
