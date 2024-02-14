@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 const Coachinfo = () => {
-  const [coachInfo, setCoachInfo] = useState(null);
+  const [coachinfo, setCoachInfo] = useState(null);
   const { coach_name } = useParams();
 
   useEffect(() => {
@@ -13,8 +13,8 @@ const Coachinfo = () => {
         const response = await axios.get(
           `http://localhost:3000/user/loggedin/coach/${coach_name}`
         );
-        console.log(response.data);
-        setCoachInfo(response.data);
+        console.log(response.data[0]);
+        setCoachInfo(response.data[0]);
       } catch (error) {
         console.error("Failed to fetch coach info:", error);
       }
@@ -23,7 +23,7 @@ const Coachinfo = () => {
     fetchCoachInfo();
   }, [coach_name]);
 
-  if (!coachInfo) {
+  if (!coachinfo) {
     return <div>Loading...</div>;
   }
 
@@ -31,33 +31,33 @@ const Coachinfo = () => {
     <div className="team-info-container">
       <div className="team-name-container">
         <img
-          src={`http://localhost:3000/coachimages/${coachInfo.coach_name}.jpeg`}
-          alt={coachInfo.coach_name}
+          src={`http://localhost:3000/coachimages/${coachinfo.coach_name}.jpeg`}
+          alt={coachinfo.coach_name}
         />
-        <h1>{coachInfo.coach_name}</h1>
+        <h1>{coachinfo.coach_name}</h1>
       </div>
       <div className="table-container">
         <table>
           <tbody>
             <tr>
               <td>Country</td>
-              <td>{coachInfo.coach_country_name}</td>
+              <td>{coachinfo.coach_country_name}</td>
             </tr>
             <tr>
               <td>Coaching Team</td>
-              <td>{coachInfo.coaching_team}</td>
+              <td>{coachinfo.coaching_team}</td>
             </tr>
             <tr>
               <td>Matches Won</td>
-              <td>{coachInfo.num_of_matches_won}</td>
+              <td>{coachinfo.num_of_matches_won}</td>
             </tr>
             <tr>
               <td>Success Percentage</td>
-              <td>{coachInfo.success_percentage}</td>
+              <td>{coachinfo.success_percentage}</td>
             </tr>
             <tr>
               <td>Age</td>
-              <td>{coachInfo.coach_age}</td>
+              <td>{coachinfo.coach_age}</td>
             </tr>
           </tbody>
         </table>

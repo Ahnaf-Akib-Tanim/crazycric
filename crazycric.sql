@@ -10,9 +10,10 @@ image text not null,
 CONSTRAINT cricket_board_pk PRIMARY key(board_name),
 FOREIGN key(team_name) REFERENCES national_team(team_name)
 );
-DELETE FROM "cricket_board"
-WHERE "board_name" = 'ACB';
-insert into cricket_board values('BCB','Najmul Hossain Papon','Bangladesh','Dhaka','Bangladesh Cricket Board ','D:\Buet\Crazycric-project\cricketboard_images\bd.png');
+alter table cricket_board drop CONSTRAINT 
+UPDATE cricket_board
+SET image = REPLACE(image, 'D:\Buet\Crazycric-project\cricketboard_images\', 'http://localhost:3000/cricketboard_images/');
+insert into cricket_board values('BCB','Najmul Hossain Papon','Bangladesh','Dhaka','Bangladesh Cricket Board ','http://localhost:3000/cricketboard_images/bd.png');
 insert into cricket_board values('BCCI','Rojer Binny','India','Mumbai','Board of Control for Cricket in India','D:\Buet\Crazycric-project\cricketboard_images\ind.png');
 insert into cricket_board values('ECB','Richard Thompson','England','London','England and Wales Cricket Board','D:\Buet\Crazycric-project\cricketboard_images\eng.png');
 insert into cricket_board values('CA','Mike Baird','Australia','Melbourne','Cricket Australia','D:\Buet\Crazycric-project\cricketboard_images\aus.png');
@@ -2428,7 +2429,7 @@ create TABLE national_team
 		  CONSTRAINT fk_national_team_coach FOREIGN KEY (current_coach) REFERENCES coaches(coach_name),
     CONSTRAINT fk_national_team_board FOREIGN KEY (board_name) REFERENCES cricket_board(board_name)
 );
-
+alter table national_team add CONSTRAINT fk_national_team_coach FOREIGN KEY (current_coach) REFERENCES coaches(coach_name),
 INSERT INTO national_team VALUES
 ('Bangladesh',
     'BCB',
@@ -2454,7 +2455,14 @@ INSERT INTO national_team VALUES
     '1', -- most_100s
     '2' -- most_wickets
 );
-		insert into national_team values
+ALTER TABLE national_team
+DROP CONSTRAINT fk_national_team_coach;
+
+		ALTER TABLE national_team
+ADD CONSTRAINT fk_national_team_coach
+FOREIGN KEY (current_coach) REFERENCES coaches(coach_name);
+		delete from national_team where team_name='India'
+				insert into national_team values
 ('India',
     'BCCI',
     'Ravi Shastri', -- You can replace this with the current coach's name
@@ -2479,8 +2487,8 @@ INSERT INTO national_team VALUES
     '40',  -- Replace with Virat Kohli's player ID for most centuries
     '32'   -- Replace with Ravichandran Ashwin's player ID for most wickets overall
 );
--- Insert data for England
 
+-- Insert data for England
 insert into national_team values
 ('England',
     'ECB',
@@ -2506,6 +2514,7 @@ insert into national_team values
     '35',  -- Replace with Joe Root's player ID for most centuries
     '169'   -- Replace with Chris Woakes's player ID for most wickets overall
 );
+
 insert into national_team values
 ('West Indies',
     'CWI',
@@ -2531,6 +2540,7 @@ insert into national_team values
     '20',  -- Replace with Shai Hope's player ID for most centuries
     '100'   -- Replace with Dwayne Bravo's player ID for most wickets overall
 );
+
 insert into national_team values
 ('Pakistan',
     'PCB',
@@ -2556,7 +2566,14 @@ insert into national_team values
     '14',  -- Replace with Babar Azam's player ID for most centuries
     '135'   -- Replace with Faheem Ashraf's player ID for most wickets overall
 );
-
+update national_team set  most_runs_test='PAK01' where team_name='Pakistan',
+update national_team set most_wickets_test ='PAK17' where team_name='Pakistan'
+update national_team set most_runs_odi ='PAK04' where team_name='Pakistan'
+update national_team set most_wickets_odi ='PAK15' where team_name='Pakistan'
+update national_team set  most_runs_t20 ='PAK02' where team_name='Pakistan'
+update national_team set most_wickets_t20 ='PAK14' where team_name='Pakistan'
+update national_team set most_100s ='PAK01' where team_name='Pakistan'
+update national_team set most_wickets ='PAK12' where team_name='Pakistan'
 insert into national_team values
 ('Afghanistan',
     'ACB',
@@ -2608,6 +2625,7 @@ insert into national_team values
     '22',  -- Replace with Kane Williamson's player ID for most centuries
     '77'   -- Replace with Mitchell Santner's player ID for most wickets overall
 );
+
 insert into national_team values
 ('Australia',
     'CA',
@@ -2633,6 +2651,7 @@ insert into national_team values
     '29',  -- Replace with Steve Smith's player ID for most centuries
     '89'   -- Replace with Mitchell Marsh's player ID for most wickets overall
 );
+
 insert into national_team values
 ('South Africa',
     'CSA',
@@ -2658,6 +2677,14 @@ insert into national_team values
     '21',  -- Replace with Faf du Plessis's player ID for most centuries
     '121'   -- Replace with Imran Tahir's player ID for most wickets overall
 );
+update national_team set  most_runs_test='SL01' where team_name='Sri Lanka',
+update national_team set most_wickets_test ='SL05' where team_name='Sri Lanka'
+update national_team set most_runs_odi ='SA03' where team_name='Sri Lanka'
+update national_team set most_wickets_odi ='SL05' where team_name='Sri Lanka'
+update national_team set  most_runs_t20 ='SA04' where team_name='Sri Lanka'
+update national_team set most_wickets_t20 ='SL05' where team_name='Sri Lanka'
+update national_team set most_wickets ='SL01' where team_name='Sri Lanka'
+update national_team set most_100s ='SL05' where team_name='Sri Lanka'
 insert into national_team values
 ('Sri Lanka',
     'SLC',
@@ -2852,6 +2879,7 @@ CREATE TABLE coaches (
     coach_age INT NOT NULL,
     FOREIGN KEY (coaching_team) REFERENCES national_team(team_name)
 );
+
 INSERT INTO coaches VALUES
 ('Chandika Hathurusingha', 'Sri Lanka', 'Bangladesh', 'http://localhost:3000/coachimages/Chandika%20Hathurusingha.jpeg', 140, 60.0, 53),
 ('Ravi Shastri', 'India', 'India', 'http://localhost:3000/coachimages/Ravi%20Shastri.jpeg', 40, 70.0, 59),
@@ -2944,8 +2972,12 @@ CREATE TABLE match_summary (
     CONSTRAINT ck_match_match_won_by CHECK (match_won_by IN (team1, team2)),
     CONSTRAINT ck_margin_of_win CHECK (margin_of_win IS NULL OR match_won_by IS NOT NULL)
 );
+alter table match_summary drop CONSTRAINT fk_match_man_of_the_match 
+update  match_summary set man_of_the_match='Mehidy Hasan Miraz' where match_id='m1'
+insert into match_summary values 
+('m1','s21','st10','Mehidy Hasan Miraz','2022-12-07','Bangladesh','India','Bangladesh','Bangladesh','5 runs','ODI','ump13','ump14','ump15');
 insert into match_summary values
-('m1','s21','st10','BA09','2022-12-07','Bangladesh','India','Bangladesh','Bangladesh','5 runs','ODI','ump13','ump14','ump15');
+('m101','s2','st10','BA09','2022-12-07','Bangladesh','India','Bangladesh','Bangladesh','5 runs','ODI','ump13','ump14','ump15');
 drop table if exists scorecard1;
 CREATE TABLE scorecard1 (
     match_id VARCHAR,
@@ -2978,7 +3010,7 @@ CREATE TABLE scorecard3 (
     FOREIGN KEY (match_id) REFERENCES match_summary(match_id)
 );
 drop table if exists scorecard3;
-CREATE TABLE scorecard4 (
+CREATE TABLE scorecard4  (
     match_id VARCHAR PRIMARY KEY,
     bowlers VARCHAR[],
     overs_bowled VARCHAR[],
@@ -2987,15 +3019,104 @@ CREATE TABLE scorecard4 (
     economy VARCHAR[],
     FOREIGN KEY (match_id) REFERENCES match_summary(match_id)
 );
-
+delete from scorecard4 where match_id='m1'
 insert into scorecard1 values
-('m1',ARRAY['BA14','BA13','BA17','BA02','BA03','BA04','BA08','BA09','BA10'],ARRAY['11(9)','7(23)','21(35)','8(20)','12(24)','77(96)','0(1)','100(83)','18(11)'],ARRAY['lbw','Bowled','Bowled','Caught','Caught','caught','bowled','not out','not out'],ARRAY['IN13','IN13','IN14','IN10','IN10','IN14','IN10','','']);
+('m1',ARRAY['Anamul Haque','Liton Das','Najmul Hossain Shanto','Shakib Al Hasan','Mushfiqur Rahim','Mahmudullah','Afif Hossain','Mehidy Hasan Miraz','Taskin Ahmed'],ARRAY['11(9)','7(23)','21(35)','8(20)','12(24)','77(96)','0(1)','100(83)','18(11)'],ARRAY['lbw','Bowled','Bowled','Caught','Caught','caught','bowled','not out','not out'],ARRAY['Mohammed Shami','Mohammed Shami','Bhuvneshwar Kumar','Ravindra Jadeja','Ravindra Jadeja','Bhuvneshwar Kumar','Ravindra Jadeja','','']);
 
 insert into scorecard2 values
-('m1',ARRAY['IN02','IN01','IN04','IN06','IN07','IN10','IN08','IN15','IN13','IN14','IN13'],Array['5(6)','8(10)','82(102)','11(19)','14(28)','56(56)','7(23)','11(18)','51(28)','2(12)','0(0)'],Array['Bowled','Caught','Caught','Caught','lbw','Caught','Caught','bowled','not out','bowled','not out'],Array['BA10','BA05','BA09','BA02','BA09','BA10','BA02','BA10','','BA04','']);
+('m1',ARRAY['IN02','Virat Kohli','Shikhar Dhawan','KL Rahul','Rishabh Pant','Ravindra Jadeja','Hardik Pandya','Ravichandran Ashwin','Mohammed Shami','Bhuvneshwar Kumar','Mohammed Shami'],Array['5(6)','8(10)','82(102)','11(19)','14(28)','56(56)','7(23)','11(18)','51(28)','2(12)','0(0)'],Array['Bowled','Caught','Caught','Caught','lbw','Caught','Caught','bowled','not out','bowled','not out'],Array['Taskin Ahmed','Mustafizur Rahman','Mehidy Hasan Miraz','Shakib Al Hasan','Mehidy Hasan Miraz','Taskin Ahmed','Shakib Al Hasan','Taskin Ahmed','','Mahmudullah','']);
 
 insert into scorecard3 VALUES
-('m1',ARRAY['IN15','IN13','IN08','IN14','IN10',''],ARRAY['3','10','10','10','10','7'],ARRAY['50','60','50','60','50',''],ARRAY['12','73','47','58','37','40'],ARRAY['4','7.3','4.7','5.8','3.7','5.7']);
+('m1',ARRAY['Ravichandran Ashwin','Mohammed Shami','Hardik Pandya','Bhuvneshwar Kumar','Ravindra Jadeja',''],ARRAY['3','10','10','10','10','7'],ARRAY['50','60','50','60','50',''],ARRAY['12','73','47','58','37','40'],ARRAY['4','7.3','4.7','5.8','3.7','5.7']);
 
 insert into scorecard4 VALUES
-('m1',ARRAY['BA09','BA10','BA05','BA08','BA02','BA04'],ARRAY['6.1','10','10','10','10','3.5'],ARRAY['46','45','43','54','39','33'],ARRAY['12','73','47','58','37','40'],ARRAY['2','3','1','0','2','1']);
+('m1',ARRAY['Mehidy Hasan Miraz','Taskin Ahmed','Mustafizur Rahman','Afif Hossain','Shakib Al Hasan','Mahmudullah'],ARRAY['6.1','10','10','10','10','3.5'],ARRAY['46','45','43','54','39','33'],ARRAY['12','73','47','58','37','40'],ARRAY['2','3','1','0','2','1']);
+
+CREATE OR REPLACE FUNCTION get_board_info(p_board_name VARCHAR)
+RETURNS TABLE (
+    board_name VARCHAR,
+    board_president VARCHAR,
+    team_name VARCHAR,
+    located VARCHAR,
+    full_form VARCHAR,
+    image TEXT
+) AS $$
+BEGIN
+    RETURN QUERY SELECT * FROM cricket_board WHERE cricket_board.board_name = p_board_name;
+END; $$ LANGUAGE plpgsql;
+------yet to fix
+CREATE OR REPLACE FUNCTION get_coach_info(p_coach_name VARCHAR)
+RETURNS TABLE (
+    coach_name VARCHAR,
+    coach_country_name VARCHAR,
+    coaching_team VARCHAR,
+    image_path VARCHAR,
+    num_of_matches_won INT,
+    success_percentage FLOAT,
+    coach_age INT
+) AS $$
+BEGIN
+    RETURN QUERY SELECT 
+        c.coach_name, 
+        c.coach_country_name, 
+        c.coaching_team, 
+        c.image_path, 
+        c.num_of_matches_won, 
+        c.success_percentage, 
+        c.coach_age 
+    FROM coaches c WHERE c.coach_name = p_coach_name;
+END; $$ LANGUAGE plpgsql;
+-------yet to fix above
+CREATE OR REPLACE FUNCTION get_stadium_info(p_stadium_id VARCHAR)
+RETURNS TABLE (
+    stadium_id VARCHAR,
+    stadium_name VARCHAR,
+    capacity INT,
+    matches_hosted INT,
+    country_name VARCHAR,
+    image_path VARCHAR
+) AS $$
+BEGIN
+    RETURN QUERY SELECT * FROM stadiums WHERE stadiums.stadium_id = p_stadium_id;
+END; $$ LANGUAGE plpgsql;
+
+DROP FUNCTION IF EXISTS get_matches_by_stadium(VARCHAR);
+CREATE OR REPLACE FUNCTION get_matches_by_stadium(p_stadium_id VARCHAR)
+RETURNS TABLE (
+    team1_name VARCHAR,
+    team2_name VARCHAR,
+    match_date_info DATE,
+    match_id_info VARCHAR
+) AS $$
+BEGIN
+    RETURN QUERY SELECT team1 AS team1_name, team2 AS team2_name, match_date AS match_date_info, match_id AS match_id_info 
+    FROM match_summary
+    WHERE stadium_id = p_stadium_id;
+END; $$ LANGUAGE plpgsql;
+drop function get_scorecard
+CREATE OR REPLACE FUNCTION get_scorecard(match_id_param VARCHAR)
+RETURNS TABLE (
+  match_summary_record match_summary,
+  scorecard1_record scorecard1[],
+  scorecard2_record scorecard2[],
+  scorecard3_record scorecard3[],
+  scorecard4_record scorecard4[],
+  stadium_name VARCHAR,
+  umpire_names VARCHAR
+) AS $$
+BEGIN
+  SELECT * INTO match_summary_record FROM match_summary WHERE match_id = match_id_param;
+  SELECT ARRAY(SELECT ROW(*) FROM scorecard1 WHERE match_id = match_id_param) INTO scorecard1_record;
+  SELECT ARRAY(SELECT ROW(*) FROM scorecard2 WHERE match_id = match_id_param) INTO scorecard2_record;
+  SELECT ARRAY(SELECT ROW(*) FROM scorecard3 WHERE match_id = match_id_param) INTO scorecard3_record;
+  SELECT ARRAY(SELECT ROW(*) FROM scorecard4 WHERE match_id = match_id_param) INTO scorecard4_record;
+  
+  SELECT stadium_name INTO stadium_name FROM stadiums WHERE stadium_id = match_summary_record.stadium_id;
+  
+  SELECT umpire_name FROM umpire_info WHERE umpire_id IN (match_summary_record.umpire_id1, match_summary_record.umpire_id2, match_summary_record.umpire_id3) INTO umpire_names;
+  
+  RETURN;
+END; $$ LANGUAGE plpgsql;
+
+
+

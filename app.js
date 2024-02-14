@@ -77,15 +77,6 @@ app.use(
     '/country2images',
     express.static(path.join(__dirname, './react/vite-project/public/country2')),
 );
-// Configure multer
-/* const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, staticFilePath);
-    },
-    filename: (req, file, cb) => {
-        cb(null, req.body.userId + path.extname(file.originalname));
-    },
-}); */
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, path.join(staticFilePath, 'profileimages'));
@@ -123,10 +114,8 @@ app.post('/user', async (req, res) => {
 });
 app.post('/user/signup', upload.single('image'), async (req, res) => {
     const { userId, password, name, country, team, player } = req.body;
-    // const image = req.file ? req.file.path : null;
     const image = req.file ? `/profileimages/${req.file.filename}` : null;
     try {
-        // Check if user ID already exists
         const existingUser = await db.oneOrNone('SELECT * FROM Users WHERE userid = $1', [userId]);
 
         if (existingUser) {
@@ -191,11 +180,8 @@ app.post('/user/loggedin/players', async (req, res) => {
 });
 app.get('/user/loggedin/playerinfo/:player_id', (req, res) => {
     const { player_id } = req.params;
-    // console.log('Player ID:', player_id);
-
     db.one('SELECT * FROM player_info WHERE player_id = $1', player_id)
         .then((playerData) => {
-            // console.log('Player Data:', playerData);
             res.json(playerData);
         })
         .catch((error) => {
@@ -274,14 +260,58 @@ app.get('/user/loggedin/teaminfo/:team_name', async (req, res) => {
 });
 app.get('/user/loggedin/board/:board_name', async (req, res) => {
     try {
-        const result = await db.any('SELECT * FROM get_board_info($1)', [req.params.board_name]);
-        res.json(result);
+        const boardInfo = await db.any('SELECT * FROM get_board_info($1)', [req.params.board_name]);
+        const players = await db.any(
+            'SELECT * FROM player_info WHERE team_name IN (SELECT team_name FROM cricket_board WHERE board_name = $1)',
+            [req.params.board_name],
+        );
+        res.json({ boardInfo: boardInfo[0], players });
     } catch (error) {
-        console.error('Error fetching board info:', error.message || error);
-        res.status(500).json({ error: 'Failed to fetch board info' });
+        console.error('Error fetching board and player info:', error.message || error);
+        res.status(500).json({ error: 'Failed to fetch board and player info' });
     }
 });
+app.get('/user/loggedin/scorecard/:match_id', async (req, res) => {
+    try {
+        const matchId = req.params.match_id;
+        console.log('Fetching scorecard for match:', matchId);
+        const matchSummary = await db.any('SELECT * FROM match_summary WHERE match_id = $1', [
+            matchId,
+        ]);
+        console.log('Match Summary:', matchSummary);
 
+        if (matchSummary.length === 0) {
+            return res.status(404).json({ error: 'Match not found' });
+        }
+        const scorecard1 = await db.any('SELECT * FROM scorecard1 WHERE match_id = $1', [matchId]);
+        const scorecard2 = await db.any('SELECT * FROM scorecard2 WHERE match_id = $1', [matchId]);
+        const scorecard3 = await db.any('SELECT * FROM scorecard3 WHERE match_id = $1', [matchId]);
+        const scorecard4 = await db.any('SELECT * FROM scorecard4 WHERE match_id = $1', [matchId]);
+        console.log('Scorecard1:', scorecard1);
+        const stadiumName = await db.any(
+            'SELECT stadium_name FROM stadiums WHERE stadium_id = $1',
+            [matchSummary[0].stadium_id],
+        );
+        console.log('Stadium Name:', stadiumName);
+        const umpireNames = await db.any(
+            'SELECT umpire_name FROM umpire_info WHERE umpire_id IN ($1, $2, $3)',
+            [matchSummary[0].umpire_id1, matchSummary[0].umpire_id2, matchSummary[0].umpire_id3],
+        );
+
+        res.json({
+            matchSummary,
+            scorecard1,
+            scorecard2,
+            scorecard3,
+            scorecard4,
+            stadiumName,
+            umpireNames,
+        });
+    } catch (error) {
+        console.error('Error fetching scorecard:', error.message || error);
+        res.status(500).json({ error: 'Failed to fetch scorecard' });
+    }
+});
 app.get('/user/loggedin/coach/:coach_name', async (req, res) => {
     console.log('Fetching coach info');
     try {

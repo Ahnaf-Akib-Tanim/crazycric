@@ -10,6 +10,7 @@ import Loginpage from "./Loginpage";
 import Playerinfo from "./Playerinfo";
 import Players from "./Players";
 import Profile from "./Profile";
+import Scorecard from "./Scorecard";
 import StadiumInfo from "./Stadiuminfo";
 import Teaminfo from "./Teaminfo";
 import Userloginpage from "./Userloginpage";
@@ -36,6 +37,10 @@ const App = () => {
         <Route
           path="/user/loggedin/coach/:coach_name"
           element={<Coachinfo />}
+        />
+        <Route
+          path="/user/loggedin/scorecard/:match_id"
+          element={<Scorecard />}
         />
         <Route
           path="/user/loggedin/stadium/:stadium_id"
