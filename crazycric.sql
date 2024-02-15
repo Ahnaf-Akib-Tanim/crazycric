@@ -2487,13 +2487,22 @@ FOREIGN KEY (current_coach) REFERENCES coaches(coach_name);
     '40',  -- Replace with Virat Kohli's player ID for most centuries
     '32'   -- Replace with Ravichandran Ashwin's player ID for most wickets overall
 );
-
+update national_team set icc_test_ranking=2 where team_name='India';
+update national_team set icc_test_ranking=5 where team_name='New Zealand';
+update national_team set icc_test_ranking=3 where team_name='England';
+update national_team set icc_test_ranking=1 where team_name='Australia';
+update national_team set icc_test_ranking=6 where team_name='Pakistan';
+update national_team set icc_test_ranking=4 where team_name='South Africa';
+update national_team set icc_test_ranking=7 where team_name='West Indies';
+update national_team set icc_test_ranking=8 where team_name='Sri Lanka';
+update national_team set icc_test_ranking=9 where team_name='Bangladesh';
+update national_team set icc_test_ranking=10 where team_name='Afghanistan';
 -- Insert data for England
 insert into national_team values
 ('England',
     'ECB',
     'Chris Silverwood', -- You can replace this with the current coach's name
-    '163', -- Joe Root's player ID for most runs in Test
+    '163', -- Joe Root's player ID for most runs in odi
     '171', -- Stuart Broad's player ID for most wickets in Test
     '167', -- Jason Roy's player ID for most runs in ODI
     '174', -- Adil Rashid's player ID for most wickets in ODI
@@ -2592,14 +2601,14 @@ insert into national_team values
     45,  -- Replace with the total T20 matches won
     12, -- Replace with the total Test matches played
     2, -- Replace with the total Test matches won
-    10,   -- Replace with the ICC T20 ranking
+    9,   -- Replace with the ICC T20 ranking
     12,   -- Replace with the ICC Test ranking
     8,   -- Replace with the ICC ODI ranking
     'st33', -- Replace with the home ground
     '5',  -- Replace with Asghar Afghan's player ID for most centuries
     '159'   -- Replace with Karim Janat's player ID for most wickets overall
 );
-
+update national_team set icc_t20_ranking=9 where team_name='Afghanistan'
 insert into national_team values
 ('New Zealand',
     'NZC',
@@ -3020,6 +3029,9 @@ CREATE TABLE scorecard4  (
     FOREIGN KEY (match_id) REFERENCES match_summary(match_id)
 );
 delete from scorecard4 where match_id='m1'
+delete from scorecard3 where match_id='m1'
+delete from scorecard2 where match_id='m1'
+delete from scorecard1 where match_id='m1'
 insert into scorecard1 values
 ('m1',ARRAY['Anamul Haque','Liton Das','Najmul Hossain Shanto','Shakib Al Hasan','Mushfiqur Rahim','Mahmudullah','Afif Hossain','Mehidy Hasan Miraz','Taskin Ahmed'],ARRAY['11(9)','7(23)','21(35)','8(20)','12(24)','77(96)','0(1)','100(83)','18(11)'],ARRAY['lbw','Bowled','Bowled','Caught','Caught','caught','bowled','not out','not out'],ARRAY['Mohammed Shami','Mohammed Shami','Bhuvneshwar Kumar','Ravindra Jadeja','Ravindra Jadeja','Bhuvneshwar Kumar','Ravindra Jadeja','','']);
 
