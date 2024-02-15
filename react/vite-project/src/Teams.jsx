@@ -1,22 +1,52 @@
 import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./Teams.css";
+
 const Teams = () => {
   const [teamName, setTeamName] = useState("");
   const [boardName, setBoardName] = useState([]);
-  const [iccRanking, setIccRanking] = useState([]);
+  const [iccRanking, setIccRanking] = useState({ rank: "", type: "" });
   const [matchesWonAgainst, setMatchesWonAgainst] = useState("");
   const [teams, setTeams] = useState([]);
   const [searched, setSearched] = useState(false);
+  const [isSearchBarUsed, setIsSearchBarUsed] = useState(false);
+  const [isCheckboxUsed, setIsCheckboxUsed] = useState(false);
 
-  const boardNames = ["BCB", "BCCI", "ECB", "CWI", "PCB", "CA", "NZC", "CSA", "ACB", "SLC"];
+  const boardNames = [
+    "BCB",
+    "BCCI",
+    "ECB",
+    "CWI",
+    "PCB",
+    "CA",
+    "NZC",
+    "CSA",
+    "ACB",
+    "SLC",
+  ];
   const iccRankings = ["ODI", "T20", "Test"];
-  const matchesWonAgainstTeams = ["Bangladesh", "India", "Pakistan", "Australia", "South Africa", "West Indies", "Srilanka", "New Zealand", "Afghanistan", "England"];
+  const matchesWonAgainstTeams = [
+    "Bangladesh",
+    "India",
+    "Pakistan",
+    "Australia",
+    "South Africa",
+    "West Indies",
+    "Srilanka",
+    "New Zealand",
+    "Afghanistan",
+    "England",
+  ];
 
   const handleSearch = () => {
+    setIsSearchBarUsed(true);
     console.log(teamName, boardName, iccRanking, matchesWonAgainst);
-    const data = { teamName, boardName, iccRanking, matchesWonAgainst };
+    const data = {
+      teamName,
+      boardName,
+      iccRanking: { rank: iccRanking.rank, type: iccRanking.type },
+      matchesWonAgainst,
+    };
 
     fetch("http://localhost:3000/user/loggedin/teams", {
       method: "POST",
@@ -27,16 +57,35 @@ const Teams = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         setTeams(data);
         setSearched(true);
+        resetFields();
       })
       .catch((error) => {
         console.error("Error:", error);
       });
   };
 
+  const handleCheckboxChange = (name, isChecked) => {
+    setIsCheckboxUsed(isChecked);
+    setBoardName((prev) =>
+      prev.includes(name) ? prev.filter((n) => n !== name) : [...prev, name]
+    );
+  };
+
+  const resetFields = () => {
+    setTeamName("");
+    setBoardName([]);
+    setIccRanking({ rank: "", type: "" });
+    setMatchesWonAgainst("");
+    setIsSearchBarUsed(false);
+    setIsCheckboxUsed(false);
+  };
+
   return (
-    <div className="Teams" 
+    <div
+      className="Teams"
       style={{ backgroundColor: "#AFABE3", minheight: "100vh" }}
     >
       <Row className="justify-content-md-center">
@@ -46,6 +95,7 @@ const Teams = () => {
             placeholder="Team name"
             value={teamName}
             onChange={(e) => setTeamName(e.target.value)}
+            disabled={isCheckboxUsed}
           />
         </Col>
         <Col md="auto">
@@ -58,14 +108,11 @@ const Teams = () => {
               id={`board-${index}`}
               label={name}
               checked={boardName.includes(name)}
-              onChange={() =>
-                setBoardName((prev) =>
-                  prev.includes(name) ? prev.filter(=> n !== name) : [...prev, name]
-                )
-              }
+              onChange={(e) => handleCheckboxChange(name, e.target.checked)}
             />
           ))}
         </Col>
+
         <Col md="auto">
           <Form.Label>ICC Ranking</Form.Label>
           {iccRankings.map((rank, index) => (
@@ -75,8 +122,10 @@ const Teams = () => {
               type="radio"
               id={`rank-${index}`}
               label={rank}
-              checked={iccRanking === rank}
-              onChange={() => setIccRanking(rank)}
+              checked={iccRanking.type === rank}
+              onChange={() =>
+                setIccRanking({ rank: iccRanking.rank, type: rank })
+              }
             />
           ))}
         </Col>
@@ -112,22 +161,34 @@ const Teams = () => {
           }}
         >
           {teams.map((team, index) => (
-            <div key={team.team_id} style={{ width: "150px", margin: "10px", textAlign: "center" }}>
+            <div
+              key={team}
+              style={{ width: "150px", margin: "20px", textAlign: "center" }}
+            >
               <img
-                src={team.team_image_path}
-                alt={team.team_name}
+                src={`http://localhost:3000/country2images/${team}.png`}
+                alt={team}
                 className="image-size"
                 style={{
-                  width: "120px",
-                  height: "120px",
+                  width: "100px",
+                  height: "100px",
                   borderRadius: "50%",
+                  position: "relative",
+                  top: "-400px",
+                  left: "00px",
                 }}
               />
               <Link
-                to={`/user/loggedin/Teaminfo/${team.team_id}`}
-                style={{ fontSize: "18px", fontFamily: "Arial, sans-serif" }}
+                to={`/user/loggedin/teaminfo/${team}`}
+                style={{
+                  fontSize: "15px",
+                  fontFamily: "Arial, sans-serif",
+                  position: "relative",
+                  top: "-400px",
+                  left: "00px",
+                }}
               >
-                {team.team_name}
+                {team}
               </Link>
             </div>
           ))}

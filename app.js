@@ -159,22 +159,50 @@ app.get('/user/loggedin', async (req, res) => {
     }
 });
 
-app.post('/user/loggedin/players', async (req, res) => {
-    const { text, team, role, battingStyle } = req.body;
+app.post('/user/loggedin/teams', async (req, res) => {
+    const { teamName, boardName, iccRanking, matchesWonAgainst } = req.body;
+    console.log('Search Criteria:', teamName, boardName, iccRanking, matchesWonAgainst);
     try {
-        const players = await db.any(
-            `SELECT player_id, player_name, team_name, player_image_path 
-            FROM player_info 
-            WHERE LOWER(player_name) LIKE LOWER($1) 
-            AND (array_length($2::varchar[], 1) IS NULL OR team_name = ANY($2::varchar[]))
-            AND (array_length($3::varchar[], 1) IS NULL OR player_role = ANY($3::varchar[]))
-            AND (array_length($4::varchar[], 1) IS NULL OR player_batting_style = ANY($4::varchar[]))`,
-            [`%${text}%`, team, role, battingStyle]
-        );
+        let query = 'SELECT team_name FROM national_team';
+        const values = [];
+        let rankingType = 'icc_odi_ranking'; // Default ranking type
 
-        res.json(players);
+        if (teamName) {
+            query += ' WHERE LOWER(team_name) LIKE LOWER($1)';
+            values.push(`%${teamName}%`);
+        }
+
+        if (boardName && boardName.length > 0) {
+            query += `${values.length > 0 ? ' AND' : ' WHERE'} board_name = ANY($${
+                values.length + 1
+            }::varchar[])`;
+            values.push(boardName);
+        }
+
+        if (iccRanking && iccRanking.rank && iccRanking.type) {
+            rankingType = `icc_${iccRanking.type.toLowerCase()}_ranking`;
+            query += `${values.length > 0 ? ' AND' : ' WHERE'} ${rankingType} = $${
+                values.length + 1
+            }`;
+            values.push(parseInt(iccRanking.rank, 10));
+        }
+
+        if (matchesWonAgainst) {
+            query += `${values.length > 0 ? ' AND' : ' WHERE'} most_matches_won_against = $${
+                values.length + 1
+            }`;
+            values.push(matchesWonAgainst);
+        }
+
+        // Order by rankingType and team_name
+        query += ` ORDER BY ${rankingType} ASC, team_name ASC`;
+
+        const teams = await db.any(query, values);
+        const teamNames = teams.map((team) => team.team_name);
+        console.log('Teams:', teamNames);
+        res.json(teamNames);
     } catch (error) {
-        console.error('Error running query:', error.message || error);
+        console.error('Error executing SQL query:', error.message || error);
         res.status(500).json({ error: 'An error occurred while processing your request.' });
     }
 });
@@ -273,6 +301,8 @@ app.get('/user/loggedin/board/:board_name', async (req, res) => {
 });
 app.get('/user/loggedin/scorecard/:match_id', async (req, res) => {
     try {
+        console.log('mathc id is ');
+        console.log(req.params.match_id);
         const matchId = req.params.match_id;
         console.log('Fetching scorecard for match:', matchId);
         const matchSummary = await db.any('SELECT * FROM match_summary WHERE match_id = $1', [
@@ -352,11 +382,7 @@ app.get('/user/loggedin/profile', (req, res) => {
         });
 });
 
-app.post('/admin', async (req, res) => {
-    // Handle '/admin' logic
-});
-
-app.post('/admin/login', async (req, res) => {
+app.post('/admin/loggedin', async (req, res) => {
     // Handle '/admin/loggedin' logic
 });
 

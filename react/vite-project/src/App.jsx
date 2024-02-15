@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 //import { Route, BrowserRouter as Router } from "react-router-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Adminlogin from "./Adminlogin";
 import Board from "./Board";
 import Coachinfo from "./Coachinfo";
 import Homepage from "./Homepage";
@@ -13,6 +14,7 @@ import Profile from "./Profile";
 import Scorecard from "./Scorecard";
 import StadiumInfo from "./Stadiuminfo";
 import Teaminfo from "./Teaminfo";
+import Teams from "./Teams";
 import Userloginpage from "./Userloginpage";
 import Usersignup from "./Usersignup";
 const App = () => {
@@ -24,6 +26,8 @@ const App = () => {
         <Route path="/user/signup" element={<Usersignup />} />
         <Route path="/user/loggedin" element={<Homepage />} />
         <Route path="/user/loggedin/players" element={<Players />} />
+        <Route path="/user/loggedin/teams" element={<Teams />} />
+        <Route path="/admin" element={<Adminlogin />} />
         <Route
           path="/user/loggedin/playerinfo/:player_id"
           element={<Playerinfo />}
