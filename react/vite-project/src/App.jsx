@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 //import { Route, BrowserRouter as Router } from "react-router-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AdminHome from "./AdminHome";
 import Adminlogin from "./Adminlogin";
 import Board from "./Board";
 import Coachinfo from "./Coachinfo";
@@ -52,6 +53,7 @@ const App = () => {
         />
         <Route path="/user/loggedin/profile" element={<Profile />} />
         <Route path="/admin" element={<adminloginpage />} />
+        <Route path="/admin/loggedin" element={<AdminHome />} />
       </Routes>
     </BrowserRouter>
   );

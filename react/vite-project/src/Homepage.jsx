@@ -598,12 +598,6 @@ const Homepage = () => {
           <Button as={Link} to="/user/loggedin/stadiums" className="nav-button">
             Stadiums
           </Button>
-          <Button as={Link} to="/user/loggedin/umpires" className="nav-button">
-            Umpires
-          </Button>
-          <Button as={Link} to="/user/loggedin/coaches" className="nav-button">
-            Coaches
-          </Button>
           <Button as={Link} to="/user/loggedin/dream11" className="nav-button">
             Dream11
           </Button>

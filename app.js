@@ -139,6 +139,25 @@ app.post('/user/signup', upload.single('image'), async (req, res) => {
         res.status(500).json({ status: 'error' });
     }
 });
+app.post('/user/loggedin/players', async (req, res) => {
+    const { text, team, role, battingStyle } = req.body;
+    try {
+        const players = await db.any(
+            `SELECT player_id, player_name, team_name, player_image_path 
+            FROM player_info 
+            WHERE LOWER(player_name) LIKE LOWER($1) 
+            AND (array_length($2::varchar[], 1) IS NULL OR team_name = ANY($2::varchar[]))
+            AND (array_length($3::varchar[], 1) IS NULL OR player_role = ANY($3::varchar[]))
+            AND (array_length($4::varchar[], 1) IS NULL OR player_batting_style = ANY($4::varchar[]))`,
+            [`%${text}%`, team, role, battingStyle]
+        );
+        console.log(players);
+        res.json(players);
+    } catch (error) {
+        console.error('Error running query:', error.message || error);
+        res.status(500).json({ error: 'An error occurred while processing your request.' });
+    }
+});
 app.get('/user/loggedin', async (req, res) => {
     try {
         const playerNames = ['Tamim Iqbal', 'Virat Kohli', 'Shakib Al Hasan', 'Babar Azam'];
@@ -383,7 +402,18 @@ app.get('/user/loggedin/profile', (req, res) => {
 });
 
 app.post('/admin/loggedin', async (req, res) => {
-    // Handle '/admin/loggedin' logic
+    const { searchQuery } = req.body;
+    console.log('Search Query:', searchQuery);
+    try {
+        const players = await db.any(
+            'SELECT * FROM player_info WHERE LOWER(player_name) LIKE LOWER($1)',
+            [`%${searchQuery}%`],
+        );
+        res.json(players);
+    } catch (error) {
+        console.error('Error fetching players:', error.message || error);
+        res.status(500).json({ error: 'Failed to fetch players' });
+    }
 });
 
 app.listen(port, () => {
