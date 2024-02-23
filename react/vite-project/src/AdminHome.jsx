@@ -81,7 +81,10 @@ function AdminHome() {
               style={{ width: "100px", height: "100px" }}
             />
             <p>{player.name}</p>
-            <Button variant="danger" onClick={() => handleDelete(player.id)}>
+            <Button
+              variant="danger"
+              onClick={() => handleDelete(player.player_id)}
+            >
               Delete
             </Button>
           </div>

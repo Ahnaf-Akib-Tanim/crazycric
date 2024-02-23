@@ -1,4 +1,4 @@
-.homepage-body {
+/* .homepage-body {
   background-color: #afabe3;
   height: 100vh;
 }
@@ -47,4 +47,115 @@
 }
 .card-title:hover {
   color: red !important;
+} */
+/* Homepage.css */
+.homepage {
+  display: flex;
+}
+
+.left-section {
+  width: 25%;
+  background-color: #b2beb5;
+  min-height: 100vh;
+}
+
+.middle-section {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  min-height: 100vh;
+}
+
+.right-section {
+  width: 25%;
+  background-color: #728fff;
+  min-height: 100vh;
+}
+.right-section {
+  width: 25%;
+  background-color: #728fff;
+  min-height: 100vh;
+}
+
+.right-section table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.right-section th,
+.right-section td {
+  border: 1px solid #000;
+  padding: 10px;
+}
+
+.right-section th {
+  font-weight: bold;
+}
+.button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  color: #ffffff;
+  background-color: #000000;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #ff0000;
+}
+.do {
+  position: relative;
+  left: -126px;
+  top: -60px;
+}
+.doit {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.button-group {
+  margin-bottom: 20px;
+  margin-top: -70px;
+}
+
+.middle-section {
+  width: 50%;
+  min-height: 100vh;
+}
+
+.player-container {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  position: relative;
+  top: -200px;
+  left: -20px;
+  scrollbar-width: none;
+}
+
+.player-box {
+  flex-grow: 1;
+  display: flex;
+  gap: 20px;
+}
+
+.player-item {
+  flex: 0 0 auto;
+  margin-right: 10px;
+}
+
+.player-image {
+  border-radius: 50%;
+}
+
+.scroll-button {
+  margin-left: 10px;
+}
+.user-image {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
 }

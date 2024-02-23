@@ -1,0 +1,43 @@
+.dream11-container {
+  display: flex;
+  min-height: 100vh;
+  height: auto;
+}
+
+.left-side,
+.right-side {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ccc;
+  min-height: 100vh;
+  height: auto;
+  overflow: auto;
+}
+
+.left-side {
+  background-color: #afabe3;
+}
+
+.right-side {
+  background-color: #728fff;
+}
+
+.player-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.player-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.delete-button {
+  margin-left: 20px; /* Push the button to the right */
+}
+.gotit {
+  margin-left: 20px;
+}

@@ -1,9 +1,14 @@
+// export default Players;
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Players.css";
 const Players = () => {
+  const [bowlingStyle, setBowlingStyle] = useState([]);
+  const [showBowlingStyles, setShowBowlingStyles] = useState(false);
+  const [coach, setcoach] = useState([]);
+  const [showcoach, setshowcoach] = useState(false);
   const [text, setText] = useState("");
   const [team, setTeam] = useState([]);
   const [role, setRole] = useState([]);
@@ -13,6 +18,8 @@ const Players = () => {
   const [showStyles, setShowStyles] = useState(false);
   const [players, setPlayers] = useState([]);
   const [searched, setSearched] = useState(false);
+  const [filterMostHundreds, setFilterMostHundreds] = useState(false);
+  const [filtermost5wickets, setfiltermost5wickets] = useState(false);
   const teams = [
     "Bangladesh",
     "India",
@@ -25,13 +32,47 @@ const Players = () => {
     "West Indies",
     "England",
   ];
+  const bowlingStyles = [
+    "Left Arm Fast-Medium",
+    "Right Arm Fast-Medium",
+    "Right Arm Offbreak",
+    "Right Arm Off Spin",
+    "Left Arm Leg Spin",
+    "Right Arm Legbreak",
+    "Left Arm Orthodox",
+    "Right Arm Medium",
+    "Right Arm Leg Spin",
+    "Right Arm Fast",
+    "Left Arm Fast",
+  ];
+  const coaches = [
+    "Chandika Hathurusingha",
+    "Ravi Shastri",
+    "Justin Langer",
+    "Mickey Arthur",
+    "Gary Stead",
+    "Misbah-ul-Haq",
+    "Phil Simmons",
+    "Lalchand Rajput",
+    "Chris Silverwood",
+    "Brendon McCullum",
+  ];
   const roles = ["Batsman", "Bowler", "Wk", "All-Rounder"];
   const styles = ["Left-Handed", "Right-Handed"];
 
   const handleSearch = () => {
-    console.log(text, team, role, battingStyle);
-
-    const data = { text, team, role, battingStyle };
+    console.log(text, team, role, battingStyle, bowlingStyle, coach);
+    setPlayers([]);
+    const data = {
+      text,
+      team,
+      role,
+      battingStyle,
+      bowlingStyle,
+      coach,
+      filterMostHundreds,
+      filtermost5wickets,
+    };
 
     fetch("http://localhost:3000/user/loggedin/players", {
       method: "POST",
@@ -54,11 +95,22 @@ const Players = () => {
   return (
     <div
       className="Players"
-      style={{ backgroundColor: "#AFABE3", minheight: "100vh" }}
+      style={{
+        backgroundColor: "#AFABE3",
+        minheight: "100vh",
+        padding: "10px",
+      }}
     >
-      <Row className="justify-content-md-center">
+      <Row className="justify-content-md-center custom-row">
         <Col md="auto">
           <Form.Control
+            className="custom-input"
+            style={{
+              width: "200px",
+              margin: "10px",
+              textAlign: "center",
+              fontSize: "14px",
+            }}
             type="text"
             placeholder="Player name"
             value={text}
@@ -75,6 +127,7 @@ const Players = () => {
           {showTeams &&
             teams.map((teamName, index) => (
               <Form.Check
+                className="custom-checkbox"
                 key={`team-${index}`}
                 custom
                 type="checkbox"
@@ -101,6 +154,7 @@ const Players = () => {
           {showRoles &&
             roles.map((roleName, index) => (
               <Form.Check
+                className="custom-checkbox"
                 key={`role-${index}`}
                 custom
                 type="checkbox"
@@ -120,6 +174,62 @@ const Players = () => {
         <Col md="auto">
           <Form.Label
             className="custom-label"
+            onClick={() => setShowBowlingStyles(!showBowlingStyles)}
+          >
+            Bowling Style
+          </Form.Label>
+          {showBowlingStyles &&
+            bowlingStyles.map((styleName, index) => (
+              <Form.Check
+                className="custom-checkbox"
+                key={`bowlingStyle-${index}`}
+                custom
+                type="checkbox"
+                id={`bowlingStyle-${index}`}
+                label={styleName}
+                checked={bowlingStyle.includes(styleName)}
+                onChange={() =>
+                  setBowlingStyle((prev) =>
+                    prev.includes(styleName)
+                      ? prev.filter((s) => s !== styleName)
+                      : [...prev, styleName]
+                  )
+                }
+              />
+            ))}
+        </Col>
+
+        <Col md="auto">
+          <Form.Label
+            className="custom-label"
+            onClick={() => setshowcoach(!showcoach)}
+          >
+            Coach Name
+          </Form.Label>
+          {showcoach &&
+            coaches.map((styleName, index) => (
+              <Form.Check
+                className="custom-checkbox"
+                key={`coach-${index}`}
+                custom
+                type="checkbox"
+                id={`coach-${index}`}
+                label={styleName}
+                checked={coach.includes(styleName)}
+                onChange={() =>
+                  setcoach((prev) =>
+                    prev.includes(styleName)
+                      ? prev.filter((s) => s !== styleName)
+                      : [...prev, styleName]
+                  )
+                }
+              />
+            ))}
+        </Col>
+
+        <Col md="auto">
+          <Form.Label
+            className="custom-label"
             onClick={() => setShowStyles(!showStyles)}
           >
             Batting Style
@@ -127,6 +237,7 @@ const Players = () => {
           {showStyles &&
             styles.map((styleName, index) => (
               <Form.Check
+                className="custom-checkbox"
                 key={`style-${index}`}
                 custom
                 type="checkbox"
@@ -143,10 +254,44 @@ const Players = () => {
               />
             ))}
         </Col>
+        <Col md="auto">
+          <Form.Check
+            className="custom-checkbox"
+            custom
+            type="checkbox"
+            id="filterMostHundreds"
+            label="Filter with most 100's"
+            style={{ position: "relative", top: "10px" }}
+            checked={filterMostHundreds}
+            onChange={() => setFilterMostHundreds(!filterMostHundreds)}
+          />
+        </Col>
+        <Col md="auto">
+          <Form.Check
+            className="custom-checkbox"
+            custom
+            type="checkbox"
+            id="filtermost5wickets"
+            label="Filter Most Fifers"
+            style={{ position: "relative", top: "10px" }}
+            checked={filtermost5wickets}
+            onChange={() => setfiltermost5wickets(!filtermost5wickets)}
+          />
+        </Col>
+        <Col md="auto">
+          {/* Search button */}
+          <Button
+            variant="primary"
+            //size less
+            size="normal"
+            onClick={handleSearch}
+            className="search-button"
+          >
+            Search
+          </Button>
+        </Col>
       </Row>
-      <Button variant="primary" onClick={handleSearch}>
-        Search
-      </Button>
+
       {searched && players.length === 0 && <p>No players found.</p>}
       {players.length > 0 && (
         <div
@@ -191,5 +336,4 @@ const Players = () => {
     </div>
   );
 };
-
 export default Players;

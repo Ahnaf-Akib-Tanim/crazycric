@@ -1,4 +1,4 @@
-/* usersignup.css */
+/* usersignup.css
 .signup-container {
   background-image: url("D:/Buet/Crazycric-project/react/vite-project/src/bg9.jpg");
   background-size: cover;
@@ -42,4 +42,87 @@
 
 .signup-container .submit-button:hover {
   opacity: 1;
+} */
+/* General styles */
+.signup-container {
+  max-width: 400px;
+  min-width: 300px;
+  margin: 0 auto;
+  padding: 50px; /* Adjust padding */
+}
+
+.error-message {
+  color: red;
+  font-size: 20px; /* Adjust font size */
+  margin-bottom: 10px;
+}
+
+/* Button styles */
+.signup-button {
+  width: 100%; /* Make button full width */
+  padding: 15px; /* Adjust padding */
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px; /* Adjust font size */
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.1s ease-in-out;
+}
+
+.signup-button:hover {
+  cursor: pointer;
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Form styles */
+.input-form {
+  margin-bottom: 30px;
+}
+
+.input-form .form-label {
+  color: #5900e9;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.input-form .form-control {
+  width: 100%; /* Make form controls full width */
+  padding: 12px;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.input-form .form-control:hover {
+  border-color: darkviolet;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 0.15s ease-in-out;
+}
+
+.input-form .form-control:focus {
+  border-color: #ff0055;
+  box-shadow: 0 0 0 0.2rem rgba(255, 0, 191, 0.25);
+}
+.image_adder .form-control-file {
+  width: 100%; /* Make file input full width */
+  padding: 20px; /* Adjust padding */
+  font-size: 16px; /* Adjust font size */
+  margin-top: 10px; /* Adjust margin */
+  border: none; /* Remove border */
+  background-color: transparent; /* Make background transparent */
+  cursor: pointer; /* Change cursor to pointer */
+  outline: none; /* Remove outline */
+}
+
+.image_adder .form-control-file:hover {
+  border-color: darkviolet; /* Change border color on hover */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add shadow effect on hover */
+  transition: box-shadow 0.15s ease-in-out; /* Add transition effect */
+}
+
+.image_adder .form-control-file:focus {
+  border-color: #ff0055; /* Change border color on focus */
+  box-shadow: 0 0 0 0.2rem rgba(255, 0, 191, 0.25); /* Add shadow on focus */
 }

@@ -7,6 +7,7 @@ import AdminHome from "./AdminHome";
 import Adminlogin from "./Adminlogin";
 import Board from "./Board";
 import Coachinfo from "./Coachinfo";
+import Dream11Home from "./Dream11Home";
 import Homepage from "./Homepage";
 import Loginpage from "./Loginpage";
 import Playerinfo from "./Playerinfo";
@@ -54,6 +55,7 @@ const App = () => {
         <Route path="/user/loggedin/profile" element={<Profile />} />
         <Route path="/admin" element={<adminloginpage />} />
         <Route path="/admin/loggedin" element={<AdminHome />} />
+        <Route path="/user/loggedin/dream11" element={<Dream11Home />} />
       </Routes>
     </BrowserRouter>
   );
