@@ -1,80 +1,30 @@
-/* .homepage-body {
-  background-color: #afabe3;
-  height: 100vh;
-}
-
-.home-icon {
-  position: relative;
-  left: 30px;
-  top: 30px;
-  filter: brightness(0.5);
-}
-
-.profile-icon {
-  position: relative;
-  left: 1400px;
-  top: -10px;
-}
-.glow-on-hover {
-  transition: 0.3s;
-}
-.scorecard-button:hover {
-  background-color: #007bff;
-  color: white;
-}
-.glow-on-hover:hover {
-  box-shadow:
-    0 0 10px #fff,
-    0 0 20px #fff,
-    0 0 30px #fff,
-    0 0 40px #ff00de;
-}
-.nav-button {
-  background-color: #ffa07a;
-  border-radius: 10px;
-  color: white;
-  position: relative;
-  top: 40px;
-  left: 280px;
-  margin: 0 10px;
-  padding: 10px 20px;
-  transition: background-color 0.3s;
-  text-decoration: none;
-}
-
-.nav-button:hover {
-  background-color: #ff6347;
-}
-.card-title:hover {
-  color: red !important;
-} */
-/* Homepage.css */
 .homepage {
   display: flex;
 }
 
 .left-section {
   width: 25%;
-  background-color: #b2beb5;
+  background-color: #000000;
   min-height: 100vh;
 }
+.scorecard-button {
+  position: relative;
+  top: -50px;
+  background-color: #4681f4;
+  transition: background-color 0.3s ease;
+  border-radius: 7px;
+}
 
-.middle-section {
-  display: flex;
-  overflow-x: auto;
-  scrollbar-width: none;
-  min-height: 100vh;
+.scorecard-button:hover {
+  background-color: #55c2da;
 }
 
 .right-section {
-  width: 25%;
+  width: flex;
   background-color: #728fff;
   min-height: 100vh;
-}
-.right-section {
-  width: 25%;
-  background-color: #728fff;
-  min-height: 100vh;
+  position: relative;
+  left: -1410px;
 }
 
 .right-section table {
@@ -85,7 +35,7 @@
 .right-section th,
 .right-section td {
   border: 1px solid #000;
-  padding: 10px;
+  padding: 15px;
 }
 
 .right-section th {
@@ -93,17 +43,21 @@
 }
 .button {
   display: block;
-  width: 100%;
-  padding: 10px;
-  color: #ffffff;
-  background-color: #000000;
+  width: 60%;
+  padding: 12px;
+  color: #4681f4;
+  background-color: #afabe3;
   text-align: center;
+  margin-left: 50px;
+  border-radius: 13px;
+  position: relative;
+  top: -50px;
   text-decoration: none;
   transition: background-color 0.3s ease;
 }
 
 .button:hover {
-  background-color: #ff0000;
+  background-color: #55c2da;
 }
 .do {
   position: relative;
@@ -113,6 +67,9 @@
 .doit {
   width: 50px;
   height: 50px;
+  position: relative;
+  left: 40px;
+  top: -20px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -121,34 +78,33 @@
   margin-top: -70px;
 }
 
-.middle-section {
-  width: 50%;
-  min-height: 100vh;
-}
-
 .player-container {
   display: flex;
   align-items: center;
   overflow-x: auto;
   position: relative;
-  top: -200px;
-  left: -20px;
+  top: 27px;
+  left: 35px;
   scrollbar-width: none;
 }
 
 .player-box {
-  flex-grow: 1;
   display: flex;
-  gap: 20px;
+  gap: 0px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  width: 70%;
 }
 
 .player-item {
-  flex: 0 0 auto;
-  margin-right: 10px;
+  margin-right: 10%;
+  width: 0%px;
 }
 
 .player-image {
   border-radius: 50%;
+  width: 150px;
+  height: 150px;
 }
 
 .scroll-button {
@@ -158,4 +114,34 @@
   border-radius: 50%;
   width: 30px;
   height: 30px;
+}
+.match-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: 100px;
+  left: -800px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  gap: 10px;
+  width: 53%;
+}
+
+.match-item {
+  flex: 0 0 auto;
+  margin-right: 00px;
+}
+
+.match-image {
+  border-radius: 50%;
+  width: 350px;
+  height: 350px;
+  position: relative;
+  top: 70px;
+  left: -70px;
+}
+
+.match-description {
+  position: relative;
+  top: -50px;
 }

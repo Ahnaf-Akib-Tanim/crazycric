@@ -43,15 +43,19 @@ const Homepage = () => {
           alt="Profile"
           className="doit"
         />
-        <Link to="/user/loggedin/profile">
+        <Link
+          to="/user/loggedin/profile"
+          style={{ position: "relative", top: "-20px", left: "50px" }}
+        >
           {data.user && data.user[0].username}
         </Link>
       </div>
       {/*from here*/}
 
-      <div className="middle-section">
-        <h2 style={{ position: "relative", left: "40px" }}>Trending Players</h2>{" "}
-        {/* Add "px" to the left property */}
+      <div className="middle-section1">
+        <h2 style={{ position: "relative", left: "40px", top: "20px" }}>
+          Trending Players
+        </h2>{" "}
         <div className="player-container">
           <div className="player-box" ref={playerBoxRef}>
             {data.players &&
@@ -71,6 +75,43 @@ const Homepage = () => {
                 </Link>
               ))}
           </div>
+        </div>
+      </div>
+
+      <div className="middle-section2">
+        <h2
+          style={{
+            position: "relative",
+            top: "220px",
+            left: "-820px",
+            marginTop: "40px",
+          }}
+        >
+          Recent Matches
+        </h2>
+        <div className="match-container">
+          {data.matches &&
+            data.matches.map((match, index) => (
+              <div key={match.match_id} className="match-item">
+                <img
+                  className="match-image"
+                  src={`http://localhost:3000/seriesimages/${match.series_id}.png`}
+                  alt={`Match ${match.match_id}`}
+                />
+                <div className="match-description">
+                  <p>{`${match.team1} vs ${match.team2}, ${
+                    match.match_format
+                  } series, ${new Date(match.match_date).getFullYear()}`}</p>
+                  <p>{`${new Date(match.match_date).toLocaleDateString()} at ${
+                    match.stadium_name
+                  }`}</p>
+                  <p>{`${match.match_won_by} Won by ${match.margin_of_win}`}</p>
+                </div>
+                <Link to={`/user/loggedin/scorecard/${match.match_id}`}>
+                  <button className="scorecard-button">Scorecard</button>
+                </Link>
+              </div>
+            ))}
         </div>
       </div>
 

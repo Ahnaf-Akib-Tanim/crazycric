@@ -210,7 +210,12 @@ app.get('/user/loggedin', async (req, res) => {
         const matchIds = ['m1', 'm2', 'm3', 'm4', 'm5', 'm6'];
 
         const playersQuery = 'SELECT * FROM player_info WHERE player_name = ANY($1)';
-        const matchesQuery = 'SELECT * FROM match_summary WHERE match_id = ANY($1)';
+        const matchesQuery = `
+        SELECT match_summary.*, stadiums.stadium_name 
+        FROM match_summary 
+        JOIN stadiums ON match_summary.stadium_id = stadiums.stadium_id 
+        WHERE match_summary.match_id = ANY($1)
+      `;
         const dream11qeuery =
             'SELECT dream11.*, users.image FROM dream11 JOIN users ON dream11.userid = users.userid WHERE dream11.userid = $1 ORDER BY ranking';
         const userquery = 'SELECT * FROM users WHERE userid = $1';
