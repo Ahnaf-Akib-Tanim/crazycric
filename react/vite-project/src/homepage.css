@@ -1,5 +1,6 @@
 .homepage {
   display: flex;
+  scrollbar-width: none;
 }
 
 .left-section {
@@ -24,7 +25,7 @@
   background-color: #728fff;
   min-height: 100vh;
   position: relative;
-  left: -1410px;
+  left: -2140px;
 }
 
 .right-section table {
@@ -124,7 +125,7 @@
   overflow-x: auto;
   scrollbar-width: none;
   gap: 10px;
-  width: 53%;
+  width: 36%;
 }
 
 .match-item {

@@ -320,7 +320,6 @@ const Usersignup = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     const formData = new FormData();
     formData.append("userId", userId);
     formData.append("password", password);
@@ -329,7 +328,7 @@ const Usersignup = () => {
     formData.append("team", team);
     formData.append("player", player);
     formData.append("image", image);
-
+    console.log(formData);
     const response = await fetch("http://localhost:3000/user/signup", {
       method: "POST",
       body: formData,
@@ -406,7 +405,7 @@ const Usersignup = () => {
         <Form.Group controlId="formImage" className="image_adder">
           <Form.Label
             style={{
-              color: "#5900e9", // Label color
+              color: "#5900e9",
               fontSize: "20px", // Label font size
               fontWeight: "bold", // Label font weight
               marginBottom: "10px", // Label bottom margin
@@ -429,13 +428,13 @@ const Usersignup = () => {
             }}
           />
         </Form.Group>
-
         <Button
           variant="primary"
           type="submit"
           size=""
           className="signup-button"
           style={{ marginTop: "20px" }}
+          onClick={handleSubmit}
         >
           Submit
         </Button>
@@ -455,8 +454,7 @@ const Usersignup = () => {
           Already have an account?
         </Form.Label>
         <div onClick={() => navigate("/user")} style={{ fontSize: "20px" }}>
-          {" "}
-          {/* Add your sign in link */}
+          {"/user"}
           <span
             style={{ color: "#5030E5", cursor: "pointer" }}
             onMouseOver={(e) => (e.target.style.color = "#30a5ff")}

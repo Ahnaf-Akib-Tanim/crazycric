@@ -87,7 +87,7 @@ const Dream11 = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
-        Navigate("/user/loggeding");
+        Navigate("/user/loggedin");
       })
       .catch((error) => {
         console.error("Error:", error);

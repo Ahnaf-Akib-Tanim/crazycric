@@ -61,6 +61,7 @@ app.use(
     '/countryimages',
     express.static(path.join(__dirname, './react/vite-project/public/country'))
 );
+// app.use('/profileimages', express.static(path.join(__dirname, './react/vite-project/public')));
 app.use('/profileimages', express.static(path.join(__dirname, './react/vite-project/public')));
 app.use(
     '/umpireimages',
@@ -78,9 +79,19 @@ app.use(
     '/country2images',
     express.static(path.join(__dirname, './react/vite-project/public/country2'))
 );
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, path.join(staticFilePath, 'profileimages'));
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, req.body.userId + path.extname(file.originalname));
+//     },
+// });
+
+// const upload = multer({ storage });
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, path.join(staticFilePath, 'profileimages'));
+        cb(null, staticFilePath); // store the file directly in the 'public' folder
     },
     filename: (req, file, cb) => {
         cb(null, req.body.userId + path.extname(file.originalname));
@@ -114,10 +125,13 @@ app.post('/user', async (req, res) => {
     }
 });
 app.post('/user/signup', upload.single('image'), async (req, res) => {
+    console.log(req.file);
     const {
  userId, password, name, country, team, player 
 } = req.body;
-    const image = req.file ? `/profileimages/${req.file.filename}` : null;
+    console.log(req.body);
+    const image = req.file ? `http://localhost:3000/profileimages/${req.file.filename}` : null;
+    console.log('Image:', image);
     try {
         const existingUser = await db.oneOrNone('SELECT * FROM Users WHERE userid = $1', [userId]);
 
@@ -216,15 +230,15 @@ app.get('/user/loggedin', async (req, res) => {
         JOIN stadiums ON match_summary.stadium_id = stadiums.stadium_id 
         WHERE match_summary.match_id = ANY($1)
       `;
-        const dream11qeuery =
-            'SELECT dream11.*, users.image FROM dream11 JOIN users ON dream11.userid = users.userid WHERE dream11.userid = $1 ORDER BY ranking';
+        const dream11query =
+            'SELECT dream11.*, users.image FROM dream11 LEFT JOIN users ON dream11.userid = users.userid  ORDER BY ranking';
         const userquery = 'SELECT * FROM users WHERE userid = $1';
         const allusers = 'SELECT * FROM users';
         const user = await db.any(userquery, [currentuserid]);
 
         const players = await db.any(playersQuery, [playerNames]);
         const matches = await db.any(matchesQuery, [matchIds]);
-        const dream11 = await db.any(dream11qeuery, [currentuserid]);
+        const dream11 = await db.any(dream11query, [currentuserid]);
         const alluser = await db.any(allusers);
         res.json({
             players,
