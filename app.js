@@ -235,22 +235,32 @@ app.get('/user/loggedin', async (req, res) => {
         const userquery = 'SELECT * FROM users WHERE userid = $1';
         const allusers = 'SELECT * FROM users';
         const user = await db.any(userquery, [currentuserid]);
-
+        const usersdream11query = 'SELECT * FROM dream11 WHERE userid = $1';
+        const userdream11 = await db.any(usersdream11query, [currentuserid]);
         const players = await db.any(playersQuery, [playerNames]);
         const matches = await db.any(matchesQuery, [matchIds]);
         const dream11 = await db.any(dream11query, [currentuserid]);
         const alluser = await db.any(allusers);
+        console.log('Players:', players);
+        console.log('Matches:', matches);
+        console.log('Dream11:', dream11);
+        console.log('User:', user);
+        console.log('All Users:', alluser);
+        console.log('User Dream11:', userdream11);
         res.json({
             players,
             matches,
             dream11,
             user,
             alluser,
+            userdream11,
         });
         console.log('Players:', players);
         console.log('Matches:', matches);
         console.log('Dream11:', dream11);
         console.log('User:', user);
+        console.log('All Users:', alluser);
+        console.log('User Dream11:', userdream11);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'An error occurred while fetching data' });
