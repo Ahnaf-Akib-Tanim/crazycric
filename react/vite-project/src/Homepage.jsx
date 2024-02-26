@@ -54,7 +54,7 @@ const Homepage = () => {
         </Link>
       </div>
       <div className="middle-section1">
-        <h2 style={{ position: "relative", left: "40px", top: "20px" }}>
+        <h2 style={{ position: "relative", left: "420px", top: "20px" }}>
           Trending Players
         </h2>{" "}
         <div className="player-container">
@@ -83,7 +83,7 @@ const Homepage = () => {
           style={{
             position: "relative",
             top: "220px",
-            left: "-820px",
+            left: "-680px",
             marginTop: "40px",
           }}
         >
@@ -113,59 +113,6 @@ const Homepage = () => {
               </div>
             ))}
         </div>
-      </div>
-      <div className="middle-section3">
-        {data.userdream11 && data.userdream11[0] && (
-          <>
-            <h2>{data.userdream11[0].team_name}</h2>
-            <div className="coach-captain-row">
-              <div className="coach">
-                <img
-                  className="coach-image"
-                  src={`http://localhost:3000/coachimages/${data.userdream11[0].coach_name}.jpeg`}
-                  alt={data.userdream11[0].coach_name}
-                />
-                <p>{data.userdream11[0].coach_name}</p>
-              </div>
-              <div className="captain">
-                <img
-                  className="captain-image"
-                  src={`http://localhost:3000/images/${data.userdream11[0].captain}.jpeg`}
-                  alt={data.userdream11[0].captain}
-                />
-                <p>{data.userdream11[0].captain} (C)</p>
-              </div>
-            </div>
-            <div className="player-row">
-              {data.userdream11[0].players &&
-                data.userdream11[0].players.slice(0, 5).map((player, index) => (
-                  <div key={index} className="player">
-                    <img
-                      className="player-image"
-                      src={`http://localhost:3000/images/${player}.jpeg`}
-                      alt={player}
-                    />
-                    <p>{player}</p>
-                  </div>
-                ))}
-            </div>
-            <div className="player-row">
-              {data.userdream11[0].players &&
-                data.userdream11[0].players
-                  .slice(5, 10)
-                  .map((player, index) => (
-                    <div key={index} className="player">
-                      <img
-                        className="player-image"
-                        src={`http://localhost:3000/images/${player}.jpeg`}
-                        alt={player}
-                      />
-                      <p>{player}</p>
-                    </div>
-                  ))}
-            </div>
-          </>
-        )}
       </div>
       {/*from here*/}
       <div className="right-section">
@@ -200,3 +147,58 @@ const Homepage = () => {
   );
 };
 export default Homepage;
+{
+  /* <div className="middle-section3">
+{data.userdream11 && data.userdream11[0] && (
+  <>
+    <h2>{data.userdream11[0].team_name}</h2>
+    <div className="coach-captain-row">
+      <div className="coach">
+        <img
+          className="coach-image"
+          src={`http://localhost:3000/coachimages/${data.userdream11[0].coach_name}.jpeg`}
+          alt={data.userdream11[0].coach_name}
+        />
+        <p>{data.userdream11[0].coach_name}</p>
+      </div>
+      <div className="captain">
+        <img
+          className="captain-image"
+          src={`http://localhost:3000/images/${data.userdream11[0].captain}.jpeg`}
+          alt={data.userdream11[0].captain}
+        />
+        <p>{data.userdream11[0].captain} (C)</p>
+      </div>
+    </div>
+    <div className="player-row">
+      {data.userdream11[0].players &&
+        data.userdream11[0].players.slice(0, 5).map((player, index) => (
+          <div key={index} className="player">
+            <img
+              className="player-image"
+              src={`http://localhost:3000/images/${player}.jpeg`}
+              alt={player}
+            />
+            <p>{player}</p>
+          </div>
+        ))}
+    </div>
+    <div className="player-row">
+      {data.userdream11[0].players &&
+        data.userdream11[0].players
+          .slice(5, 10)
+          .map((player, index) => (
+            <div key={index} className="player">
+              <img
+                className="player-image"
+                src={`http://localhost:3000/images/${player}.jpeg`}
+                alt={player}
+              />
+              <p>{player}</p>
+            </div>
+          ))}
+    </div>
+  </>
+)}
+</div> */
+}

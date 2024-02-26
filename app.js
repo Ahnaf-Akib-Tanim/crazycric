@@ -220,7 +220,13 @@ app.post('/user/loggedin/players', async (req, res) => {
 });
 app.get('/user/loggedin', async (req, res) => {
     try {
-        const playerNames = ['Tamim Iqbal', 'Virat Kohli', 'Shakib Al Hasan', 'Babar Azam'];
+        const playerNames = [
+            'Tamim Iqbal',
+            'Virat Kohli',
+            'Shakib Al Hasan',
+            'Babar Azam',
+            'Kane Williamson',
+        ];
         const matchIds = ['m1', 'm2', 'm3', 'm4', 'm5', 'm6'];
 
         const playersQuery = 'SELECT * FROM player_info WHERE player_name = ANY($1)';
@@ -237,6 +243,20 @@ app.get('/user/loggedin', async (req, res) => {
         const user = await db.any(userquery, [currentuserid]);
         const usersdream11query = 'SELECT * FROM dream11 WHERE userid = $1';
         const userdream11 = await db.any(usersdream11query, [currentuserid]);
+        const transformedUserDream11 = userdream11.map((team) => {
+            const players = [];
+
+            for (let i = 1; i <= 11; i++) {
+                if (team[`player${i}`]) {
+                    players.push(team[`player${i}`]);
+                }
+            }
+
+            return {
+                ...team,
+                players,
+            };
+        });
         const players = await db.any(playersQuery, [playerNames]);
         const matches = await db.any(matchesQuery, [matchIds]);
         const dream11 = await db.any(dream11query, [currentuserid]);
@@ -253,7 +273,7 @@ app.get('/user/loggedin', async (req, res) => {
             dream11,
             user,
             alluser,
-            userdream11,
+            userdream11: transformedUserDream11,
         });
         console.log('Players:', players);
         console.log('Matches:', matches);

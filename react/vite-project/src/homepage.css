@@ -2,11 +2,15 @@
   display: flex;
   scrollbar-width: none;
 }
+.homepage-body {
+  overflow: hidden;
+}
 
 .left-section {
   width: 25%;
   background-color: #000000;
   min-height: 200vh;
+  position: fixed;
 }
 .scorecard-button {
   position: relative;
@@ -25,7 +29,8 @@
   background-color: #728fff;
   min-height: 100vh;
   position: relative;
-  left: -2180px;
+  left: 1240px;
+  position: fixed;
 }
 
 .right-section table {
@@ -62,7 +67,7 @@
 }
 .do {
   position: relative;
-  left: -126px;
+  left: -149px;
   top: -60px;
 }
 .doit {
@@ -85,7 +90,8 @@
   overflow-x: auto;
   position: relative;
   top: 27px;
-  left: 35px;
+  left: 415px;
+  width: 100%;
   scrollbar-width: none;
 }
 
@@ -121,7 +127,7 @@
   align-items: center;
   position: relative;
   top: 100px;
-  left: -800px;
+  left: -680px;
   overflow-x: auto;
   scrollbar-width: none;
   gap: 10px;
@@ -159,14 +165,13 @@
 .coach-captain-row,
 .player-row {
   display: flex;
-  justify-content: space-between;
 }
 .middle-section3 {
   position: relative;
   top: 700px;
-  left: -2900px;
+  left: -2950px;
 }
 
 .player {
-  flex: 1 0 auto; /* This will allow the player items to shrink or grow as needed */
+  flex: 0 0 auto;
 }
