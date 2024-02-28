@@ -536,18 +536,6 @@ const Teams = () => {
           </Form.Control>
         </Col>
         <Col md="auto">
-          <Form.Check
-            custom
-            type="checkbox"
-            id="playing-most-matches"
-            label="Playing Most Number of Matches"
-            style={{ marginTop: "50px" }}
-            checked={playingMostMatches}
-            onChange={(e) => setPlayingMostMatches(e.target.checked)}
-          />
-        </Col>
-
-        <Col md="auto">
           <Form.Label style={{ position: "relative", top: "40px" }}>
             ICC Ranking
           </Form.Label>
@@ -621,3 +609,16 @@ const Teams = () => {
 };
 
 export default Teams;
+{
+  /* <Col md="auto">
+<Form.Check
+  custom
+  type="checkbox"
+  id="playing-most-matches"
+  label="Playing Most Number of Matches"
+  style={{ marginTop: "50px" }}
+  checked={playingMostMatches}
+  onChange={(e) => setPlayingMostMatches(e.target.checked)}
+/>
+</Col> */
+}

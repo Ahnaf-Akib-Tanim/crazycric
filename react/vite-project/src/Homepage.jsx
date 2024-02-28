@@ -15,7 +15,7 @@ const Homepage = () => {
       .then((response) => response.json())
       .then((data) => {
         setData(data);
-        console.log(data);
+        // console.log(data);
       })
       .catch((error) => console.error(error));
   }, []);
@@ -134,7 +134,11 @@ const Homepage = () => {
                       src={team.image}
                       alt={team.team_name}
                     />
-                    {team.team_name}
+                    <Link
+                      to={`/user/loggedin/Dream11TeamInfo/${team.team_name}`}
+                    >
+                      {team.team_name}
+                    </Link>
                   </td>
                   <td>{team.score}</td>
                   <td>{team.ranking}</td>

@@ -593,6 +593,34 @@ app.post('/user/loggedin/dream11team', async (req, res) => {
         res.status(500).json({ error: 'Failed to create dream team' });
     }
 });
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.path}`);
+    next();
+});
+
+// Change :team_name to :teamName in your route definition
+app.get('/user/loggedin/Dream11TeamInfo/:teamName', async (req, res) => {
+    try {
+        console.log('Fetching Dream11 team info');
+        const { teamName } = req.params;
+        console.log('Fetching Dream11 team info:', teamName);
+        const teamInfo = await db.any(
+            `
+            SELECT d.*, p.player_role, p.player_image_path, p.team_name as player_team_name
+            FROM dream11 d
+            INNER JOIN player_info p ON p.player_name IN (d.player1, d.player2, d.player3, d.player4, d.player5, d.player6, d.player7, d.player8, d.player9, d.player10, d.player11)
+            WHERE d.team_name = $1
+        `,
+            [teamName],
+        );
+        res.json(teamInfo);
+        console.log('here it is');
+        console.log(teamInfo);
+    } catch (error) {
+        console.error('Error fetching Dream11 team info:', error.message || error);
+        res.status(500).json({ error: 'Failed to fetch Dream11 team info' });
+    }
+});
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
