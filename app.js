@@ -558,13 +558,13 @@ app.post('/admin/loggedin', async (req, res) => {
 });
 app.post('/user/loggedin/dream11', async (req, res) => {
     const { searchQuery } = req.body;
-    console.log('Search Query:', searchQuery);
+    // console.log('Search Query:', searchQuery);
     try {
         const players = await db.any(
             'SELECT * FROM player_info WHERE LOWER(player_name) LIKE LOWER($1)',
             [`%${searchQuery}%`]
         );
-        console.log(players);
+        // console.log(players);
         res.json(players);
     } catch (error) {
         console.error('Error fetching players:', error.message || error);
@@ -572,15 +572,14 @@ app.post('/user/loggedin/dream11', async (req, res) => {
     }
 });
 app.post('/user/loggedin/dream11team', async (req, res) => {
+    console.log('Creating Dream11 team');
     const { teamName, selectedCoach, captain, selectedPlayers } = req.body;
-
+    console.log('Team Name:', req.body);
     if (selectedPlayers.length !== 11) {
         res.status(400).json({ error: 'Exactly 11 players must be selected' });
         return;
     }
-
     const playerNames = selectedPlayers.map((player) => player.player_name);
-
     try {
         await db.none(
             'INSERT INTO dream11(userid, team_name, coach_name, captain, player1, player2, player3, player4, player5, player6, player7, player8, player9, player10, player11) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)',
@@ -590,32 +589,50 @@ app.post('/user/loggedin/dream11team', async (req, res) => {
         res.json({ message: 'Dream team created successfully' });
     } catch (error) {
         console.error('Error creating dream team:', error.message || error);
-        res.status(500).json({ error: 'Failed to create dream team' });
+        res.status(500).json({
+            error: 'Failed to create dream team',
+            debug: error.message || error,
+        });
     }
 });
-app.use((req, res, next) => {
-    console.log(`${req.method} ${req.path}`);
-    next();
-});
-
-// Change :team_name to :teamName in your route definition
 app.get('/user/loggedin/Dream11TeamInfo/:teamName', async (req, res) => {
     try {
-        console.log('Fetching Dream11 team info');
+        // console.log('Fetching Dream11 team info');
         const { teamName } = req.params;
-        console.log('Fetching Dream11 team info:', teamName);
+        // console.log('Fetching Dream11 team info:', teamName);
         const teamInfo = await db.any(
             `
-            SELECT d.*, p.player_role, p.player_image_path, p.team_name as player_team_name
+            SELECT d.*, 
+            p1.player_role as player1_role, p1.player_image_path as player1_image_path, p1.team_name as player1_team_name,
+            p2.player_role as player2_role, p2.player_image_path as player2_image_path, p2.team_name as player2_team_name,
+            p3.player_role as player3_role, p3.player_image_path as player3_image_path, p3.team_name as player3_team_name,
+            p4.player_role as player4_role, p4.player_image_path as player4_image_path, p4.team_name as player4_team_name,
+            p5.player_role as player5_role, p5.player_image_path as player5_image_path, p5.team_name as player5_team_name,
+            p6.player_role as player6_role, p6.player_image_path as player6_image_path, p6.team_name as player6_team_name,
+            p7.player_role as player7_role, p7.player_image_path as player7_image_path, p7.team_name as player7_team_name,
+            p8.player_role as player8_role, p8.player_image_path as player8_image_path, p8.team_name as player8_team_name,
+            p9.player_role as player9_role, p9.player_image_path as player9_image_path, p9.team_name as player9_team_name,
+            p10.player_role as player10_role, p10.player_image_path as player10_image_path, p10.team_name as player10_team_name,
+            p11.player_role as player11_role, p11.player_image_path as player11_image_path, p11.team_name as player11_team_name
             FROM dream11 d
-            INNER JOIN player_info p ON p.player_name IN (d.player1, d.player2, d.player3, d.player4, d.player5, d.player6, d.player7, d.player8, d.player9, d.player10, d.player11)
+            LEFT JOIN player_info p1 ON p1.player_name = d.player1
+            LEFT JOIN player_info p2 ON p2.player_name = d.player2
+            LEFT JOIN player_info p3 ON p3.player_name = d.player3
+            LEFT JOIN player_info p4 ON p4.player_name = d.player4
+            LEFT JOIN player_info p5 ON p5.player_name = d.player5
+            LEFT JOIN player_info p6 ON p6.player_name = d.player6
+            LEFT JOIN player_info p7 ON p7.player_name = d.player7
+            LEFT JOIN player_info p8 ON p8.player_name = d.player8
+            LEFT JOIN player_info p9 ON p9.player_name = d.player9
+            LEFT JOIN player_info p10 ON p10.player_name = d.player10
+            LEFT JOIN player_info p11 ON p11.player_name = d.player11
             WHERE d.team_name = $1
-        `,
+            `,
             [teamName],
         );
         res.json(teamInfo);
         console.log('here it is');
-        console.log(teamInfo);
+        // console.log(teamInfo);
     } catch (error) {
         console.error('Error fetching Dream11 team info:', error.message || error);
         res.status(500).json({ error: 'Failed to fetch Dream11 team info' });

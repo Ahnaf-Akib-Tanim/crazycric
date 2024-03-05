@@ -21,7 +21,7 @@ const Homepage = () => {
   }, []);
 
   return (
-    <div className="homepage">
+    <div className="homepage homepage-specific-body">
       <div className="left-section">
         <img className="do" src="http://localhost:3000/logo" alt="Icon" />
         <div className="button-group">

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Dream11Home.css";
 
 const Dream11 = () => {
@@ -11,7 +11,7 @@ const Dream11 = () => {
   const [teams, setTeams] = useState([]);
   const [searchedPlayers, setSearchedPlayers] = useState([]);
   const [captain, setCaptain] = useState("");
-
+  const navigate = useNavigate();
   const coaches = [
     "Chandika Hathurusingha",
     "Ravi Shastri",
@@ -76,7 +76,7 @@ const Dream11 = () => {
       captain,
       selectedPlayers,
     };
-
+    console.log(dreamTeam);
     fetch("http://localhost:3000/user/loggedin/dream11team", {
       method: "POST",
       headers: {
@@ -87,7 +87,7 @@ const Dream11 = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
-        Navigate("/user/loggedin");
+        navigate("/user/loggedin");
       })
       .catch((error) => {
         console.error("Error:", error);

@@ -1,13 +1,12 @@
-/* Styles for the container wrapping the coach information */
-.team-info-container {
+.coach-info-container {
   padding: 20px; /* Add padding */
   border-radius: 10px; /* Add border radius */
   text-align: center; /* Center-align content */
   overflow-x: auto; /* Add horizontal scroll for small screens */
 }
 
-/* Styles for the container wrapping the team name and coach image */
-.team-name-container {
+/* Styles for the container wrapping the coach name and coach image */
+.coach-name-container {
   display: flex;
   align-items: center;
   justify-content: center; /* Center-align content */
@@ -15,22 +14,22 @@
 }
 
 /* Styles for the coach image */
-.team-name-container img {
-  width: 80px; /* Set image width */
-  height: 80px; /* Set image height */
-  border-radius: 50%; /* Add border radius for rounded shape */
-  margin-right: 15px; /* Add margin */
+.coach-name-container img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 15px;
 }
 
 /* Styles for the coach name */
-.team-name-container h1 {
+.coachheading {
   font-size: 24px; /* Set font size */
-  color: #333; /* Set text color */
+  color: #333333cc; /* Set text color */
   margin: 0; /* Remove default margin */
 }
 
 /* Styles for the table */
-table {
+.table-container {
   width: 100%; /* Set table width */
   border-collapse: collapse; /* Collapse table borders */
   margin-top: 20px; /* Add margin */
@@ -53,23 +52,28 @@ table th {
 
 /* Styles for table rows on hover */
 table tr:hover {
-  background-color: rgba(122, 56, 153, 0.178); /* Change background color on hover */
+  background-color: rgba(
+    122,
+    56,
+    153,
+    0.178
+  ); /* Change background color on hover */
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Add glow effect */
   transition: background-color 0.1s ease-in-out; /* Add transition effect */
 }
 
 /* Media query for smaller screens */
 @media (max-width: 768px) {
-  .team-info-container {
+  .coach-info-container {
     padding: 15px; /* Reduce padding */
   }
 
-  .team-name-container img {
+  .coach-name-container img {
     width: 60px; /* Reduce image width */
     height: 60px; /* Reduce image height */
   }
 
-  .team-name-container h1 {
+  .coach-name-container h1 {
     font-size: 20px; /* Reduce font size */
   }
 

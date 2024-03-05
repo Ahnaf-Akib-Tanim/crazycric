@@ -1,4 +1,6 @@
 import axios from "axios";
+import "./Coachinfo.css";
+// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 const Coachinfo = () => {
@@ -28,13 +30,13 @@ const Coachinfo = () => {
   }
 
   return (
-    <div className="team-info-container">
-      <div className="team-name-container">
+    <div className="coach-info-container">
+      <div className="coach-name-container">
         <img
           src={`http://localhost:3000/coachimages/${coachinfo.coach_name}.jpeg`}
           alt={coachinfo.coach_name}
         />
-        <h1>{coachinfo.coach_name}</h1>
+        <h1 className="coachheading">{coachinfo.coach_name}</h1>
       </div>
       <div className="table-container">
         <table>

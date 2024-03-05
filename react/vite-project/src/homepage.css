@@ -2,10 +2,9 @@
   display: flex;
   scrollbar-width: none;
 }
-.homepage-body {
+.homepage-specific-body {
   overflow: hidden;
 }
-
 .left-section {
   width: 25%;
   background-color: #000000;

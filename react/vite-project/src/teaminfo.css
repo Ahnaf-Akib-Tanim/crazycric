@@ -35,7 +35,7 @@
 
 .table-container td {
   padding: 20px;
-  border: 4px solid orange;
+  border: 4px solid rgba(205, 66, 42, 0.803);
   text-align: center;
   font-family: Arial, sans-serif;
 }
