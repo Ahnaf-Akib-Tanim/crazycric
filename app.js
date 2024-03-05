@@ -221,8 +221,8 @@ app.post('/user/loggedin/players', async (req, res) => {
 app.get('/user/loggedin', async (req, res) => {
     try {
         const playerNames = [
-            'Tamim Iqbal',
-            'Virat Kohli',
+            'Jaker Ali',
+            'Mahmudullah',
             'Shakib Al Hasan',
             'Babar Azam',
             'Kane Williamson',
@@ -636,6 +636,88 @@ app.get('/user/loggedin/Dream11TeamInfo/:teamName', async (req, res) => {
     } catch (error) {
         console.error('Error fetching Dream11 team info:', error.message || error);
         res.status(500).json({ error: 'Failed to fetch Dream11 team info' });
+    }
+});
+const storage2 = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'D:/Buet/Crazycric-project/react/vite-project/public/player images');
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname);
+    },
+});
+
+const upload2 = multer({ storage: storage2 });
+
+app.post('/admin/loggedin/insert', upload2.single('playerImage'), async (req, res) => {
+    try {
+        const {
+            playerName,
+            playerCountry,
+            playerBirthdate,
+            playerRole,
+            playerBattingStyle,
+            playerBowlingStyle,
+        } = req.body;
+        const playerImagePath = `http://localhost:3000/images/${req.file.originalname}`;
+        // Get the number of players from the same country
+        const numPlayers = await db.one('SELECT COUNT(*) FROM player_info WHERE team_name = $1', [
+            playerCountry,
+        ]);
+
+        // Generate player id
+        const playerId = playerCountry + (parseInt(numPlayers.count) + 1);
+        await db.none(
+            'INSERT INTO player_info (player_id, player_name, team_name, player_image_path, player_date_of_birth, player_role, player_batting_style, player_bowling_style) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)',
+            [
+                playerId,
+                playerName,
+                playerCountry,
+                playerImagePath,
+                playerBirthdate,
+                playerRole,
+                playerBattingStyle,
+                playerBowlingStyle,
+            ]
+        );
+
+        res.json({ status: 'success', message: 'Player inserted successfully' });
+    } catch (error) {
+        console.error('Error inserting player:', error);
+        res.status(500).json({ status: 'error', message: 'Failed to insert player' });
+    }
+});
+app.get('/admin/loggedin/update/:playerId', async (req, res) => {
+    const { playerId } = req.params;
+
+    try {
+        const playerData = await db.one('SELECT * FROM player_info WHERE player_id = $1', [
+            playerId,
+        ]);
+        res.status(200).json(playerData);
+    } catch (error) {
+        console.error('Error fetching player data:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+app.post('/admin/loggedin/update/:playerId', async (req, res) => {
+    const { playerId } = req.params;
+    const playerData = req.body;
+
+    const fields = Object.keys(playerData);
+    const values = Object.values(playerData);
+    const placeholders = fields.map((_, i) => `$${i + 1}`);
+
+    const query = `UPDATE player_info SET (${fields.join(', ')}) = (${placeholders.join(
+        ', ',
+    )}) WHERE player_id = $${placeholders.length + 1}`;
+
+    try {
+        await db.none(query, [...values, playerId]);
+        res.status(200).json({ message: 'Player data updated successfully' });
+    } catch (error) {
+        console.error('Error updating player data:', error);
+        res.status(500).json({ error: 'Internal server error' });
     }
 });
 app.listen(port, () => {

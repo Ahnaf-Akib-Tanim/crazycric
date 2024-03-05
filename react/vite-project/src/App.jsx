@@ -4,6 +4,8 @@ import ReactDOM from "react-dom";
 //import { Route, BrowserRouter as Router } from "react-router-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AdminHome from "./AdminHome";
+import AdminInsert from "./AdminInsert";
+import AdminUpdate from "./AdminUpdate";
 import Adminlogin from "./Adminlogin";
 import Board from "./Board";
 import Coachinfo from "./Coachinfo";
@@ -60,6 +62,11 @@ const App = () => {
         <Route
           path="/user/loggedin/Dream11TeamInfo/:teamName"
           element={<Dream11TeamInfo />}
+        />
+        <Route path="/admin/loggedin/insert" element={<AdminInsert />} />
+        <Route
+          path="/admin/loggedin/update/:playerId"
+          element={<AdminUpdate />}
         />
       </Routes>
     </BrowserRouter>

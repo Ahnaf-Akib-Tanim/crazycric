@@ -406,11 +406,11 @@ const Usersignup = () => {
           <Form.Label
             style={{
               color: "#5900e9",
-              fontSize: "20px", // Label font size
-              fontWeight: "bold", // Label font weight
-              marginBottom: "10px", // Label bottom margin
+              fontSize: "20px",
+              fontWeight: "bold",
+              marginBottom: "10px",
               fontFamily:
-                "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif", // Label font family
+                "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif",
             }}
           >
             Image:
@@ -442,13 +442,13 @@ const Usersignup = () => {
       <div className="input-form" style={{ marginTop: "20px" }}>
         <Form.Label
           style={{
-            padding: "10px", // Add padding for spacing
-            color: "#5900e9", // Label color
-            fontSize: "20px", // Label font size
-            fontWeight: "bold", // Label font weight
-            marginBottom: "10px", // Label bottom margin
+            padding: "10px",
+            color: "#5900e9",
+            fontSize: "20px",
+            fontWeight: "bold",
+            marginBottom: "10px",
             fontFamily:
-              "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif", // Label font family
+              "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif",
           }}
         >
           Already have an account?

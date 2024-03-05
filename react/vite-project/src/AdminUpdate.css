@@ -1,0 +1,90 @@
+.player-info-container {
+  position: relative;
+  top: -200px;
+  left: 300px;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.player-name {
+  font-family: urbanist, sans-serif;
+  font-style: italic;
+  position: fixed;
+  top: 270px;
+  left: 25px;
+  /* width: 280px; */
+  /* height: 50px; */
+  font-size: 35px;
+}
+
+.player-role-country {
+  font-family: sans-serif;
+  position: fixed;
+  top: 325px;
+  left: 25px;
+  font-size: 18px;
+}
+
+.player-basic-info {
+  font-family: urbanist, sans-serif;
+  position: fixed;
+  top: 370px;
+  left: 25px;
+}
+.headers {
+  font-family: sans-serif;
+  opacity: 0.5;
+  font-size: 18px;
+  font-weight: bold;
+}
+.infos {
+  font-size: 22px;
+  font-style: italic;
+  font-style: bold;
+}
+.player-image img {
+  position: fixed;
+  size: 100px;
+  top: 50px;
+  left: 30px;
+  width: 200px; /* Adjust the width as needed */
+  height: 200px; /* Adjust the height as needed */
+  border-radius: 50%; /* Make the image round */
+  object-fit: cover;
+}
+.player-info-container input {
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.player-info-container input:hover {
+  border-color: #888;
+}
+
+.player-info-container button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.player-info-container button:hover {
+  background-color: #45a049;
+}
+input {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+}
+
+input:hover {
+  background-color: rgba(54, 94, 154, 0.945);
+}
+
+input:focus {
+  background-color: lightblue;
+}
