@@ -157,17 +157,25 @@ function AdminHome() {
             <FormControl
               type="text"
               placeholder="Search Player"
-              className="mr-sm-2"
+              className="coolBeans"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <Button variant="outline-light" onClick={handleSearch}>
+            <Button
+              className="coolBeans"
+              style={{ color: "#fff" }}
+              onClick={handleSearch}
+            >
               Search
             </Button>
           </Form>
         </Nav>
         <Nav>
-          <Button variant="success" className="mr-2" onClick={handleinsert}>
+          <Button
+            className="coolBeans"
+            style={{ color: "#fff" }}
+            onClick={handleinsert}
+          >
             Insert Player
           </Button>
         </Nav>
@@ -194,8 +202,13 @@ function AdminHome() {
                 padding: "10px",
               }}
             />
-            <p>{player.player_name}</p>
-            <Button className="coolBeans">
+            <Link
+              to={`/user/loggedin/playerinfo/${player.player_id}`}
+              style={{ textDecoration: "none", marginRight: "15px" }}
+            >
+              {player.player_name}
+            </Link>
+            <Button className="coolBeans" style={{ color: "#fff" }}>
               <Link
                 to={`/admin/loggedin/update/${player.player_id}`}
                 style={{ color: "#fff", textDecoration: "none" }}

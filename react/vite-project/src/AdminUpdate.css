@@ -52,7 +52,7 @@
   border-radius: 50%; /* Make the image round */
   object-fit: cover;
 }
-.player-info-container input {
+/* .player-info-container input {
   padding: 10px;
   margin: 5px 0;
   border: 1px solid #ccc;
@@ -63,28 +63,10 @@
   border-color: #888;
 }
 
-.player-info-container button {
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
 .player-info-container button:hover {
   background-color: #45a049;
-}
-input {
+} */
+.coolBeans {
   margin-right: 10px;
   margin-bottom: 10px;
-  transition: background-color 0.3s ease;
-}
-
-input:hover {
-  background-color: rgba(54, 94, 154, 0.945);
-}
-
-input:focus {
-  background-color: lightblue;
 }

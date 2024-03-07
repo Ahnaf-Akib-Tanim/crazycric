@@ -7,12 +7,12 @@
 .coolBeans {
   border: 2px solid currentColor;
   border-radius: 3rem;
-  color: yellow;
+  color: rgb(45, 204, 122);
   font-family: roboto;
-  font-size: 4rem;
+  font-size: 1rem;
   font-weight: 100;
   overflow: hidden;
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
   position: relative;
   text-decoration: none;
   transition: 0.2s transform ease-in-out;
@@ -21,7 +21,7 @@
 }
 
 .coolBeans::after {
-  background-color: yellow;
+  background-color: rgb(247, 215, 33);
   border-radius: 3rem;
   content: "";
   display: block;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 //importing image
 import bg from "./bg.png";
+import "./Userloginpage.css";
 function UserLoginPage() {
   const navigate = useNavigate();
   const [userId, setUserId] = useState("");
@@ -46,17 +47,17 @@ function UserLoginPage() {
         width: "100%",
         height: "100vh",
         position: "relative",
-        background: "#AFABE3",
       }}
+      className="fitit"
     >
       <div
         style={{
+          color: "white",
           width: 279,
           height: 72,
           left: 603,
           top: -340,
           position: "absolute",
-          color: "#1E232C",
           fontSize: 30,
           fontFamily: "Urbanist",
           fontWeight: "700",
@@ -89,6 +90,15 @@ function UserLoginPage() {
               background: "#F7F8F9",
               borderRadius: 8,
               border: "1px #E8ECF4 solid",
+              transition: "all .2s ease-in-out",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.boxShadow = "0 0 10px green";
+              e.target.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.boxShadow = "";
+              e.target.style.transform = "";
             }}
             placeholder="Enter your user id"
           />
@@ -115,6 +125,15 @@ function UserLoginPage() {
               background: "#F7F8F9",
               borderRadius: 8,
               border: "1px #E8ECF4 solid",
+              transition: "all .2s ease-in-out",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.boxShadow = "0 0 10px green";
+              e.target.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.boxShadow = "";
+              e.target.style.transform = "";
             }}
             placeholder="Enter your password"
           />
@@ -131,14 +150,11 @@ function UserLoginPage() {
           <button
             type="submit"
             style={{
-              width: 125,
-              height: 50,
               left: 0,
               top: -163,
               position: "absolute",
-              background: "#5030E5",
-              borderRadius: 8,
             }}
+            className="coolBeans"
           >
             Login
           </button>
@@ -161,6 +177,7 @@ function UserLoginPage() {
       )}
       <div
         style={{
+          color: "white",
           left: 593,
           top: 540,
           position: "absolute",
@@ -170,7 +187,7 @@ function UserLoginPage() {
         Don’t have an account?{" "}
         <span
           onClick={() => navigate("/user/signup")}
-          style={{ color: "#5030E5", cursor: "pointer" }}
+          style={{ color: "blue", cursor: "pointer" }}
         >
           Register Now
         </span>

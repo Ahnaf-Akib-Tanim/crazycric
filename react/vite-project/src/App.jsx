@@ -13,6 +13,7 @@ import Dream11Home from "./Dream11Home";
 import Dream11TeamInfo from "./Dream11TeamInfo";
 import Homepage from "./Homepage";
 import Loginpage from "./Loginpage";
+import News from "./News";
 import Playerinfo from "./Playerinfo";
 import Players from "./Players";
 import Profile from "./Profile";
@@ -68,6 +69,7 @@ const App = () => {
           path="/admin/loggedin/update/:playerId"
           element={<AdminUpdate />}
         />
+        <Route path="/user/loggedin/news/:news_id" element={<News />} />
       </Routes>
     </BrowserRouter>
   );

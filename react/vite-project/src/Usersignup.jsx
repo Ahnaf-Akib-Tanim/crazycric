@@ -347,7 +347,7 @@ const Usersignup = () => {
   return (
     <div className="signup-container">
       {error && <div className="error-message">{error}</div>}
-      <Form onSubmit={handleSubmit}>
+      <Form className="f" onSubmit={handleSubmit}>
         <Form.Group controlId="formUserId" className="input-form">
           <Form.Label>User ID :</Form.Label>
           <Form.Control
@@ -355,6 +355,15 @@ const Usersignup = () => {
             value={userId}
             onChange={(e) => setUserId(e.target.value)}
             placeholder="Enter your User ID here"
+            style={{ transition: "all .2s ease-in-out" }}
+            onMouseEnter={(e) => {
+              e.target.style.boxShadow = "0 0 10px green";
+              e.target.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.boxShadow = "";
+              e.target.style.transform = "";
+            }}
           />
         </Form.Group>
         <Form.Group controlId="formPassword" className="input-form">
@@ -364,6 +373,15 @@ const Usersignup = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter your password here"
+            style={{ transition: "all .2s ease-in-out" }}
+            onMouseEnter={(e) => {
+              e.target.style.boxShadow = "0 0 10px green";
+              e.target.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.boxShadow = "";
+              e.target.style.transform = "";
+            }}
           />
         </Form.Group>
         <Form.Group controlId="formName" className="input-form">
@@ -373,6 +391,15 @@ const Usersignup = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter your full name here"
+            style={{ transition: "all .2s ease-in-out" }}
+            onMouseEnter={(e) => {
+              e.target.style.boxShadow = "0 0 10px green";
+              e.target.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.boxShadow = "";
+              e.target.style.transform = "";
+            }}
           />
         </Form.Group>
         <Form.Group controlId="formCountry" className="input-form">
@@ -382,6 +409,15 @@ const Usersignup = () => {
             value={country}
             onChange={(e) => setCountry(e.target.value)}
             placeholder="Enter your country name here"
+            style={{ transition: "all .2s ease-in-out" }}
+            onMouseEnter={(e) => {
+              e.target.style.boxShadow = "0 0 10px green";
+              e.target.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.boxShadow = "";
+              e.target.style.transform = "";
+            }}
           />
         </Form.Group>
         <Form.Group controlId="formTeam" className="input-form">
@@ -391,6 +427,15 @@ const Usersignup = () => {
             value={team}
             onChange={(e) => setTeam(e.target.value)}
             placeholder="Enter your favorite team here"
+            style={{ transition: "all .2s ease-in-out" }}
+            onMouseEnter={(e) => {
+              e.target.style.boxShadow = "0 0 10px green";
+              e.target.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.boxShadow = "";
+              e.target.style.transform = "";
+            }}
           />
         </Form.Group>
         <Form.Group controlId="formPlayer" className="input-form">
@@ -400,6 +445,15 @@ const Usersignup = () => {
             value={player}
             onChange={(e) => setPlayer(e.target.value)}
             placeholder="Enter your favorite player here"
+            style={{ transition: "all .2s ease-in-out" }}
+            onMouseEnter={(e) => {
+              e.target.style.boxShadow = "0 0 10px green";
+              e.target.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.boxShadow = "";
+              e.target.style.transform = "";
+            }}
           />
         </Form.Group>
         <Form.Group controlId="formImage" className="image_adder">
@@ -425,14 +479,22 @@ const Usersignup = () => {
               marginTop: "10px",
               border: "1px solid #ccc",
               borderRadius: "5px",
+              transition: "all .2s ease-in-out",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.boxShadow = "0 0 10px green";
+              e.target.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.boxShadow = "";
+              e.target.style.transform = "";
             }}
           />
         </Form.Group>
         <Button
-          variant="primary"
           type="submit"
           size=""
-          className="signup-button"
+          className="coolBeans"
           style={{ marginTop: "20px" }}
           onClick={handleSubmit}
         >
@@ -454,7 +516,6 @@ const Usersignup = () => {
           Already have an account?
         </Form.Label>
         <div onClick={() => navigate("/user")} style={{ fontSize: "20px" }}>
-          {"/user"}
           <span
             style={{ color: "#5030E5", cursor: "pointer" }}
             onMouseOver={(e) => (e.target.style.color = "#30a5ff")}

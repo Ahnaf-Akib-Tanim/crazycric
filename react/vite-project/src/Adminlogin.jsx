@@ -104,6 +104,15 @@ function Adminlogin() {
               placeholder="Admin ID"
               value={adminId}
               onChange={(e) => setAdminId(e.target.value)}
+              style={{ transition: "all .2s ease-in-out" }}
+              onMouseEnter={(e) => {
+                e.target.style.boxShadow = "0 0 10px green";
+                e.target.style.transform = "scale(1.05)";
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.boxShadow = "";
+                e.target.style.transform = "";
+              }}
             />
           </Col>
         </Form.Group>
@@ -117,12 +126,21 @@ function Adminlogin() {
               placeholder="Password"
               value={adminPassword}
               onChange={(e) => setAdminPassword(e.target.value)}
+              style={{ transition: "all .2s ease-in-out" }}
+              onMouseEnter={(e) => {
+                e.target.style.boxShadow = "0 0 10px green";
+                e.target.style.transform = "scale(1.05)";
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.boxShadow = "";
+                e.target.style.transform = "";
+              }}
             />
           </Col>
         </Form.Group>
         <button
           type="button"
-          className="btn btn-primary .btn-lg"
+          className="coolBeans"
           style={{ position: "relative", top: "20px" }}
           onClick={handleSubmit}
         >

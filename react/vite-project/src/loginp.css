@@ -1,5 +1,7 @@
 .login-page-container {
-  background-image: url("D:\Buet\Crazycric-project\react\vite-project\src\loginbg.jpg");
+  background:
+    linear-gradient(0deg, rgba(30, 20, 122, 0.504) 61%, rgb(180, 45, 253) 100%),
+    url("./back.jpg") no-repeat center center / cover;
   background-size: cover;
   height: 100vh;
   display: flex;
@@ -16,18 +18,6 @@
 
 .login-option:hover {
   opacity: 1;
-}
-
-.login-option button {
-  background-color: #3498db;
-  color: #ffffff;
-  padding: 13px 22px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 17px;
-  transition: background-color 0.3s ease;
-  margin-bottom: 10px;
 }
 
 .login-option button:hover {

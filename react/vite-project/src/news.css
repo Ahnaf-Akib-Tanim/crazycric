@@ -1,0 +1,123 @@
+/* .news-page {
+  position: relative;
+  width: 100%;
+  max-width: 1560px;
+  margin: 20px auto;
+  background:
+    linear-gradient(0deg, rgba(30, 20, 122, 0.504) 61%, rgb(180, 45, 253) 100%),
+    url("./back.jpg") no-repeat center center/ cover;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.news-page-image {
+  width: 40%;
+  height: auto;
+  position: relative;
+  left: 380px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease-in-out;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.news-image:hover {
+  opacity: 1;
+}
+
+.news-page-details {
+  padding: 20px;
+}
+
+.news-page-date {
+  color: white;
+  font-size: 14px;
+  margin-bottom: 5px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.news-page-title {
+  color: rgb(255, 132, 0);
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.news-page-description {
+  color: white;
+  font-size: 16px;
+  line-height: 1.5;
+} */
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.news-page {
+  position: relative;
+  width: 100%;
+  max-width: 1560px;
+  margin: 20px auto;
+  background:
+    linear-gradient(0deg, rgba(30, 20, 122, 0.504) 61%, rgb(180, 45, 253) 100%),
+    url("./back.jpg") no-repeat center center/ cover;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.news-page-image {
+  width: 40%;
+  height: auto;
+  position: relative;
+  left: 380px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease-in-out;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  /* animation: fade 5s ease-in-out forwards; */
+  mix-blend-mode: overlay;
+}
+
+.news-page-image:hover {
+  opacity: 1;
+}
+
+.news-page-details {
+  padding: 20px;
+}
+
+.news-page-date {
+  color: white;
+  font-size: 14px;
+  margin-bottom: 5px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.news-page-title {
+  color: rgb(255, 132, 0);
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.news-page-description {
+  color: white;
+  font-size: 16px;
+  line-height: 1.5;
+}

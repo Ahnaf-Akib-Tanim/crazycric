@@ -48,6 +48,7 @@ app.use(
     '/images',
     express.static(path.join(__dirname, './react/vite-project/public/player images'))
 );
+app.use('/newsimage', express.static(path.join(__dirname, './react/vite-project/public/news')));
 app.use(
     '/cricketboardimages',
     express.static(path.join(__dirname, './react/vite-project/public/cricketboard_images'))
@@ -79,6 +80,7 @@ app.use(
     '/country2images',
     express.static(path.join(__dirname, './react/vite-project/public/country2'))
 );
+app.use('/back', express.static(path.join(__dirname, './react/vite-project/public/back.jpg')));
 // const storage = multer.diskStorage({
 //     destination: (req, file, cb) => {
 //         cb(null, path.join(staticFilePath, 'profileimages'));
@@ -223,11 +225,11 @@ app.get('/user/loggedin', async (req, res) => {
         const playerNames = [
             'Jaker Ali',
             'Mahmudullah',
-            'Shakib Al Hasan',
+            'Dhruv Jurel',
             'Babar Azam',
             'Kane Williamson',
         ];
-        const matchIds = ['m1', 'm2', 'm3', 'm4', 'm5', 'm6'];
+        const matchIds = ['m7', 'm2', 'm3', 'm4', 'm5', 'm6'];
 
         const playersQuery = 'SELECT * FROM player_info WHERE player_name = ANY($1)';
         const matchesQuery = `
@@ -257,6 +259,20 @@ app.get('/user/loggedin', async (req, res) => {
                 players,
             };
         });
+        const upcomingMatchesQuery = `
+        SELECT match_summary.*, stadiums.stadium_name 
+        FROM match_summary
+        INNER JOIN stadiums ON match_summary.stadium_id = stadiums.stadium_id
+        WHERE TO_DATE(match_date, 'DD Mon, YYYY') > CURRENT_DATE
+        ORDER BY TO_DATE(match_date, 'DD Mon, YYYY') ASC
+        LIMIT 8
+    `;
+        const recentNewsQuery = `
+            SELECT * FROM upcoming_news
+            WHERE news_date >= CURRENT_DATE - INTERVAL '1 week'
+        `;
+        const upcomingMatches = await db.any(upcomingMatchesQuery);
+        const recentNews = await db.any(recentNewsQuery);
         const players = await db.any(playersQuery, [playerNames]);
         const matches = await db.any(matchesQuery, [matchIds]);
         const dream11 = await db.any(dream11query, [currentuserid]);
@@ -267,6 +283,8 @@ app.get('/user/loggedin', async (req, res) => {
         console.log('User:', user);
         console.log('All Users:', alluser);
         console.log('User Dream11:', userdream11);
+        console.log('Upcoming Matches:', upcomingMatches);
+        console.log('Recent News:', recentNews);
         res.json({
             players,
             matches,
@@ -274,6 +292,8 @@ app.get('/user/loggedin', async (req, res) => {
             user,
             alluser,
             userdream11: transformedUserDream11,
+            upcomingMatches,
+            recentNews,
         });
         console.log('Players:', players);
         console.log('Matches:', matches);
@@ -281,6 +301,8 @@ app.get('/user/loggedin', async (req, res) => {
         console.log('User:', user);
         console.log('All Users:', alluser);
         console.log('User Dream11:', userdream11);
+        console.log('Upcoming Matches:', upcomingMatches);
+        console.log('Recent News:', recentNews);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'An error occurred while fetching data' });
@@ -597,12 +619,10 @@ app.post('/user/loggedin/dream11team', async (req, res) => {
 });
 app.get('/user/loggedin/Dream11TeamInfo/:teamName', async (req, res) => {
     try {
-        // console.log('Fetching Dream11 team info');
         const { teamName } = req.params;
-        // console.log('Fetching Dream11 team info:', teamName);
         const teamInfo = await db.any(
             `
-            SELECT d.*, 
+            SELECT d.*, ;
             p1.player_role as player1_role, p1.player_image_path as player1_image_path, p1.team_name as player1_team_name,
             p2.player_role as player2_role, p2.player_image_path as player2_image_path, p2.team_name as player2_team_name,
             p3.player_role as player3_role, p3.player_image_path as player3_image_path, p3.team_name as player3_team_name,
@@ -660,13 +680,20 @@ app.post('/admin/loggedin/insert', upload2.single('playerImage'), async (req, re
             playerBowlingStyle,
         } = req.body;
         const playerImagePath = `http://localhost:3000/images/${req.file.originalname}`;
-        // Get the number of players from the same country
+
+        // Fetch a player from the same country
+        const existingPlayer = await db.one(
+            'SELECT * FROM player_info WHERE team_name = $1 LIMIT 1',
+            [playerCountry],
+        );
+
+        // Extract country code from existing player's ID
+        const countryCode = existingPlayer.player_id.match(/^\D+/)[0];
+
         const numPlayers = await db.one('SELECT COUNT(*) FROM player_info WHERE team_name = $1', [
             playerCountry,
         ]);
-
-        // Generate player id
-        const playerId = playerCountry + (parseInt(numPlayers.count) + 1);
+        const playerId = countryCode + (parseInt(numPlayers.count) + 1);
         await db.none(
             'INSERT INTO player_info (player_id, player_name, team_name, player_image_path, player_date_of_birth, player_role, player_batting_style, player_bowling_style) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)',
             [
@@ -703,7 +730,7 @@ app.get('/admin/loggedin/update/:playerId', async (req, res) => {
 app.post('/admin/loggedin/update/:playerId', async (req, res) => {
     const { playerId } = req.params;
     const playerData = req.body;
-
+    console.log('Player Data:', playerData);
     const fields = Object.keys(playerData);
     const values = Object.values(playerData);
     const placeholders = fields.map((_, i) => `$${i + 1}`);
@@ -718,6 +745,18 @@ app.post('/admin/loggedin/update/:playerId', async (req, res) => {
     } catch (error) {
         console.error('Error updating player data:', error);
         res.status(500).json({ error: 'Internal server error' });
+    }
+});
+app.get('/user/loggedin/news/:news_id', async (req, res) => {
+    const { news_id } = req.params;
+    console.log('Fetching news:', news_id);
+    try {
+        const news = await db.one('SELECT * FROM upcoming_news WHERE news_id = $1', [news_id]);
+        res.json(news);
+        console.log('News:', news);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'An error occurred while fetching the news data.' });
     }
 });
 app.listen(port, () => {

@@ -1,11 +1,14 @@
 .admin-login-container {
+  color: aliceblue;
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center; /* Align content vertically */
   align-items: center; /* Align content horizontally */
-  background: #afabe3;
+  background:
+    linear-gradient(0deg, rgba(30, 20, 122, 0.504) 61%, rgb(180, 45, 253) 100%),
+    url("./back.jpg") no-repeat center center / cover;
 }
 
 .admin-login-container h2 {

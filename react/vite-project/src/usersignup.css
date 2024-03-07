@@ -48,34 +48,13 @@
   max-width: 400px;
   min-width: 300px;
   margin: 0 auto;
-  padding: 50px; /* Adjust padding */
+  padding: 50px;
 }
-
 .error-message {
   color: red;
   font-size: 20px; /* Adjust font size */
   margin-bottom: 10px;
 }
-
-/* Button styles */
-.signup-button {
-  width: 100%; /* Make button full width */
-  padding: 15px; /* Adjust padding */
-  background-color: #007bff;
-  color: #fff;
-  font-size: 16px; /* Adjust font size */
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.1s ease-in-out;
-}
-
-.signup-button:hover {
-  cursor: pointer;
-  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.5);
-}
-
-/* Form styles */
 .input-form {
   margin-bottom: 30px;
 }

@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Homepage.css";
-
 const Homepage = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState({});
   const playerBoxRef = useRef();
   const scrollRight = () => {
@@ -15,6 +15,7 @@ const Homepage = () => {
       .then((response) => response.json())
       .then((data) => {
         setData(data);
+        console.log(data.recentNews);
         // console.log(data);
       })
       .catch((error) => console.error(error));
@@ -32,10 +33,10 @@ const Homepage = () => {
             <Link to="/user/loggedin/teams">Teams</Link>
           </button>
           <button className="button">
-            <Link to="/user/loggedin/series">Series</Link>
+            <Link to="/user/loggedin/statguru">Statguru</Link>
           </button>
           <button className="button">
-            <Link to="/user/loggedin/others">Others</Link>
+            <Link to="/user/loggedin/dream11update">Update Dream11</Link>
           </button>
           <button className="button">
             <Link to="/user/loggedin/dream11">Form Your Dream11</Link>
@@ -83,7 +84,8 @@ const Homepage = () => {
           style={{
             position: "relative",
             top: "220px",
-            left: "-680px",
+            left: "-730px",
+            color: "white",
             marginTop: "40px",
           }}
         >
@@ -115,6 +117,71 @@ const Homepage = () => {
         </div>
       </div>
       {/*from here*/}
+      <div className="upcoming-matches-section">
+        <h2
+          style={{
+            position: "relative",
+            top: "150px",
+            left: "-2900px",
+            color: "white",
+            marginTop: "40px",
+          }}
+        >
+          Upcoming Matches
+        </h2>
+        <div className="upcoming-matches-container">
+          {data.upcomingMatches &&
+            data.upcomingMatches.map((match, index) => (
+              <div key={match.match_id} className="upcoming-match-item">
+                <img
+                  className="upcoming-match-image"
+                  src={`http://localhost:3000/series_images/${match.series_id}.png`}
+                  alt={`Match ${match.match_id}`}
+                />
+                <div className="upcoming-match-description">
+                  <p>{`${new Date(match.match_date).toLocaleDateString()} at ${
+                    match.stadium_name
+                  }`}</p>
+                </div>
+              </div>
+            ))}
+        </div>
+      </div>
+      <div className="news-section">
+        <h2
+          style={{
+            position: "relative",
+            top: "530px",
+            left: "-5050px",
+            color: "white",
+            marginTop: "40px",
+          }}
+        >
+          Latest Innings
+        </h2>
+        <div className="news-container">
+          {data.recentNews &&
+            data.recentNews.map((news, index) => (
+              <div key={news.news_id} className="news-item">
+                <img
+                  className="news-image"
+                  src={`http://localhost:3000/newsimage/${news.news_id}.jpg`}
+                  alt={`News ${news.news_id}`}
+                />
+                <div
+                  className="news-description"
+                  onClick={() =>
+                    navigate(`/user/loggedin/news/${news.news_id}`)
+                  }
+                >
+                  <p>{`${new Date(news.news_date).toLocaleDateString()}`}</p>
+                  <h3 style={{ color: "white" }}>{news.title}</h3>
+                </div>
+              </div>
+            ))}
+        </div>
+      </div>
+
       <div className="right-section">
         <table>
           <thead>
@@ -124,7 +191,7 @@ const Homepage = () => {
               <th>Rank</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody style={{ color: "white" }}>
             {data.dream11 &&
               data.dream11.map((team, index) => (
                 <tr key={index}>
@@ -136,6 +203,7 @@ const Homepage = () => {
                     />
                     <Link
                       to={`/user/loggedin/Dream11TeamInfo/${team.team_name}`}
+                      style={{ color: "white" }}
                     >
                       {team.team_name}
                     </Link>

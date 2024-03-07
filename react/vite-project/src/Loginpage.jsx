@@ -60,7 +60,12 @@ const Loginpage = () => {
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
         >
-          <Button variant="outline-primary" size="lg" block>
+          <Button
+            className="coolBeans"
+            style={{ color: "#fff", fontSize: "23px", marginBottom: "35px" }}
+            size="lg"
+            block
+          >
             User
           </Button>
         </Col>
@@ -72,7 +77,12 @@ const Loginpage = () => {
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
         >
-          <Button variant="outline-danger" size="lg" block>
+          <Button
+            className="coolBeans"
+            style={{ color: "#fff", fontSize: "25px" }}
+            size="lg"
+            block
+          >
             Admin
           </Button>
         </Col>

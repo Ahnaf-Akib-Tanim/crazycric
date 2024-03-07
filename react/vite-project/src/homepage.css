@@ -4,6 +4,15 @@
 }
 .homepage-specific-body {
   overflow: hidden;
+  height: 220vh;
+  width: 100vw;
+  font-family: Arial, sans-serif;
+  background:
+    linear-gradient(0deg, rgba(30, 20, 122, 0.504) 61%, rgb(180, 45, 253) 100%),
+    url("./back.jpg") no-repeat center center/ cover;
+}
+.match-description p {
+  color: white;
 }
 .left-section {
   width: 25%;
@@ -58,12 +67,70 @@
   position: relative;
   top: -50px;
   text-decoration: none;
-  transition: background-color 0.3s ease;
+  border-left: 5px solid;
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+.button:after {
+  content: "";
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 0px;
+  position: absolute;
+  transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.3s ease 0s;
+  z-index: -1;
+}
+.button:hover {
+  border-bottom: 0px;
+  color: #fff;
+}
+.button:hover:after {
+  width: 100%;
 }
 
-.button:hover {
-  background-color: #55c2da;
+.button:nth-child(1) {
+  border-left: 10px solid #3498db;
 }
+.button:nth-child(1):after {
+  background: #3498db;
+}
+
+.button:nth-child(2) {
+  border-left: 10px solid #ffd071;
+}
+.button:nth-child(2):after {
+  background: #ffd071;
+}
+
+.button:nth-child(3) {
+  border-left: 10px solid #f0776c;
+}
+.button:nth-child(3):after {
+  background: #f0776c;
+}
+
+.button:nth-child(4) {
+  border-left: 10px solid #1abc9c;
+}
+.button:nth-child(4):after {
+  background: #1abc9c;
+}
+
+.button:nth-child(5) {
+  border-left: 10px solid #3498db;
+}
+.button:nth-child(5):after {
+  background: #3498db;
+}
+
+/* .button:hover {
+  background-color: #55c2da;
+} */
 .do {
   position: relative;
   left: -149px;
@@ -87,6 +154,7 @@
   display: flex;
   align-items: center;
   overflow-x: auto;
+  color: white;
   position: relative;
   top: 27px;
   left: 415px;
@@ -126,7 +194,7 @@
   align-items: center;
   position: relative;
   top: 100px;
-  left: -680px;
+  left: -730px;
   overflow-x: auto;
   scrollbar-width: none;
   gap: 10px;
@@ -155,3 +223,128 @@
 .player {
   flex: 0 0 auto;
 }
+.upcoming-matches-section {
+  position: relative;
+  top: 500px;
+}
+
+.upcoming-matches-container {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  gap: 10px;
+  position: relative;
+  top: 150px;
+  left: -2900px;
+  width: 36%;
+  scrollbar-width: none;
+}
+
+.upcoming-match-item {
+  flex: 0 0 auto;
+  margin-right: 10px;
+  width: 250px;
+  padding: -25px;
+  background-color: transparent;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.upcoming-match-image {
+  border-radius: 50%;
+  width: 350px;
+  height: 350px;
+  margin-bottom: 10px;
+}
+
+.upcoming-match-description p {
+  color: white;
+  font-size: 16px;
+  position: relative;
+  top: -100px;
+}
+.news-section {
+  position: relative;
+  top: 500px;
+}
+
+.news-container {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  gap: 10px;
+  position: relative;
+  top: 520px;
+  left: -5060px;
+  width: 46%;
+  scrollbar-width: none;
+}
+
+.news-item {
+  flex: 0 0 auto;
+  margin-right: 10px;
+  width: 200px;
+  padding: -25px;
+  background-color: transparent;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.news-image {
+  border-radius: 50%;
+  width: 180px;
+  height: 180px;
+  margin-bottom: 10px;
+}
+
+.news-description p {
+  color: white;
+  font-size: 14px;
+  position: relative;
+  top: 00px;
+}
+/* .news-section {
+  position: relative;
+  top: 700px;
+} */
+/* .news-container {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  gap: 10px;
+  position: relative;
+  top: 430px;
+  left: -3050px;
+  width: 36%;
+  scrollbar-width: none;
+} */
+/* .news-item {
+  flex: 0 0 auto;
+  margin-right: 10px;
+  width: 250px;
+  padding: -25px;
+  background-color: transparent;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+} */
+/* .news-image {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+} */
+/* .news-description p {
+  color: white;
+  font-size: 16px;
+  position: relative;
+  top: -100px;
+} */

@@ -1,79 +1,232 @@
-/* Styles for the container wrapping the coach information */
-.team-info-container {
-  padding: 20px; /* Add padding */
-  border-radius: 10px; /* Add border radius */
-  text-align: center; /* Center-align content */
-  overflow-x: auto; /* Add horizontal scroll for small screens */
-}
+INSERT INTO "series_info" ("series_id", "series_name", "team_names", "start_date", "end_date", "host_country", "image_path") 
+VALUES
+('s101', 'Sri Tour of Bangladesh', '{"Sri Lanka",Bangladesh}', '04 Mar, 2024', '03 Apr, 2024','Bangladesh', 'http://localhost:3000/seriesimages/s1.png'),
+('s104', 'West Indies tour of England, 2024', '{"West Indies",Bangladesh}', '10 Jul, 2024', '30 Jul, 2024','England', 'http://localhost:3000/seriesimages/s1.png'),
 
-/* Styles for the container wrapping the team name and coach image */
-.team-name-container {
-  display: flex;
-  align-items: center;
-  justify-content: center; /* Center-align content */
-  margin-bottom: 20px; /* Add margin */
-}
+('s103', 'Pakistan tour of England, 2024', '{"Pakistan",Bangladesh}', '22 May, 2024', '30 May, 2024','England', 'http://localhost:3000/seriesimages/s1.png'),
 
-/* Styles for the coach image */
-.team-name-container img {
-  width: 80px; /* Set image width */
-  height: 80px; /* Set image height */
-  border-radius: 50%; /* Add border radius for rounded shape */
-  margin-right: 15px; /* Add margin */
-}
+('s102', 'Sri Tour of Bangladesh', '{"Sri Lanka",Bangladesh}', '04 Mar, 2024', '03 Apr, 2024','Bangladesh', 'http://localhost:3000/seriesimages/s1.png'),
 
-/* Styles for the coach name */
-.team-name-container h1 {
-  font-size: 24px; /* Set font size */
-  color: #333; /* Set text color */
-  margin: 0; /* Remove default margin */
-}
+INSERT INTO "match_summary"("match_id", "series_id", "stadium_id", "match_date","start_time", "team1", "team2", "match_format")
+VALUES 
+('m101','s101','st11','13-Mar-2024','2:00 pm','Bangladesh','Sri Lanka','ODI'),
+('m102'.'s101','st11','15-Mar-2024','2:00 pm','Bangladesh','Sri Lanka','ODI'),
+('m103'.'s101','st11','18-Mar-2024','10:00 am','Bangladesh','Sri Lanka','ODI'),
+('m104'.'s102','st12','22-Mar-2024','9:30 am','Bangladesh','Sri Lanka','Test'),
+('m105'.'s102','st12','30-Mar-2024','9:30 am','Bangladesh','Sri Lanka','Test'),
 
-/* Styles for the table */
-table {
-  width: 100%; /* Set table width */
-  border-collapse: collapse; /* Collapse table borders */
-  margin-top: 20px; /* Add margin */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Add shadow to table */
-}
+('m106'.'s103','st17','22-May-2024','11:30 pm','England','Pakistan','T20'),
+('m106'.'s103','st17','25-May-2024','11:30 pm','England','Pakistan','T20'),
+('m106'.'s103','st17','28-May-2024','11:30 pm','England','Pakistan','T20'),
+('m106'.'s103','st17','30-May-2024','11:30 pm','England','Pakistan','T20'),
 
-/* Styles for table headers and cells */
-table th,
-table td {
-  padding: 15px; /* Add padding */
-  text-align: center; /* Center-align content */
-  border: 2px solid #7e57c2; /* Set border color and width */
-}
+('m107'.'s104','st3','10-Jul-2024','4:00 pm','England','West Indies','Test'),
+('m108'.'s104','st18','18-Jul-2024','4:00 pm','England','West Indies','Test'),
+('m109'.'s104','st3','26-Jul-2024','4:00 pm','England','West Indies','Test');		
+		
+		
+CREATE TABLE "upcoming_news" 
+(
+    "news_id" VARCHAR NOT NULL PRIMARY KEY,
+    "title" VARCHAR,
+    "details" VARCHAR,
+    "image_path" VARCHAR
+);
 
-/* Styles for table headers */
-table th {
-  background-color: #f2f2f2; /* Set background color */
-  font-weight: bold; /* Set font weight */
-}
+INSERT INTO "upcoming_news" VALUES
+('news1',
+'Jaker disappointed but not broken after falling just short',
+'Bangladeshs T20 prodigy Jaker Ali said on Monday (March 4) that he was confident of taking his side over the line in the last over against Sri Lanka in the T20I series opener in Sylhet but was unfortunate to have not got a good enough connection on the Dasun Shanka delivery that dismissed him in the final over for a whirlwind 34-ball 68.
 
-/* Styles for table rows on hover */
-table tr:hover {
-  background-color: rgba(122, 56, 153, 0.178); /* Change background color on hover */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Add glow effect */
-  transition: background-color 0.1s ease-in-out; /* Add transition effect */
-}
+Bangladesh were in deep trouble when they were reduced to 68 for 4 in the ninth over during their chase of 207 runs but Mahmudullah and Jaker added 47 runs in quick time to bring them back in the contest. After the departure of Mahmudullah for 54, Jaker continued to smash Sri Lankan bowlers to all parts of the ground and shared a quick-fire 65-run stand with Mahedi Hasan (16) to bring the equation down to 12 runs from the final over.
 
-/* Media query for smaller screens */
-@media (max-width: 768px) {
-  .team-info-container {
-    padding: 15px; /* Reduce padding */
-  }
+Shanaka removed Rishad Hossain (0) with the first ball of the final over and Jaker fell two balls later, holing out to long-off while attempting to launch a full delivery. The hosts fell short by three runs.
 
-  .team-name-container img {
-    width: 60px; /* Reduce image width */
-    height: 60px; /* Reduce image height */
-  }
+"I asked Rishad to give me strike and unfortunately his wicket fell but I was on strike and we needed 10 runs from four balls and I had the confidence I can do it because throughout the innings it was going well but [I] could not connect and it went to the hand and that is it," Jaker told reporters at the SICS following the game.
 
-  .team-name-container h1 {
-    font-size: 20px; /* Reduce font size */
-  }
+"If we could win the game with me scoring 10 to 12 runs... in that case I would have been much happier. I played well Alhamdulillah but if I could win the game I would have been much happier," he said. "You can see through my face how I am and every defeat is hurting and I lost the final [BPL for Comilla Victorians] too. I am sure I will not be broken and now we have to see how we can win the next game and I feel we have a lot of things to gain from this match.".
 
-  table {
-    font-size: 14px; /* Reduce font size */
-  }
-}
+The 26-year-old Jaker said that he anticipated the T20I call-up after his heroics with the bat in the just concluded BPL, where he amassed 199 runs at an average of 99.5 and a strike-rate of 141 for the Comilla Victorians.
+
+"I always say that when I am destined to play I will play and I was mentally prepared after Aliss got injured and Shanto had spoken with me that you have a chance to go and [asked me to be] mentally prepared and as we had spoken about it I was prepared," he said. "I came here within two days of BPL and it helped me because I came here in the T20s after that atmosphere.
+
+"This is my home ground I was aware about the wicket and ground. I always like to play in Sylhet ground and my first-class debut was in this ground and I am aware about the atmosphere of this ground. The wicket was good to bat on and everything was going if we could win the game I would have felt happier."
+
+Jaker credited senior pro Mahmudullah for his calculated risks early in their partnership that allowed the junior partner to settled down and get into his swing of things. "When I went to bat Riyad [Mahmudullah) bhai was there and he told me to do as usual batting and I tried to play the way I usually do and there was no extra plan and when I came to bat, Riyad got some boundaries by taking some calculative risk and I became free due to that and things become easy," he said.
+
+"When I was seeing that Riyad was taking chances all I was looking was to get 10 or 12 [runs] in a over and that was the plan. If Riyad bhai was there I would have remained that way but when he got out I shifted my gear."',
+)
+('news2',
+'Pat Cummins to captain SRH in IPL 2024',
+'Star Australia fast bowler Pat Cummins has been named captain of Sunrisers Hyderabad ahead of the forthcoming 2024 season of the IPL. Cummins, 30, replaces Aiden Markram at the helm with the franchise looking to head in a new direction post a forgettable last-place finish in the last season.
+
+As reported by Cricbuzz, Cummins was the favourite to take over as captain after he was bought for a massive sum of INR 20.50 Cr in the auction. Daniel Vettori, SRH''s new head coach, works with Cummins in the Australian national set-up. Vettori, who was also tasked with finding a replacement for Dale Steyn (for the vacant bowling coach role), has picked former national teammate James Franklin to join the coaching set-up.
+
+Even though Markram had led sister franchise Sunrisers Eastern Cape to back-to-back titles in SA20, the fact that SRH had a poor campaign in 2023 coupled with Cummins'' meteoric rise as a leader has forced the change in leadership. Under Cummins, Australia won the World Test Championship last year and then beat India in the final of the ODI World Cup as well.
+
+This will be the Australian''s first stint as captain in the IPL. Previously, he has played for Kolkata Knight Riders. Even though he didn''t fetch a lot of success with the ball, Cummins did smash a 14-ball fifty, the fastest in IPL history at that point. He was the first player ever to fetch a bid of over INR 20 Cr in the auction before eventually getting purchased by SRH. That record bid was immediately broken by KKR when they signed Mitchell Starc for INR 24.75 Cr.',
+
+
+),
+('news3',
+'Shakib is still hungry to learn new things'' - Salahuddin',
+'Mohammad Salahuddin is arguably one of the finest coaches Bangladesh has produced so far despite the fact that he couldn''t win the BPL for the third consecutive time with Comilla Victorians. Salahuddin spoke at length regarding the challenges he faced as Victorians coach in an exclusive interview, from changing Towhid Hridoy''s batting order to give him freedom, his desire to be the head coach of Bangladesh T20I set-up someday and more.
+
+Here are the excerpts
+
+You must be disappointed not to win the trophy (BPL)..
+
+Yes but that is okay. In the next season we will give another try to be the champions.
+
+How did you reach the final on three occasions?
+
+I think we plan well so the team can reach top four. I think after reaching the top four we are ahead of others psychologically due to our foreign players. Big players playing in big games always help you. The most important thing is that during the league phase we don''t panic despite losing games. I always feel that in such a big tournament we will lose two or three games and even if we make mistakes in one game there is a chance to make a comeback. If we lose early it helps to identify where we lack and we try to fill that up. As the tournament progresses the boys got to gain confidence gradually because if there is lot of confidence initially and it decreases at the latter part of the tournament, then there is no point.
+
+Players kept arriving and leaving. How difficult was it for the Victorians in this season?
+
+This year it was very difficult and we struggled a lot though from outside it was hardly the case. Players who gave us commitment did not come but we were lucky despite all these things we got points in the group phase at that point of time.
+
+You worked with Aliss Al Islam''s action and he also got a call in the national set-up. Can you tell us about his journey and why he is bowling with a Sunil Narine action?
+
+It is unfortunate that he is ruled out of the Sri Lanka series due to a finger injury. He certainly has something in his bowling or else he couldn''t play for Comilla. If he can keep himself fit and if he is a bit more athletic he can be better. As far as his action is concerned it was changed totally because he was chucking with the previous action. He could do a lot of things before and my job was to make sure with the new action how he could bowl those deliveries that he mastered earlier. My main focus while changing anyone''s action is to make sure he can bowl what he could do earlier because except Razzak (former Bangladesh spinner) no one could bowl in the same manner with a modified action. Razzak bowled better with the new action because he learnt how to spin the ball and add flight variations.
+
+According to Victorians skipper Litton Kumar Das, you removed the insecurities from players'' minds that helped them improve.
+
+When I take a player in my team I have a lot of trust in him that he is the best option for that specific position. Even if that role is just for five balls, I try to give them an opportunity to execute that role in the middle. In this BPL, the Bangladesh players have very little chance apart from the top-order and some of them play as a fifth bowler so the role is limited but if we can bring that role in front and show him that his small role can decide the fate of the team, naturally he will start thinking big.
+
+You played Towhid Hridoy at four initially and later brought him to three. Do you feel that did the trick for him as he was not scoring heavily initially?
+
+When I pick a local player I always think in which position he will play in the national team. When he came I asked him in which position he wants to bat considering I did not work with him earlier and he said he bats at four in the national team and I told him it is ok and he played at four because to me the most important thing is the player and his comfort. He likes to play shots and if you are batting at four you need to be very intelligent because the role of four and five is very important in T20s. The top three have the license to play freely and there is no problem with that but when the team is two or three wickets down, a lot of things need to be done. When he was batting at four, it seemed like he was thinking about the team requirement and curbing his aggressive batting style and moving away from his natural game like he was thinking we are two wickets down and now if I go out the team will be in pressure.
+
+Shakib Al Hasan had a torrid time with the bat in the BPL with his eye problem and being his mentor you worked with him in Sylhet and he changed his backlift and went for a high backlift and suddenly his game changed as he started scoring runs regularly.
+
+I think people have a wrong notion that I coach Shakib. Rather, our understanding is very good and I don''t have to tell him a lot of things. He changed his backlift on his own because if he is keeping the bat high in that case his neck moves lesser. He thinks about cricket a lot and even during the last match he came to me with a new grip and that suggests he is still hungry to learn new things. And those who are not trying new things are making mistakes because with time your mental frame will change. Like the way Towhid is playing at the moment, he cannot replicate it at 35 even if he wants to and he needs to make the adjustments required to survive. I still feel he needs treatment for his eyes and he will do that. In future, if he has to make technical or tactical adjustments, he can do that and that is why he is what he is today.
+
+Recently, the BCB president Nazmul Hasan was asked why Salahuddin is not in the national team and he insisted you are not interested. Why is that?
+
+To be honest I don''t have the age to work under anyone and for an assistant coach I have to work very hard and give a lot of time with the boys to develop them. An assistant coach plays a big role behind organizing the team but I cannot do that now and I don''t have that mentality to work under anyone. What I have seen and learnt about Hathurusingha is that other coaches cannot adjust with him and with the mentality I carry I want freedom and if someone wants to dominate over me it will become difficult for me because I don''t have that character and that is the reason why I did not give my name. Half of the coaching staff of the World Cup left and what I heard is that they don''t want to work with him and if they cannot work with him how can I do it and I am well aware about all these things and I want to work with freedom and as that will not be the case I am reluctant to get associated with the national team.
+
+After the World Cup if BCB offers you to take over the T20 set-up, will you agree?
+
+If I am given the responsibility (as a head coach) of the T20 set-up I will think over it.',
+
+),
+('news4',
+'Silverwood sees opportunity in the absence of Hasaranga, Nissanka',
+'Sri Lanka head coach Chris Silverwood emphasized on Sunday that the absence of skipper Wanindu Hasaranga in the opening two T20Is of the three-match series could serve as a blessing in disguise, providing an opportunity for others to gain valuable game time ahead of the forthcoming T20 World Cup.
+
+Sri Lanka''s T20I captain, Wanindu Hasaranga, was handed a two-match suspension and fined 50 percent of his match fee by the ICC for his outburst against umpire Lyndon Hannibal during the series against Afghanistan. As a result, he will not be available for the first two games of the series, commencing at Sylhet International Cricket Stadium from March 4.
+
+"Wanindu missing two matches is something that we have to deal with. Wanindu has accepted his punishment, and all we have to do now is move on. What it does do is create an opportunity for other people within the squad to get significant game time leading into the World Cup," Silverwood told reporters at the SICS on Sunday.
+
+"That''s how we have to look at it because we''ve seen in a World Cup and Sri Lanka have experienced that it''s not just the eleven on the field; it''s a whole squad that takes part in the World Cup," he added. "And at any given point, they will all be called upon and so we have to make sure that everybody within that squad is ready for those games as and when they''re called upon."
+
+Furthermore, Silverwood acknowledged the setback caused by the absence of Pathum Nissanka, stating it also creates opportunities for others.
+
+"Over the past seven to eight months, he''s (Pathum) become a very, very consistent player at the top of the order for Sri Lanka. And recently we''ve seen some superb knocks from him, both in ODI cricket and in T20 cricket. The great thing is I don''t think Pathum will be too long before he''s returning to us because he''s a very valuable member of the squad and a much-respected member of the squad. So we''re looking forward to getting him back. But as I''ve said before, I mean, this also creates an opportunity for people that might not get that game time that may be required, obviously, for a World Cup. So, for me, it''s going to provide someone else with game time," he said.
+
+Reflecting on their recent performances, Silverwood expressed confidence in Sri Lanka''s ability to perform well against the hosts, citing their victory over Afghanistan in the recently concluded T20I series.
+
+"To be fair, we''ve played some very good T20 cricket leading into this, so I expect that to continue. I expect us to continue to grow our game plans, continue to develop as a team and as players, and keep working hard towards that. And ultimately playing our own brand of cricket going into the World Cup, you know what I mean? We are Sri Lanka, we want to play like Sri Lankans, and that''s what we''re going to aim to do."
+
+When asked about the rivalry between the two nations, Silverwood remained unfazed, prioritizing the upcoming challenges.
+
+"Listen, first and foremost, I expect this to be a very competitive series between two good sides. What happened in the past, for me, that''s history, now it''s gone. I think what we have to do is, certainly from our perspective, concentrate on what''s in front of us," the coach said.
+
+"And remember what we''re aiming for. I mean, obviously we''re now in the buildup to what is an important competition in the World Cup. I think all teams now are sort of finalizing their squads, give experience, so ultimately that''s what it is. We''re building up to a World Cup, and it''s great that we have such a good competition in front of us to do that, great series to do that in. So, as I said, I''m expecting a very exciting series. There are some dangerous players on both sides. So I think it''ll be good fun. But as I said, what''s happened in the past is history. It''s about what''s in front of us now," he added.
+
+Regarding the favorites for the series, Silverwood maintained a diplomatic stance.
+
+"Well, obviously I''m going to say Sri Lanka are going to be the favorites. But listen, as I''ve already said, there are two good teams that will both be pushing very hard to win this series. Because we''re all building up to the World Cup now, so we want to start making sure that we''re playing top cricket going into that. So as I said before, I expect this to be very competitive," Silverwood concluded.',
+
+),
+('news5',
+'Afghanistan include three new faces for Ireland ODIs',
+'Afghanistan will be without the services of their two star spinners - Rashid Khan and Mujeeb-ur-Rahman - for the upcoming three-match ODI series against Ireland in UAE.
+
+Rashid misses out due to the back surgery while Mujeeb has been recovering from the right phalanx sprain, ruling them out for the series starting next week.
+
+Consequently, the hosts of the series, Afghanistan have brought in three new faces. Left-arm spin bowling allrounder Nangyal Kharoti, right-arm offspinner Allah Mohammad Ghazanfar, who featured at the recently-concluded U19 World Cup 2024, and the right-arm quick Bilal Sami will be in line for their national debut.
+
+"Rashid Khan and Mujeeb Ur Rahman continue to recover from their respective injuries and are unavailable for selection. However, we have included some of the top-performing youngsters in Nangyal Kharoti and Bilal Sami. Allah Mohammad Ghazanfar is a very talented cricketer and has demonstrated excellent skills during the U19 World Cup. He will provide cover for Mujeeb Ur Rahman," said ACB chief selector Ahmad Shah Sulimankhil.
+
+All three ODIs will be played in Sharjah, on 7, 9 and12 March.',
+
+),
+('news6',
+'Improvements in Test cricket, tournament win in ODIs: Shanto''s captaincy wish-list',
+'Najmul Hossain Shanto wants general improvements to Bangladesh''s Test cricket and targets an ODI tournament victory during his tenure as the country''s all-format skipper. Najmul, who acted as interim skipper in the absence of Shakib Al Hasan, will take over full-time responsibilities with the three-match T20I series against Sri Lanka, starting on March 4.
+
+Ahead of the series during his first official press conference at Sylhet on Sunday (March 3), the left-handed batter thanked Bangladesh Cricket Board for giving him the opportunity to lead the side in all three formats and said not having to split captaincy duties across formats would help him to plan better as a leader.
+
+"I know it [being all format captain] is challenging but for planning it will be easier. I have to know about every cricketer though we stay together and playing together but to do the planning it will be easier as I am in charge of three formats. I hope something good will happen," Najmul told reporters at SICS.
+
+"I don''t think we have improved a lot in Test cricket but we are playing better than before and what I want personally is that when we are playing at home we can win those matches and everyone should build-up [understand] the importance of Test cricket. When we are going abroad we should be able to compete.
+
+"In ODIs we are doing good but as a team we are yet to win a big tournament so want to move forward with the plan on how we can play well in a big tournament and bring a trophy for the country," he said.
+
+Najmul had a forgettable BPL campaign, scoring just 175 runs from 12 games at an average of 14.58 and a strike-rate of 93.58, but he isn''t worried about his form or feels like he has to do something more now that he is captain of the national team.
+
+"I don''t think I am playing badly... because of my throat though there was some irritation it is just that I had a bad tournament and I am working on that and hopefully it will be better in the coming days," he said.
+
+"I have to score even if I am not the captain and it is not a fact that I have to score extra because of being the captain. I feel I am a batter first and my job is to score runs when I am batting and later I will fulfill my duty inside and outside the ground, but I am not seeing it like I am captain so I have to do something extra in the batting and when I am batting I will be fulfilling my responsibility," he said.
+
+Najmul added that the T20 series against Sri Lanka will mark the start of their preparation for the upcoming T20 World Cup and added that going into it straight from the BPL would hold the T20 side in good stead. "I think it is important that before the World Cup we will play eight to 11 matches and if we can plan properly and organise ourselves from here in that case it will be easier to play the World Cup," he said.
+
+"I think it is important to play as a team and if we see last year everyone had contribution and in every [T20] match and this is something that we need to continue and how we have faith on one another that is important and if we can grow that in the coming days. It is important that we are beginning the series after such a big tournament [BPL] and it is easier for us to plan because we are coming playing in this format," he said
+
+Najmul is confident of a strong showing from his side and added that no attention was being given to occasionally acrimonious incidents in games between these two side viz. Naagin dance or the timed-out dismissal controversy. "We have hundred percent faith that we can win the series," said Najmul. "Against Sri Lanka we are not thinking about outside things like what happened in the past and hopefully will have a good series and we are focusing on our plan and will do what we need to do and hopefully will have good series.
+
+"Every international series brings pressure and it is true for us as well as the opponent and it will remain that way and everyone is enough matured to handle these things. They have a very good team and especially they have all-rounders but still we are playing at home condition and so there will be advantage for us and I hope we can play some good cricket," he concluded.',
+
+)
+,('news7',
+'Southee coy on picking Wagner in Christchurch',
+'Tim Southee, New Zealand''s Test skipper, hasn''t ruled out the possibility of Neil Wagner earning a shock recall to the Test XI for the second game of the series against Australia. Wagner recently retired from international cricket after being told he wouldn''t be picked in the XI against Australia in the ongoing series. However, a hamstring injury to Will O''Rourke during the first Test has raised slim hopes of the pacer being recalled to the XI.
+
+O''Rourke walked off the field during Australia''s second innings following a hamstring injury and didn''t bowl again. However, he did come out to bat in the New Zealand second innings. Wagner did walk out as a substitute fielder during the Test to a great response from the crowd.
+
+"We haven''t had a lot of discussions as yet," Southee said after New Zealand''s loss. "We''ll see how Will scrubs up. The physio hasn''t sort of put a timeframe on it or how bad it is. We''ll just wait and see how Will goes over the next couple of days. I''m sure there''ll be an update in the next 24 hours
+
+"We obviously have to go on and make a decision on who comes in and what role we sort of see that playing out in Christchurch. [Wagner''s] had a great reception here over the last week where he got a couple of moments on the field and obviously he''s been a fan favourite for a long time."
+
+However, one player Southee definitely did rule out of contention was long-time new-ball partner Trent Boult. The 34-year-old hasn''t played a Test match since June 2022 and has only been playing T20 cricket recently. The skipper was also less critical of Scott Kuggeleijn, who in his second Test match wasn''t quite able to lift the slack after O''Rourke had to walk off the field.
+
+"He bowled well at times," Southee noted. "It was tough out there with that wind, the job he did, picked up a couple of wickets in the first innings which were crucial. It''s obviously a very small sample size in the two matches he''s played and there''s a bit of time, a year between Test matches as well. It''s not easy to come in and make an impact straight away."
+
+The 35-year-old admitted that Cameron Green''s spectacular century in the first innings was the difference between the two sides. Green smashed an unbeaten 174 and frustrated the hosts alongside Josh Hazlewood as the last-wicket pair added 116.
+
+"I think we probably could have tried to get Green out on that second morning," he said. "I think the way he played that that night before, we thought he was probably going to come out and play some shots. But we probably could look to get him out and on that second morning and make things slightly easier than what we did." ',
+),
+('news8',
+'Erasmus calls over and time on international umpiring career',
+'Marais Erasmus wants for his 61st birthday to be bored, preferably at home. He spent his 60th, on Tuesday, 11,500 kilometres away from South Africa in New Zealand preparing to officiate in the men''s Test series against Australia. It will be his last international engagement.
+
+"I''ll miss the privileges and the travelling," Erasmus told Cricbuzz on Wednesday (February 28) from Wellington, where the first Test starts on Thursday. "But I''ve had enough of being away and living outside of my comfort zone. I think having a more boring life is what I''m looking for." He delivered the last line with the naughty chuckle that only those who know him outside the necessarily staid realm of umpiring would have heard.
+
+From his debut in a men''s T20I between South Africa and Australia at the Wanderers in February 2006, he has stood in 80 Tests, 124 ODIs and 43 T20Is played by men, in 18 women''s T20Is, and as the television official in 131 men''s internationals across the formats.
+
+"I decided in October last year and I informed the ICC that I would finish my contract in April and that would be that," Erasmus said, denying reports implying he had been told to quit because of his age.
+
+What would he do with his downtime? "For the first couple of months I''m just going to take the winter off. We have some travel planned domestically, and from September I''ll be in the hands of CSA. We still need to finalise how they want to use me. I''ll umpire in domestic cricket next season and play a mentoring role. I might go to the Khaya Majola Week [a schools event] or the club championships, and I''ll be watching and advising umpires." Erasmus said he hoped to continue the work in the latter area done by his close friend Murray Brown, who died on February 8, and Shaun George, who died on Saturday.
+
+What would he miss about being part of the ICC''s elite panel, which he joined in 2010? "The challenge of the job, being in that moment of trying to get it right. That''s always something special and tough, and it''s exhilarating when you have a good game."
+
+He might also yearn for the company of some of his colleagues: "There''s lots of camaraderie, because we''re all in it together even though there''s competition between the guys. We all understand the highs and the lows, and that when someone is going through a rough period you need to support him because your turn will come."
+
+Erasmus recommended umpiring as a profession "if you''re passionate about cricket". His own passion burned brightly enough to keep him in the game after he had retired after playing 53 first-class and 54 list A games from December 1988 to December 1996 as a combative Boland seam bowling allrounder.
+
+"To have seen the best players and been to the iconic venues and World Cups is a massive privilege," Erasmus said. "It''s been quite a journey from being a schoolboy who kept score while watching Eddie Barlow play at Newlands."
+
+Along the way he''s been to the 2023, 2019, 2015 and 2011 men''s ODI World Cups, all eight editions of what is now called the men''s T20 World Cup and three editions of the women''s version. He has stood in 14 Ashes Tests, seven games between India and Pakistan, and in 10 editions of the IPL.
+
+But several times he has had to celebrate his birthday - which he shares with Graeme Pollock, who turned 80 this year - without his family and far from his home in the Western Cape hamlet of Malmesbury. On February 27, 2008 he was at the men''s under-19 World Cup in Malaysia. Two years later he was in India for a tour by England. He had another birthday in India in 2013 for Australia''s visit. The year after that Erasmus blew out the candles in the Caribbean, during a series involving England. In 2015 he was in New Zealand for an Australia rubber. Five years later it was back to West Indies for Sri Lanka''s tour.
+
+You don''t get to do all that if you don''t know what you''re doing. Erasmus, who joined the ICC''s elite panel in 2010, knows what he''s doing well enough to have won the David Shepherd Trophy - the prize the ICC awards annually to the world''s best umpire - in 2016, 2017 and 2021. Only Simon Taufel, who landed the first five from 2004, has claimed the trophy more often.
+
+Even so, Erasmus has often been at the centre of drama on the field. It was he, for instance, who during a World Cup match between Sri Lanka and Bangladesh in Delhi in November correctly upheld the appeal that made Angelo Mathews the first batter to be timed out in international cricket.
+
+"We need to find a different way of administrating that situation," Erasmus said. "Yes, it''s the responsibility of the player [to be ready to face the bowler no more than three minutes after the wicket, or the retirement, that has brought them to the crease has fallen], and maybe if we find a different way the players will abuse it. But I think that debate is wide open. It wasn''t something I wanted to be part of at a World Cup, but I had to apply the law."
+
+The incident spawned a slew of criticism of the umpires, much of it rooted in ignorance and parochialism. You could understand how a touch of boredom, preferably at home, might be welcome after that.',
+);

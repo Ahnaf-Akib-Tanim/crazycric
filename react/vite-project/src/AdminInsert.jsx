@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 function InsertPlayer() {
   const [playerData, setPlayerData] = useState({
     player_name: "",
@@ -10,7 +11,7 @@ function InsertPlayer() {
     player_batting_style: "",
     player_bowling_style: "",
   });
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setPlayerData({
@@ -34,8 +35,7 @@ function InsertPlayer() {
       !playerData.player_image_path ||
       !playerData.player_date_of_birth ||
       !playerData.player_role ||
-      !playerData.player_batting_style ||
-      !playerData.player_bowling_style
+      !playerData.player_batting_style
     ) {
       alert("Please fill in all fields");
       return;
@@ -68,7 +68,7 @@ function InsertPlayer() {
           player_batting_style: "",
           player_bowling_style: "",
         });
-        alert("Player inserted successfully");
+        navigate("/admin/loggedin");
       })
       .catch((error) => {
         console.error("Error inserting player:", error);
@@ -87,6 +87,15 @@ function InsertPlayer() {
             name="player_name"
             value={playerData.player_name}
             onChange={handleChange}
+            style={{ transition: "all .2s ease-in-out" }}
+            onMouseEnter={(e) => {
+              e.target.style.boxShadow = "0 0 10px green";
+              e.target.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.boxShadow = "";
+              e.target.style.transform = "";
+            }}
           />
         </Form.Group>
         <Form.Group controlId="team_name">
@@ -96,6 +105,15 @@ function InsertPlayer() {
             name="team_name"
             value={playerData.team_name}
             onChange={handleChange}
+            style={{ transition: "all .2s ease-in-out" }}
+            onMouseEnter={(e) => {
+              e.target.style.boxShadow = "0 0 10px green";
+              e.target.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.boxShadow = "";
+              e.target.style.transform = "";
+            }}
           />
         </Form.Group>
         <Form.Group controlId="player_image_path">
@@ -104,6 +122,15 @@ function InsertPlayer() {
             type="file"
             name="player_image_path"
             onChange={handleImageChange}
+            style={{ transition: "all .2s ease-in-out" }}
+            onMouseEnter={(e) => {
+              e.target.style.boxShadow = "0 0 10px green";
+              e.target.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.boxShadow = "";
+              e.target.style.transform = "";
+            }}
           />
         </Form.Group>
         <Form.Group controlId="player_date_of_birth">
@@ -113,6 +140,15 @@ function InsertPlayer() {
             name="player_date_of_birth"
             value={playerData.player_date_of_birth}
             onChange={handleChange}
+            style={{ transition: "all .2s ease-in-out" }}
+            onMouseEnter={(e) => {
+              e.target.style.boxShadow = "0 0 10px green";
+              e.target.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.boxShadow = "";
+              e.target.style.transform = "";
+            }}
           />
         </Form.Group>
         <Form.Group controlId="player_role">
@@ -122,6 +158,15 @@ function InsertPlayer() {
             name="player_role"
             value={playerData.player_role}
             onChange={handleChange}
+            style={{ transition: "all .2s ease-in-out" }}
+            onMouseEnter={(e) => {
+              e.target.style.boxShadow = "0 0 10px green";
+              e.target.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.boxShadow = "";
+              e.target.style.transform = "";
+            }}
           />
         </Form.Group>
         <Form.Group controlId="player_batting_style">
@@ -131,6 +176,15 @@ function InsertPlayer() {
             name="player_batting_style"
             value={playerData.player_batting_style}
             onChange={handleChange}
+            style={{ transition: "all .2s ease-in-out" }}
+            onMouseEnter={(e) => {
+              e.target.style.boxShadow = "0 0 10px green";
+              e.target.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.boxShadow = "";
+              e.target.style.transform = "";
+            }}
           />
         </Form.Group>
         <Form.Group controlId="player_bowling_style">
@@ -140,9 +194,22 @@ function InsertPlayer() {
             name="player_bowling_style"
             value={playerData.player_bowling_style}
             onChange={handleChange}
+            style={{ transition: "all .2s ease-in-out" }}
+            onMouseEnter={(e) => {
+              e.target.style.boxShadow = "0 0 10px green";
+              e.target.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.boxShadow = "";
+              e.target.style.transform = "";
+            }}
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button
+          className="coolBeans"
+          style={{ marginTop: "20px", color: "#fff" }}
+          type="submit"
+        >
           Submit
         </Button>
       </Form>
