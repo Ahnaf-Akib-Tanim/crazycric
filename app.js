@@ -759,6 +759,17 @@ app.get('/user/loggedin/news/:news_id', async (req, res) => {
         res.status(500).json({ error: 'An error occurred while fetching the news data.' });
     }
 });
+app.get('/user/loggedin/statguru', async (req, res) => {
+    try {
+        console.log('Fetching Statguru data');
+        const stadiums = await db.any('SELECT stadium_name FROM stadiums');
+        res.json(stadiums.map((stadium) => stadium.stadium_name));
+        console.log(stadiums);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server error');
+    }
+});
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });

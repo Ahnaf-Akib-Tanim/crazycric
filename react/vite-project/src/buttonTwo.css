@@ -1,0 +1,50 @@
+.btn-two {
+  color: #1ca45b;
+  transition: all 0.5s;
+  position: relative;
+}
+
+.btn-two span {
+  z-index: 2;
+  display: block;
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  gap: 20px;
+}
+
+.btn-two::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: all 0.5s;
+  border: 8px solid rgba(228, 22, 18, 0.2);
+  background-color: rgba(207, 155, 24, 0.1);
+}
+
+.btn-two::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: all 0.5s;
+  border: 8px solid rgba(160, 189, 27, 0.2);
+  background-color: rgba(85, 114, 203, 0.1);
+}
+
+.btn-two:hover::before {
+  transform: rotate(-45deg);
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.btn-two:hover::after {
+  transform: rotate(45deg);
+  background-color: rgba(255, 255, 255, 0);
+}

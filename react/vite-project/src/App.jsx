@@ -19,6 +19,7 @@ import Players from "./Players";
 import Profile from "./Profile";
 import Scorecard from "./Scorecard";
 import StadiumInfo from "./Stadiuminfo";
+import Statguru from "./Statguru";
 import Teaminfo from "./Teaminfo";
 import Teams from "./Teams";
 import Userloginpage from "./Userloginpage";
@@ -70,6 +71,7 @@ const App = () => {
           element={<AdminUpdate />}
         />
         <Route path="/user/loggedin/news/:news_id" element={<News />} />
+        <Route path="/user/loggedin/statguru" element={<Statguru />} />
       </Routes>
     </BrowserRouter>
   );
