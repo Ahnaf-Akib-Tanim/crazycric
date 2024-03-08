@@ -16,6 +16,7 @@ const Homepage = () => {
       .then((data) => {
         setData(data);
         console.log(data.recentNews);
+        console.log(data.userid);
         // console.log(data);
       })
       .catch((error) => console.error(error));
@@ -36,7 +37,13 @@ const Homepage = () => {
             <Link to="/user/loggedin/statguru">Statguru</Link>
           </button>
           <button className="button">
-            <Link to="/user/loggedin/dream11update">Update Dream11</Link>
+            <Link
+              to={`/user/loggedin/Dream11update/${
+                data.user ? data.user[0].userid : ""
+              }`}
+            >
+              Dream11 Update
+            </Link>
           </button>
           <button className="button">
             <Link to="/user/loggedin/dream11">Form Your Dream11</Link>

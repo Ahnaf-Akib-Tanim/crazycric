@@ -47,8 +47,8 @@ body {
   transition: 0.5s;
 }
 .menu > ol > li:nth-child(1) {
-  --accent-color: #fda085;
-  --gradient-color: #f6d365;
+  --accent-color: #85e1fd;
+  --gradient-color: #659ff6;
 }
 .menu > ol > li:nth-child(2) {
   --accent-color: #bff098;
@@ -218,16 +218,16 @@ body {
   }
 }
 .menu > ol > li a {
-  padding: 10px; /* Decrease padding */
-  font-size: 0.9em; /* Decrease font size */
+  padding: 6px; /* Decrease padding */
+  font-size: 0.8em; /* Decrease font size */
 }
 
 .menu > ol .sub-menu li {
   font-size: 0.8em; /* Decrease font size */
 }
 
-@media (min-width: 775px) {
+@media (min-width: 700px) {
   .menu > ol > li {
-    width: 120px; /* Decrease width */
+    width: 100px; /* Decrease width */
   }
 }

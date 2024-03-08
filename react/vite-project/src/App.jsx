@@ -11,6 +11,7 @@ import Board from "./Board";
 import Coachinfo from "./Coachinfo";
 import Dream11Home from "./Dream11Home";
 import Dream11TeamInfo from "./Dream11TeamInfo";
+import Dream11Update from "./Dream11update";
 import Homepage from "./Homepage";
 import Loginpage from "./Loginpage";
 import News from "./News";
@@ -72,6 +73,10 @@ const App = () => {
         />
         <Route path="/user/loggedin/news/:news_id" element={<News />} />
         <Route path="/user/loggedin/statguru" element={<Statguru />} />
+        <Route
+          path="/user/loggedin/Dream11update/:userid"
+          element={<Dream11Update />}
+        />
       </Routes>
     </BrowserRouter>
   );

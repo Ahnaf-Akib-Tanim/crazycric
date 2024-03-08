@@ -48,7 +48,42 @@ const Statguru = () => {
       setSelectedButton(button);
     }
   };
+  const handleSubmit = async () => {
+    const data = {
+      selectedButton,
+      selectedTeam,
+      selectedOpposition,
+      selectedVenue,
+      selectedHost,
+      selectedResult,
+      selectedFormat,
+      selectedStadium,
+      selectedEndDate,
+      selectedStartDate,
+      endDate,
+      name,
+      selectedInvolvingTeam,
+      selectedOriginality,
+    };
 
+    const response = await fetch(
+      "http://localhost:3000/user/loggedin/statguru",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+
+    if (response.ok) {
+      const responseData = await response.json();
+      console.log(responseData);
+    } else {
+      console.error("Server response was not ok.");
+    }
+  };
   return (
     <div className={styles.statguru}>
       <div className={styles["button-group"]}>
@@ -56,9 +91,10 @@ const Statguru = () => {
           (button) => (
             <button
               key={button}
-              className={`coolBeans ${
-                selectedButton === button ? "selected" : ""
-              }`}
+              className={[
+                "coolBeans",
+                selectedButton === button ? styles.selectedButton : "",
+              ].join(" ")}
               onClick={() => handleButtonClick(button)}
             >
               {button}
@@ -67,14 +103,17 @@ const Statguru = () => {
         )}
       </div>
       {selectedButton !== "Umpire" && selectedButton !== "Stadium" && (
-        <div className="dropdowns">
+        <div
+          className="dropdowns"
+          // style={{ position: "relative",top:"", left: "300px" }}
+        >
           <div
             className="menu"
-            style={{ position: "relative", top: "900px", left: "-950px" }}
+            style={{ position: "relative", top: "-240px", left: "-650px" }}
           >
             <ol>
               <li>
-                <a href="#">Team</a>
+                <a href="#">{selectedTeam || "Team"}</a>
                 <ol className="sub-menu">
                   {teams.map((team) => (
                     <li key={team} onClick={() => setSelectedTeam(team)}>
@@ -87,11 +126,11 @@ const Statguru = () => {
           </div>
           <div
             className="menu"
-            style={{ position: "relative", top: "550px", left: "-750px" }}
+            style={{ position: "relative", top: "-570px", left: "-500px" }}
           >
             <ol>
               <li>
-                <a href="#">Opposition</a>
+                <a href="#">{selectedOpposition || "Opposition"}</a>
                 <ol className="sub-menu">
                   {teams
                     .filter((team) => team !== selectedTeam)
@@ -107,13 +146,14 @@ const Statguru = () => {
               </li>
             </ol>
           </div>
+
           <div
             className="menu"
-            style={{ position: "relative", top: "900px", left: "-950px" }}
+            style={{ position: "relative", top: "-810px", left: "-650px" }}
           >
             <ol>
               <li>
-                <a href="#">Venue</a>
+                <a href="#">{selectedVenue || "Venue"}</a>
                 <ol className="sub-menu">
                   {venues.map((venue) => (
                     <li key={venue} onClick={() => setSelectedVenue(venue)}>
@@ -124,10 +164,13 @@ const Statguru = () => {
               </li>
             </ol>
           </div>
-          <div className="menu">
+          <div
+            className="menu"
+            style={{ position: "relative", top: "-1150px", left: "-495px" }}
+          >
             <ol>
               <li>
-                <a href="#">Host Country</a>
+                <a href="#">{selectedHost || "Host Country"}</a>
                 <ol className="sub-menu">
                   {teams.map((team) => (
                     <li key={team} onClick={() => setSelectedHost(team)}>
@@ -138,10 +181,13 @@ const Statguru = () => {
               </li>
             </ol>
           </div>
-          <div className="menu">
+          <div
+            className="menu"
+            style={{ position: "relative", top: "-1400px", left: "-495px" }}
+          >
             <ol>
               <li>
-                <a href="#">Match Result</a>
+                <a href="#">{selectedResult || "Match Result"}</a>
                 <ol className="sub-menu">
                   {results.map((result) => (
                     <li key={result} onClick={() => setSelectedResult(result)}>
@@ -152,10 +198,13 @@ const Statguru = () => {
               </li>
             </ol>
           </div>
-          <div className="menu">
+          <div
+            className="menu"
+            style={{ position: "relative", top: "-1750px", left: "-655px" }}
+          >
             <ol>
               <li>
-                <a href="#">Format</a>
+                <a href="#">{selectedFormat || "Format"}</a>
                 <ol className="sub-menu">
                   {formats.map((format) => (
                     <li key={format} onClick={() => setSelectedFormat(format)}>
@@ -166,11 +215,15 @@ const Statguru = () => {
               </li>
             </ol>
           </div>
-          <div className="menu">
+
+          <div
+            className="menu"
+            style={{ position: "relative", top: "-2240px", left: "585px" }}
+          >
             <ol>
               <li>
-                <a href="#">Stadium</a>
-                <ol className="sub-menu">
+                <a href="#">{selectedStadium || "Stadium"}</a>
+                <ol className="sub-menu stadium-menu">
                   {stadiums.map((stadium) => (
                     <li
                       key={stadium}
@@ -183,48 +236,148 @@ const Statguru = () => {
               </li>
             </ol>
           </div>
-          <div>
-            <label>Starting Date:</label>
-            <input type="date" onChange={(e) => setStartDate(e.target.value)} />
+          <div style={{ position: "relative", top: "-2050px", left: "-575px" }}>
+            <label style={{ color: "white" }}>Starting Date:</label>
+            <input
+              type="date"
+              value={startDate}
+              onChange={(e) => setSelectedStartDate(e.target.value)}
+            />
           </div>
-          <div>
-            <label>Ending Date:</label>
-            <input type="date" onChange={(e) => setEndDate(e.target.value)} />
+          <div style={{ position: "relative", top: "-2000px", left: "-575px" }}>
+            <label style={{ color: "white" }}>Ending Date:</label>
+            <input
+              type="date"
+              value={endDate}
+              onChange={(e) => setSelectedEndDate(e.target.value)}
+            />
+          </div>
+          <div
+            className="coolBeans"
+            style={{
+              position: "relative",
+              top: "-1970px",
+              left: "-510px",
+              width: "100px",
+            }}
+          >
+            <button onClick={handleSubmit}>Submit</button>
           </div>
         </div>
       )}
       {selectedButton === "Umpire" || selectedButton === "Stadium" ? (
-        <div className="name-field">
-          <label>Name:</label>
-          <input type="text" onChange={(e) => setName(e.target.value)} />
-          <div className="dropdown">
-            <button className="dropbtn">Involving Team</button>
-            <div className="dropdown-content">
-              {teams.map((team) => (
-                <p key={team} onClick={() => setSelectedInvolvingTeam(team)}>
-                  {team}
-                </p>
-              ))}
+        <div>
+          <div
+            className="name-field"
+            style={{ position: "relative", top: "-800px" }}
+          >
+            <label>Name:</label>
+            <div
+              style={{
+                width: 275,
+                height: 17,
+                left: -580,
+                top: 950,
+                position: "relative",
+              }}
+            >
+              <input
+                type="text"
+                onChange={(e) => setName(e.target.value)}
+                style={{
+                  width: 275,
+                  height: 50,
+                  left: 0,
+                  top: -120,
+                  position: "absolute",
+                  background: "#F7F8F9",
+                  borderRadius: 8,
+                  border: "1px #E8ECF4 solid",
+                  transition: "all .2s ease-in-out",
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.boxShadow = "0 0 10px green";
+                  e.target.style.transform = "scale(1.05)";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.boxShadow = "";
+                  e.target.style.transform = "";
+                }}
+                placeholder="Enter Name"
+              />
             </div>
           </div>
-          <div className="dropdown">
-            <button className="dropbtn">Originality</button>
-            <div className="dropdown-content">
-              {teams.map((team) => (
-                <p key={team} onClick={() => setSelectedOriginality(team)}>
-                  {team}
-                </p>
-              ))}
+          <div className="dropdowns">
+            <div
+              className="menu"
+              style={{ position: "relative", top: "-190px", left: "-500px" }}
+            >
+              <ol>
+                <li>
+                  <a href="#">{selectedInvolvingTeam || "Involving Team"}</a>
+                  <ol className="sub-menu">
+                    {teams.map((team) => (
+                      <li
+                        key={team}
+                        onClick={() => setSelectedInvolvingTeam(team)}
+                      >
+                        <a href="#">{team}</a>
+                      </li>
+                    ))}
+                  </ol>
+                </li>
+              </ol>
             </div>
-          </div>
-          <div className="dropdown">
-            <button className="dropbtn">Format</button>
-            <div className="dropdown-content">
-              {formats.map((format) => (
-                <p key={format} onClick={() => setSelectedFormat(format)}>
-                  {format}
-                </p>
-              ))}
+            <div
+              className="menu"
+              style={{ position: "relative", top: "-540px", left: "-680px" }}
+            >
+              <ol>
+                <li>
+                  <a href="#">{selectedOriginality || "Originality"}</a>
+                  <ol className="sub-menu">
+                    {teams.map((originality) => (
+                      <li
+                        key={originality}
+                        onClick={() => setSelectedOriginality(originality)}
+                      >
+                        <a href="#">{originality}</a>
+                      </li>
+                    ))}
+                  </ol>
+                </li>
+              </ol>
+            </div>
+            <div
+              className="menu"
+              style={{ position: "relative", top: "-790px", left: "-590px" }}
+            >
+              <ol>
+                <li>
+                  <a href="#">{selectedFormat || "Format"}</a>
+                  <ol className="sub-menu">
+                    {formats.map((format) => (
+                      <li
+                        key={format}
+                        onClick={() => setSelectedFormat(format)}
+                      >
+                        <a href="#">{format}</a>
+                      </li>
+                    ))}
+                  </ol>
+                </li>
+              </ol>
+            </div>
+            <div
+              className="coolBeans"
+              style={{
+                position: "relative",
+                top: "-790px",
+                left: "-510px",
+                width: "100px",
+              }}
+            >
+              <button onClick={handleSubmit}>Submit</button>
             </div>
           </div>
         </div>

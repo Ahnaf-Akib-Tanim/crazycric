@@ -221,6 +221,7 @@ app.post('/user/loggedin/players', async (req, res) => {
     }
 });
 app.get('/user/loggedin', async (req, res) => {
+    console.log('Fetching data for logged-in user');
     try {
         const playerNames = [
             'Jaker Ali',
@@ -241,8 +242,10 @@ app.get('/user/loggedin', async (req, res) => {
         const dream11query =
             'SELECT dream11.*, users.image FROM dream11 LEFT JOIN users ON dream11.userid = users.userid  ORDER BY ranking';
         const userquery = 'SELECT * FROM users WHERE userid = $1';
+        const userquery1 = 'SELECT userid FROM users WHERE userid = $1';
         const allusers = 'SELECT * FROM users';
         const user = await db.any(userquery, [currentuserid]);
+        const userid = await db.any(userquery1, [currentuserid]);
         const usersdream11query = 'SELECT * FROM dream11 WHERE userid = $1';
         const userdream11 = await db.any(usersdream11query, [currentuserid]);
         const transformedUserDream11 = userdream11.map((team) => {
@@ -294,7 +297,9 @@ app.get('/user/loggedin', async (req, res) => {
             userdream11: transformedUserDream11,
             upcomingMatches,
             recentNews,
+            userid,
         });
+        console.log('userid:', userid);
         console.log('Players:', players);
         console.log('Matches:', matches);
         console.log('Dream11:', dream11);
@@ -759,6 +764,55 @@ app.get('/user/loggedin/news/:news_id', async (req, res) => {
         res.status(500).json({ error: 'An error occurred while fetching the news data.' });
     }
 });
+app.get('/user/loggedin/Dream11update/:userid', async (req, res) => {
+    const { userid } = req.params;
+    console.log('Fetching Dream11 team data for user:', userid);
+
+    try {
+        const dream11 = await db.any('SELECT * FROM dream11 WHERE userid = $1', [userid]);
+        if (dream11 && dream11.length > 0) {
+            const teamInfo = dream11[0];
+            const teamWithPlayers = await db.any(
+                `
+                SELECT d.*, 
+                p1.player_role as player1_role, p1.player_image_path as player1_image_path, p1.team_name as player1_team_name,
+                p2.player_role as player2_role, p2.player_image_path as player2_image_path, p2.team_name as player2_team_name,
+                p3.player_role as player3_role, p3.player_image_path as player3_image_path, p3.team_name as player3_team_name,
+                p4.player_role as player4_role, p4.player_image_path as player4_image_path, p4.team_name as player4_team_name,
+                p5.player_role as player5_role, p5.player_image_path as player5_image_path, p5.team_name as player5_team_name,
+                p6.player_role as player6_role, p6.player_image_path as player6_image_path, p6.team_name as player6_team_name,
+                p7.player_role as player7_role, p7.player_image_path as player7_image_path, p7.team_name as player7_team_name,
+                p8.player_role as player8_role, p8.player_image_path as player8_image_path, p8.team_name as player8_team_name,
+                p9.player_role as player9_role, p9.player_image_path as player9_image_path, p9.team_name as player9_team_name,
+                p10.player_role as player10_role, p10.player_image_path as player10_image_path, p10.team_name as player10_team_name,
+                p11.player_role as player11_role, p11.player_image_path as player11_image_path, p11.team_name as player11_team_name
+                FROM dream11 d
+                LEFT JOIN player_info p1 ON p1.player_name = d.player1
+                LEFT JOIN player_info p2 ON p2.player_name = d.player2
+                LEFT JOIN player_info p3 ON p3.player_name = d.player3
+                LEFT JOIN player_info p4 ON p4.player_name = d.player4
+                LEFT JOIN player_info p5 ON p5.player_name = d.player5
+                LEFT JOIN player_info p6 ON p6.player_name = d.player6
+                LEFT JOIN player_info p7 ON p7.player_name = d.player7
+                LEFT JOIN player_info p8 ON p8.player_name = d.player8
+                LEFT JOIN player_info p9 ON p9.player_name = d.player9
+                LEFT JOIN player_info p10 ON p10.player_name = d.player10
+                LEFT JOIN player_info p11 ON p11.player_name = d.player11
+                WHERE d.userid = $1
+                `,
+                [userid]
+            );
+            console.log('Team with Players:', teamWithPlayers);
+
+            res.status(200).json(teamWithPlayers);
+        } else {
+            res.status(404).json({ error: 'Dream11 team not found for the given user' });
+        }
+    } catch (error) {
+        console.error('Error fetching Dream11 team info:', error.message || error);
+        res.status(500).json({ error: 'Failed to fetch Dream11 team info' });
+    }
+});
 app.get('/user/loggedin/statguru', async (req, res) => {
     try {
         console.log('Fetching Statguru data');
@@ -770,6 +824,41 @@ app.get('/user/loggedin/statguru', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
+app.post('/user/loggedin/statguru', (req, res) => {
+    const {
+        selectedButton,
+        selectedTeam,
+        selectedOpposition,
+        selectedVenue,
+        selectedHost,
+        selectedResult,
+        selectedFormat,
+        selectedStadium,
+        selectedEndDate,
+        selectedStartDate,
+        endDate,
+        name,
+        selectedInvolvingTeam,
+        selectedOriginality,
+    } = req.body;
+    if (selectedButton === 'Batting') {
+        // Handle Batting
+    } else if (selectedButton === 'Bowling') {
+        // Handle Bowling
+    } else if (selectedButton === 'All-Round') {
+        // Handle All-Round
+    } else if (selectedButton === 'Team') {
+        // Handle Team
+    } else if (selectedButton === 'Umpire') {
+        // Handle Umpire
+    } else if (selectedButton === 'Stadium') {
+        // Handle Stadium
+    } else {
+        // Handle other cases
+    }
+    res.json({ message: 'Data processed' });
+});
+app.post('/user/loggedin/statguru', async (req, res) => {});
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
