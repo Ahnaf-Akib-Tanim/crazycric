@@ -280,14 +280,6 @@ app.get('/user/loggedin', async (req, res) => {
         const matches = await db.any(matchesQuery, [matchIds]);
         const dream11 = await db.any(dream11query, [currentuserid]);
         const alluser = await db.any(allusers);
-        console.log('Players:', players);
-        console.log('Matches:', matches);
-        console.log('Dream11:', dream11);
-        console.log('User:', user);
-        console.log('All Users:', alluser);
-        console.log('User Dream11:', userdream11);
-        console.log('Upcoming Matches:', upcomingMatches);
-        console.log('Recent News:', recentNews);
         res.json({
             players,
             matches,
@@ -299,15 +291,6 @@ app.get('/user/loggedin', async (req, res) => {
             recentNews,
             userid,
         });
-        console.log('userid:', userid);
-        console.log('Players:', players);
-        console.log('Matches:', matches);
-        console.log('Dream11:', dream11);
-        console.log('User:', user);
-        console.log('All Users:', alluser);
-        console.log('User Dream11:', userdream11);
-        console.log('Upcoming Matches:', upcomingMatches);
-        console.log('Recent News:', recentNews);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'An error occurred while fetching data' });
@@ -625,9 +608,11 @@ app.post('/user/loggedin/dream11team', async (req, res) => {
 app.get('/user/loggedin/Dream11TeamInfo/:teamName', async (req, res) => {
     try {
         const { teamName } = req.params;
+        console.log('fetcing fream11: ');
+        console.log(req.params);
         const teamInfo = await db.any(
             `
-            SELECT d.*, ;
+            SELECT d.*, 
             p1.player_role as player1_role, p1.player_image_path as player1_image_path, p1.team_name as player1_team_name,
             p2.player_role as player2_role, p2.player_image_path as player2_image_path, p2.team_name as player2_team_name,
             p3.player_role as player3_role, p3.player_image_path as player3_image_path, p3.team_name as player3_team_name,
@@ -653,11 +638,11 @@ app.get('/user/loggedin/Dream11TeamInfo/:teamName', async (req, res) => {
             LEFT JOIN player_info p11 ON p11.player_name = d.player11
             WHERE d.team_name = $1
             `,
-            [teamName],
+            [teamName]
         );
         res.json(teamInfo);
         console.log('here it is');
-        // console.log(teamInfo);
+        console.log(teamInfo);
     } catch (error) {
         console.error('Error fetching Dream11 team info:', error.message || error);
         res.status(500).json({ error: 'Failed to fetch Dream11 team info' });
@@ -754,11 +739,11 @@ app.post('/admin/loggedin/update/:playerId', async (req, res) => {
 });
 app.get('/user/loggedin/news/:news_id', async (req, res) => {
     const { news_id } = req.params;
-    console.log('Fetching news:', news_id);
+    // console.log('Fetching news:', news_id);
     try {
         const news = await db.one('SELECT * FROM upcoming_news WHERE news_id = $1', [news_id]);
         res.json(news);
-        console.log('News:', news);
+        // console.log('News:', news);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'An error occurred while fetching the news data.' });
@@ -815,10 +800,10 @@ app.get('/user/loggedin/Dream11update/:userid', async (req, res) => {
 });
 app.get('/user/loggedin/statguru', async (req, res) => {
     try {
-        console.log('Fetching Statguru data');
+        // console.log('Fetching Statguru data');
         const stadiums = await db.any('SELECT stadium_name FROM stadiums');
         res.json(stadiums.map((stadium) => stadium.stadium_name));
-        console.log(stadiums);
+        // console.log(stadiums);
     } catch (err) {
         console.error(err);
         res.status(500).send('Server error');
@@ -836,13 +821,32 @@ app.post('/user/loggedin/statguru', (req, res) => {
         selectedStadium,
         selectedEndDate,
         selectedStartDate,
-        endDate,
         name,
         selectedInvolvingTeam,
         selectedOriginality,
     } = req.body;
+    console.log(req.body);
+
     if (selectedButton === 'Batting') {
-        // Handle Batting
+        db.func('batting', [
+            selectedTeam,
+            selectedOpposition,
+            selectedVenue,
+            selectedHost,
+            selectedResult,
+            selectedFormat,
+            selectedStadium,
+            selectedStartDate,
+            selectedEndDate,
+        ])
+            .then((data) => {
+                res.json(data);
+                console.log(data);
+            })
+            .catch((err) => {
+                res.status(500).send('Server error');
+                console.error(err);
+            });
     } else if (selectedButton === 'Bowling') {
         // Handle Bowling
     } else if (selectedButton === 'All-Round') {
@@ -856,7 +860,6 @@ app.post('/user/loggedin/statguru', (req, res) => {
     } else {
         // Handle other cases
     }
-    res.json({ message: 'Data processed' });
 });
 app.post('/user/loggedin/statguru', async (req, res) => {});
 app.listen(port, () => {

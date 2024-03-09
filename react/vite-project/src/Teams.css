@@ -1,7 +1,24 @@
 .Teams {
-  background-color: #afabe3;
   min-height: 100vh;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  color: #b2ffff;
+  font-size: large;
+  align-items: center;
+  background:
+    linear-gradient(0deg, rgba(30, 20, 122, 0.504) 61%, rgb(180, 45, 253) 100%),
+    url("./back.jpg") no-repeat center center/cover fixed;
+}
+
+.criteria-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.criteria-item {
+  margin: 0 10px;
 }
 
 .team-container {
@@ -14,84 +31,48 @@
 }
 
 .team-item {
-  width: 150px;
+  width: 200px;
   margin: 20px;
   text-align: center;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.team-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
 .team-image {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
 }
 
 .team-name {
   font-size: 15px;
   font-family: Arial, sans-serif;
+  display: block;
+  margin-top: 10px;
 }
 
 .Teams .form-control,
 .Teams .custom-select {
-  width: 100%;
+  width: 200px;
   height: 50px;
   font-size: 18px;
 }
 
-.Teams .form-control:focus,
-.Teams .custom-select:focus {
-  border-color: #80bdff;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}
-
-.Teams .form-control:hover,
-.Teams .custom-select:hover {
-  border-color: #ced4da;
-}
-
 .Teams .btn {
   font-size: 18px;
-  transition: all 0.3s ease;
 }
 
 .Teams .btn:hover {
   background-color: #007bff;
   color: #fff;
-}
-
-.Teams .dropdown-item {
-  background-color: transparent;
-  color: #007bff;
-  transition: all 0.3s ease;
-}
-
-.Teams .dropdown-item:hover {
-  background-color: #007bff;
-  color: #fff;
-}
-
-.custom-row {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.search-button {
-  top: 30px;
-}
-.team-name {
-  font-size: 15px;
-  font-family: Arial, sans-serif;
-  display: block; /* Ensure team names are displayed as block elements */
-  margin-top: 10px; /* Add some top margin to create space between image and name */
-}
-.team-image {
-  width: 150px; /* Increase the width of the team image */
-  height: 150px; /* Increase the height of the team image */
-  border-radius: 50%;
-}
-
-.team-name {
-  font-size: 20px; /* Increase the font size of the team name */
-  font-family: Arial, sans-serif;
-  display: block;
-  margin-top: 10px;
 }

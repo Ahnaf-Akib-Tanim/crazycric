@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import "./Profile.css";
 
 function Profile() {
   const [profile, setProfile] = useState({});
@@ -17,17 +18,7 @@ function Profile() {
   }, []);
 
   return (
-    <div
-      style={{
-        backgroundColor: "#afabe3",
-        padding: "10px",
-        ///when dream 11 forms will edit here for the alignment
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
+    <div className="profile-container">
       <img
         src={profile.image}
         alt="Profile"
@@ -35,14 +26,25 @@ function Profile() {
       />
       <h1>{profile.username}</h1>
       <ul style={{ listStyleType: "none" }}>
-        <li style={{ fontSize: "24px" }}>Country: {profile.countryname}</li>
-        <li style={{ fontSize: "24px" }}>Favorite Team: {profile.favteam}</li>
         <li style={{ fontSize: "24px" }}>
-          Favorite Player: {profile.favplayer}
+          <span style={labelStyle}>Country:</span> {profile.countryname}
+        </li>
+        <li style={{ fontSize: "24px" }}>
+          <span style={labelStyle}>Favorite Team:</span> {profile.favteam}
+        </li>
+        <li style={{ fontSize: "24px" }}>
+          <span style={labelStyle}>Favorite Player:</span> {profile.favplayer}
         </li>
       </ul>
     </div>
   );
 }
+
+const labelStyle = {
+  fontFamily: "sans-serif",
+  opacity: 0.5,
+  fontSize: "18px",
+  fontWeight: "bold",
+};
 
 export default Profile;

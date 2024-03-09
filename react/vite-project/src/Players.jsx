@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./Players.css";
+import "./players.css";
 const Players = () => {
   const [bowlingStyle, setBowlingStyle] = useState([]);
   const [showBowlingStyles, setShowBowlingStyles] = useState(false);
@@ -94,7 +94,7 @@ const Players = () => {
 
   return (
     <div
-      className="Players"
+      className="Players1"
       style={{
         backgroundColor: "#AFABE3",
         minheight: "100vh",
@@ -104,7 +104,7 @@ const Players = () => {
       <Row className="justify-content-md-center custom-row">
         <Col md="auto">
           <Form.Control
-            className="custom-input"
+            className="custom-input1"
             style={{
               width: "200px",
               margin: "10px",
@@ -119,7 +119,7 @@ const Players = () => {
         </Col>
         <Col md="auto">
           <Form.Label
-            className="custom-label"
+            className="custom-label1"
             onClick={() => setShowTeams(!showTeams)}
           >
             Team Name
@@ -127,7 +127,7 @@ const Players = () => {
           {showTeams &&
             teams.map((teamName, index) => (
               <Form.Check
-                className="custom-checkbox"
+                className="custom-checkbox1"
                 key={`team-${index}`}
                 custom
                 type="checkbox"
@@ -146,7 +146,7 @@ const Players = () => {
         </Col>
         <Col md="auto">
           <Form.Label
-            className="custom-label"
+            className="custom-label1"
             onClick={() => setShowRoles(!showRoles)}
           >
             Player Role
@@ -173,7 +173,7 @@ const Players = () => {
         </Col>
         <Col md="auto">
           <Form.Label
-            className="custom-label"
+            className="custom-label1"
             onClick={() => setShowBowlingStyles(!showBowlingStyles)}
           >
             Bowling Style
@@ -181,7 +181,7 @@ const Players = () => {
           {showBowlingStyles &&
             bowlingStyles.map((styleName, index) => (
               <Form.Check
-                className="custom-checkbox"
+                className="custom-checkbox1"
                 key={`bowlingStyle-${index}`}
                 custom
                 type="checkbox"
@@ -201,7 +201,7 @@ const Players = () => {
 
         <Col md="auto">
           <Form.Label
-            className="custom-label"
+            className="custom-label1"
             onClick={() => setshowcoach(!showcoach)}
           >
             Coach Name
@@ -209,7 +209,7 @@ const Players = () => {
           {showcoach &&
             coaches.map((styleName, index) => (
               <Form.Check
-                className="custom-checkbox"
+                className="custom-checkbox1"
                 key={`coach-${index}`}
                 custom
                 type="checkbox"
@@ -229,7 +229,7 @@ const Players = () => {
 
         <Col md="auto">
           <Form.Label
-            className="custom-label"
+            className="custom-label1"
             onClick={() => setShowStyles(!showStyles)}
           >
             Batting Style
@@ -237,7 +237,7 @@ const Players = () => {
           {showStyles &&
             styles.map((styleName, index) => (
               <Form.Check
-                className="custom-checkbox"
+                className="custom-checkbox1"
                 key={`style-${index}`}
                 custom
                 type="checkbox"
@@ -256,7 +256,7 @@ const Players = () => {
         </Col>
         <Col md="auto">
           <Form.Check
-            className="custom-checkbox"
+            className="custom-checkbox1"
             custom
             type="checkbox"
             id="filterMostHundreds"
@@ -268,7 +268,7 @@ const Players = () => {
         </Col>
         <Col md="auto">
           <Form.Check
-            className="custom-checkbox"
+            className="custom-checkbox1"
             custom
             type="checkbox"
             id="filtermost5wickets"
@@ -285,7 +285,7 @@ const Players = () => {
             //size less
             size="normal"
             onClick={handleSearch}
-            className="search-button"
+            className="search-button1"
           >
             Search
           </Button>
@@ -305,35 +305,50 @@ const Players = () => {
             margin: "auto",
           }}
         >
-          {players.map((player, index) => {
-            console.log(player.player_image_path);
-            return (
-              <div
-                key={player.player_id}
-                style={{ width: "150px", margin: "10px", textAlign: "center" }}
+          {players.map((player, index) => (
+            <div
+              key={player.player_id}
+              style={{
+                width: "150px",
+                margin: "10px",
+                textAlign: "center",
+                padding: "20px",
+                borderRadius: "10px",
+                backgroundColor: "rgba(255, 255, 255, 0.1)",
+                boxShadow: "0 0 10px rgba(0, 0, 0, 0.3)",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.transform = "scale(1.05)";
+                e.target.style.boxShadow = "0 0 20px rgba(255, 255, 255, 0.5)";
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.transform = "scale(1)";
+                e.target.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.3)";
+              }}
+            >
+              <Link
+                to={`/user/loggedin/playerinfo/${player.player_id}`}
+                style={{ fontSize: "18px", fontFamily: "Arial, sans-serif" }}
               >
                 <img
                   src={player.player_image_path}
                   alt={player.player_name}
-                  className="image-size"
                   style={{
                     width: "120px",
                     height: "120px",
                     borderRadius: "50%",
                   }}
                 />
-                <Link
-                  to={`/user/loggedin/playerinfo/${player.player_id}`}
-                  style={{ fontSize: "18px", fontFamily: "Arial, sans-serif" }}
-                >
-                  {player.player_name}
-                </Link>
-              </div>
-            );
-          })}
+
+                {player.player_name}
+              </Link>
+            </div>
+          ))}
         </div>
       )}
     </div>
   );
 };
+
 export default Players;

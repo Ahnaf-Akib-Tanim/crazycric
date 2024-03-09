@@ -1,0 +1,20 @@
+.container1 {
+  color: #b2ffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background:
+    linear-gradient(0deg, rgba(30, 20, 122, 0.504) 61%, rgb(180, 45, 253) 100%),
+    url("./back.jpg") no-repeat center center/ cover;
+  background-attachment: fixed;
+}
+
+.label {
+  font-family: sans-serif;
+  opacity: 0.5;
+  font-size: 20px;
+  font-weight: bold;
+}

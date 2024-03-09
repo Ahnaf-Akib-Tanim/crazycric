@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Modal, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "./Dream11Home.css";
 
@@ -11,6 +11,7 @@ const Dream11 = () => {
   const [teams, setTeams] = useState([]);
   const [searchedPlayers, setSearchedPlayers] = useState([]);
   const [captain, setCaptain] = useState("");
+  const [showWarning, setShowWarning] = useState(false);
   const navigate = useNavigate();
   const coaches = [
     "Chandika Hathurusingha",
@@ -24,6 +25,10 @@ const Dream11 = () => {
     "Chris Silverwood",
     "Brendon McCullum",
   ];
+
+  const toggleWarning = () => {
+    setShowWarning(!showWarning);
+  };
 
   const handleSearch = () => {
     const data = { searchQuery };
@@ -45,7 +50,6 @@ const Dream11 = () => {
   };
 
   const addPlayerToTeam = (player) => {
-    // Check if the player is already in the selectedPlayers list
     if (!selectedPlayers.find((p) => p.player_id === player.player_id)) {
       setSelectedPlayers([...selectedPlayers, player]);
     } else {
@@ -67,6 +71,7 @@ const Dream11 = () => {
       selectedPlayers.length !== 11
     ) {
       console.error("Please fill all fields and select exactly 11 players");
+      toggleWarning();
       return;
     }
 
@@ -115,27 +120,35 @@ const Dream11 = () => {
             ))}
           </Form.Control>
         </Form.Group>
-        <ul className="player-list">
-          {selectedPlayers.map((player, index) => (
-            <li key={index}>
-              {index + 1}.
-              <div className="player-item">
-                <img
-                  src={`http://localhost:3000/images/${player.player_name}.jpeg`}
-                  alt={player.player_name}
-                  className="player-image"
-                />
-                {player.player_name} - {player.player_role} - {player.team_name}
-                <Button
-                  className="delete-button"
-                  onClick={() => removePlayerFromTeam(player.player_id)}
-                >
-                  Delete
-                </Button>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th style={{ color: "#6F00FF" }}>#</th>
+              <th style={{ color: "#6F00FF" }}>Player Name</th>
+              <th style={{ color: "#6F00FF" }}>Player Role</th>
+              <th style={{ color: "#6F00FF" }}>Team</th>
+              <th style={{ color: "#6F00FF" }}>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {selectedPlayers.map((player, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{player.player_name}</td>
+                <td>{player.player_role}</td>
+                <td>{player.team_name}</td>
+                <td>
+                  <Button
+                    variant="danger"
+                    onClick={() => removePlayerFromTeam(player.player_id)}
+                  >
+                    Delete
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
       </div>
 
       <div className="right-side">
@@ -185,6 +198,19 @@ const Dream11 = () => {
 
         <Button onClick={makeDreamTeam}>Make Dream Team</Button>
       </div>
+
+      {/* Warning Modal */}
+      <Modal show={showWarning} onHide={toggleWarning}>
+        <Modal.Header closeButton>
+          <Modal.Title>Warning</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Please select exactly 11 players.</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={toggleWarning}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

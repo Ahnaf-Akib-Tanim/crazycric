@@ -1,7 +1,11 @@
 .dream11-container {
+  color: #b2ffff;
   display: flex;
-  min-height: 100vh;
-  height: auto;
+  /* min-height: 100vh; */
+  height: 100vh;
+  background:
+    linear-gradient(0deg, rgba(30, 20, 122, 0.504) 61%, rgb(180, 45, 253) 100%),
+    url("./back.jpg") no-repeat center center/ cover;
 }
 
 .left-side,
@@ -14,13 +18,13 @@
   overflow: auto;
 }
 
-.left-side {
+/* .left-side {
   background-color: #afabe3;
 }
 
 .right-side {
   background-color: #728fff;
-}
+} */
 
 .player-item {
   display: flex;

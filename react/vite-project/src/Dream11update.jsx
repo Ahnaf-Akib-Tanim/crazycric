@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row, Table } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import "./Dream11update.css";
 
 const Dream11Update = () => {
   const { userid } = useParams();
@@ -149,7 +150,7 @@ const Dream11Update = () => {
   };
 
   return (
-    <Container fluid>
+    <Container fluid className="bg">
       <h1 className="mt-5 text-center">Update Dream11 Team</h1>
       <Row className="justify-content-between">
         <Col lg={8} md={12} className="mb-4">
@@ -170,7 +171,7 @@ const Dream11Update = () => {
               ))}
             </Form.Control>
           </Form.Group>
-          <Table striped bordered hover className="mt-4">
+          <Table striped bordered hover className="mt-4 table-striped">
             <thead>
               <tr>
                 <th>#</th>
@@ -188,7 +189,7 @@ const Dream11Update = () => {
                   <td>{player.player_name}</td>
                   <td>
                     <img
-                      src={player.imagePath}
+                      src={`http://localhost:3000/images/${player.player_name}.jpeg`}
                       alt={player.player_name}
                       style={{ width: "100px", height: "auto" }}
                     />

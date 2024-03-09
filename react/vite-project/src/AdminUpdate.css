@@ -1,3 +1,17 @@
+.bg {
+  height: 1000vh;
+  width: 100vw;
+  color: aliceblue;
+
+  background:
+    linear-gradient(0deg, rgba(30, 20, 122, 0.504) 61%, rgb(180, 45, 253) 100%),
+    url("./back.jpg") no-repeat center center / cover 300;
+
+  /* Fixed size for the background image */
+  background-attachment: fixed;
+  /* transition: background-size 0.5s ease; */
+}
+
 .player-info-container {
   position: relative;
   top: -200px;

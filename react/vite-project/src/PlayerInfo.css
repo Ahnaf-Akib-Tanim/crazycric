@@ -1,5 +1,19 @@
 /* PlayerInfo.css */
 
+.player-info-container1 {
+  color: aliceblue;
+  font-size: 20px;
+
+  height: 1000vh;
+  width: 100vw;
+
+  font-family: Arial, sans-serif;
+  background:
+    linear-gradient(0deg, rgba(30, 20, 122, 0.504) 61%, rgb(180, 45, 253) 100%),
+    url("./back.jpg") no-repeat center center / cover;
+  background-attachment: fixed;
+}
+
 .player-info-container {
   position: absolute;
   top: 100px;
@@ -82,4 +96,47 @@
   padding-left: 20px;
   padding-right: 20px;
   border: 2px outset #000; /* Border style */
+}
+
+/* PlayerInfo.css */
+
+.table-container {
+  display: inline-block;
+  overflow: hidden; /* Hide overflowing glow */
+  border-radius: 10px;
+  position: relative;
+}
+
+.table-bordered {
+  background-color: rgba(255, 255, 255, 0.1); /* Transparent background color */
+  border-collapse: separate;
+  border-spacing: 0.5em;
+  border-radius: 10px;
+  position: relative;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #fff; /* White border */
+  padding: 0.5em; /* Padding around table cells */
+  font-family: Arial, sans-serif;
+  color: aliceblue; /* Font color */
+}
+
+.table-bordered th {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Transparent black background color for table headers */
+}
+
+.table-bordered tbody tr {
+  transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.table-container:hover .table-bordered {
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Box shadow for glow effect on hover */
+  transform: scale(1.1); /* Increase size on hover */
 }

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import "./AdminInsert.css"; // Import the CSS file
+
 function InsertPlayer() {
   const [playerData, setPlayerData] = useState({
     player_name: "",
@@ -77,142 +79,84 @@ function InsertPlayer() {
   };
 
   return (
-    <div className="container">
-      <h1 className="mt-5">Insert Player</h1>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="player_name">
-          <Form.Label>Player Name</Form.Label>
-          <Form.Control
-            type="text"
-            name="player_name"
-            value={playerData.player_name}
-            onChange={handleChange}
-            style={{ transition: "all .2s ease-in-out" }}
-            onMouseEnter={(e) => {
-              e.target.style.boxShadow = "0 0 10px green";
-              e.target.style.transform = "scale(1.05)";
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.boxShadow = "";
-              e.target.style.transform = "";
-            }}
-          />
-        </Form.Group>
-        <Form.Group controlId="team_name">
-          <Form.Label>Player Country</Form.Label>
-          <Form.Control
-            type="text"
-            name="team_name"
-            value={playerData.team_name}
-            onChange={handleChange}
-            style={{ transition: "all .2s ease-in-out" }}
-            onMouseEnter={(e) => {
-              e.target.style.boxShadow = "0 0 10px green";
-              e.target.style.transform = "scale(1.05)";
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.boxShadow = "";
-              e.target.style.transform = "";
-            }}
-          />
-        </Form.Group>
-        <Form.Group controlId="player_image_path">
-          <Form.Label>Player Image</Form.Label>
-          <Form.Control
-            type="file"
-            name="player_image_path"
-            onChange={handleImageChange}
-            style={{ transition: "all .2s ease-in-out" }}
-            onMouseEnter={(e) => {
-              e.target.style.boxShadow = "0 0 10px green";
-              e.target.style.transform = "scale(1.05)";
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.boxShadow = "";
-              e.target.style.transform = "";
-            }}
-          />
-        </Form.Group>
-        <Form.Group controlId="player_date_of_birth">
-          <Form.Label>Player Birthdate</Form.Label>
-          <Form.Control
-            type="date"
-            name="player_date_of_birth"
-            value={playerData.player_date_of_birth}
-            onChange={handleChange}
-            style={{ transition: "all .2s ease-in-out" }}
-            onMouseEnter={(e) => {
-              e.target.style.boxShadow = "0 0 10px green";
-              e.target.style.transform = "scale(1.05)";
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.boxShadow = "";
-              e.target.style.transform = "";
-            }}
-          />
-        </Form.Group>
-        <Form.Group controlId="player_role">
-          <Form.Label>Player Role</Form.Label>
-          <Form.Control
-            type="text"
-            name="player_role"
-            value={playerData.player_role}
-            onChange={handleChange}
-            style={{ transition: "all .2s ease-in-out" }}
-            onMouseEnter={(e) => {
-              e.target.style.boxShadow = "0 0 10px green";
-              e.target.style.transform = "scale(1.05)";
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.boxShadow = "";
-              e.target.style.transform = "";
-            }}
-          />
-        </Form.Group>
-        <Form.Group controlId="player_batting_style">
-          <Form.Label>Player Batting Style</Form.Label>
-          <Form.Control
-            type="text"
-            name="player_batting_style"
-            value={playerData.player_batting_style}
-            onChange={handleChange}
-            style={{ transition: "all .2s ease-in-out" }}
-            onMouseEnter={(e) => {
-              e.target.style.boxShadow = "0 0 10px green";
-              e.target.style.transform = "scale(1.05)";
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.boxShadow = "";
-              e.target.style.transform = "";
-            }}
-          />
-        </Form.Group>
-        <Form.Group controlId="player_bowling_style">
-          <Form.Label>Player Bowling Style</Form.Label>
-          <Form.Control
-            type="text"
-            name="player_bowling_style"
-            value={playerData.player_bowling_style}
-            onChange={handleChange}
-            style={{ transition: "all .2s ease-in-out" }}
-            onMouseEnter={(e) => {
-              e.target.style.boxShadow = "0 0 10px green";
-              e.target.style.transform = "scale(1.05)";
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.boxShadow = "";
-              e.target.style.transform = "";
-            }}
-          />
-        </Form.Group>
-        <Button
-          className="coolBeans"
-          style={{ marginTop: "20px", color: "#fff" }}
-          type="submit"
-        >
-          Submit
-        </Button>
-      </Form>
+    <div className="container1">
+      <div className="container">
+        <h1 className="mt-5">Insert Player</h1>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group controlId="player_name">
+            <Form.Label>Player Name</Form.Label>
+            <Form.Control
+              type="text"
+              name="player_name"
+              value={playerData.player_name}
+              onChange={handleChange}
+              className="input-field"
+            />
+          </Form.Group>
+          <Form.Group controlId="team_name">
+            <Form.Label>Player Country</Form.Label>
+            <Form.Control
+              type="text"
+              name="team_name"
+              value={playerData.team_name}
+              onChange={handleChange}
+              className="input-field"
+            />
+          </Form.Group>
+          <Form.Group controlId="player_image_path">
+            <Form.Label>Player Image</Form.Label>
+            <Form.Control
+              type="file"
+              name="player_image_path"
+              onChange={handleImageChange}
+              className="input-field"
+            />
+          </Form.Group>
+          <Form.Group controlId="player_date_of_birth">
+            <Form.Label>Player Birthdate</Form.Label>
+            <Form.Control
+              type="date"
+              name="player_date_of_birth"
+              value={playerData.player_date_of_birth}
+              onChange={handleChange}
+              className="input-field"
+            />
+          </Form.Group>
+          <Form.Group controlId="player_role">
+            <Form.Label>Player Role</Form.Label>
+            <Form.Control
+              type="text"
+              name="player_role"
+              value={playerData.player_role}
+              onChange={handleChange}
+              className="input-field"
+            />
+          </Form.Group>
+          <Form.Group controlId="player_batting_style">
+            <Form.Label>Player Batting Style</Form.Label>
+            <Form.Control
+              type="text"
+              name="player_batting_style"
+              value={playerData.player_batting_style}
+              onChange={handleChange}
+              className="input-field"
+            />
+          </Form.Group>
+          <Form.Group controlId="player_bowling_style">
+            <Form.Label>Player Bowling Style</Form.Label>
+            <Form.Control
+              type="text"
+              name="player_bowling_style"
+              value={playerData.player_bowling_style}
+              onChange={handleChange}
+              className="input-field"
+            />
+          </Form.Group>
+          <Button className="submit-button" type="submit">
+            Submit
+          </Button>
+        </Form>
+      </div>
     </div>
   );
 }

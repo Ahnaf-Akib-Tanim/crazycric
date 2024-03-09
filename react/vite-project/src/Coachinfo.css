@@ -2,9 +2,16 @@
   padding: 20px; /* Add padding */
   border-radius: 10px; /* Add border radius */
   text-align: center; /* Center-align content */
-  overflow-x: auto; /* Add horizontal scroll for small screens */
+  overflow-x: auto;
 }
-
+.pk {
+  height: 100vh;
+  background:
+    linear-gradient(0deg, rgba(30, 20, 122, 0.504) 61%, rgb(180, 45, 253) 100%),
+    url("./back.jpg") no-repeat center center/ cover;
+  background-attachment: fixed;
+  color: #b2ffff;
+}
 /* Styles for the container wrapping the coach name and coach image */
 .coach-name-container {
   display: flex;
@@ -58,8 +65,7 @@ table tr:hover {
     153,
     0.178
   ); /* Change background color on hover */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Add glow effect */
-  transition: background-color 0.1s ease-in-out; /* Add transition effect */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Media query for smaller screens */

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import "./Scorecard.css";
 
 const MatchSummary = ({ summary, stadium_name, umpire_names }) => (
   <div style={{ textAlign: "center" }}>
@@ -12,7 +13,7 @@ const MatchSummary = ({ summary, stadium_name, umpire_names }) => (
     <h1 style={{ marginTop: "-4em" }}>
       {summary.team1} vs {summary.team2} {summary.match_format}
     </h1>
-    <h2>Venue: {stadium_name}</h2>
+    <h2 className="label">Venue: {stadium_name}</h2>
     <h3>Umpired by: {umpire_names}</h3>
     <h4>{summary.toss_won_by} won the toss and batted first</h4>
     <h4>
@@ -24,14 +25,14 @@ const MatchSummary = ({ summary, stadium_name, umpire_names }) => (
 
 const Scorecard = ({ scorecard, innings }) => (
   <div style={{ margin: "0 auto", width: "fit-content" }}>
-    <h2>{innings} Innings:</h2>
+    <h2 className="label">{innings} Innings:</h2>
     <table style={{ margin: "0 auto" }}>
       <thead>
         <tr>
-          <th style={{ padding: "0 15px" }}>Player</th>
-          <th style={{ padding: "0 15px" }}>Wicket</th>
-          <th style={{ padding: "0 15px" }}>By</th>
-          <th style={{ padding: "0 15px" }}>Runs</th>
+          <th style={{ padding: "0 15px", color: "violet" }}>Player</th>
+          <th style={{ padding: "0 15px", color: "violet" }}>Wicket</th>
+          <th style={{ padding: "0 15px", color: "violet" }}>By</th>
+          <th style={{ padding: "0 15px", color: "violet" }}>Runs</th>
         </tr>
       </thead>
       <tbody>
@@ -55,15 +56,15 @@ const Scorecard = ({ scorecard, innings }) => (
 );
 const BowlingStats = ({ scorecard }) => (
   <div style={{ margin: "0 auto", width: "fit-content" }}>
-    <h2>Bowling Stats:</h2>
+    <h2 className="label">Bowling Stats:</h2>
     <table style={{ margin: "0 auto" }}>
       <thead>
         <tr>
-          <th style={{ padding: "0 15px" }}>Bowler</th>
-          <th style={{ padding: "0 15px" }}>Overs</th>
-          <th style={{ padding: "0 15px" }}>Runs</th>
-          <th style={{ padding: "0 15px" }}>Wickets</th>
-          <th style={{ padding: "0 15px" }}>Economy</th>
+          <th style={{ padding: "0 15px", color: "violet" }}>Bowler</th>
+          <th style={{ padding: "0 15px", color: "violet" }}>Overs</th>
+          <th style={{ padding: "0 15px", color: "violet" }}>Runs</th>
+          <th style={{ padding: "0 15px", color: "violet" }}>Wickets</th>
+          <th style={{ padding: "0 15px", color: "violet" }}>Economy</th>
         </tr>
       </thead>
       <tbody>
@@ -115,16 +116,18 @@ const MainComponent = () => {
   }
 
   return (
-    <div>
-      <MatchSummary
-        summary={scorecard.match_summary_record}
-        stadium_name={scorecard.stadium_name}
-        umpire_names={scorecard.umpire_names}
-      />
-      <Scorecard scorecard={scorecard.scorecard1_record} innings="1ST" />
-      <BowlingStats scorecard={scorecard.scorecard3_record} />
-      <Scorecard scorecard={scorecard.scorecard2_record} innings="2ND" />
-      <BowlingStats scorecard={scorecard.scorecard4_record} />
+    <div className="container1">
+      <div className="container">
+        <MatchSummary
+          summary={scorecard.match_summary_record}
+          stadium_name={scorecard.stadium_name}
+          umpire_names={scorecard.umpire_names}
+        />
+        <Scorecard scorecard={scorecard.scorecard1_record} innings="1ST" />
+        <BowlingStats scorecard={scorecard.scorecard3_record} />
+        <Scorecard scorecard={scorecard.scorecard2_record} innings="2ND" />
+        <BowlingStats scorecard={scorecard.scorecard4_record} />
+      </div>
     </div>
   );
 };

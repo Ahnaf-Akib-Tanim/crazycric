@@ -4,6 +4,8 @@ import "./buttonTwo.css";
 import "./dropdown.css";
 import styles from "./statguru.module.css";
 const Statguru = () => {
+  const defaultStartDate = "2010-01-01";
+  const defaultEndDate = "2024-03-01";
   const [selectedButton, setSelectedButton] = useState(null);
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [selectedOpposition, setSelectedOpposition] = useState(null);
@@ -12,11 +14,9 @@ const Statguru = () => {
   const [selectedResult, setSelectedResult] = useState(null);
   const [selectedFormat, setSelectedFormat] = useState(null);
   const [selectedStadium, setSelectedStadium] = useState(null);
-  const [selectedStartDate, setSelectedStartDate] = useState(null);
-  const [selectedEndDate, setSelectedEndDate] = useState(null);
+  const [selectedStartDate, setSelectedStartDate] = useState(defaultStartDate);
+  const [selectedEndDate, setSelectedEndDate] = useState(defaultEndDate);
   const [stadiums, setStadiums] = useState([]);
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
   const [name, setName] = useState(null);
   const [selectedInvolvingTeam, setSelectedInvolvingTeam] = useState(null);
   const [selectedOriginality, setSelectedOriginality] = useState(null);
@@ -40,7 +40,7 @@ const Statguru = () => {
   ];
   const venues = ["Home", "Away", "Neutral"];
   const results = ["Won", "Lost", "Drawn"];
-  const formats = ["Test", "ODI", "T20"];
+  const formats = ["ODI", "T20"];
   const handleButtonClick = (button) => {
     if (selectedButton === button) {
       setSelectedButton(null);
@@ -60,7 +60,6 @@ const Statguru = () => {
       selectedStadium,
       selectedEndDate,
       selectedStartDate,
-      endDate,
       name,
       selectedInvolvingTeam,
       selectedOriginality,
@@ -76,6 +75,7 @@ const Statguru = () => {
         body: JSON.stringify(data),
       }
     );
+    console.log(data);
 
     if (response.ok) {
       const responseData = await response.json();
@@ -240,7 +240,7 @@ const Statguru = () => {
             <label style={{ color: "white" }}>Starting Date:</label>
             <input
               type="date"
-              value={startDate}
+              value={selectedStartDate}
               onChange={(e) => setSelectedStartDate(e.target.value)}
             />
           </div>
@@ -248,7 +248,7 @@ const Statguru = () => {
             <label style={{ color: "white" }}>Ending Date:</label>
             <input
               type="date"
-              value={endDate}
+              value={selectedEndDate}
               onChange={(e) => setSelectedEndDate(e.target.value)}
             />
           </div>

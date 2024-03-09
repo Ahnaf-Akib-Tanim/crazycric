@@ -1,54 +1,19 @@
-/* usersignup.css
-.signup-container {
-  background-image: url("D:/Buet/Crazycric-project/react/vite-project/src/bg9.jpg");
-  background-size: cover;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.8;
-  margin-top: -120px;
-  padding-bottom: 100px;
-}
-
-.signup-container .form-group {
-  margin-bottom: 25px;
-}
-
-.signup-container .form-group .form-label {
-  color: darkorange;
-  margin-bottom: 10px;
-}
-
-.signup-container .form-group input.form-control {
-  border-color: orange;
-  height: 50px;
-}
-
-.signup-container .submit-button {
-  background-color: skyblue;
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
-  font-weight: bold;
-  color: "white";
-  padding: "15px";
-  border: "none";
-  position: "relative";
-  top: "40px";
-  left: "225px";
-  cursor: "pointer";
-}
-
-.signup-container .submit-button:hover {
-  opacity: 1;
-} */
 /* General styles */
 .signup-container {
-  max-width: 400px;
-  min-width: 300px;
+  /* max-width: 400px;
+  min-width: 300px; */
+  color: #b2ffff;
   margin: 0 auto;
   padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background:
+    linear-gradient(0deg, rgba(30, 20, 122, 0.504) 61%, rgb(180, 45, 253) 100%),
+    url("./back.jpg") no-repeat center center/ cover;
+  background-attachment: fixed;
 }
 .error-message {
   color: red;
@@ -60,7 +25,7 @@
 }
 
 .input-form .form-label {
-  color: #5900e9;
+  color: #b2ffff;
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;

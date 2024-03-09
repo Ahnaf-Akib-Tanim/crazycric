@@ -1,0 +1,70 @@
+.bg {
+  height: 150vh;
+  width: 100vw;
+
+  font-family: Arial, sans-serif;
+  background:
+    linear-gradient(0deg, rgba(30, 20, 122, 0.504) 61%, rgb(180, 45, 253) 100%),
+    url("./back.jpg") no-repeat center center / cover;
+
+  transition: background-size 0.5s ease;
+}
+
+.transparent-navbar {
+  background-color: transparent !important;
+  backdrop-filter: blur(150px); /* Adds the glass effect */
+}
+
+/* Style for links in the navbar */
+.transparent-navbar .nav-link {
+  color: white; /* Change the color of links if needed */
+}
+.bg.zoom {
+  background-size: 150%; /* Increase the size of the background image */
+}
+
+/* Add styles for the player item container */
+/* Add styles for the player item container */
+/* Add styles for the player item container */
+.player-itemAdmin {
+  background-color: rgba(255, 255, 255, 0.1); /* Transparent background color */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Padding around each player item */
+  margin: 10px; /* Margin between player items */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Box shadow for depth effect */
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease; /* Smooth transition for transform and box shadow */
+}
+
+/* Grow and glow effect on hover */
+.player-itemAdmin:hover {
+  transform: scale(1.05); /* Grow slightly on hover */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Glow effect on hover */
+}
+
+/* Style for the update button */
+.update-button {
+  background-color: #007bff; /* Blue background color */
+  color: #fff; /* White text color */
+  border: none; /* Remove border */
+  padding: 10px 20px; /* Padding for button */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Change cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+/* Change button color on hover */
+.update-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+/* Style for the player name link */
+.player-name-linkAdmin {
+  color: #e7ebf0; /* Lightish blue color */
+  text-decoration: none; /* Remove default underline */
+}
+
+/* Change link color on hover */
+.player-name-link:hover {
+  color: #0056b3; /* Darker blue on hover */
+}

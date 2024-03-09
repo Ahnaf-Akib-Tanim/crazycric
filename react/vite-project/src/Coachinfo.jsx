@@ -30,39 +30,41 @@ const Coachinfo = () => {
   }
 
   return (
-    <div className="coach-info-container">
-      <div className="coach-name-container">
-        <img
-          src={`http://localhost:3000/coachimages/${coachinfo.coach_name}.jpeg`}
-          alt={coachinfo.coach_name}
-        />
-        <h1 className="coachheading">{coachinfo.coach_name}</h1>
-      </div>
-      <div className="table-container">
-        <table>
-          <tbody>
-            <tr>
-              <td>Country</td>
-              <td>{coachinfo.coach_country_name}</td>
-            </tr>
-            <tr>
-              <td>Coaching Team</td>
-              <td>{coachinfo.coaching_team}</td>
-            </tr>
-            <tr>
-              <td>Matches Won</td>
-              <td>{coachinfo.num_of_matches_won}</td>
-            </tr>
-            <tr>
-              <td>Success Percentage</td>
-              <td>{coachinfo.success_percentage}</td>
-            </tr>
-            <tr>
-              <td>Age</td>
-              <td>{coachinfo.coach_age}</td>
-            </tr>
-          </tbody>
-        </table>
+    <div className="pk">
+      <div className="coach-info-container">
+        <div className="coach-name-container">
+          <img
+            src={`http://localhost:3000/coachimages/${coachinfo.coach_name}.jpeg`}
+            alt={coachinfo.coach_name}
+          />
+          <h1 className="coachheading">{coachinfo.coach_name}</h1>
+        </div>
+        <div className="table-container">
+          <table>
+            <tbody>
+              <tr>
+                <td>Country</td>
+                <td>{coachinfo.coach_country_name}</td>
+              </tr>
+              <tr>
+                <td>Coaching Team</td>
+                <td>{coachinfo.coaching_team}</td>
+              </tr>
+              <tr>
+                <td>Matches Won</td>
+                <td>{coachinfo.num_of_matches_won}</td>
+              </tr>
+              <tr>
+                <td>Success Percentage</td>
+                <td>{coachinfo.success_percentage}</td>
+              </tr>
+              <tr>
+                <td>Age</td>
+                <td>{coachinfo.coach_age}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

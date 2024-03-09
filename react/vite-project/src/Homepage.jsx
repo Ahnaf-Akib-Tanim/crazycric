@@ -190,6 +190,17 @@ const Homepage = () => {
       </div>
 
       <div className="right-section">
+        <h2
+          style={{
+            position: "relative",
+            top: "10px",
+            left: "20px",
+            color: "aliceblue",
+            marginTop: "40px",
+          }}
+        >
+          Dream11 Leaderboard
+        </h2>
         <table>
           <thead>
             <tr>

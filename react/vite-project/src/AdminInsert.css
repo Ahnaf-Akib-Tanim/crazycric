@@ -1,0 +1,31 @@
+.container1 {
+  color: #b2ffff;
+
+  height: 100vh;
+
+  background:
+    linear-gradient(0deg, rgba(30, 20, 122, 0.504) 61%, rgb(180, 45, 253) 100%),
+    url("./back.jpg") no-repeat center center/ cover;
+  background-attachment: fixed;
+}
+
+.input-field {
+  transition: all 0.2s ease-in-out;
+}
+
+.input-field:hover {
+  box-shadow: 0 0 10px green;
+  transform: scale(1.05);
+}
+
+.submit-button {
+  margin-top: 20px;
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}

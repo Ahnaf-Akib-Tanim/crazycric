@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./Teaminfo.css";
+
 const Teaminfo = () => {
   const [teamdata, setTeamInfo] = useState(null);
   const { team_name } = useParams();
@@ -21,6 +22,7 @@ const Teaminfo = () => {
   if (!teamdata) {
     return <div>Loading...</div>;
   }
+
   const formatKey = (key) => {
     return key
       .replace(/_/g, " ")

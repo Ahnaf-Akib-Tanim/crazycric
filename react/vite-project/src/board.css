@@ -1,0 +1,46 @@
+/* board.css */
+
+.table-container table {
+  height: 100%; /* Full height */
+  width: 100%; /* Full width */
+  background: rgba(255, 255, 255, 0.1); /* Transparent background color */
+  border-collapse: collapse; /* Collapse table borders */
+  border-radius: 10px; /* Rounded corners */
+  overflow: hidden; /* Hide overflowing content */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background:
+    linear-gradient(0deg, rgba(30, 20, 122, 0.504) 61%, rgb(180, 45, 253) 100%),
+    url("./back.jpg") no-repeat center center/ cover;
+  background-attachment: fixed; /* Box shadow for a raised effect */
+}
+
+.table-container th,
+.table-container td {
+  padding: 12px 15px; /* Padding for table cells */
+  text-align: left; /* Align text to the left */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Bottom border */
+}
+
+.table-container th {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.2
+  ); /* Transparent faded background color for header row */
+}
+
+.table-container tbody tr:hover {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.3
+  ); /* Transparent faded background color on hover */
+}

@@ -1,0 +1,40 @@
+/* Dream11update.css */
+
+.bg {
+  color: aliceblue;
+  height: 800vh;
+  width: 100vw;
+
+  font-family: Arial, sans-serif;
+  background:
+    linear-gradient(0deg, rgba(30, 20, 122, 0.504) 61%, rgb(180, 45, 253) 100%),
+    url("./back.jpg") no-repeat center center / cover;
+  background-attachment: fixed;
+}
+.table-striped thead {
+  background-color: rgba(255, 255, 255, 0.2); /* Transparent background color */
+  color: rgb(1, 14, 26); /* Font color */
+}
+
+.table-striped th {
+  border: 1px solid #fff; /* White border */
+  padding: 0.5em; /* Padding around table cells */
+  font-family: Arial, sans-serif;
+}
+.table-striped tbody tr:hover {
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Box shadow for glow effect on hover */
+  transform: scale(1.01); /* Increase size on hover */
+}
+
+.table-striped tbody tr {
+  background-color: rgba(255, 255, 255, 0.1); /* Transparent background color */
+  transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.table-striped th,
+.table-striped td {
+  border: 1px solid #fff; /* White border */
+  padding: 0.5em; /* Padding around table cells */
+  font-family: Arial, sans-serif;
+  color: aliceblue; /* Font color */
+}

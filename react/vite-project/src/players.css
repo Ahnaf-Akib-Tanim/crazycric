@@ -1,4 +1,4 @@
-.Players .table-layout {
+.Players1 .table-layout {
   margin: auto;
   width: 60%;
   margin-left: 30%;
@@ -8,43 +8,53 @@
   top: -250px;
   left: -200px;
 }
-body {
-  background-color: #afabe3;
-  font-family: sans-serif;
-  font-size: larger;
+.Players1 {
+  color: aliceblue;
+  font-size: 30px;
+
+  height: 1000vh;
+  width: 100vw;
+
+  font-family: Arial, sans-serif;
+  background:
+    linear-gradient(0deg, rgba(30, 20, 122, 0.504) 61%, rgb(180, 45, 253) 100%),
+    url("./back.jpg") no-repeat center center / cover;
+  background-attachment: fixed;
 }
-.Players .table-layout tr,
-.Players .table-layout td,
-.Players .table-layout th {
+
+.Players1 .table-layout tr,
+.Players1 .table-layout td,
+.Players1 .table-layout th {
   border: 3px solid black;
 }
 
-.Players .table-layout td:nth-child(1),
-.Players .table-layout th:nth-child(1) {
+.Players1 .table-layout td:nth-child(1),
+.Players1 .table-layout th:nth-child(1) {
   width: 50%;
 }
 
-.Players .table-layout td:nth-child(2),
-.Players .table-layout th:nth-child(2) {
+.Players1 .table-layout td:nth-child(2),
+.Players1 .table-layout th:nth-child(2) {
   width: 50%;
 }
 
-.Players .table-layout td:nth-child(3),
-.Players .table-layout th:nth-child(3) {
+.Players1 .table-layout td:nth-child(3),
+.Players1 .table-layout th:nth-child(3) {
   width: 20%;
 }
 
-.Players .table-layout td:nth-child(4),
-.Players .table-layout th:nth-child(4) {
+.Players1 .table-layout td:nth-child(4),
+.Players1 .table-layout th:nth-child(4) {
   width: 40%;
 }
 
-.Players .image-size {
-  width: 100px;
-  height: auto;
+.Players1 .image-size {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
 }
 
-.custom-label {
+.custom-label1 {
   display: inline-block;
   padding: 5px;
   margin: 4px;
@@ -55,29 +65,75 @@ body {
 }
 
 /* Form label hover effect */
-.custom-label:hover {
+.custom-label1:hover {
   border-color: #007bff; /* Change border color on hover */
   box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Add shadow on hover */
 }
 
 /* Form checkbox styling */
-.custom-checkbox {
+.custom-checkbox1 {
   margin-right: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 /* Form checkbox hover effect */
-.custom-checkbox:hover {
+.custom-checkbox1:hover {
   transform: scale(1.1); /* Increase size on hover */
 }
 
-.search-button {
+.search-button1 {
   top: 3px;
 }
 
-.custom-row {
+.custom-row1 {
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 15px;
+}
+
+.player-item1 {
+  background-color: rgba(255, 255, 255, 0.1); /* Transparent background color */
+  border-radius: 10px;
+
+  padding: 20px; /* Padding around each player item */
+  margin: 10px; /* Margin between player items */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Box shadow for depth effect */
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.Players1 .player-item1 {
+  width: calc(25% - 50px); /* Adjust the width to fit 4 items in a row */
+  /* The -20px accounts for the margin on both sides */
+  margin: 10px; /* Keep the margin between player items */
+  box-sizing: border-box; /* Include padding and border in the width calculation */
+}
+
+@media (max-width: 1200px) {
+  .Players1 .player-item1 {
+    width: calc(33.33% - 20px); /* Adjust the width to fit 3 items in a row */
+  }
+}
+
+@media (max-width: 992px) {
+  .Players1 .player-item1 {
+    width: calc(50% - 20px); /* Adjust the width to fit 2 items in a row */
+  }
+}
+.player-item1 {
+  background-color: rgba(255, 255, 255, 0.1); /* Transparent background color */
+  border-radius: 10px;
+  padding: 20px; /* Padding around each player item */
+  margin: 10px; /* Margin between player items */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Initial box shadow for depth effect */
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease; /* Transition effect for transform and box-shadow */
+}
+
+.player-item1:hover {
+  transform: scale(1.05); /* Grow effect on hover */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Glow effect on hover */
 }
